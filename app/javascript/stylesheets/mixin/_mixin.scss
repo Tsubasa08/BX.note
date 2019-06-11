@@ -1,0 +1,74 @@
+// ミックスインの定義
+// メディアクエリー
+@mixin media($breakpoint) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
+
+ // float 解除
+ @mixin clear {
+
+ 	&::after {
+ 		content: "";
+ 		display: block;
+ 		clear: both;
+ 	}
+ }
+
+
+// h2
+@mixin h2 {
+  font-size: 5rem;
+  font-family: $ff-eng;
+  font-weight: normal;
+}
+
+//  ポジション
+ @mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+ }
+
+ @mixin t-center {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+ }
+
+ @mixin b-center {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+ }
+
+//  フレックスボックス
+@mixin f-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// object-fit
+@mixin cover {
+  object-fit: cover;
+  font-family: 'object-fit: cover;';
+}
+@mixin cover-left {
+  object-fit: cover;
+  object-position: left;
+  font-family: 'object-fit: cover; object-position: left;';
+}
+@mixin cover-right {
+  object-fit: cover;
+  object-position: right;
+  font-family: 'object-fit: cover; object-position: right;';
+}
+@mixin contain {
+  object-fit: contain;
+  font-family: 'object-fit: contain;';
+}
