@@ -1,1 +1,5 @@
-console.log("application.jsのファイルから出力");
+$(function() {
+  $(".nav-toggle").click(function() {
+    $("body").toggleClass("nav-open");
+  });
+});

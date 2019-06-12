@@ -1,15 +1,18 @@
 // 色の定義
 
 $MainColor:#333;
-$SubColor:#f7f7f7;
-$AccentColor:#0033ff;
+$SubColor:#E9EBEE;
+$AccentColor:#00AFCC;
 
 // テキスト色
 $cr-txt: #333;
 
 // ボーダーの色
-$border: #dbdcdc;
+$border: #DDDFE2;
 
 .main-color {
   color: $MainColor;
+}
+.accent-color {
+  color: $AccentColor;
 }
