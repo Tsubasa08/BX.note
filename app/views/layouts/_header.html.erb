@@ -3,9 +3,9 @@
   <div class="inner">
 
     <h1 class="header-logo">
-      <a class="header-logo__link" href="#">
+      <%= link_to root_path, class: 'header-logo__link' do%>
         <img class="header-logo__img" src="<%= asset_pack_path 'media/src/images/logo_1.svg' %>" />
-      </a>
+      <% end %>
     </h1>
 
     <div class="serch-box serch-box--pc">
