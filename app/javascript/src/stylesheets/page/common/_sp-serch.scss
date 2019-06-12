@@ -1,0 +1,131 @@
+/*
+  sp-serch
+*/
+.serch-page {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: $SubColor;
+  &__header {
+    height: 60px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+}
+
+.cancel-btn {
+  color: $AccentColor;
+}
+
+
+/* 検索アニメーション */
+.bluelight {
+    font-family: "Squada One",sans-serif;
+    color:$AccentColor;
+    display: table;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    &__text {
+        display: table-cell;
+        font-size: 3rem;
+        font-weight: bold;
+        text-decoration: none;
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 50%;
+        transition: background 1s, border-width 0.5s cubic-bezier(0.075, 0.820, 0.165, 1.000), text-shadow 0.5s;
+        color: $AccentColor;
+        text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
+        box-shadow: 0 0 0 rgba(10, 175, 230, 0),  inset 0 0 0 rgba(10, 175, 230, 0);
+        background-image: radial-gradient(center, ellipse cover, rgba(10, 175, 230, 0) 0%, rgba(10, 175, 230, 0) 90%);
+        border: 0 dotted rgba(10, 175, 230, 0.0);
+        
+            
+            text-shadow: 0 0 50px rgba(10, 175, 230, 1),  0 0 50px rgba(10, 175, 230, 1);
+            background-image: radial-gradient(center, ellipse cover, rgba(10, 175, 230, 0.3) 0%, rgba(10, 175, 230, 0) 60%);
+        
+    }
+    &:before, &:after, &__text:before, &__text:after {
+        transition: 0.2s ease-in-out;
+        content: "";
+        display: block;
+        position: absolute;
+        border-radius: 50%;
+        border: 60px dashed transparent;
+        left: 50%;
+        top: 50%;
+        transform : translate(-50%,-50%);
+    }
+    &:before {
+        animation: rotate 20s linear 0s infinite;
+        width: 180%;
+        height: 180%;
+        border: 3px dotted rgba(10, 175, 230, 0);
+        z-index: -1;
+    }
+    &:after {
+        animation: rotate 10s linear 0s infinite reverse;
+        border: 80px dashed rgba(10, 175, 230, 0);
+        width: 160%;
+        height: 160%;
+        z-index: -2;
+    }
+    &__text {
+        &:before {
+            animation: rotate 5s ease-in-out 0s infinite alternate;
+            width: 120%;
+            height: 120%;
+            border: 50px dashed rgba(10, 175, 230, 0);
+        }
+        &:after {
+            animation: rotate 5s linear 0s infinite;
+            border: 18px dashed rgba(10, 175, 230, 0);
+            width: 120%;
+            height: 120%;
+        }
+    }
+    
+        &:before {
+            border-color: rgba(10, 175, 230, 0.3);
+        }
+        &:after {
+            border-color: rgba(10, 175, 230, 0.1);
+        }
+        &__text {
+            &:before {
+                border-color: rgba(10, 175, 230, 0.3);
+            }
+            &:after {
+                border-color: rgba(10, 175, 230, 0.3);
+            }
+        }
+    
+}
+@keyframes rotate {
+    0% {
+        transform: translate(-50%,-50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%,-50%) rotate(360deg);
+    }
+}
+/* 検索アニメーション end */
+
+
+
+
+
+/*
+  sp-serch end 
+*/

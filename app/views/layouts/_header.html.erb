@@ -1,23 +1,62 @@
 <header class="header">
+  <!-- inner-->
   <div class="inner">
+
     <h1 class="header-logo">
       <a class="header-logo__link" href="#">
         <img class="header-logo__img" src="<%= asset_pack_path 'media/src/images/logo_1.svg' %>" />
       </a>
     </h1>
-    
-    <nav class="nav">
-      <ul>
-        <li><a href="#">Search</a></li>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">Skills</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-      
-    <div class="nav-toggle">
-      <div class="icon"></div>
+
+    <div class="serch-box serch-box--pc">
+      <%= form_with(method: :get, local: true) do |f| %>
+        <%= f.text_field :search, placeholder: '検索', class: 'serch-box__input serch-box--pc__input'%>
+        <%= f.button "search", class: 'serch-box__button serch-box--pc__button',value: ''  do%>
+        <i class="fas fa-search"></i>
+        <% end %>
+      <% end %>
     </div>
-  </div>
+
+    <i id="sp-serch" class="fas fa-search sp-serch"></i>
+
+    <%= link_to root_path class: 'post-link' do %>
+      <img class="post-link__img" src="<%= asset_pack_path 'media/src/images/icon-post.png' %>" />
+    <% end %>
+    
+    <div class="tab-menu">
+      <nav class="nav">
+        <ul>
+          <li><a href="#">Search</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Portfolio</a></li>
+          <li><a href="#">Skills</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+        
+      <div class="nav-toggle">
+        <div class="icon"></div>
+      </div>
+    </div>
+  </div><!-- inner end -->
 </header>
+
+<!--sp-serch-page -->
+<div id="serch-page" class="serch-page">
+  <div class="serch-page__header">
+    <div class="serch-box serch-box--sp">
+      <%= form_with(method: :get, local: true) do |f| %>
+        <%= f.text_field :search, placeholder: '検索', class: 'serch-box__input serch-box--sp__input'%>
+        <%= f.button "search", class: 'serch-box__button serch-box--sp__button',value: ''  do%>
+        <i class="fas fa-search"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <p id="serch-page-close" class="cancel-btn">キャンセル</p>
+  </div>
+
+  <div class="bluelight">
+	  <p class="bluelight__text">SERCH</p>
+  </div>
+</div>
+<!--sp-serch-page end -->
