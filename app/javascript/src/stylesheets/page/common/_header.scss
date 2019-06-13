@@ -40,13 +40,6 @@
   }
 }
 
-body {
-	@include media(tab) {
-		height: 100vh;
-		width: 100vw;
-		overflow: hidden;
-	}
-}
 .tab-menu {
 	color: #fff;
 	div {

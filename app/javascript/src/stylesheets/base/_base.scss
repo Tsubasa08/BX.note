@@ -264,3 +264,16 @@ img {
 a {
 	color: #333;
 }
+
+@include media(tab) {
+	html {
+		overflow: auto;
+		height: 100%;
+	}
+	body {
+		overflow: hidden;
+		height: 100%;
+		width: 100vw;
+	}
+
+}
