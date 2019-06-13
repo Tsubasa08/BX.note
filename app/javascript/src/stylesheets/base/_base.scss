@@ -265,15 +265,12 @@ a {
 	color: #333;
 }
 
-@include media(tab) {
-	html {
-		overflow: auto;
-		height: 100%;
-	}
-	body {
-		overflow: hidden;
-		height: 100%;
-		width: 100vw;
-	}
-
+html.active {
+	overflow: auto;
+	height: 100%;
+}
+body.active {
+	overflow: hidden;
+	height: 100vh;
+	width: 100vw;
 }

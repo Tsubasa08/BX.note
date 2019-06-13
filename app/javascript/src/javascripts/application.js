@@ -2,6 +2,7 @@ $(function() {
   // ハンバーメニュー
   $(".nav-toggle").click(function() {
     $("#tab-menu").toggleClass("nav-open");
+    $("html, body").toggleClass("active");
   });
 
   // 検索ページ遷移

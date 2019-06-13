@@ -5,7 +5,10 @@
   position: relative;
   height: $header-height;
   background-color: #fff;
-  border-bottom: 1px solid $border;
+	border-bottom: 1px solid $border;
+	@include media(pc) {
+		margin-bottom: 30px;
+	}
   > .inner {
 		display: flex;
     align-items: center;
@@ -59,6 +62,7 @@
 		}
 		
 		.contents{
+			display: block;
 			transform: translateY(0);
 		}
 		
@@ -157,6 +161,7 @@
 
 .tab-menu {
 	.contents{
+		display: none;
 		position: absolute;
 		top: 56px;
 		left: 0;

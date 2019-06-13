@@ -5,22 +5,21 @@
   .main {
     width: $pc-width;
     margin: 0 auto;
-  }
-  .contents {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 30px;
-    &__left {
-      // height: 500px;
-      width: 774px;
-      background-color: #fff;
-      @include radius;
-    }
-    &__right {
-      // height: 500px;
-      width: 326px;
-      // background-color: #fff;
-      @include radius;
+    .contents {
+      display: flex;
+      justify-content: space-between;
+      &__left {
+        // height: 500px;
+        width: 774px;
+        background-color: #fff;
+        @include radius;
+      }
+      &__right {
+        // height: 500px;
+        width: 326px;
+        // background-color: #fff;
+        @include radius;
+      }
     }
   }
 

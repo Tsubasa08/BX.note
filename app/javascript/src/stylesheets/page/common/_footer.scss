@@ -5,6 +5,10 @@
   height: 80px;
   color: #fff;
   background-color: $AccentColor;
+  margin-top: 44px; 
+  @include media(pc) {
+    margin-top: 70px;
+  }
   > .inner {
     display: flex;
     flex-direction: column;
