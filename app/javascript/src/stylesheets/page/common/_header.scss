@@ -17,7 +17,10 @@
     @include media(pc) {
       width: $pc-width;
 
-    }
+		}
+		@include media(tab) {
+			padding: 0 10px;
+		}
 	}
 }
 .header-logo {
@@ -26,8 +29,6 @@
 		display: block;
 		height: 100%;
 		@include media(tab) {
-			// height: 60px;
-			margin-left: 15px;
 		}
 	}
   &__img {
@@ -39,23 +40,32 @@
   }
 }
 
-// @import url(https://fonts.googleapis.com/css?family=Lato:300,400);
-
+body {
+	@include media(tab) {
+		height: 100vh;
+		width: 100vw;
+		overflow: hidden;
+	}
+}
 .tab-menu {
-  // position: absolute;
-	// top: 0;
-	// left: 0;
+	color: #fff;
+	div {
+		margin-bottom: 20px;
+		&:nth-last-of-type(1) {
+			margin-bottom: 0;
+		}
+	}
   @include media(pc) {
     display: none;
-  }
+	}
 }
-	.nav-open{
+	.tab-menu.nav-open{
 		
 		.lower-screen{
 			transform: scale(0.8, 0.8);
 		}
 		
-		.nav{
+		.contents{
 			transform: translateY(0);
 		}
 		
@@ -68,7 +78,6 @@
 				@include media(sp) {
 					width: 1600px;
 					height: 1600px;
-
 				}
 				background-color: fade(#4A75E6, 95%);
 			}
@@ -79,7 +88,6 @@
 				&:before{
 					transform: translateY(9px) rotate(45deg); 
 				}
-				
 				&:after{
 					transform: translateY(-9px) rotate(-45deg);
 				}
@@ -94,9 +102,6 @@
 	z-index: 2;
 	
 	border-radius: 50%;
-	//background-color: #4A75E6;
-	
-	margin: 10px;
 	cursor: pointer;
 	
 	box-shadow: 0 3px 0 fade(black, 20%);
@@ -123,7 +128,7 @@
 		width: 25px;
 		height: 4px;
 		
-		background-color: white;
+		background-color: #fff;
 		border-radius: 2px;
 		
 		position: absolute;
@@ -136,7 +141,7 @@
 		&:after{
 			width: 25px;
 			height: 4px;
-			background-color: white;
+			background-color: #fff;
 			border-radius: 2px;
 			
 			content: "";
@@ -145,7 +150,6 @@
 			left: 0;
 			
 			transition-duration: 0.5s;
-			// transiting-timing-function: swing;
 		}
 		
 		&:before{
@@ -158,49 +162,65 @@
 	}
 }
 
-.nav{
-	position: absolute;
-	top: 56px;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	z-index: 9;
-	padding: 0 20px;
-	
-	transition-duration: 0.66s;
-	transition-timing-function: swing;
-	transform: translateY(100%);
-
-	ul{
-		li{
-			list-style: none;
-			
-			a{
-				display: block;
-				padding: 10px 0;
-				text-align: center;
-				color: white;
-				text-decoration: none;
-				font-size: 20px;
-				
-				transition-duration: 0.25s;
-			}
-		}
+.tab-menu {
+	.contents{
+		position: absolute;
+		top: 56px;
+		left: 0;
+		width: 100vw;
+		height: calc(100vh - 56px);
+		z-index: 10;
 		
-		&:hover{
+		transition-duration: 0.66s;
+		transition-timing-function: swing;
+		transform: translateY(100%);
+	
+		.profile-card {
+			height: 144px;
+			border-bottom: 1px solid $border;
+		}
+	
+		.categories {
+			text-align: center;
+			border-bottom: 1px solid $border;
+			&__title {
+				color: #fff;
+				font-size: 20px;
+				font-weight: bold;
+				&::before {
+					content: '\f277';
+					font-family: 'Font Awesome 5 Free';
+					display: inline-block;
+					margin-right: 10px;
+					vertical-align: middle;
+				}
+			}
+		} 
+	
+		ul{
 			li{
-				a{
-					opacity: 0.5;
-				}
+				list-style: none;
 				
-				&:hover{
-					a{
-						opacity: 1;
-					}
+				a{
+					display: block;
+					padding: 10px 0;
+					color: #fff;
+					transition-duration: 0.25s;
 				}
+			}
+			
+		}
+		.about-link {
+			text-align: center;
+			.link {
+				font-size: 20px;
+				font-weight: bold;
+				color: #fff;
+				
 			}
 		}
 	}
+
 }
 
 .serch-box {

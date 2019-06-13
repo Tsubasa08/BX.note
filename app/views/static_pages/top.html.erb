@@ -1,4 +1,49 @@
 <% provide(:title, '') %>
-<h1>StaticPages#top</h1>
-<p>Find me in app/views/static_pages/top.html.erb</p>
-<i class="fa fa-home fa-5x"></i>
+<main class="main">
+  <div class="contents">
+    <div class="contents__left">
+    </div>
+
+    <div class="contents__right">
+      <div class="categories">
+        <p class="categories__title">カテゴリー</p>
+        <ul class="category-list">
+          <li class="category-list__item">
+            <%= link_to 'HTML', root_path, class: 'link' %>
+          </li>
+          <li class="category-list__item">
+            <%= link_to 'CSS', root_path, class: 'link' %>
+          </li>
+          <li class="category-list__item">
+            <%= link_to 'JavaScript', root_path, class: 'link' %>
+          </li>
+          <li class="category-list__item">
+            <%= link_to 'jQuery', root_path, class: 'link' %>
+          </li>
+          <li class="category-list__item">
+            <%= link_to 'WordPress', root_path, class: 'link' %>
+          </li>
+          <li class="category-list__item">
+            <%= link_to 'デザイン', root_path, class: 'link' %>
+          </li>
+          <li class="category-list__item">
+            <%= link_to 'Web制作', root_path, class: 'link' %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="profile-card">
+        プロフィールカードが入る
+      </div>
+      
+      <div class="about-link">
+        <%= link_to 'BX.noteとは？', about_path, class: 'link' %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-nation">
+  ページネーション
+  </div>
+</main>

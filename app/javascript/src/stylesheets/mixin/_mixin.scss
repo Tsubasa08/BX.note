@@ -72,3 +72,7 @@
   object-fit: contain;
   font-family: 'object-fit: contain;';
 }
+
+@mixin radius {
+  border-radius: 5px;
+}

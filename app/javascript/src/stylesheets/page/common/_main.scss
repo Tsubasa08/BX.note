@@ -1,0 +1,113 @@
+/*
+  main
+*/
+@include media(pc) {
+  .main {
+    width: $pc-width;
+    margin: 0 auto;
+  }
+  .contents {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+    &__left {
+      // height: 500px;
+      width: 774px;
+      background-color: #fff;
+      @include radius;
+    }
+    &__right {
+      // height: 500px;
+      width: 326px;
+      // background-color: #fff;
+      @include radius;
+    }
+  }
+
+  .categories {
+    &__title {
+      background-color: $AccentColor;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 5px 5px 0 0;
+      &::before {
+        content: '\f277';
+        font-family: 'Font Awesome 5 Free';
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+    }
+  }
+  .category-list {
+    padding: 0 10px;
+    background-color: #fff;
+    &__item {
+      position: relative;
+      padding: 15px 0 15px 15px;
+      border-bottom: 1px solid $border;
+      &:nth-last-of-type(1) {
+        border-bottom: none;
+      }
+      .link {
+        display: block;
+        transition: 0.2s;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      &::after {
+        content: '\f054';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        display: block;
+        color: $AccentColor;
+      }
+    }
+  }
+
+  .profile-card {
+    @include radius;
+    height: 100px;
+    margin: 10px 0 10px;
+    background-color: #fff;
+  }
+  .about-link {
+    @include radius;
+    background-color: $AccentColor;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+    .link {
+      display: block;
+      color: #fff;
+      transition: 0.2s;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+@include media(tab) {
+  .contents {
+    &__left {
+      background-color: #fff;
+    }
+    &__right {
+      display: none;
+    }
+  }
+
+}
+
+
+/*
+  main end
+*/

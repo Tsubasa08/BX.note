@@ -1,7 +1,7 @@
 $(function() {
   // ハンバーメニュー
   $(".nav-toggle").click(function() {
-    $("body").toggleClass("nav-open");
+    $("#tab-menu").toggleClass("nav-open");
   });
 
   // 検索ページ遷移
