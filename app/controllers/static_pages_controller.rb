@@ -5,6 +5,9 @@ class StaticPagesController < ApplicationController
   def about
   end
 
-  # 利用規約
-  # プライバシーポリシー
+  def terms
+  end
+
+  def policy
+  end
 end
