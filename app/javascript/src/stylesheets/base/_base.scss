@@ -277,3 +277,11 @@ body.active {
 	height: calc(var(--vh, 1vh) * 100);
 	width: 100vw;
 }
+.main-container {
+	@include media(pc) {
+		padding-top: 90px;
+	}
+	@include media(tab) {
+		padding-top: 60px;
+	}
+}

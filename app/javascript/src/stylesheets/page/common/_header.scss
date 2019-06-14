@@ -2,12 +2,14 @@
     header
 */
 .header {
-  position: relative;
-  height: $header-height;
+	position: fixed;
+	z-index: 10;
+	height: $header-height;
+	width: 100%;
   background-color: #fff;
 	border-bottom: 1px solid $border;
 	@include media(pc) {
-		margin-bottom: 30px;
+		// margin-bottom: 90px;
 	}
   > .inner {
 		display: flex;
