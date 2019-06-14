@@ -264,3 +264,24 @@ img {
 a {
 	color: #333;
 }
+
+html.active {
+	overflow: auto;
+	height: 100%;
+}
+body.active {
+	overflow: hidden;
+	/* カスタムプロパティ未対応ブラウザ対応 */
+	height: 100vh;
+	/* 100vh --vhが未定義の場合は1vhを使う */
+	height: calc(var(--vh, 1vh) * 100);
+	width: 100vw;
+}
+.main-container {
+	@include media(pc) {
+		padding-top: 90px;
+	}
+	@include media(tab) {
+		padding-top: 60px;
+	}
+}
