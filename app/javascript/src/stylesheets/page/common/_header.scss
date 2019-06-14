@@ -62,7 +62,7 @@
 		}
 		
 		.contents{
-			display: block;
+			// display: block;
 			transform: translateY(0);
 		}
 		
@@ -161,7 +161,7 @@
 
 .tab-menu {
 	.contents{
-		display: none;
+		// display: none;
 		position: absolute;
 		top: 56px;
 		left: 0;
@@ -171,7 +171,7 @@
 		
 		transition-duration: 0.66s;
 		transition-timing-function: swing;
-		transform: translateY(100%);
+		transform: translateY(calc(-100% - 56px));
 	
 		.profile-card {
 			height: 144px;
@@ -188,6 +188,7 @@
 				&::before {
 					content: '\f277';
 					font-family: 'Font Awesome 5 Free';
+					font-weight: 900;
 					display: inline-block;
 					margin-right: 10px;
 					vertical-align: middle;
