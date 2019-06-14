@@ -166,11 +166,13 @@
 		top: 56px;
 		left: 0;
 		width: 100vw;
-		height: calc(100vh - 56px);
+		/* カスタムプロパティ未対応ブラウザ対応 */
+		height: 100vh;
+		/* 100vh --vhが未定義の場合は1vhを使う */
+		height: calc(var(--vh, 1vh) * 100);
 		z-index: 10;
 		
 		transition-duration: 0.66s;
-		transition-timing-function: swing;
 		transform: translateY(calc(-100% - 56px));
 	
 		.profile-card {
