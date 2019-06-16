@@ -16,6 +16,8 @@ gem 'mini_magick',     '>= 4.7.0'
 gem 'fog-aws', '>= 1.42'
 gem 'kaminari'
 gem 'nokogiri'
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
