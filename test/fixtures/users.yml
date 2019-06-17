@@ -2,6 +2,7 @@ michael:
   name: Michael Example
   email: michael@example.com
   password_digest: <%= User.digest('password') %>
+  introduce: 'My name is micael'
   admin: true
   activated: true
   activated_at: <%= Time.zone.now %>

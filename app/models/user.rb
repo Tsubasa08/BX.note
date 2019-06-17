@@ -22,6 +22,10 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :introduce, length: {maximum: 150}, allow_nil: true
+
+  # mount_uploader :image, PictureUploader
+  # validate :image_size
 
 
   class << self #特異クラス形式 → selfを省略
@@ -112,6 +116,13 @@ class User < ApplicationRecord
   def downcase_email
     self.email.downcase!
   end
+
+  # アップロードされた画像のサイズをバリデーションする
+   def image_size
+    if picture.size > 5.megabytes
+      errors.add(:image, "should be less than 5MB")
+    end
+   end
   
   # 有効化トークンとダイジェストを作成および代入する
   def create_activation_digest

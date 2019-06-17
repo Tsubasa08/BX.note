@@ -1,10 +1,9 @@
 <% provide(:title, "プロフィール編集") %>
-<% provide(:url, user_path ) %>
 
 <main class="main--edit">
   <div class="form-card">
   <h1 class="form-card__title">プロフィール編集</h1>
-    <%= form_with(model: @user, url: signup_path, local: true, class: 'form form--edit') do |f| %>
+    <%= form_with(model: @user, url: user_path, local: true, class: 'form form--edit') do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="form__image">
         <%= image_tag @user.image_tag if @user.image %>

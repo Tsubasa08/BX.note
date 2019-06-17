@@ -292,3 +292,12 @@ body.active {
 	border: 1px solid #fff;
 	color: #fff;
 }
+
+/* エラーメッセージ */
+.alert {
+	&--danger {
+		background-color: #ff503c;
+		color: #fff;
+	}
+}
+/* エラーメッセージ end */
