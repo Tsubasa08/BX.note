@@ -295,6 +295,9 @@ body.active {
 
 /* エラーメッセージ */
 .alert {
+	padding: 5px;
+	@include radius;
+	margin-bottom: 10px;
 	&--danger {
 		background-color: #ff503c;
 		color: #fff;

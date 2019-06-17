@@ -19,6 +19,12 @@
         width: 326px;
         // background-color: #fff;
         @include radius;
+        > div {
+          margin-bottom: 10px;
+          &:nth-last-of-type(1) {
+            margin-bottom: 0;
+          }
+        }
       }
     }
   }
@@ -74,7 +80,7 @@
   .profile-card {
     @include radius;
     height: 100px;
-    margin: 10px 0 10px;
+    // margin: 10px 0 10px;
     background-color: #fff;
   }
   .about-link {

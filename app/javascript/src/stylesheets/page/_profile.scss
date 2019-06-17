@@ -1,0 +1,69 @@
+/*
+  profile
+*/
+.main--profile {
+  .contents {
+    &__left {
+      background-color: transparent !important;
+      .profile-nav {
+        height: 60px;
+        background-color: #fff;
+        @include media(pc) {
+          margin-bottom: 10px;
+        }
+      }
+      .profile-content {
+        height: 500px;
+        background-color: #fff;
+      }
+    }
+    &__right {
+      &--edit {
+        @include media(tab) {
+          display: block;
+          .categories, .about-link {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+.profile-block {
+  background-color: #fff;
+  padding: 20px 10px;
+  @include radius;
+  &__name {
+    font-size: 2.1rem;
+    @include media(pc) {
+      text-align: center;
+    }
+  }
+  &__introduce {
+    font-size: 1.4rem;
+    @include media(pc) {
+      margin: 20px 0; 
+    }
+  }
+  &__link {
+    display: block;
+    width: 200px;
+    text-align: center;
+    border: 1px solid $AccentColor;
+    color: $AccentColor;
+    border-radius: 100px;
+    @include media(pc) {
+      margin: 0 auto;
+      padding: 8px 0;
+      transition: 0.2s;
+      &:hover {
+        background-color: $AccentColor;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/*
+  profile end
+*/
