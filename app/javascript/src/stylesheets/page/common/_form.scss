@@ -1,12 +1,94 @@
 /*
   form
 */
-
-@include media(pc) {
+.form-card {
+    background-color: #fff;
+    @include radius;
+    &__title {
+      text-align: center;
+      font-size: 2rem;
+    }
   .form {
+    font-size: 1.4rem;
+    &__label, &__input, &__area, &__button {
+      display: block;
+      width: 100%;
+    }
+    &__input, &__area {
+      border: 1px solid $border;
+      @include radius;
+    }
+    &__label--image {
+      background-color: $AccentColor;
+      color: #fff;
+      border: 1px solid $border;
+      cursor: pointer;
+      padding: 5px;
+      @include radius;
+    }
+    &__input--image {
+      display: none;
+    }
+    &__button {
+      background-color: $AccentColor;
+      color: #fff;
+      font-size: 2rem;
+      @include radius;
+      transition: 0.2s;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+@include media(pc) {
+  .form-card {
     width: 500px;
     margin: 0 auto;
-    background-color: #fff;
+    padding: 30px;
+    &__title {
+      margin-bottom: 15px;
+    }
+    .form {
+      &__image {
+        margin-bottom: 25px;
+      }
+      &__input {
+        margin-bottom: 25px;
+        &:nth-last-of-type(1) {
+          margin-bottom: 0;
+        }
+      }
+      &__area {
+        height: 100px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+@include media(tab) {
+  .form-card {
+    height: calc(100vh - 60px);
+    padding: 30px 10px 15px;
+    &__title {
+      margin-bottom: 15px;
+    }
+    .form {
+      &__image {
+        margin-bottom: 25px;
+      }
+      &__input {
+        margin-bottom: 25px;
+        &:nth-last-of-type(1) {
+          margin-bottom: 0;
+        }
+      }
+      &__area {
+        height: 70px;
+        margin-bottom: 20px;
+      }
+    }
   }
 }
 /*
