@@ -6,6 +6,7 @@ gem 'rails',           '~> 5.2.3'
 gem 'pg',              '>= 0.18', '< 2.0'
 gem 'puma',            '~> 3.11'
 gem 'webpacker'
+gem 'rails-i18n'
 gem "jquery-rails"
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'uglifier',        '>= 1.3.0'
