@@ -78,7 +78,7 @@
   <div class="serch-page__header">
     <div class="serch-box serch-box--sp">
       <%= form_with(method: :get, local: true) do |f| %>
-        <%= f.text_field :search, placeholder: '検索', class: 'serch-box__input serch-box--sp__input'%>
+        <%= f.text_field :search, placeholder: '検索',id: 'serch--sp', class: 'serch-box__input serch-box--sp__input'%>
         <%= f.button "search", class: 'serch-box__button serch-box--sp__button',value: ''  do%>
         <i class="fas fa-search"></i>
         <% end %>
