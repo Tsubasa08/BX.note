@@ -120,13 +120,15 @@ class User < ApplicationRecord
 
   # 画像に対するバリデーション
   def validate_image
+    return unless image.attached?
     if image.blob.byte_size > 5.megabytes
       image.purge
       errors.add(:image, ('サイズは5MB以内にしてくだい'))
     elsif !image?
       image.purge
       errors.add(:image, ('jpg, jpeg, gif, pngを選択してください'))
-    end
+    end      
+    # end
   end
 
   # 有効な画像の拡張子を判定
