@@ -33,7 +33,9 @@
       </div>
 
       <div class="profile-card">
-        プロフィールカードが入る
+        <%= link_to "Profile", current_user %>
+        <%= link_to "Profile", @current_user %>
+        <%= session[:user_id] %>
       </div>
       
       <div class="about-link">
@@ -47,4 +49,6 @@
   ページネーション
   </div>
   <%= link_to "新規登録", signup_path %>
+  <%= link_to "ログイン", login_path %>
+  <%= link_to "ログアウト", logout_path, method: :delete %>
 </main>

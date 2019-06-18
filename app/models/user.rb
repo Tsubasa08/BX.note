@@ -65,14 +65,8 @@ class User < ApplicationRecord
    # アカウントを有効にする
    def activate
     update_columns(activated: true, activated_at: Time.zone.now)
-    # update_attribute(:activated, true)
-    # update_attribute(:activated_at, Time.zone.now)
    end
 
-   # 有効化用のメールを送信する
-   def send_activation_email
-    UserMailer.account_activation(self).deliver_now
-   end
 
    # パスワード再設定の属性を設定する
    def create_reset_digest
@@ -120,13 +114,15 @@ class User < ApplicationRecord
 
   # 画像に対するバリデーション
   def validate_image
+    return unless image.attached?
     if image.blob.byte_size > 5.megabytes
       image.purge
       errors.add(:image, ('サイズは5MB以内にしてくだい'))
     elsif !image?
       image.purge
       errors.add(:image, ('jpg, jpeg, gif, pngを選択してください'))
-    end
+    end      
+    # end
   end
 
   # 有効な画像の拡張子を判定
