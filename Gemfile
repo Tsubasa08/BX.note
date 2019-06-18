@@ -12,6 +12,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'uglifier',        '>= 1.3.0'
 gem 'jbuilder',        '~> 2.5'
 gem 'bcrypt',          '>= 3.1.12'
+gem "aws-sdk-s3", require: false
 gem 'mini_magick',     '>= 4.7.0'
 gem 'fog-aws', '>= 1.42'
 gem 'kaminari'
