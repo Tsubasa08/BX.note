@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   # フォロワーの集合(followers)の関連付け
   has_many :followers, through: :passive_relationships, source: :follower
+  # 画像の関連付け
+  has_one_attached :image
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
@@ -23,9 +25,8 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :introduce, length: {maximum: 150}, allow_nil: true
+  validate  :validate_image
 
-  # mount_uploader :image, PictureUploader
-  # validate :image_size
 
 
   class << self #特異クラス形式 → selfを省略
@@ -117,12 +118,21 @@ class User < ApplicationRecord
     self.email.downcase!
   end
 
-  # アップロードされた画像のサイズをバリデーションする
-   def image_size
-    if picture.size > 5.megabytes
-      errors.add(:image, "should be less than 5MB")
+  # 画像に対するバリデーション
+  def validate_image
+    if image.blob.byte_size > 5.megabytes
+      image.purge
+      errors.add(:image, ('サイズは5MB以内にしてくだい'))
+    elsif !image?
+      image.purge
+      errors.add(:image, ('jpg, jpeg, gif, pngを選択してください'))
     end
-   end
+  end
+
+  # 有効な画像の拡張子を判定
+  def image?
+    %w[image/jpg image/jpeg image/gif image/png].include?(image.blob.content_type)
+  end
   
   # 有効化トークンとダイジェストを作成および代入する
   def create_activation_digest

@@ -13,9 +13,10 @@ class UserEditTest < ActionDispatch::IntegrationTest
     name = "Foo Bar"
     email = "foo@bar.com"
     introduce = "My name is Foo Bar"
+    image = fixture_file_upload('test/fixtures/Apple.jpg', 'image/jpg')
     patch user_path(@user), params: { user: { name: name, email: email,
                                       password: "", password_confirmation: "", 
-                                      introduce: introduce} }
+                                      introduce: introduce, image: image} }
     assert_not flash.empty?
     assert_redirected_to @user
     @user.reload
