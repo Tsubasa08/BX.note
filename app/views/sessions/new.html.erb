@@ -1,2 +1,11 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<% provide(:title, 'ログイン') %>
+<main class="main-login">
+  <div class="form-card">
+  <h1 class="form-card__title">ログイン</h1>
+    <%= form_with(scope: :session, url: login_path, local: true, class: 'form form--login') do |f| %>
+      <%= f.email_field :email,  class: 'form__input', placeholder: 'メールアドレス' %>
+      <%= f.password_field :password,  class: 'form__input', placeholder: 'パスワード' %>
+      <%= f.submit 'ログイン', class: "btn btn-primary form__button" %>
+    <% end %>
+  </div>
+</main>
