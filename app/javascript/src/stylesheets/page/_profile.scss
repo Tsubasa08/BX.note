@@ -39,6 +39,25 @@
       text-align: center;
     }
   }
+  &__img {
+    display: block;
+    height: 100px;
+    width: 100px;
+    border: 1px solid $border;
+    border-radius: 50%;
+    @include cover;
+    &--show {
+      margin: 0 auto;
+    }
+    &--edit {
+      @include media(pc) {
+        margin-right: 30px;
+      }
+      @include media(tab) {
+        margin: 0 auto;
+      }
+    }
+  }
   &__introduce {
     font-size: 1.4rem;
     @include media(pc) {

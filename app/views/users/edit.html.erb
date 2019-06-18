@@ -6,11 +6,17 @@
     <%= form_with(model: @user, url: user_path, local: true, class: 'form form--edit') do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="form__image">
-        <%= image_tag @user.image_tag if @user.image %>
-        <%= f.label :image, class: 'form__label--image' do %>
-        ファイルを選択
-        <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'form__input--image' %>
+        <%  if @user.image.attached? %>
+          <%= image_tag @user.image, class: 'profile-block__img profile-block__img--edit' %>
+        <% else %>
+          <img class="profile-block__img profile-block__img--edit" src="<%= asset_pack_path 'media/src/images/defoult-user-icon.png' %>" />
         <% end %>
+        <div id="form-image">
+          <%= f.label :image, id: 'input-label', class: 'form__label--image' do %>
+          ファイルを選択
+          <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'form__input--image' %>
+          <% end %>
+        </div>
       </div>
       <%= f.label :name, class: 'form__label' %>
       <%= f.text_field :name, class: 'form-control', class: 'form__input' %>

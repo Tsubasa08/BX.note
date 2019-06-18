@@ -18,13 +18,38 @@
       border: 1px solid $border;
       @include radius;
     }
+    &__image {
+      @include media(pc) {
+        display: flex;
+        align-items: center;
+
+      }
+    }
     &__label--image {
+      position: relative;
+      display: inline-block;
       background-color: $AccentColor;
       color: #fff;
       border: 1px solid $border;
       cursor: pointer;
       padding: 5px;
+      transition: 0.2s;
       @include radius;
+      &::after {
+        content: "選択されていません";
+        height: 20px;
+        line-height: 20px;
+        position: absolute;
+        right: -140px;
+        top: calc(50% - 10px);
+        color: #000;
+      }
+      &.changed::after {
+        content: "";
+      }
+      &:hover {
+        opacity: 0.8;
+      }
     }
     &__input--image {
       display: none;
@@ -73,7 +98,7 @@
 @include media(tab) {
   .form-card {
     height: calc(100vh - 60px);
-    padding: 30px 10px 15px;
+    padding: 20px 10px 15px;
     &__title {
       margin-bottom: 15px;
     }
