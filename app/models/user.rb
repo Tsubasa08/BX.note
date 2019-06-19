@@ -14,9 +14,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   # 画像の関連付け
   has_one_attached :image
-  attr_accessor :remember_token, :activation_token, :reset_token
+  attr_accessor :remember_token, :reset_token
   before_save :downcase_email
-  before_create :create_activation_digest
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},
@@ -31,7 +30,7 @@ class User < ApplicationRecord
 
   class << self #特異クラス形式 → selfを省略
 
-    # 渡された文字列のハッシュ値を返す
+    # 渡された文字列のハッシュ値を返す(fixture用)
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                     BCrypt::Engine.cost
@@ -62,22 +61,16 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
-   # アカウントを有効にする
-   def activate
-    update_columns(activated: true, activated_at: Time.zone.now)
-   end
+  #  # パスワード再設定の属性を設定する
+  #  def create_reset_digest
+  #   self.reset_token = User.new_token
+  #   update_columns(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
+  #  end
 
-
-   # パスワード再設定の属性を設定する
-   def create_reset_digest
-    self.reset_token = User.new_token
-    update_columns(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
-   end
-
-   # パスワード再設定のメールを送信する
-   def send_password_reset_email
-    UserMailer.password_reset(self).deliver_now
-   end
+  #  # パスワード再設定のメールを送信する
+  #  def send_password_reset_email
+  #   UserMailer.password_reset(self).deliver_now
+  #  end
 
    # パスワード再設定の期限が切れている場合はtrueを返す
    def password_reset_expired?
@@ -112,7 +105,7 @@ class User < ApplicationRecord
     self.email.downcase!
   end
 
-  # 画像に対するバリデーション
+  # 画像のサイズ、拡張子を判定
   def validate_image
     return unless image.attached?
     if image.blob.byte_size > 5.megabytes
@@ -130,10 +123,4 @@ class User < ApplicationRecord
     %w[image/jpg image/jpeg image/gif image/png].include?(image.blob.content_type)
   end
   
-  # 有効化トークンとダイジェストを作成および代入する
-  def create_activation_digest
-    self.activation_token = User.new_token
-    self.activation_digest = User.digest(activation_token)
-  end
-
 end
