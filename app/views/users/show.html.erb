@@ -3,9 +3,19 @@
   <div class="contents">
     <div class="contents__left contents__left--edit">
       <div class="profile-nav">
-        <%= @user.image.to_s%>
+        
       </div>
-      <div class="profile-content"></div>
+      <div class="profile-content">
+        <% if logged_in? %>
+          <%= link_to "プロフィール", current_user %>
+          <p>session[:user_id]：<%= session[:user_id] %></p>
+          <p>current_user.name： <%= current_user.name %> </p>
+          <%= link_to "ログアウト", logout_path, method: :delete %>
+        <% else %>
+          <%= link_to "新規登録", signup_path %>
+          <%= link_to "ログイン", login_path %>
+        <% end %>
+      </div>
     </div>
 
     <div class="contents__right contents__right--edit">

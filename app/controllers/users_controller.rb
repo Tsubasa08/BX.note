@@ -9,9 +9,7 @@ before_action :correct_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
-    # @microposts = @user.microposts.paginate(page: params[:page])
-    # 有効でないユーザーは表示させない
-    redirect_to root_url and return unless @user.activated?
+    redirect_to(root_url) unless current_user?(@user) 
   end
   
 
@@ -22,7 +20,7 @@ before_action :correct_user, only: [:edit, :update]
   def create
     @user = User.new(user_params)
     if @user.save
-      # log_in @user
+      log_in @user
       redirect_to @user
       flash[:success] = "アカウント登録が完了しました！"
     else

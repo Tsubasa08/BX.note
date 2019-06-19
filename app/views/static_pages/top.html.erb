@@ -33,9 +33,15 @@
       </div>
 
       <div class="profile-card">
-        <%= link_to "Profile", current_user %>
-        <%= link_to "Profile", @current_user %>
-        <%= session[:user_id] %>
+        <% if logged_in? %>
+          <%= link_to "プロフィール", current_user %>
+          <p>session[:user_id]：<%= session[:user_id] %></p>
+          <p>current_user.name： <%= current_user.name %> </p>
+          <%= link_to "ログアウト", logout_path, method: :delete %>
+        <% else %>
+          <%= link_to "新規登録", signup_path %>
+          <%= link_to "ログイン", login_path %>
+        <% end %>
       </div>
       
       <div class="about-link">
@@ -48,7 +54,4 @@
   <div class="page-nation">
   ページネーション
   </div>
-  <%= link_to "新規登録", signup_path %>
-  <%= link_to "ログイン", login_path %>
-  <%= link_to "ログアウト", logout_path, method: :delete %>
 </main>
