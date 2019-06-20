@@ -18,7 +18,7 @@
     </div>
 
     <% if logged_in? %>
-      <%= image_tag current_user.image.variant(resize: "200x200"), id: 'user-icon', class: 'session-user-icon' %>
+      <%= image_tag current_user.image.variant(resize: "200x200"), id: 'user-icon', class: 'session-user-icon' if current_user.image.attached? %>
       <div id="user-link" class="user-link--pc">
         <%= link_to current_user.name, current_user, class: 'user-link--pc__item user-link--pc__item--title' %>
         <%= link_to "プロフィール編集", edit_user_path(current_user), class: 'user-link--pc__item user-link--pc__item--edit' %>
@@ -49,15 +49,15 @@
             <div class="profile-card profile-card--sp">
               <div class="user-link">
                 <%= link_to current_user, class: 'user-link__item user-link__item--img' do %>
-                  <%= image_tag current_user.image.variant(resize: "200x200"), id: 'user-icon', class: 'img' %>
+                  <%= image_tag current_user.image.variant(resize: "200x200"), id: 'user-icon', class: 'img' if current_user.image.attached?  %>
                 <% end %>
                 <%= link_to current_user.name, current_user, class: 'user-link__item user-link__item--title' %>
               </div>
             </div>
           <% else %>
-            <div class="new-link">
-              <%= link_to "アカウント登録", signup_path, class: 'new-link__item new-link__item' %>
-              <%= link_to "ログイン", login_path, class: 'new-link__item new-link__item' %>
+            <div class="new-link--tab">
+              <%= link_to "アカウント登録", signup_path, class: 'new-link--tab__item new-link--tab__item--new' %>
+              <%= link_to "ログイン", login_path, class: 'new-link--tab__item new-link--tab__item--login' %>
             </div>
           <% end %>
           

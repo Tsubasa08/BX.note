@@ -113,7 +113,6 @@
   .user-link {
     display: flex;
     align-items: center;
-    // justify-content: space-between;
     &__item {
       &--img {
         img {
@@ -126,6 +125,8 @@
         margin-left: 13px;
         line-height: 1.5;
         @include media(tab) {
+          font-size: 1.8rem;
+          font-weight: bold;
           color: #fff;
         }
         &:hover {
