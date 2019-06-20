@@ -76,3 +76,12 @@
 @mixin radius {
   border-radius: 5px;
 }
+
+// ユーザーアイコン
+@mixin icon {
+  display: block;
+  border: 1px solid $border;
+  border-radius: 50%;
+  object-fit: cover;
+  font-family: 'object-fit: cover;';
+}

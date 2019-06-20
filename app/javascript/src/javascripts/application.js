@@ -2,16 +2,36 @@ $(function() {
   // ハンバーメニュー
   $(".nav-toggle").click(function() {
     $("#tab-menu").toggleClass("nav-open");
-    $("html, body").toggleClass("active");
+    // $("html").toggleClass("active");
+
+    if ($("#tab-menu-contents").hasClass("active")) {
+      $("#tab-menu-contents").fadeOut(200);
+      $("#tab-menu-contents").removeClass("active");
+    } else {
+      $("#tab-menu-contents").fadeIn(500);
+      $("#tab-menu-contents").addClass("active");
+    }
   });
 
   // tab-menu contents --vhというカスタムプロパティを作成
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty("--vh", `${vh}px`);
-  // window resize
-  window.addEventListener("resize", () => {
-    vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  // let vh = window.innerHeight * 0.01;
+  // document.documentElement.style.setProperty("--vh", `${vh}px`);
+  // // window resize
+  // window.addEventListener("resize", () => {
+  //   vh = window.innerHeight * 0.01;
+  //   document.documentElement.style.setProperty("--vh", `${vh}px`);
+  // });
+
+  // ユーザーリンク表示
+  $("#user-icon").click(function() {
+    $("#user-link").toggle();
+  });
+  $(document).on("click touchend", function(event) {
+    if (!$(event.target).closest("#user-icon").length) {
+      $(this)
+        .find("#user-link")
+        .hide();
+    }
   });
 
   // 検索ページ遷移

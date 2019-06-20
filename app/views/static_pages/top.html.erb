@@ -32,17 +32,16 @@
         </ul>
       </div>
 
-      <div class="profile-card">
-        <% if logged_in? %>
-          <%= link_to "プロフィール", current_user %>
-          <p>session[:user_id]：<%= session[:user_id] %></p>
-          <p>current_user.name： <%= current_user.name %> </p>
-          <%= link_to "ログアウト", logout_path, method: :delete %>
-        <% else %>
-          <%= link_to "新規登録", signup_path %>
-          <%= link_to "ログイン", login_path %>
-        <% end %>
-      </div>
+      <% if logged_in? %>
+        <div class="profile-card">
+          <div class="user-link">
+            <%= link_to current_user, class: 'user-link__item user-link__item--img' do %>
+              <%= image_tag current_user.image.variant(resize: "200x200"), id: 'user-icon', class: 'img' %>
+            <% end %>
+            <%= link_to current_user.name, current_user, class: 'user-link__item user-link__item--title' %>
+          </div>
+        </div>
+      <% end %>
       
       <div class="about-link">
         <%= link_to 'BX.noteとは？', about_path, class: 'link' %>
