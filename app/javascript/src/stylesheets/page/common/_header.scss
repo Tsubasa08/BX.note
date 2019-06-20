@@ -12,6 +12,7 @@
 		// margin-bottom: 90px;
 	}
   > .inner {
+		position: relative;
 		display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,7 +25,8 @@
 
 		}
 		@include media(tab) {
-			padding: 0 10px;
+			// padding: 0 10px;
+			padding: 0 40px 0 10px;
 		}
 	}
 }
@@ -46,6 +48,11 @@
 }
 
 .tab-menu {
+	// position: relative;
+	// position: absolute;
+	// top: 50%;
+	// right: 10px;
+	// transform: translateY(-50%);
 	color: #fff;
 	div {
 		margin-bottom: 20px;
@@ -56,22 +63,38 @@
   @include media(pc) {
     display: none;
 	}
+	.nav-back {
+		margin: 0;
+		&::before {
+			content: '';
+			width: 0;
+			height: 0;
+			// width: 40px;
+			// height: 40px;
+			
+			border-radius: 50%;
+			background-color: $AccentColor;
+			position: absolute;
+			top: 50%;
+			right: 10px;
+			transform:  translateX(50%) translateY(-50%);
+			right: 20px;
+			margin: 0;
+			z-index: 10;
+			// transition-duration: 0.66s;
+			transition: 0.65s;
+		}
+	}
 }
 	.tab-menu.nav-open{
 		
 		.lower-screen{
 			transform: scale(0.8, 0.8);
 		}
-		
-		.contents{
-			// display: block;
-			transform: translateY(0);
-		}
-		
-		.nav-toggle{
-			box-shadow: none;
-		
-			&:before{
+		.nav-back {
+			// height: 0;
+			// width: 100vw;
+			&::before {
 				width: 2500px;
 				height: 2500px;
 				@include media(sp) {
@@ -79,6 +102,38 @@
 					height: 1600px;
 				}
 				background-color: fade(#4A75E6, 95%);
+			}
+			// top: 50%;
+			// right: 50%;
+			// // top: 0;
+			// // right: 0;
+			// transform: translateX(-50%) translateY(-50%);
+			// width: 2500px;
+			// 	height: 2500px;
+			// 	// border-radius: 0;
+			// 	@include media(sp) {
+			// 		width: 1600px;
+			// 		height: 1600px;
+			// 	}
+			// 	background-color: fade(#4A75E6, 95%);
+		}
+		
+		.contents{
+			// display: block;
+			// transform: translateY(0);
+		}
+		
+		.nav-toggle{
+			box-shadow: none;
+		
+			&:before{
+				// width: 2500px;
+				// height: 2500px;
+				// @include media(sp) {
+				// 	width: 1600px;
+				// 	height: 1600px;
+				// }
+				// background-color: fade(#4A75E6, 95%);
 			}
 			
 			.icon{
@@ -95,10 +150,14 @@
 	}
 
 .nav-toggle{
-  position: relative;
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
 	width: 40px;
 	height: 40px;
-	z-index: 2;
+	z-index: 20;
+	background-color: $AccentColor;
 	
 	border-radius: 50%;
 	cursor: pointer;
@@ -108,19 +167,19 @@
 	transition-duration: 0.66s;
 	
 	&:before{
-		width: 40px;
-		height: 40px;
+		// width: 40px;
+		// height: 40px;
 		
-		border-radius: 50%;
-		background-color: $AccentColor;
-		content: "";
+		// border-radius: 50%;
+		// background-color: $AccentColor;
+		// content: "";
 		
-		position: absolute;
-		top: 50%;
-		left: 50%;
+		// position: absolute;
+		// top: 50%;
+		// left: 50%;
 		
-		transform: translateX(-50%) translateY(-50%);
-		transition-duration: 0.66s;
+		// transform: translateX(-50%) translateY(-50%);
+		// transition-duration: 0.66s;
 	}
 	
 	.icon{
@@ -163,19 +222,24 @@
 
 .tab-menu {
 	.contents{
-		// display: none;
-		position: absolute;
+		display: none;
+		overflow: auto;
+		position: fixed;
+		// position: absolute;
 		top: 56px;
 		left: 0;
+		// height: 100%;
+		transform: translateY(-56px);
+		// height: calc(100% + 56px);
 		width: 100vw;
 		/* カスタムプロパティ未対応ブラウザ対応 */
-		height: 100vh;
-		/* 100vh --vhが未定義の場合は1vhを使う */
-		height: calc(var(--vh, 1vh) * 100);
-		z-index: 10;
+		// height: 100vh;
+		// /* 100vh --vhが未定義の場合は1vhを使う */
+		// height: calc(var(--vh, 1vh) * 100);
+		z-index: 15;
 		
 		transition-duration: 0.66s;
-		transform: translateY(calc(-100% - 56px));
+		// transform: translateY(calc(-100% - 56px));
 	
 		.profile-card--sp {
 			height: 144px;
@@ -271,6 +335,73 @@
   }
 }
 
+.session-user-icon {
+	position: absolute;
+	top: 50%;
+	right: 120px;
+	transform: translateY(-50%);
+	height: 40px;
+	width: 40px;
+	@include icon;
+	@include media(tab) {
+		display: none;
+	}
+}
+.header .user-link--pc {
+	display: none;
+	position: absolute;
+	right: 120px;
+	bottom: 0;
+	transform: translateY(calc(100% + 5px));
+	padding: 10px 0;
+	background-color: #fff;
+	border: 1px solid $border;
+	@include radius;
+	&__item {
+		display: block;
+		padding: 0 16px;
+		font-size: 1.4rem;
+		&:hover {
+			background-color: $AccentColor;
+			color: #fff;
+		}
+		&--title {
+			font-size: 1.8rem;
+			font-weight: bold;
+			border-bottom: 1px solid $border;
+			padding-bottom: 5px;
+			margin-bottom: 8px;
+		}
+		&--edit::before, &--logout::before {
+			font-family: 'Font Awesome 5 Free';
+			font-weight: bold;
+			display: inline-block;
+			margin-right: 10px;
+			font-size: 1.3em;
+		}
+		&--edit::before {
+			content: '\f2bb';
+		}
+		&--logout::before {
+			content: '\f2f5';
+		}
+	}
+}
+
+.new-link {
+	@include media(tab) {
+		display: none;
+	}
+	&__item {
+		&:nth-of-type(1) {
+			margin-right: 20px;
+		}
+		&:hover {
+			border-bottom: 1px solid $MainColor;
+		}
+	}
+}
+
 .post-link {
   &__img {
     height: 40px;
@@ -281,6 +412,16 @@
 		}
   }
 }
+
+.tab-menu .user-link--pc__item {
+	font-size: 1.8rem;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+	display: block;
+	margin-top: 50px;
+}
+
 
 /*
     header end

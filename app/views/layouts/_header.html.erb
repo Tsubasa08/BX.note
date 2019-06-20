@@ -17,51 +17,89 @@
       <% end %>
     </div>
 
+    <% if logged_in? %>
+      <%= image_tag current_user.image.variant(resize: "200x200"), id: 'user-icon', class: 'session-user-icon' %>
+      <div id="user-link" class="user-link--pc">
+        <%= link_to current_user.name, current_user, class: 'user-link--pc__item user-link--pc__item--title' %>
+        <%= link_to "プロフィール編集", edit_user_path(current_user), class: 'user-link--pc__item user-link--pc__item--edit' %>
+        <%= link_to "ログアウト", logout_path, method: :delete, class: 'user-link--pc__item user-link--pc__item--logout' %>
+      </div>
+    <% else %>
+      <div class="new-link">
+        <%= link_to "アカウント登録", signup_path, class: 'new-link__item new-link__item' %>
+        <%= link_to "ログイン", login_path, class: 'new-link__item new-link__item' %>
+      </div>
+    <% end %>
+
     <div id="sp-serch">
       <i class="fas fa-search sp-serch"></i>
     </div>
 
-    <%= link_to root_path class: 'post-link' do %>
-      <img class="post-link__img" src="<%= asset_pack_path 'media/src/images/icon-post.png' %>" />
+    <% if logged_in? %>
+      <%= link_to root_path, class: 'post-link' do %>
+        <img class="post-link__img" src="<%= asset_pack_path 'media/src/images/icon-post.png' %>" />
+      <% end %>
     <% end %>
     
     <!-- tab-menu -->
     <div id="tab-menu" class="tab-menu">
-      <div class="contents">
-        <div class="profile-card--sp">
-          プロフィールカードが入る
+      <div class="nav-back">
+        <div id="tab-menu-contents" class="contents">
+          <% if logged_in? %>
+            <div class="profile-card profile-card--sp">
+              <div class="user-link">
+                <%= link_to current_user, class: 'user-link__item user-link__item--img' do %>
+                  <%= image_tag current_user.image.variant(resize: "200x200"), id: 'user-icon', class: 'img' %>
+                <% end %>
+                <%= link_to current_user.name, current_user, class: 'user-link__item user-link__item--title' %>
+              </div>
+            </div>
+          <% else %>
+            <div class="new-link">
+              <%= link_to "アカウント登録", signup_path, class: 'new-link__item new-link__item' %>
+              <%= link_to "ログイン", login_path, class: 'new-link__item new-link__item' %>
+            </div>
+          <% end %>
+          
+          <div class="categories">
+            <p class="categories__title">カテゴリー</p>
+            <ul class="category-list">
+              <li class="category-list__item">
+                <%= link_to 'HTML', root_path, class: 'link' %>
+              </li>
+              <li class="category-list__item">
+                <%= link_to 'CSS', root_path, class: 'link' %>
+              </li>
+              <li class="category-list__item">
+                <%= link_to 'JavaScript', root_path, class: 'link' %>
+              </li>
+              <li class="category-list__item">
+                <%= link_to 'jQuery', root_path, class: 'link' %>
+              </li>
+              <li class="category-list__item">
+                <%= link_to 'WordPress', root_path, class: 'link' %>
+              </li>
+              <li class="category-list__item">
+                <%= link_to 'デザイン', root_path, class: 'link' %>
+              </li>
+              <li class="category-list__item">
+                <%= link_to 'Web制作', root_path, class: 'link' %>
+              </li>
+            </ul>
         </div>
-        
-        <div class="categories">
-          <p class="categories__title">カテゴリー</p>
-          <ul class="category-list">
-            <li class="category-list__item">
-              <%= link_to 'HTML', root_path, class: 'link' %>
-            </li>
-            <li class="category-list__item">
-              <%= link_to 'CSS', root_path, class: 'link' %>
-            </li>
-            <li class="category-list__item">
-              <%= link_to 'JavaScript', root_path, class: 'link' %>
-            </li>
-            <li class="category-list__item">
-              <%= link_to 'jQuery', root_path, class: 'link' %>
-            </li>
-            <li class="category-list__item">
-              <%= link_to 'WordPress', root_path, class: 'link' %>
-            </li>
-            <li class="category-list__item">
-              <%= link_to 'デザイン', root_path, class: 'link' %>
-            </li>
-            <li class="category-list__item">
-              <%= link_to 'Web制作', root_path, class: 'link' %>
-            </li>
-          </ul>
-      </div>
+        <div class="about-link">
+          <%= link_to 'BX.noteとは？', about_path, class: 'link' %>
+        </div>
 
-      <div class="about-link">
-        <%= link_to 'BX.noteとは？', about_path, class: 'link' %>
+        <% if logged_in? %>
+        <%= link_to "ログアウト", logout_path, method: :delete, class: 'user-link--pc__item user-link--pc__item--logout' %>
+        <%# <p>テスト</p> %>
+        <%# <p>テスト</p>
+        <p>テスト</p> %>
+        <% end %>
       </div>
+      
+
 
       </div>
         
