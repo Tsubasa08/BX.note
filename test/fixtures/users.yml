@@ -3,6 +3,7 @@ michael:
   email: michael@example.com
   password_digest: <%= User.digest('password') %>
   introduce: 'My name is micael'
+  image: 'ImageName'
   admin: true
    
     

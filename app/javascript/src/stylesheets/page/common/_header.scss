@@ -8,9 +8,6 @@
 	width: 100%;
   background-color: #fff;
 	border-bottom: 1px solid $border;
-	@include media(pc) {
-		// margin-bottom: 90px;
-	}
   > .inner {
 		position: relative;
 		display: flex;
@@ -25,7 +22,6 @@
 
 		}
 		@include media(tab) {
-			// padding: 0 10px;
 			padding: 0 40px 0 10px;
 		}
 	}
@@ -103,19 +99,6 @@
 				}
 				background-color: fade(#4A75E6, 95%);
 			}
-			// top: 50%;
-			// right: 50%;
-			// // top: 0;
-			// // right: 0;
-			// transform: translateX(-50%) translateY(-50%);
-			// width: 2500px;
-			// 	height: 2500px;
-			// 	// border-radius: 0;
-			// 	@include media(sp) {
-			// 		width: 1600px;
-			// 		height: 1600px;
-			// 	}
-			// 	background-color: fade(#4A75E6, 95%);
 		}
 		
 		.contents{
@@ -125,16 +108,6 @@
 		
 		.nav-toggle{
 			box-shadow: none;
-		
-			&:before{
-				// width: 2500px;
-				// height: 2500px;
-				// @include media(sp) {
-				// 	width: 1600px;
-				// 	height: 1600px;
-				// }
-				// background-color: fade(#4A75E6, 95%);
-			}
 			
 			.icon{
 				width: 0;
@@ -166,21 +139,6 @@
 	
 	transition-duration: 0.66s;
 	
-	&:before{
-		// width: 40px;
-		// height: 40px;
-		
-		// border-radius: 50%;
-		// background-color: $AccentColor;
-		// content: "";
-		
-		// position: absolute;
-		// top: 50%;
-		// left: 50%;
-		
-		// transform: translateX(-50%) translateY(-50%);
-		// transition-duration: 0.66s;
-	}
 	
 	.icon{
 		width: 25px;
@@ -414,12 +372,41 @@
 }
 
 .tab-menu .user-link--pc__item {
+	display: block;
+	margin-top: 20px;
 	font-size: 1.8rem;
 	font-weight: bold;
 	text-align: center;
 	color: #fff;
-	display: block;
-	margin-top: 50px;
+}
+
+.tab-menu .new-link--tab {
+	padding: 50px 0 40px;
+	text-align: center;
+	border-bottom: 1px solid $border;
+	&__item {
+		display: block;
+		font-size: 1.8rem;
+		font-weight: bold;
+		color: #fff;
+		&::before {
+			font-family: 'Font Awesome 5 Free';
+			font-weight: bold;
+			display: inline-block;
+			margin-right: 10px;
+			font-size: 1.3em;
+		}
+		&--new {
+			margin-bottom: 15px;
+			&::before {
+				content: '\f2bb';
+			}
+		}
+		
+		&--login::before {
+			content: '\f2f6';
+		}
+	}
 }
 
 

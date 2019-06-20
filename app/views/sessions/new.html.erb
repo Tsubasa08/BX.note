@@ -5,11 +5,11 @@
     <%= form_with(scope: :session, url: login_path, local: true, class: 'form form--login') do |f| %>
       <%= f.email_field :email,  class: 'form__input', placeholder: 'メールアドレス' %>
       <%= f.password_field :password,  class: 'form__input', placeholder: 'パスワード' %>
-      <%= f.label :remember_me, class: "checkbox inline" do %>
+      <%= f.label :remember_me, class: "form__input--rem" do %>
         <%= f.check_box :remember_me %>
         <span>次回から自動的にログイン</span>
       <% end %>
-      <%= f.submit 'ログイン', class: "btn btn-primary form__button" %>
+      <%= f.submit 'ログイン', class: "form__button form__button--login" %>
     <% end %>
   </div>
 </main>
