@@ -44,7 +44,7 @@
     width: 100px;
     @include icon;
     &--show {
-      margin: 0 auto;
+      margin: 0 auto 10px;
     }
     &--edit {
       @include media(pc) {

@@ -4,7 +4,7 @@ before_action :correct_user, only: [:edit, :update]
 # before_action :admin_user, only: :destroy
 
   def index
-    @users = User.where(activated: true).paginate(page: params[:page]) #ページネーション
+    # @users = User.where(activated: true).paginate(page: params[:page]) #ページネーション
   end
 
   def show
@@ -72,7 +72,6 @@ before_action :correct_user, only: [:edit, :update]
   #   params.require(:user).permit(:name, :email, :password, :password_confirmation, :introduce, :image)
   # end
 
-  # beforeアクション
   # 正しいユーザーかどうか確認
   def correct_user
     @user = User.find(params[:id])
