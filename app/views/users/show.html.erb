@@ -10,6 +10,8 @@
           <%= link_to "プロフィール", current_user %>
           <p>session[:user_id]：<%= session[:user_id] %></p>
           <p>current_user.name： <%= current_user.name %> </p>
+          <p>current_user.name： <%= current_user.image_url %> </p>
+          <img src="<%= current_user.image_url %>" alt="twitterアイコン">
           <%= link_to "ログアウト", logout_path, method: :delete %>
         <% else %>
           <%= link_to "新規登録", signup_path %>

@@ -15,20 +15,21 @@ class User < ApplicationRecord
   # 画像の関連付け
   has_one_attached :image
   attr_accessor :remember_token, :reset_token
-  before_save :downcase_email
-  validates :name, presence: true, length: {maximum: 50}
+  before_save :downcase_email, unless: :uid?
+  validates :name, presence: true, length: {maximum: 50}, unless: :uid?
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},
             format: { with: VALID_EMAIL_REGEX },
-            uniqueness: { case_sensitive: false }
-  has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+            uniqueness: { case_sensitive: false },
+            unless: :uid?
+  has_secure_password validations: false
+  # has_secure_password
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true,
+             unless: :uid?
   validates :introduce, length: {maximum: 150}, allow_nil: true
-  validate  :validate_image
+  validate  :validate_image, unless: :uid?
 
-
-
-  class << self #特異クラス形式 → selfを省略
+  class << self 
 
     # 渡された文字列のハッシュ値を返す(fixture用)
     def digest(string)
@@ -42,7 +43,7 @@ class User < ApplicationRecord
       SecureRandom.urlsafe_base64
     end
 
-  end
+  end # self省略ここまで
 
   # 永続セッションのためにユーザーをデータベースに記憶する
   def remember
@@ -98,14 +99,7 @@ class User < ApplicationRecord
     following.include?(other_user)
    end
 
-  private
-
-  # メールアドレスをすべて小文字にする
-  def downcase_email
-    self.email.downcase!
-  end
-
-  # 画像のサイズ、拡張子を判定
+  #  画像のサイズ、拡張子を判定
   def validate_image
     return unless image.attached?
     if image.blob.byte_size > 5.megabytes
@@ -122,5 +116,31 @@ class User < ApplicationRecord
   def image?
     %w[image/jpg image/jpeg image/gif image/png].include?(image.blob.content_type)
   end
+
+
+  private
+
+  # メールアドレスをすべて小文字にする
+  def downcase_email
+    self.email.downcase!
+  end
+
+  #データベースにユーザが存在するならユーザ取得して情報更新する 存在しないなら新しいユーザを作成する
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    name = auth[:info][:name]
+    introduce = auth[:info][:description]
+    image_url = auth[:info][:image]
+
+    # データベースを更新
+    self.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.name = name
+      user.introduce = introduce
+      user.image_url = image_url
+    end
+  end
+
+  
   
 end

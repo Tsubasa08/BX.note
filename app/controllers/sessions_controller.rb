@@ -3,15 +3,23 @@ class SessionsController < ApplicationController
   end
   
   def create
-    @user = User.find_by(email: params[:session][:email].downcase)
-    if @user && @user.authenticate(params[:session][:password])
+    auth = request.env['omniauth.auth']
+    if auth.present?
+      @user = User.find_or_create_from_auth(request.env['omniauth.auth'])
       log_in (@user)
-      params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-      # redirect_back_or @user
+      # redirect_back_or user
       redirect_to @user
-    else
-      flash.now[:danger] =  'メーアドレスもしくはパスワードが正しくありません' 
-      render 'new'
+    else 
+      @user = User.find_by(email: params[:session][:email].downcase)
+      if @user && @user.authenticate(params[:session][:password])
+        log_in (@user)
+        params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
+        # redirect_back_or @user
+        redirect_to @user
+      else
+        flash.now[:danger] =  'メーアドレスもしくはパスワードが正しくありません' 
+        render 'new'
+      end
     end
   end
 
