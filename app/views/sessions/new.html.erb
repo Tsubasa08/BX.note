@@ -5,6 +5,7 @@
     <%= form_with(scope: :session, url: login_path, local: true, class: 'form form--login') do |f| %>
       <%= f.email_field :email,  class: 'form__input', placeholder: 'メールアドレス' %>
       <%= f.password_field :password,  class: 'form__input', placeholder: 'パスワード' %>
+      <%= link_to "パスワードを忘れた方はコチラ", new_password_reset_path %>
       <%= f.label :remember_me, class: "form__input--rem" do %>
         <%= f.check_box :remember_me %>
         <span>次回から自動的にログイン</span>

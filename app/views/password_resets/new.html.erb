@@ -1,2 +1,9 @@
-<h1>PasswordResets#new</h1>
-<p>Find me in app/views/password_resets/new.html.erb</p>
+<% provide(:title, 'パスワード再設定') %>
+<main class="main-login">
+  <div class="form-card">
+  <h1 class="form-card__title">パスワード再設定</h1>
+    <%= form_with(scope: :password_reset, url: password_resets_path, local: true, class: 'form form--login') do |f| %>
+      <%= f.email_field :email,  class: 'form__input', placeholder: 'メールアドレス' %>
+      <%= f.submit '送信', class: "form__button form__button--login" %>
+    <% end %>
+</main>
