@@ -5,10 +5,12 @@ $(function() {
     // $("html").toggleClass("active");
 
     if ($("#tab-menu-contents").hasClass("active")) {
-      $("#tab-menu-contents").fadeOut(200);
+      $("#tab-menu-contents").fadeOut(100);
       $("#tab-menu-contents").removeClass("active");
     } else {
-      $("#tab-menu-contents").fadeIn(500);
+      setTimeout(function() {
+        $("#tab-menu-contents").fadeIn(500);
+      }, 150);
       $("#tab-menu-contents").addClass("active");
     }
   });

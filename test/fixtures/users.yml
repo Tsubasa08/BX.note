@@ -5,6 +5,17 @@ michael:
   introduce: 'My name is micael'
   image: 'ImageName'
   admin: true
+
+twirou: 
+  name: Twirou Example
+  email: ''
+  password_digest: <%= User.digest('password') %>
+  introduce: 'My name is twirou'
+  image: ''
+  uid: 1
+  provider: 'provider'
+  image_url: 'ImageName'
+  admin: true
    
     
 
