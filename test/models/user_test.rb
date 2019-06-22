@@ -4,30 +4,78 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name: "Example User", email: "user@example.com",
               password: "foobar", password_confirmation: "foobar", introduce: 'My name is Example')
+    @twitter = User.new(name: "Example User", email: "",
+              password: "foobar", password_confirmation: "foobar", introduce: '',
+              uid: '1', provider: 'provider', image_url: 'test.jpg', )
   end
 
+  # テストユーザー
   test "should be valid" do
     assert @user.valid?
   end
 
+  test "should be valid twitter" do
+    assert @twitter.valid?
+  end
+
+
+  # 名前が空
   test "name should be present" do
     @user.name = " "
     assert_not @user.valid?
   end
 
+  test "name should be present twitter" do
+    @twitter.name = " "
+    assert_not @twitter.valid?
+  end
+
+
+  # 名前が51文字以上
   test "name should not be too long" do
     @user.name = "a" * 51
     assert_not @user.valid?
   end
 
+  test "name should not be too long twitter" do
+    @twitter.name = "a" * 51
+    assert_not @twitter.valid?
+  end
+
+
+  # 自己紹介が151文字以上
   test "introduce should not be too long" do
     @user.introduce = "a" * 151
     assert_not @user.valid?
   end
+  test "introduce should not be too long twitter" do
+    @twitter.introduce = "a" * 151
+    assert_not @twitter.valid?
+  end
 
+
+  # 自己紹介が空
+  test "introduce nil valid" do
+    @user.introduce = ""
+    assert @user.valid?
+  end
+
+  test "introduce nil valid twitter" do
+    @twitter.introduce = ""
+    assert @twitter.valid?
+  end
+
+
+  # メールアドレスが256文字以上
   test "email should not be too long" do
     @user.email = "a" * 244 + "@example.com"
     assert_not @user.valid?
+  end
+
+  # メールアドレスが空
+  test "email nil valid twitter" do
+    @twitter.email = ""
+    assert @twitter.valid?
   end
 
   test "email validation should accept valid addresses" do
@@ -62,14 +110,21 @@ class UserTest < ActiveSupport::TestCase
     assert_equal mixed_case_email.downcase, @user.reload.email
   end
 
+  # パスワードがスペース6個
   test  "password should be present (nonblank)" do
     @user.password = @user.password_confirmation = " " * 6
     assert_not @user.valid?
   end
 
+  # パスワードが５文字以下
   test "password should have a minimum length" do
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
+  end
+
+  test "password should have a minimum length twitter" do
+    @twitter.password = "a" * 5
+    assert_not @twitter.valid?
   end
 
   # test  "authenticated? should return false for a user with nil digest" do

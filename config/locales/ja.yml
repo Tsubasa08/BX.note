@@ -7,3 +7,4 @@ ja:
         password: "パスワード"
         introduce: "自己紹介"
         image: "画像"
+        password_digest: "パスワード"

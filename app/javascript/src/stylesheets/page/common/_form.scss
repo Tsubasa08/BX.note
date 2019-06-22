@@ -133,6 +133,55 @@
     }
   }
 }
+
+.form-border {
+  position: relative;
+  color: $border;
+  text-align: center;
+  margin: 40px 0 30px;
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 46%;
+    height: 1px;
+    background: $border;
+    content: '';
+  }
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 46%;
+    height: 1px;
+    background: $border;
+    content: '';
+  }
+}
+
+.twitter-link {
+  display: block;
+  width: 210px;
+  margin: 0 auto;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 2rem;
+  background-color: #1DA1F2;
+  color: #fff;
+  border-radius: 100px;
+  transition: 0.2s;
+  &::before {
+    content: '\f099';
+    font-family: 'Font Awesome 5 Brands';
+    font-size: 1em;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+}
 /*
   form end
 */

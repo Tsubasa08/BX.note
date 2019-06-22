@@ -68,10 +68,6 @@ before_action :correct_user, only: [:edit, :update]
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :introduce, :image)
   end
 
-  # def user_params_update
-  #   params.require(:user).permit(:name, :email, :password, :password_confirmation, :introduce, :image)
-  # end
-
   # 正しいユーザーかどうか確認
   def correct_user
     @user = User.find(params[:id])
