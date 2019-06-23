@@ -3,6 +3,7 @@
   <div class="form-card">
   <h1 class="form-card__title">パスワード再設定</h1>
     <%= form_with(model: @user, url: password_reset_path(params[:id]), local: true, class: 'form form--login') do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
       <%= hidden_field_tag :email, @user.email %>
 
       <%= f.password_field :password, class: 'form-control', class: 'form__input', placeholder: 'パスワード' %>
