@@ -1,0 +1,33 @@
+/*
+  alert
+*/
+.alert {
+  position: fixed;
+  top: -65px;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  transition: top .5s;
+  width: 600px;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: #fff;
+  @include radius;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  @include media(tab) {
+    width: 100%;
+  }
+  &--danger {
+    color: red;
+  }
+}
+.alert-down {
+  top: 60px;
+}
+
+
+
+
+/*
+  alert end
+*/

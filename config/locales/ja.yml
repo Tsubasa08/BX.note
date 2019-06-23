@@ -8,3 +8,4 @@ ja:
         introduce: "自己紹介"
         image: "画像"
         password_digest: "パスワード"
+        password_confirmation: "確認用パスワード"

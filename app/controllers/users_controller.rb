@@ -22,7 +22,7 @@ before_action :correct_user, only: [:edit, :update]
     if @user.save
       log_in @user
       redirect_to @user
-      flash[:success] = "アカウント登録が完了しました！"
+      flash[:success] = "アカウント登録が完了しました。"
     else
       render 'new'
     end
@@ -35,18 +35,18 @@ before_action :correct_user, only: [:edit, :update]
   def update 
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "プロフィールを更新しました！"
+      flash[:success] = "プロフィールを更新しました。"
       redirect_to @user
     else
       render 'edit'
     end
   end
 
-  def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
-    redirect_to users_url
-  end
+  # def destroy
+  #   User.find(params[:id]).destroy
+  #   flash[:success] = "User deleted"
+  #   redirect_to users_url
+  # end
 
   def following
     @title = "Following"
