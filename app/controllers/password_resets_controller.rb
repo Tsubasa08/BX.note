@@ -50,7 +50,7 @@ class PasswordResetsController < ApplicationController
 
   # 正しいユーザーかどうか確認する
   def valid_user
-    unless(@user && @user.reset_authenticated?(:reset, params[:id]))
+    unless(@user && @user.authenticated?(:reset, params[:id]))
       redirect_to root_url
     end
   end
