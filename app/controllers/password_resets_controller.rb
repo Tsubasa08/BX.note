@@ -11,10 +11,10 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = "パスワード再設定用のメールを送信しました"
+      flash[:info] = "パスワード再設定用のメールを送信しました。"
       redirect_to root_url
     else
-      flash.now[:danger] = "メールアドレスが見つかりませんでした"
+      flash.now[:danger] = "メールアドレスが見つかりませんでした。"
       render 'new'
     end
   end
@@ -24,12 +24,12 @@ class PasswordResetsController < ApplicationController
 
   def update
     if params[:user][:password].empty?
-      @user.errors.add(:password, ('パスワードが空欄です'))
+      @user.errors.add(:password, ('が空欄です'))
       render 'edit'
     elsif @user.update_attributes(user_params)
       log_in @user
       @user.update_attribute(:reset_digest, nil)
-      flash[:success] = "Password has been reset."
+      flash[:success] = "パスワードを再設定しました"
       redirect_to @user
     else
       render 'edit'
@@ -58,7 +58,7 @@ class PasswordResetsController < ApplicationController
   # トークンが期限切れかどうか確認する
   def check_expiration
     if @user.password_reset_expired?
-      flash[:danger] = "Password reset has expired."
+      flash[:danger] = "パスワードの再設定期限が切れました。"
       redirect_to new_password_reset_url
     end
   end

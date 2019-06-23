@@ -62,4 +62,12 @@ $(function() {
       alert("画像サイズは5MB以内にしてくだい");
     }
   });
+
+  // ページ上部メッセージ
+  setTimeout(function() {
+    $("#alert").addClass("alert-down");
+  }, 100);
+  setTimeout(function() {
+    $("#alert").removeClass("alert-down");
+  }, 2500);
 });
