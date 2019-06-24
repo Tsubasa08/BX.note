@@ -42,11 +42,11 @@ before_action :correct_user, only: [:edit, :update]
     end
   end
 
-  # def destroy
-  #   User.find(params[:id]).destroy
-  #   flash[:success] = "User deleted"
-  #   redirect_to users_url
-  # end
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
+  end
 
   def following
     @title = "Following"
