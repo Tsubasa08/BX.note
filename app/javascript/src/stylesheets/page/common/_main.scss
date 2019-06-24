@@ -110,33 +110,34 @@
     flex-direction: column;
   }
   
-  .user-link {
-    display: flex;
-    align-items: center;
-    &__item {
-      &--img {
-        img {
-          height: 50px;
-          width: 50px;
-          max-width: none;
-          @include icon;
+}
+    .user-link {
+      display: flex;
+      align-items: center;
+      &__item {
+        &--img {
+          img {
+            height: 50px;
+            width: 50px;
+            max-width: none;
+            @include icon;
+          }
         }
-      }
-      &--title {
-        margin-left: 13px;
-        line-height: 1.5;
-        @include media(tab) {
-          font-size: 1.8rem;
-          font-weight: bold;
-          color: #fff;
-        }
-        &:hover {
-          border-bottom: 1px solid $MainColor;
+        &--title {
+          margin-left: 13px;
+          line-height: 1.5;
+          @include media(tab) {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+          }
+          &:hover {
+            margin-top: 1px;
+            border-bottom: 1px solid $MainColor;
+          }
         }
       }
     }
-  }
-}
 
 
 @include media(tab) {

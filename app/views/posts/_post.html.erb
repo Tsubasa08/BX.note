@@ -1,0 +1,27 @@
+<li id="post-<%= post.id %>" class="post-list__item">
+  <div class="user-link">
+    <%= link_to post.user, class: 'user-link__item user-link__item--img' do %>
+      <%= render 'shared/user_icon', id: 'user-icon', name: 'img' %>
+    <% end %>
+    <%= link_to post.user.name, post.user, class: 'user-link__itemuser-link__item--title' %>
+  </div>
+
+  <div class="categories">
+    <%= link_to post.category %>
+
+  </div>
+
+  <div class="post-content">
+    <%= post.content %>
+  </div>
+
+  <div class="post-image">
+    <%= image_tag post.image.variant(resize: "500x500"), class: name, id: id if post.image.attached? %>
+  </div>
+
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(post.created_at) %> ago.
+  </span>
+
+
+</li>
