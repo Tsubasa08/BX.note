@@ -24,12 +24,12 @@ class PasswordResetsController < ApplicationController
 
   def update
     if params[:user][:password].empty?
-      @user.errors.add(:password, ('が空欄です'))
+      @user.errors.add(:password, ('が空欄です。'))
       render 'edit'
     elsif @user.update_attributes(user_params)
       log_in @user
       @user.update_attribute(:reset_digest, nil)
-      flash[:success] = "パスワードを再設定しました"
+      flash[:success] = "パスワードを再設定しました。"
       redirect_to @user
     else
       render 'edit'
