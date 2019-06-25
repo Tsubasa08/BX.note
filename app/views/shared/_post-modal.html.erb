@@ -19,24 +19,37 @@
   <div class="modal-main">
 
     <div id="label-area" class="label-area">
-      <div class="label label--1">本の感想</div>
-      <div class="label label--2">記事共有</div>
-      <div class="label label--3">その他</div>
+      <div class="label label-title label-title--1">本の感想</div>
+      <div class="label label-title label-title--2">記事共有</div>
+      <div class="label label-title label-title--3">その他</div>
     </div>
 
     <div id="panel-area" class="panel-area">
       <div id="panel1" class="panel panel--1">
-        <p class="panel__title panel__title--1">本の感想</p>
+        <p class="label-title label-title--1">本の感想</p>
       </div>
 
 
       <div id="panel2" class="panel">
-        <p>記事共有</p>
+        <p class="label-title label-title--2">記事共有</p>
       </div>
 
 
       <div id="panel3" class="panel">
-        <p>その他</p>
+        <p class="label-title label-title--3">その他</p>
+        <%= render 'shared/user_icon', id: 'user-icon', name: 'modal-user-icon' %>
+        <%= form_with(scope: :post, url: posts_path, local: true, class: 'form form--post') do |f| %>
+          <%= f.text_area :content, class: 'form__area', placeholder: '何をシェアする？' %>
+          <div class="radio-block">
+            <%= f.label :category  do  %>
+              <%= f.check_box :category %><span>HTML</span>
+            <% end %>
+            <%= f.label :category  do  %>
+              <%= f.check_box :category %><span>CSS</span>
+            <% end %>
+          </div>
+          <%= f.submit 'シェア', class: "form__button" %>
+        <% end %>
       </div>
     </div>
   </div><!-- modal-main end -->

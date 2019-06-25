@@ -40,7 +40,6 @@
   // opacity: 1;
 }
 .modal-close {
-  // display: block;
   display: none;
   position: fixed;
   z-index: 39;
@@ -131,6 +130,26 @@
     height: calc(100% - 60px);
   }
 }
+
+.label-title {
+  &::before {
+    font-family: 'Font Awesome 5 Free';
+		font-weight: 900;
+		display: inline-block;
+		margin-right: 10px;
+		vertical-align: middle;
+	}
+  &--1::before {
+    content: '\f02d';
+  }
+  &--2::before {
+    content: '\f0c1';
+  }
+  &--3::before {
+    content: '\f303';
+  }
+}
+
 .label-area {
   height: 300px;
   transition: 0.3s;
@@ -169,22 +188,7 @@
     &:hover {
       opacity:0.8;
     }
-    &::before {
-      font-family: 'Font Awesome 5 Free';
-			font-weight: 900;
-			display: inline-block;
-			margin-right: 10px;
-			vertical-align: middle;
-		}
-    &--1::before {
-      content: '\f02d';
-    }
-    &--2::before {
-      content: '\f0c1';
-    }
-    &--3::before {
-      content: '\f303';
-    }
+    
   }
  
 }
@@ -197,6 +201,18 @@
   transition: 0.3s;
   .panel {
     display: none;
+    .label-title {
+      display: inline-block;
+      color: $AccentColor;
+      @include media(pc) {
+        border-bottom: 1.5px solid $AccentColor;
+      }
+    }
+    .modal-user-icon {
+      height: 40px;
+      width: 40px;
+      @include icon;
+    }
   }
 }
 .label-area.active {
