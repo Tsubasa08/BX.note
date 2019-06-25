@@ -37,7 +37,9 @@
 
     <% if logged_in? %>
       <%= link_to root_path, class: 'post-link' do %>
-        <img class="post-link__img" src="<%= asset_pack_path 'media/src/images/icon-post.png' %>" />
+        <label id="modal-open" class="modal-open modal-open--post" for="modal-checkbox--post">
+          <img class="post-link__img" src="<%= asset_pack_path 'media/src/images/icon-post.png' %>" />
+        </label>
       <% end %>
     <% end %>
     

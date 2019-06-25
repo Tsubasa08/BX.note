@@ -12,7 +12,14 @@
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert--#{message_type}", id: "alert") %>
       <% end %>
+
+      <% if logged_in? %>
+        <%= render 'shared/post-modal' %>
+      <% end %>
+      
       <%= yield %>
+
+
     </div>
       <!-- footer -->
       <% unless action_name == 'edit' %>
