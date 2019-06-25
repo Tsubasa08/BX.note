@@ -70,4 +70,35 @@ $(function() {
   setTimeout(function() {
     $("#alert").removeClass("alert-down");
   }, 2500);
+
+  // 投稿モーダル 表示
+  // $("#modal-checkbox--post").prop("checked", true);
+  $("#modal-checkbox--post").click(function() {
+    if ($(this).prop("checked") == true) {
+      $("body").addClass("active");
+      $("#modal-content--post").fadeIn();
+    } else {
+      $("body").removeClass("active");
+      $("#modal-content--post").fadeOut("fast");
+    }
+  });
+
+  // 投稿モーダル パネル切り替え
+  $(".label").click(function() {
+    var $th = $(this).index();
+    $(".label").removeClass("active");
+    $(".panel").removeClass("active");
+    $(this).addClass("active");
+    $(".panel")
+      .eq($th)
+      .addClass("active");
+    $("#label-area, #panel-area").toggleClass("active");
+    $("#prev-btn").fadeIn();
+    $("#close-btn--tab").fadeOut();
+  });
+  $("#prev-btn").click(function() {
+    $("#label-area, #panel-area").toggleClass("active");
+    $(this).fadeOut();
+    $("#close-btn--tab").fadeIn();
+  });
 });
