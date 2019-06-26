@@ -1,0 +1,10 @@
+<div class="categories">
+  <p class="categories__title">カテゴリー</p>
+  <ul class="category-list">
+    <% @categories.each do |c| %>
+    <li class="category-list__item">
+      <%= link_to c.name, category_path(c.id), class: 'link' %>
+    </li>
+    <% end %>
+  </ul>
+</div>

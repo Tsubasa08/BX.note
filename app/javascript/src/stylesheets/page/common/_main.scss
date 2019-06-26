@@ -1,6 +1,8 @@
 /*
   main
 */
+
+// PCレイアウト
 @include media(pc) {
   .main {
     width: $pc-width;
@@ -76,6 +78,7 @@
       }
     }
   }
+  // PCレイアウト end
 
   
   .about-link {
@@ -94,6 +97,8 @@
     }
   }
 }
+
+
 
 .profile-card {
   @include radius;
@@ -170,6 +175,56 @@
     display: inline-block;
     margin-right: 10px;
     font-size: 1.3em;
+  }
+}
+
+.category-title {
+  padding: 10px 0;
+  background-color: #fff;
+  font-size: 3.5rem;
+  text-align: center;
+  @include radius;
+  @include media(pc) {
+    margin-bottom: 20px;
+  }
+  @include media(tab) {
+    font-size: 2.5rem;
+    border-bottom: 1px solid $border;
+  }
+  &::before {
+    content: '';
+    display: inline-block;
+    height: 45px;
+    width: 45px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    margin-right: 10px;
+    @include media(tab) {
+      height: 35px;
+      width: 35px;
+    }
+  }
+  &--1::before {
+    background-image: url('../images/html.png');
+  }
+  &--2::before {
+    background-image: url('../images/css.png');
+  }
+  &--3::before {
+    background-image: url('../images/JS.png');
+  }
+  &--4::before {
+    background-image: url('../images/jquery.png');
+  }
+  &--5::before {
+    background-image: url('../images/WP.png');
+  }
+  &--6::before {
+    background-image: url('../images/design.png');
+  }
+  &--7::before {
+    background-image: url('../images/work.png');
   }
 }
 /*

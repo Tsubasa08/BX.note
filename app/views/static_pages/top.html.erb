@@ -8,33 +8,7 @@
     </div>
 
     <div class="contents__right">
-      <div class="categories">
-        <p class="categories__title">カテゴリー</p>
-        <ul class="category-list">
-          <li class="category-list__item">
-            <%= link_to 'HTML', root_path, class: 'link' %>
-          </li>
-          <li class="category-list__item">
-            <%= link_to 'CSS', root_path, class: 'link' %>
-          </li>
-          <li class="category-list__item">
-            <%= link_to 'JavaScript', root_path, class: 'link' %>
-          </li>
-          <li class="category-list__item">
-            <%= link_to 'jQuery', root_path, class: 'link' %>
-          </li>
-          <li class="category-list__item">
-            <%= link_to 'WordPress', root_path, class: 'link' %>
-          </li>
-          <li class="category-list__item">
-            <%= link_to 'デザイン', root_path, class: 'link' %>
-          </li>
-          <li class="category-list__item">
-            <%= link_to 'Web制作', root_path, class: 'link' %>
-          </li>
-        </ul>
-      </div>
-
+      <%= render 'layouts/categories' %>
       <% if logged_in? %>
         <div class="profile-card">
           <div class="user-link">
