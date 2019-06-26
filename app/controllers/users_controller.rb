@@ -10,6 +10,7 @@ before_action :correct_user, only: [:edit, :update]
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+    @categories = Category.all
     # @post = current_user.posts.build if logged_in?
     redirect_to(root_url) unless current_user?(@user) 
   end
