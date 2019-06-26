@@ -7,7 +7,9 @@
   </div>
 
   <div class="categories">
-    <%= post.category %>
+    <% post.post_categories.each do |post_categories| %>
+      <%= post_categories.category.name %>
+    <% end %>
   </div>
 
   <div class="post-content">

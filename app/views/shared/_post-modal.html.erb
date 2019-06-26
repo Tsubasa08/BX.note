@@ -40,13 +40,8 @@
         <%= render 'shared/user_icon', id: 'user-icon', name: 'modal-user-icon' %>
         <%= form_with(scope: :post, url: posts_path, local: true, class: 'form form--post') do |f| %>
           <%= f.text_area :content, class: 'form__area', placeholder: '何をシェアする？' %>
-          <div class="radio-block">
-            <%= f.label :category  do  %>
-              <%= f.check_box :category %><span>HTML</span>
-            <% end %>
-            <%= f.label :category  do  %>
-              <%= f.check_box :category %><span>CSS</span>
-            <% end %>
+          <div class="check-block">
+            <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
           </div>
           <%= f.submit 'シェア', class: "form__button" %>
         <% end %>

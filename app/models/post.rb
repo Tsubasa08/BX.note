@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
-  has_many :categories, through: :post_categories
   has_many :post_categories
+  has_many :categories, through: :post_categories
   belongs_to :user
   has_many_attached :image
   default_scope -> { order(created_at: :desc) }
