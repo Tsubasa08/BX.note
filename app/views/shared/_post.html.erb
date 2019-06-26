@@ -1,0 +1,38 @@
+<% @category.post_categories.each do |d| %>
+<li id="post-<%= d.post.id %>" class="post-list__item">
+  <div class="user-link">
+    <%= link_to d.post.user, class: 'user-link__item user-link__item--img' do %>
+      <%  if d.post.user.image.attached? %>
+        <%= image_tag d.post.user.image.variant(resize: "200x200") %>
+      <% else %>
+        <% if d.post.user.image_url? %>
+          <img  id="" class="" src="<%= d.post.user.image_url %>" alt="twitterアイコン">
+        <% else %>
+          <img id="" class="" src="<%= asset_pack_path 'media/src/images/defoult-user-icon.png' %>" />
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= link_to d.post.user.name, d.post.user, class: 'user-link__itemuser-link__item--title' %>
+  </div>
+
+  <div class="categories">
+    <% d.post.post_categories.each do |post_categories| %>
+      <%= post_categories.category.name %>
+    <% end %>
+  </div>
+
+  <div class="post-content">
+    <%= d.post.content %>
+  </div>
+  <div class="post-image">
+    <%= image_tag d.post.image.variant(resize: "500x500"), class: name, id: id if d.post.image.attached? %>
+  </div>
+
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(d.post.created_at) %> ago.
+  </span>
+
+
+</li>
+
+<% end %>

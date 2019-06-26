@@ -1,0 +1,60 @@
+<% provide(:title, @category.name) %>
+<main class="main">
+  <div class="contents">
+    <div class="contents__left">
+      <ol class="post-list">
+        <%= render 'shared/post'%>
+      </ol><!-- post end -->
+      
+    </div>
+
+    <div class="contents__right">
+      <div class="categories">
+        <p class="categories__title">カテゴリー</p>
+        <ul class="category-list">
+          <li class="category-list__item">
+            <%= link_to 'HTML', root_path, class: 'link' %>
+          </li>
+          <li class="category-list__item">
+            <%= link_to 'CSS', root_path, class: 'link' %>
+          </li>
+          <li class="category-list__item">
+            <%= link_to 'JavaScript', root_path, class: 'link' %>
+          </li>
+          <li class="category-list__item">
+            <%= link_to 'jQuery', root_path, class: 'link' %>
+          </li>
+          <li class="category-list__item">
+            <%= link_to 'WordPress', root_path, class: 'link' %>
+          </li>
+          <li class="category-list__item">
+            <%= link_to 'デザイン', root_path, class: 'link' %>
+          </li>
+          <li class="category-list__item">
+            <%= link_to 'Web制作', root_path, class: 'link' %>
+          </li>
+        </ul>
+      </div>
+
+      <% if logged_in? %>
+        <div class="profile-card">
+          <div class="user-link">
+            <%= link_to current_user, class: 'user-link__item user-link__item--img' do %>
+              <%= render 'shared/user_icon', id: 'user-icon', name: 'img' %>
+            <% end %>
+            <%= link_to current_user.name, current_user, class: 'user-link__item user-link__item--title' %>
+          </div>
+        </div>
+      <% end %>
+      
+      <div class="about-link">
+        <%= link_to 'BX.noteとは？', about_path, class: 'link' %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-nation">
+  ページネーション
+  </div>
+</main>

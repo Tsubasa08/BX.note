@@ -1,0 +1,10 @@
+
+<%  if current_user.image.attached? %>
+  <%= image_tag d.post.user.image.variant(resize: "200x200"), class: name, id: id %>
+<% else %>
+  <% if d.post.user.image_url? %>
+    <img  id="<%= id %>" class="<%= name %>" src="<%= d.post.user.image_url %>" alt="twitterアイコン">
+  <% else %>
+    <img id="<%= id %>" class="<%= name %>" src="<%= asset_pack_path 'media/src/images/defoult-user-icon.png' %>" />
+  <% end %>
+<% end %>
