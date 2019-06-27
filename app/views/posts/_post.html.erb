@@ -17,7 +17,7 @@
   </div>
 
   <div class="post-image">
-    <%= image_tag post.image.variant(resize: "500x500"), class: name, id: id if post.image.attached? %>
+    <%= image_tag post.image, class: 'image' if post.image.attached? %>
   </div>
 
   <span class="timestamp">
