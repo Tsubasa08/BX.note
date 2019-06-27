@@ -1,13 +1,26 @@
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
+  # has_many :post_categories
+  # has_many :categories, through: :post_categories
+
   def setup
     @user = users(:michael)
     @post = @user.posts.build(content: "Lorem ipsum")
   end
 
   # テストユーザー
-  test "should be valid" do
+  test "contentあり" do
+    assert @post.valid?
+  end
+
+  test "カテゴリー配列あり" do
+    @post.category_ids = [1,2,7]
+    assert @post.valid?
+  end
+
+  test "カテゴリー配列が空" do
+    @post.category_ids = []
     assert @post.valid?
   end
 
@@ -32,4 +45,5 @@ class PostTest < ActiveSupport::TestCase
   test "order should be most recent first" do
     assert_equal posts(:most_recent), Post.first
   end
+
 end

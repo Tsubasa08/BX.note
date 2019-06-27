@@ -1,7 +1,27 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+html:
+  id: 1
+  name: HTML
 
-one:
-  name: MyString
+css:
+  id: 2
+  name: CSS
 
-two:
-  name: MyString
+JS:
+  id: 3
+  name: JavaScript
+
+jquery:
+  id: 4
+  name: jQuery
+
+WP:
+  id: 5
+  name: WordPress
+
+design:
+  id: 6
+  name: デザイン
+
+work:
+  id: 7
+  name: Web制作

@@ -17,7 +17,7 @@
 
   <div class="categories">
     <% d.post.post_categories.each do |post_categories| %>
-      <%= post_categories.category.name %>
+      <%= link_to post_categories.category.name, category_path(post_categories.category.id), class: 'categories__link' %>
     <% end %>
   </div>
 

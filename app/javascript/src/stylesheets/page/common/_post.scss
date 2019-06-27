@@ -12,6 +12,18 @@
         margin-bottom: 0;
       }
     }
+    .categories {
+      &__link {
+        padding: 5px;
+        background-color: $AccentColor;
+        color: #fff;
+        font-size: 1.4rem;
+        @include radius;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
   }
 }
 
