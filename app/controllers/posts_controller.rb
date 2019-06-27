@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :image, :article_url, :book_title, :book_evaluation, category_ids: [] ) 
+    params.require(:post).permit(:content, :article_url, :book_title, :book_evaluation, images: [], category_ids: [] ) 
   end
 
   def correct_user

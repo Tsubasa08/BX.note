@@ -224,6 +224,25 @@
 .panel.active {
   display:block;
 }
+
+
+// フォーム
+.post-form {
+  .check-block {
+    input[name="post[category_ids][]"] {
+      display: inline-block;
+      -webkit-appearance: checkbox;
+    }
+  }
+
+  &__button {
+    background-color: $AccentColor;
+    color: #fff;
+    @include radius;
+  }
+
+}
+// フォーム end
 /*
   post-modal end
 */

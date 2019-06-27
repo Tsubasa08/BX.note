@@ -17,7 +17,9 @@
   </div>
 
   <div class="post-image">
-    <%= image_tag post.image.variant(resize: "500x500"), class: name, id: id if post.image.attached? %>
+    <% post.images.each do |image|%>
+      <%= image_tag image.variant(resize: "300x400") , class: 'image' %>
+    <% end %>
   </div>
 
   <span class="timestamp">

@@ -46,13 +46,16 @@ $(function() {
   });
 
   // 画像アップロード レイアウト遷移
-  $("#user_image").on("change", function() {
-    let file = $(this).prop("files")[0];
-    if (!$(".filename").length) {
-      $("#form-image").append('<span class="filename"></span>');
-    }
-    $("#input-label").addClass("changed");
-    $(".filename").html(file.name);
+  $(".image-form").on("change", function() {
+    let data = $(this).data("id");
+    let file = $(this).prop("files");
+    $(`.filename--${data}`).hide();
+    Array.from(file).forEach(e => {
+      $(`#form-image--${data}`).append(
+        `<span class="filename filename--${data}">${e.name}</span>`
+      );
+      $(`#input-label--${data}`).addClass("changed");
+    });
   });
 
   // 画像警告

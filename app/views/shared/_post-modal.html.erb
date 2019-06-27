@@ -39,11 +39,20 @@
         <p class="label-title label-title--3">その他</p>
         <%= render 'shared/user_icon', id: 'user-icon', name: 'modal-user-icon' %>
         <%= form_with(scope: :post, url: posts_path, local: true, class: 'form form--post') do |f| %>
-          <%= f.text_area :content, class: 'form__area', placeholder: '何をシェアする？' %>
+          <%= f.text_area :content, class: 'post-form__area', placeholder: '何をシェアする？' %>
+
           <div class="check-block">
-            <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+            <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, class: 'c-check') %>
           </div>
-          <%= f.submit 'シェア', class: "form__button" %>
+
+          <div id="form-image--post-other">
+            <%= f.label :images, id: 'input-label--post-other', class: 'form__label--post-image' do %>
+            <i class="far fa-image"></i>
+              <%= f.file_field :images, multiple: true, accept: 'image/jpeg,image/gif,image/png', class: 'image-form form__input--image', data: {id: 'post-other'} %>
+            <% end %>
+        </div>
+
+          <%= f.submit 'シェア', class: "post-form__button" %>
         <% end %>
       </div>
     </div>

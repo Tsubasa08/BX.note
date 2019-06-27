@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_26_234358) do
+ActiveRecord::Schema.define(version: 2019_06_27_062302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 2019_06_26_234358) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
     t.string "article_url"
     t.string "book_title"
     t.integer "book_evaluation"
@@ -75,7 +74,6 @@ ActiveRecord::Schema.define(version: 2019_06_26_234358) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.text "introduce"
-    t.string "image"
     t.string "uid"
     t.string "provider"
     t.string "image_url"
