@@ -3,6 +3,13 @@ orange:
   created_at: <%= 10.minutes.ago %>
   user: michael
 
+category:
+  id: 1
+  content: "I am triathleate"
+  created_at: <%= 10.minutes.ago %>
+  user: michael
+  # category_ids: [1]
+
 tau_manifesto:
   content: "Check out the @tauday site by @mhartl: http://tauday.com"
   created_at: <%= 3.years.ago %>

@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true
   include SessionsHelper
-  # protect_from_forgery with: :exception, prepend: true
+  before_action :set_category
+
+  def set_category
+    @categories = Category.all
+  end
+
   private
   # ユーザーのログインを確認する
   def logged_in_user
