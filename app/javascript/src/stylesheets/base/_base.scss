@@ -81,8 +81,7 @@ input,textarea {
 	background-image: none;
 	font-family: inherit;
 	font-size: inherit;
-	-webkit-appearance: none;
-
+	
 	&:focus {
 		outline: none;
 		border: 1px solid $MainColor;
@@ -92,6 +91,7 @@ input,textarea {
 
 textarea {
 	resize: none;
+	-webkit-appearance: none;
 }
 
 input {
@@ -170,7 +170,7 @@ input {
 
 
 	&[type="checkbox"] {
-		display: none;
+		// display: none;
 
 		+ span {
 			display: inline-block;

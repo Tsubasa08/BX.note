@@ -2,30 +2,33 @@
   form
 */
 .form-card {
-    background-color: #fff;
-    @include radius;
-    &__title {
-      text-align: center;
-      font-size: 2rem;
-    }
-  .form {
-    font-size: 1.4rem;
-    &__label, &__input, &__area, &__button {
-      display: block;
-      width: 100%;
-    }
-    &__input, &__area {
-      border: 1px solid $border;
-      @include radius;
-    }
-    &__image {
-      @include media(pc) {
-        display: flex;
-        align-items: center;
+  background-color: #fff;
+  @include radius;
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+  }
+}
 
-      }
+.form {
+  font-size: 1.4rem;
+  &__label, &__input, &__area, &__button {
+    display: block;
+    width: 100%;
+  }
+  &__input, &__area {
+    border: 1px solid $border;
+    @include radius;
+  }
+  &__image {
+    @include media(pc) {
+      display: flex;
+      align-items: center;
+
     }
-    &__label--image {
+  }
+  &__label {
+      &--image {
       position: relative;
       display: inline-block;
       background-color: $AccentColor;
@@ -51,26 +54,30 @@
         opacity: 0.8;
       }
     }
-    &__input {
-      &--image {
-        display: none;
-      }
-      &--rem {
-        display: block;
-        text-align: right;
-        margin-bottom: 5px;
-      }
+    &--post-image {
+      color: $AccentColor;
+      font-size: 3.5rem;
     }
-    
-    &__button {
-      background-color: $AccentColor;
-      color: #fff;
-      font-size: 2rem;
-      @include radius;
-      transition: 0.2s;
-      &:hover {
-        opacity: 0.8;
-      }
+  }
+  &__input {
+    &--image {
+      display: none;
+    }
+    &--rem {
+      display: block;
+      text-align: right;
+      margin-bottom: 5px;
+    }
+  }
+  
+  &__button {
+    background-color: $AccentColor;
+    color: #fff;
+    font-size: 2rem;
+    @include radius;
+    transition: 0.2s;
+    &:hover {
+      opacity: 0.8;
     }
   }
 }
@@ -181,6 +188,10 @@
   &:hover {
     opacity: 0.8;
   }
+}
+
+.filename {
+  display: block;
 }
 /*
   form end

@@ -7,10 +7,10 @@
       <%= render 'shared/error_messages', object: f.object %>
       <div class="form__image">
         <%= render 'shared/user_icon', id: 'profile-block__img--edit', name: 'profile-block__img profile-block__img--edit' %>
-        <div id="form-image">
-          <%= f.label :image, id: 'input-label', class: 'form__label--image' do %>
+        <div id="form-image--edit">
+          <%= f.label :image, id: 'input-label--edit', class: 'form__label--image' do %>
           ファイルを選択
-          <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'form__input--image' %>
+          <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'image-form form__input--image', data: {id: 'edit'}  %>
           <% end %>
         </div>
       </div>
