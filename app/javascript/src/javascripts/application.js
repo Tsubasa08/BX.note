@@ -45,10 +45,48 @@ $(function() {
     $("#serch-page").hide();
   });
 
+  // 投稿モーダル 表示
+  $("#modal-checkbox--post").click(function() {
+    if ($(this).prop("checked") == true) {
+      $("body").addClass("active");
+      $("#modal-content--post").fadeIn();
+    } else {
+      $("body").removeClass("active");
+      $("#modal-content--post").fadeOut("fast");
+    }
+  });
+
+  // 投稿モーダル内の全ての<input type="file">のidをpost_images → hidden
+  $(".modal-image-input").attr("id", "hidden");
+
+  // 投稿モーダル パネル切り替え
+  $(".label").click(function() {
+    var $th = $(this).index();
+    $(".label").removeClass("active");
+    $(".panel").removeClass("active");
+    $(this).addClass("active");
+    $(".panel")
+      .eq($th)
+      .addClass("active");
+    $(".panel")
+      .eq($th)
+      .find(".image-form")
+      .attr("id", "post_images"); //hidden → post_images
+    $("#label-area, #panel-area").toggleClass("active");
+    $("#prev-btn").fadeIn();
+    $("#close-btn--tab").fadeOut();
+  });
+  $("#prev-btn").click(function() {
+    $("#label-area, #panel-area").toggleClass("active");
+    $(this).fadeOut();
+    $("#close-btn--tab").fadeIn();
+    $(".modal-image-input").attr("id", "hidden"); //post_images → hidden
+  });
+
   // 画像アップロード レイアウト遷移
   $(".image-form").on("change", function() {
-    let data = $(this).data("id");
-    let file = $(this).prop("files");
+    const data = $(this).data("id");
+    const file = $(this).prop("files");
     $(`.filename--${data}`).hide();
     Array.from(file).forEach(e => {
       $(`#form-image--${data}`).append(
@@ -73,35 +111,4 @@ $(function() {
   setTimeout(function() {
     $("#alert").removeClass("alert-down");
   }, 2500);
-
-  // 投稿モーダル 表示
-  // $("#modal-checkbox--post").prop("checked", true);
-  $("#modal-checkbox--post").click(function() {
-    if ($(this).prop("checked") == true) {
-      $("body").addClass("active");
-      $("#modal-content--post").fadeIn();
-    } else {
-      $("body").removeClass("active");
-      $("#modal-content--post").fadeOut("fast");
-    }
-  });
-
-  // 投稿モーダル パネル切り替え
-  $(".label").click(function() {
-    var $th = $(this).index();
-    $(".label").removeClass("active");
-    $(".panel").removeClass("active");
-    $(this).addClass("active");
-    $(".panel")
-      .eq($th)
-      .addClass("active");
-    $("#label-area, #panel-area").toggleClass("active");
-    $("#prev-btn").fadeIn();
-    $("#close-btn--tab").fadeOut();
-  });
-  $("#prev-btn").click(function() {
-    $("#label-area, #panel-area").toggleClass("active");
-    $(this).fadeOut();
-    $("#close-btn--tab").fadeIn();
-  });
 });
