@@ -21,14 +21,10 @@ class PostsController < ApplicationController
     redirect_back(fallback_location: root_url)
   end
 
-  def html
-    
-  end
-
   private
 
   def post_params
-    params.require(:post).permit(:content, :article_url, :book_title, :book_evaluation, images: [], category_ids: [] ) 
+    params.require(:post).permit(:content, :article_url, :book_title, :book_evaluation, :genre, images: [], category_ids: [] ) 
   end
 
   def correct_user
