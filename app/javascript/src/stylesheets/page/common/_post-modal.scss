@@ -130,8 +130,13 @@
     height: calc(100% - 60px);
   }
 }
+#btnn {
+      -webkit-appearance: none;
+      font-size: 1.6rem;
 
+}
 .label-title {
+  font-size: 1.6rem;
   &::before {
     font-family: 'Font Awesome 5 Free';
 		font-weight: 900;
@@ -200,7 +205,7 @@
   transform: translateX(100%);
   transition: 0.3s;
   .panel {
-    display: none;
+    // display: none;
     .label-title {
       display: inline-block;
       color: $AccentColor;
@@ -227,20 +232,21 @@
 
 
 // フォーム
-.post-form {
+.form {
   .check-block {
     input[name="post[category_ids][]"] {
       display: inline-block;
       -webkit-appearance: checkbox;
     }
   }
-
-  &__button {
+  &__input--genre {
+    display: none;
+  }
+  &__button--post {
     background-color: $AccentColor;
     color: #fff;
     @include radius;
   }
-
 }
 // フォーム end
 /*

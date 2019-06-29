@@ -1,0 +1,3 @@
+<!--選択されたジャンルからrenderするパーシャルを条件分岐-->
+document.getElementById("panel-area").innerHTML = 
+"<% if @genre == 'book' %><%= j(render 'shared/post-modal-book') %> <% elsif @genre == 'article' %> <%= j(render 'shared/post-modal-article') %> <% else %> <%= j(render 'shared/post-modal-other') %> <% end%>";

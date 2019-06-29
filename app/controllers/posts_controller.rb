@@ -9,10 +9,21 @@ class PostsController < ApplicationController
       # redirect_to root_url
       redirect_back(fallback_location: root_url)
     else
-      @feed_items = []
-      render 'static_pages/top'
+      # @feed_items = []
+      flash[:danger] = "投稿失敗"
+      redirect_back(fallback_location: root_url)
     end
   end
+
+  def ajax
+    render json: @user
+  end
+
+  # def genre
+  #   # redirect_to terms_path
+  #   @genre = 'ジャンル！！！'
+  #   render json: root_url
+  # end
 
   def destroy
     @post.destroy
