@@ -34,6 +34,14 @@
     Posted <%= time_ago_in_words(d.post.created_at) %> ago.
   </span>
 
+  <div class="post-genre">
+    <% if d.post.genre %>
+      <p>ジャンル：<%= d.post.genre %></p>
+    <% else %>
+      <p>ジャンルが設定されいません</p>
+    <% end %>
+  </div>
+
 
 </li>
 

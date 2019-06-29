@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
     @categories = Category.all
   end
 
+  def select
+    @genre = params[:data]
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   private
   # ユーザーのログインを確認する
   def logged_in_user

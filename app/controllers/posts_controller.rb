@@ -9,10 +9,21 @@ class PostsController < ApplicationController
       # redirect_to root_url
       redirect_back(fallback_location: root_url)
     else
-      @feed_items = []
-      render 'static_pages/top'
+      # @feed_items = []
+      flash[:danger] = "投稿失敗"
+      redirect_back(fallback_location: root_url)
     end
   end
+
+  def ajax
+    render json: @user
+  end
+
+  # def genre
+  #   # redirect_to terms_path
+  #   @genre = 'ジャンル！！！'
+  #   render json: root_url
+  # end
 
   def destroy
     @post.destroy
@@ -21,14 +32,10 @@ class PostsController < ApplicationController
     redirect_back(fallback_location: root_url)
   end
 
-  def html
-    
-  end
-
   private
 
   def post_params
-    params.require(:post).permit(:content, :article_url, :book_title, :book_evaluation, images: [], category_ids: [] ) 
+    params.require(:post).permit(:content, :article_url, :book_title, :book_evaluation, :genre, images: [], category_ids: [] ) 
   end
 
   def correct_user

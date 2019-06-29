@@ -4,11 +4,16 @@
 
 <!-- modal-content--post -->
 <div id="modal-content--post" class="modal-content modal-content--post">
+
   <div class="modal-header">
     <label id="close-btn--tab" class="close-btn close-btn--tab" for="modal-checkbox--post">
       キャンセル
     </label>
-    <i id="prev-btn" class="fas fa-chevron-left prev-btn"></i>
+
+    <div id="prev-btn" class="prev-btn">
+      <i class="fas fa-chevron-left "></i>
+    </div>
+
     <p class="modal-header__title">投稿を作成</p>
     <label id="" class="close-btn close-btn--pc" for="modal-checkbox--post">
     <div class="modal-icon"></div>
@@ -17,44 +22,24 @@
 
   <!-- modal-main -->
   <div class="modal-main">
+  
 
     <div id="label-area" class="label-area">
-      <div class="label label-title label-title--1">本の感想</div>
-      <div class="label label-title label-title--2">記事共有</div>
-      <div class="label label-title label-title--3">その他</div>
+      <%= button_to select_path, remote: true,params: {data: 'book'}, class: 'label' do %>
+        <span class=" label-title label-title--1">本の感想</span>
+      <% end %>
+
+      <%= button_to select_path, remote: true,params: {data: 'article'}, class: 'label' do %>
+        <span class=" label-title label-title--2">記事共有</span>
+      <% end %>
+
+      <%= button_to select_path, remote: true,params: {data: 'other'}, class: 'label' do %>
+        <span class=" label-title label-title--3">その他</span>
+      <% end %>
     </div>
 
     <div id="panel-area" class="panel-area">
-      <div id="panel1" class="panel panel--1">
-        <p class="label-title label-title--1">本の感想</p>
-      </div>
 
-
-      <div id="panel2" class="panel">
-        <p class="label-title label-title--2">記事共有</p>
-      </div>
-
-
-      <div id="panel3" class="panel">
-        <p class="label-title label-title--3">その他</p>
-        <%= render 'shared/user_icon', id: 'user-icon', name: 'modal-user-icon' %>
-        <%= form_with(scope: :post, url: posts_path, local: true, class: 'form form--post') do |f| %>
-          <%= f.text_area :content, class: 'post-form__area', placeholder: '何をシェアする？' %>
-
-          <div class="check-block">
-            <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, class: 'c-check') %>
-          </div>
-
-          <div id="form-image--post-other">
-            <%= f.label :images, id: 'input-label--post-other', class: 'form__label--post-image' do %>
-            <i class="far fa-image"></i>
-              <%= f.file_field :images, multiple: true, accept: 'image/jpeg,image/gif,image/png', class: 'image-form form__input--image', data: {id: 'post-other'} %>
-            <% end %>
-        </div>
-
-          <%= f.submit 'シェア', class: "post-form__button" %>
-        <% end %>
-      </div>
     </div>
   </div><!-- modal-main end -->
 
