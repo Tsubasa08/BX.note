@@ -34,5 +34,12 @@
     <% end %>
   </div>
 
+  <div class="post-article">
+    <% if post.genre == 'article' %>
+      <p>タイトル：<%= post.book_title %></p>
+      <p>タイトル：<%= post.article_url %></p>
+    <% end %>
+  </div>
+
 
 </li>
