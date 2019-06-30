@@ -3,9 +3,45 @@ class PostsController < ApplicationController
   before_action :correct_user,   only: :destroy
   
   def create
+    require 'nokogiri'
+    require 'open-uri'
+    # @url = params[:article_url]
+
+    # url = "https://www.amazon.co.jp/s?k=#{@url}&__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&ref=nb_sb_noss_2"
+    # url = @url
+
+    # $doc = Nokogiri::HTML(open(url))
+    # $data = $doc.css('meta[name="description"]').attribute('content').to_s
+    
     @post = current_user.posts.build(post_params)
+    
+    # url = current_user.posts.build(post_params_url)
+    # url = "https://www.amazon.co.jp/gp/product/4797393157?pf_rd_p=3d322af3-60ce-4778-b834-9b7ade73f617&pf_rd_r=S7C9AJF041GHQNYKPSDP"
+    # url = @url
+
+    # charset = nil
+    # html = open(url) do |f|
+    #   charset = f.charset #文字種別を取得します。
+    #   f.read ＃htmlを読み込み変数htmlに渡します。
+    # end
+
+    # $doc = Nokogiri::HTML.parse(html, nil, charset)
+    
+
+    # @post.book_title = $data
+
     if @post.save
       flash[:success] = "投稿を送信しました。"
+
+      url = @post.article_url
+      $doc = Nokogiri::HTML(open(url))
+      # $data = $doc.css('meta[property="og:title"]').attribute('content').to_s
+      $data = $doc.css('meta[property="og:image"]').attribute('content').to_s
+      @post.book_title = $data
+      @post.save
+
+
+
       # redirect_to root_url
       redirect_back(fallback_location: root_url)
     else
@@ -36,6 +72,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content, :article_url, :book_title, :book_evaluation, :genre, images: [], category_ids: [] ) 
+  end
+
+  def post_params_url
+    params.require(:post).permit(:article_url) 
   end
 
   def correct_user
