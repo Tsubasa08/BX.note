@@ -78,23 +78,30 @@ $(function() {
 
   // 画像アップロード レイアウト遷移
   $(".image-form").on("change", function() {
+    let over; // Filelist
     const data = $(this).data("id");
     const file = $(this).prop("files");
     $(`.filename--${data}`).hide();
     Array.from(file).forEach(e => {
-      $(`#form-image--${data}`).append(
-        `<span class="filename filename--${data}">${e.name}</span>`
-      );
-      $(`#input-label--${data}`).addClass("changed");
+      const size = e.size / 1024 / 1024; // ファイルサイズ
+      if (size > 5) {
+        over = "true";
+        over_name = e.name;
+        $(`.filename--${data}`).hide();
+      } else {
+        over = "false";
+        // 選択したファイル名を表示
+        $(`#form-image--${data}`).append(
+          `<span class="filename filename--${data}">${e.name}</span>`
+        );
+        $(`#input-label--${data}`).addClass("changed");
+      }
     });
-  });
-
-  // 画像警告
-  $("#user_image").bind("change", function() {
-    let size = this.files[0].size / 1024 / 1024;
-    if (size > 5) {
-      alert("画像サイズは5MB以内にしてくだい");
+    if (over == "true") {
+      alert(`画像サイズは5MB以内にしてくだい(${over_name}`);
     }
+    // overをリセット
+    over = "";
   });
 
   // ページ上部メッセージ

@@ -59,11 +59,6 @@ class PostsController < ApplicationController
     render json: @user
   end
 
-  # def genre
-  #   # redirect_to terms_path
-  #   @genre = 'ジャンル！！！'
-  #   render json: root_url
-  # end
 
   def destroy
     @post.destroy
