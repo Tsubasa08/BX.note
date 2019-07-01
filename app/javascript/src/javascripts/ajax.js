@@ -39,17 +39,19 @@ $(function() {
         });
 
         // button 有効/無効 切り替え
-        $("#button-post").prop("disabled", true);
+        $("#button-post").prop("disabled", true); //初期値：disabled
+
+        // リアルタイム処理
         $("#panel-area").on("keyup", "#post_content", function() {
-          let val = $(this).val();
+          let val = $(this).val(); //入力内容取得
           $("#test").text(val);
           if (val) {
             $("#button-post")
-              .prop("disabled", false)
+              .prop("disabled", false) //button 有効化
               .removeClass("disabled");
           } else if (!val) {
             $("#button-post")
-              .prop("disabled", true)
+              .prop("disabled", true) //button 無効化
               .addClass("disabled");
           }
         });
