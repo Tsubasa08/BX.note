@@ -28,7 +28,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true,
              unless: :uid?
   validates :introduce, length: {maximum: 150}, allow_nil: true
-  validate  :validate_image, unless: :uid?
+  validate  :validate_image
 
   class << self 
 

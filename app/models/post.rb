@@ -7,7 +7,12 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
   validates :genre, presence: true
+  validates :link_url, presence: true, unless: :other? #ジャンルが""other"以外
   validate  :validate_image
+
+  def other?
+    genre == "other"
+  end
 
   #  画像のサイズ、拡張子を判定
   def validate_image
