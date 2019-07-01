@@ -44,7 +44,11 @@
 
   <div class="post-article">
     <% if d.post.genre == 'article' %>
-    <img src="<%= d.post.book_title %>" alt="ogp画像">
+      <a href="<%= d.post.link_url %>"><%= d.post.link_url %></a>
+      <p>OGPタイトル：<%= d.post.link_title %></p>
+      <img src="<%= d.post.link_image %>" alt="ogp画像">
+      <p>OGP概要：<%= d.post.link_desc %></p>
+      <p>ホスト名： <%= get_host(d.post.link_url) %> </p>
     <% end %>
   </div>
 
