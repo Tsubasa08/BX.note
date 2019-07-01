@@ -247,6 +247,9 @@
     color: #fff;
     @include radius;
   }
+  #button-post.disabled {
+    opacity: 0.3;
+  }
 }
 // フォーム end
 /*

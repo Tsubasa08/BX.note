@@ -6,11 +6,11 @@ class PostTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:michael)
-    @post = @user.posts.build(content: "Lorem ipsum")
+    @post = @user.posts.build(content: "Lorem ipsum", genre: "other")
   end
 
   # テストユーザー
-  test "contentあり" do
+  test "content,genreあり" do
     assert @post.valid?
   end
 
@@ -24,21 +24,26 @@ class PostTest < ActiveSupport::TestCase
     assert @post.valid?
   end
 
-  # user_idが空
-  test "user id should be present" do
+
+  test "user_idが空" do
     @post.user_id = nil
     assert_not @post.valid?
   end
 
-  # contentが空
-  test "content should be present" do
+
+  test "contentが空" do
     @post.content = "   "
     assert_not @post.valid?
   end
 
-  # contentが141文字以上
-  test "content should be at most 140 characters" do
+  test "contentが141文字以上" do
     @post.content = "a" * 141
+    assert_not @post.valid?
+  end
+
+
+  test "genreが空" do
+    @post.genre = "   "
     assert_not @post.valid?
   end
 

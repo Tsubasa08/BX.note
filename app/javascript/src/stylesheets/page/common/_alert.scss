@@ -25,6 +25,22 @@
   top: 60px;
 }
 
+.form-alert {
+  color: #fff;
+  background-color: #ff503c;
+  margin-bottom: 20px;
+  padding: 10px 5px;
+  @include radius;
+  .error-list {
+    &__item {
+      padding-bottom: 5px;
+      &:nth-last-of-type(1) {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
 
 
 

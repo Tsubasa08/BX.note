@@ -2,7 +2,8 @@
   <p class="label-title label-title--2">記事共有</p>
   <%= render 'shared/user_icon', id: 'user-icon', name: 'modal-user-icon' %>
   <%= form_with(scope: :post, url: posts_path, local: true, class: 'form form--post', id: 'form-image') do |f| %>
-    <%= f.text_area :content, class: 'post-form__area', placeholder: '何をシェアする？' %>
+  
+    <%= f.text_area :content, class: 'post-form__area', placeholder: '読んだ感想は？' %>
     <div class="check-block">
       <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, class: 'c-check') %>
     </div>
@@ -14,7 +15,7 @@
       <% end %>
     </div>
 
-    <%= f.text_field :article_url, class: 'form__input' %>
+    <%= f.text_field :link_url, class: 'form__input', placeholder: '記事のURL' %>
 
     <%= f.text_field :genre, value: @genre, class: 'form__input--genre' %>
 

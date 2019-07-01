@@ -33,14 +33,18 @@ class PostsController < ApplicationController
     if @post.save
       flash[:success] = "投稿を送信しました。"
 
-      url = @post.article_url
-      $doc = Nokogiri::HTML(open(url))
-      # $data = $doc.css('meta[property="og:title"]').attribute('content').to_s
-      $data = $doc.css('meta[property="og:image"]').attribute('content').to_s
-      @post.book_title = $data
-      @post.save
-
-
+      # リンク先OGP取得
+      unless @post.genre == 'other'
+        url = @post.link_url
+        $doc = Nokogiri::HTML(open(url))
+        $link_title = $doc.css('meta[property="og:title"]').attribute('content').to_s
+        $link_image = $doc.css('meta[property="og:image"]').attribute('content').to_s
+        $link_desc = $doc.css('meta[property="og:description"]').attribute('content').to_s
+        @post.link_title = $link_title
+        @post.link_image = $link_image
+        @post.link_desc = $link_desc
+        @post.save        
+      end
 
       # redirect_to root_url
       redirect_back(fallback_location: root_url)
@@ -71,11 +75,17 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :link, :link_title, :book_evaluation, :genre, images: [], category_ids: [] ) 
+    params.require(:post).permit(:content, :link_url, :book_evaluation, :genre, images: [], category_ids: [] ) 
   end
 
   def correct_user
     @post = current_user.posts.find_by(id: params[:id])
     redirect_to root_url if @post.nil?
   end
+end
+
+def get_host(path)
+  host = path.sub(/\\/, '/').match(/\/\/([^\/]*)/)
+  # '' if !host
+  host[1]
 end
