@@ -1,3 +1,29 @@
 <div id="panel1" class="panel panel--1">
   <p class="label-title label-title--1">本の感想</p>
+  <%= form_with(scope: :post, url: posts_path, local: true, class: 'form form--post') do |f| %>
+    <% if f.object %>
+      <%= render 'shared/error_messages', object: f.object %>
+    <% end %>
+
+    <%= render 'shared/user_icon', id: 'user-icon', name: 'modal-user-icon' %>
+
+    <%= f.text_area :content, class: 'post-form__area', placeholder: '読んだ感想は？' %>
+
+    <div class="check-block">
+      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, class: 'c-check') %>
+    </div>
+
+    <div id="form-image--post-book">
+      <%= f.label :images, id: 'input-label--post-book', class: 'form__label--post-image' do %>
+        <i class="far fa-image"></i>
+        <%= f.file_field :images, multiple: true, accept: 'image/jpeg,image/gif,image/png', class: 'image-form form__input--image', data: {id: 'post-book'} %>
+      <% end %>
+    </div>
+
+    <%= f.text_field :link_url, class: 'form__input', placeholder: '記事のURL' %>
+
+    <%= f.text_field :genre, value: @genre, class: 'form__input--genre' %>
+
+    <%= f.submit 'シェア', class: "form__button--post disabled", id: 'button-post', disabled: true %>
+  <% end %>
 </div>

@@ -34,6 +34,7 @@ class PostsController < ApplicationController
       flash[:success] = "投稿を送信しました。"
 
       # リンク先OGP取得
+      # if @post.genre == 'article'
       unless @post.genre == 'other'
         url = @post.link_url
         $doc = Nokogiri::HTML(open(url))
