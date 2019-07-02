@@ -1,54 +1,54 @@
-<% @category.post_categories.each do |d| %>
-<li id="post-<%= d.post.id %>" class="post-list__item">
+<% @posts.each do |post| %>
+<li id="post-<%= post.id %>" class="post-list__item">
   <div class="user-link">
-    <%= link_to d.post.user, class: 'user-link__item user-link__item--img' do %>
-      <%  if d.post.user.image.attached? %>
-        <%= image_tag d.post.user.image.variant(resize: "200x200") %>
+    <%= link_to post.user, class: 'user-link__item user-link__item--img' do %>
+      <%  if post.user.image.attached? %>
+        <%= image_tag post.user.image.variant(resize: "200x200") %>
       <% else %>
-        <% if d.post.user.image_url? %>
-          <img  id="" class="" src="<%= d.post.user.image_url %>" alt="twitterアイコン">
+        <% if post.user.image_url? %>
+          <img  id="" class="" src="<%= post.user.image_url %>" alt="twitterアイコン">
         <% else %>
           <img id="" class="" src="<%= asset_pack_path 'media/src/images/defoult-user-icon.png' %>" />
         <% end %>
       <% end %>
     <% end %>
-    <%= link_to d.post.user.name, d.post.user, class: 'user-link__itemuser-link__item--title' %>
+    <%= link_to post.user.name, post.user, class: 'user-link__itemuser-link__item--title' %>
   </div>
 
   <div class="categories">
-    <% d.post.post_categories.each do |post_categories| %>
+    <% post.post_categories.each do |post_categories| %>
       <%= link_to post_categories.category.name, category_path(post_categories.category.id), class: 'categories__link' %>
     <% end %>
   </div>
 
   <div class="post-content">
-    <%= d.post.content %>
+    <%= post.content %>
   </div>
   <div class="post-image">
-    <% d.post.images.each do |image|%>
+    <% post.images.each do |image|%>
       <%= image_tag image.variant(resize: "300x400") , class: 'image' %>
     <% end %>
   </div>
 
   <span class="timestamp">
-    Posted <%= time_ago_in_words(d.post.created_at) %> ago.
+    Posted <%= time_ago_in_words(post.created_at) %> ago.
   </span>
 
   <div class="post-genre">
-    <% if d.post.genre %>
-      <p>ジャンル：<%= d.post.genre %></p>
+    <% if post.genre %>
+      <p>ジャンル：<%= post.genre %></p>
     <% else %>
       <p>ジャンルが設定されいません</p>
     <% end %>
   </div>
 
   <div class="post-article">
-    <% if d.post.genre == 'article' %>
-      <a href="<%= d.post.link_url %>"><%= d.post.link_url %></a>
-      <p>OGPタイトル：<%= d.post.link_title %></p>
-      <img src="<%= d.post.link_image %>" alt="ogp画像">
-      <p>OGP概要：<%= d.post.link_desc %></p>
-      <p>ホスト名： <%= get_host(d.post.link_url) %> </p>
+    <% if post.genre == 'article' %>
+      <a href="<%= post.link_url %>"><%= post.link_url %></a>
+      <p>OGPタイトル：<%= post.link_title %></p>
+      <img src="<%= post.link_image %>" alt="ogp画像">
+      <p>OGP概要：<%= post.link_desc %></p>
+      <p>ホスト名： <%= get_host(post.link_url) %> </p>
     <% end %>
   </div>
 
