@@ -1,7 +1,15 @@
 <li id="post-<%= post.id %>" class="post-list__item">
   <div class="user-link">
     <%= link_to post.user, class: 'user-link__item user-link__item--img' do %>
-      <%= render 'shared/user_icon', id: 'user-icon', name: 'img' %>
+      <%  if post.user.image.attached? %>
+        <%= image_tag post.user.image.variant(resize: "200x200") %>
+      <% else %>
+        <% if post.user.image_url? %>
+          <img  id="" class="" src="<%= post.user.image_url %>" alt="twitterアイコン">
+        <% else %>
+          <img id="" class="" src="<%= asset_pack_path 'media/src/images/defoult-user-icon.png' %>" />
+        <% end %>
+      <% end %>
     <% end %>
     <%= link_to post.user.name, post.user, class: 'user-link__itemuser-link__item--title' %>
   </div>

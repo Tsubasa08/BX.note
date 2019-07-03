@@ -5,14 +5,35 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
      @post = posts(:orange)
    end
 
-  test "createアクション 不正データ" do
+  test "createアクション ログインなし" do
     assert_no_difference 'Post.count' do
-      post posts_path, params: { post: { content: "Lorem ipsum" } }
+      post posts_path, params: { post: { content: "Lorem ipsum", genre: "article", link_url: "https://cookpad.com/" } }
     end
     assert_redirected_to login_url
   end
 
-  test "destroyアクション 不正データ" do
+  test "createアクション URL正常" do
+    log_in_as(users(:michael))
+    assert_difference 'Post.count' do
+      post posts_path, params: { post: { content: "Lorem ipsum", genre: "article", link_url: "https://cookpad.com/" } }
+    end
+  end
+
+  test "createアクション URL正規表現不正" do
+    log_in_as(users(:michael))
+    assert_no_difference 'Post.count' do
+      post posts_path, params: { post: { content: "Lorem ipsum", genre: "article", link_url: "test.com" } }
+    end
+  end
+
+  test "createアクション URL正規表現正常 存在しないURL" do
+    log_in_as(users(:michael))
+    assert_no_difference 'Post.count' do
+      post posts_path, params: { post: { content: "Lorem ipsum", genre: "article", link_url: "https://cookpap.com/" } }
+    end
+  end
+
+  test "destroyアクション ログインなし" do
     assert_no_difference 'Post.count' do
       delete post_path(@post)
     end
