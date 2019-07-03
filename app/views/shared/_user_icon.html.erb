@@ -1,9 +1,9 @@
-<%  if current_user.image.attached? %>
-  <%= image_tag current_user.image.variant(resize: "200x200"), class: name, id: id %>
+<%  if user.image.attached? %>
+  <%= image_tag user.image.variant(resize: "200x200"), class: class_name, id: id_name %>
 <% else %>
-  <% if current_user.image_url? %>
-    <img  id="<%= id %>" class="<%= name %>" src="<%= current_user.image_url %>" alt="twitterアイコン">
+  <% if user.image_url? %>
+    <img  id="<%= id_name %>" class="<%= class_name %>" src="<%= user.image_url %>" alt="twitterアイコン">
   <% else %>
-    <img id="<%= id %>" class="<%= name %>" src="<%= asset_pack_path 'media/src/images/defoult-user-icon.png' %>" />
+    <img id="<%= id_name %>" class="<%= class_name %>" src="<%= asset_pack_path 'media/src/images/defoult-user-icon.png' %>" />
   <% end %>
 <% end %>
