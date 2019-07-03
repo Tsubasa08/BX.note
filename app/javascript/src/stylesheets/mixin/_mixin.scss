@@ -85,3 +85,13 @@
   object-fit: cover;
   font-family: 'object-fit: cover;';
 }
+
+// ページネーション
+@mixin page {
+  display: inline-block;
+  text-align: center;
+  line-height: 45px;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}

@@ -9,9 +9,9 @@ before_action :correct_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(20)
     # @post = current_user.posts.build if logged_in?
-    redirect_to(root_url) unless current_user?(@user) 
+    # redirect_to(root_url) unless current_user?(@user) 
   end
   
 

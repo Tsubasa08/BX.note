@@ -1,0 +1,39 @@
+/*
+  pagination
+*/
+.pagination {
+  margin-top: 100px;
+  text-align: center;
+  @include media(tab) {
+    margin-top: 50px;
+  }
+  .normal {
+    background-color: #fff;
+    color: $AccentColor;
+    @include page;
+  }
+  .page {
+    &.gap {
+      color: $AccentColor;
+    }
+    &.current {
+      background-color: $AccentColor;
+      color: #fff;
+      @include page;
+    }
+  }
+  .first {
+    &__link {
+    }
+  }
+
+  .arrow {
+    color: $AccentColor;
+  }
+}
+
+
+
+/*
+  pagination end
+*/

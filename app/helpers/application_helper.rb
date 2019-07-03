@@ -11,10 +11,16 @@ module ApplicationHelper
   end
 
   # ホスト名取得
+  # def get_host(path)
+  #   host = path.sub(/\\/, '/').match(/\/\/([^\/]*)/)
+  #   host[1]
+  # end
+
   def get_host(path)
-    host = path.sub(/\\/, '/').match(/\/\/([^\/]*)/)
-    host[1]
-  end
+  require 'uri'
+  uri = URI.parse(path)
+  uri.host
+end
 
   # 記事のOGP取得
   # def get_ogp(url, data)

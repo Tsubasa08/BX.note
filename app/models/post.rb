@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  has_many :post_categories
+  has_many :post_categories, dependent: :destroy
   has_many :categories, through: :post_categories
   belongs_to :user
   has_many_attached :images
@@ -7,7 +7,14 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
   validates :genre, presence: true
-  validates :link_url, presence: true, unless: :other? #ジャンルが""other"以外
+  # VALID_URL_REGEX = /\A^(http|https):\/\/([\w-]+\.)+[\w-]+(\/[\w-./?%&=]*)?$\z/
+  # VALID_URL_REGEX = %r{^(http|https)://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?$}
+  VALID_URL_REGEX = %r{(http|https)://[\w_.!*\/')(-]+}
+  # VALID_URL_REGEX = %r{https?://[\w_.!*\/')(-]+}
+  validates :link_url, presence: true,
+            #  format: VALID_URL_REGEX,
+             format: { with: VALID_URL_REGEX },
+             unless: :other? #ジャンルが""other"以外
   validate  :validate_image
 
   def other?

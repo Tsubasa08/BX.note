@@ -6,12 +6,21 @@
       <ol class="post-list">
         <%= render @posts %>
       </ol><!-- post end -->
+      <%= paginate @posts %>
 
     </div>
 
     <div class="contents__right contents__right--edit">
       <div class="profile-block">
-        <%= render 'shared/user_icon', id: 'profile-block__img--show', name: 'profile-block__img profile-block__img--show' %>
+        <%  if @user.image.attached? %>
+          <%= image_tag @user.image.variant(resize: "200x200"), class: 'profile-block__img profile-block__img--show', id: 'profile-block__img--show' %>
+        <% else %>
+          <% if @user.image_url? %>
+            <img  id="profile-block__img--show" class="profile-block__img profile-block__img--show" src="<%= @user.image_url %>" alt="twitterアイコン">
+          <% else %>
+            <img id="profile-block__img--show" class="profile-block__img profile-block__img--show" src="<%= asset_pack_path 'media/src/images/defoult-user-icon.png' %>" />
+          <% end %>
+        <% end %>
         <h1 class="profile-block__name"><%= @user.name %></h1>
         <div class="profile-block__introduce">
           <%= @user.introduce %>
@@ -28,9 +37,4 @@
     </div>
 
   </div>
-
-  <div class="page-nation">
-  ページネーション
-  </div>
-  <%= link_to "新規登録", signup_path %>
 </main>
