@@ -2,6 +2,9 @@
 <main class="main main--profile">
   <div class="contents">
     <div class="contents__left contents__left--edit">
+      <div class="top-bar">
+        <%= render 'shared/stats' %>
+      </div>
       <!-- post -->
       <ol class="post-list">
         <%= render @posts %>
@@ -12,7 +15,7 @@
 
     <div class="contents__right contents__right--edit">
       <div class="profile-block">
-      
+
         <%= render 'shared/user_icon', user: @user, id_name: 'profile-block__img--show', class_name: 'profile-block__img profile-block__img--show' %>
         
         <h1 class="profile-block__name"><%= @user.name %></h1>
@@ -20,6 +23,7 @@
           <%= @user.introduce %>
         </div>
         <%=  link_to 'プロフィールを編集', edit_user_path, class: 'profile-block__link' %>
+        <%= render 'follow_form' if logged_in? %>
       </div>
 
       <%= render 'layouts/categories' %>

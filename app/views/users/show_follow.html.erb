@@ -1,0 +1,7 @@
+<div class="follow">
+  <p>テストです</p>
+  <% @users.each do |user| %>
+    <%= render 'shared/user_icon', user: user, id_name: 'user-icon', class_name: 'img' %>
+    <%= link_to user.name, user_path(user) %>
+  <% end %>
+</div>
