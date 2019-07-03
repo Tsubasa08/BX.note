@@ -26,34 +26,34 @@ class FollowingTest < ActionDispatch::IntegrationTest
     end
   end
 
-  # フォローのテスト
-  #  test "should follow a user the standard way" do
-  #   assert_difference '@user.following.count', 1 do
-  #     post relationships_path, params: { followed_id: @other.id }
-  #   end
-  # end
+  # 普通の通信とAjax通信に分けてテスト
+   test "フォロー機能(普通の通信)" do
+    assert_difference '@user.following.count', 1 do
+      post relationships_path, params: { followed_id: @other.id }
+    end
+  end
 
-  # test "should follow a user with Ajax" do
-  #   assert_difference '@user.following.count', 1 do
-  #     post relationships_path, xhr: true, params: { followed_id: @other.id }
-  #   end
-  # end
+  test "フォロー機能(Ajax通信)" do
+    assert_difference '@user.following.count', 1 do
+      post relationships_path, xhr: true, params: { followed_id: @other.id }
+    end
+  end
 
-  # test "should unfollow a user the standard way" do
-  #   @user.follow(@other)
-  #   relationship = @user.active_relationships.find_by(followed_id: @other.id)
-  #   assert_difference '@user.following.count', -1 do
-  #     delete relationship_path(relationship)
-  #   end
-  # end
+  test "フォロー解除機能(普通の通信)" do
+    @user.follow(@other)
+    relationship = @user.active_relationships.find_by(followed_id: @other.id)
+    assert_difference '@user.following.count', -1 do
+      delete relationship_path(relationship)
+    end
+  end
 
-  # test "should unfollow a user with Ajax" do
-  #   @user.follow(@other)
-  #   relationship = @user.active_relationships.find_by(followed_id: @other.id)
-  #   assert_difference '@user.following.count', -1 do
-  #     delete relationship_path(relationship), xhr: true
-  #   end
-  # end
+  test "フォロー解除機能(Ajax通信)" do
+    @user.follow(@other)
+    relationship = @user.active_relationships.find_by(followed_id: @other.id)
+    assert_difference '@user.following.count', -1 do
+      delete relationship_path(relationship), xhr: true
+    end
+  end
 
 
 end

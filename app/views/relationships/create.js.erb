@@ -1,0 +1,4 @@
+document.getElementById("follow_form").innerHTML =
+"<%= j(render('users/unfollow')) %>"
+document.getElementById("follow_form").innerHTML =
+"<%= @user.followers.count %>"
