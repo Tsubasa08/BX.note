@@ -1,6 +1,6 @@
 <div id="panel2" class="panel">
   <p class="label-title label-title--2">記事共有</p>
-  <%= render 'shared/user_icon', id: 'user-icon', name: 'modal-user-icon' %>
+  <%= render 'shared/user_icon', user: current_user, id_name: 'user-icon', class_name: 'modal-user-icon' %>
   <%= form_with(scope: :post, url: posts_path, local: true, class: 'form form--post', id: 'form-image') do |f| %>
   
     <%= f.text_area :content, class: 'post-form__area', placeholder: '読んだ感想は？' %>

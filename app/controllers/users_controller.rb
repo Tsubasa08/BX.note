@@ -51,16 +51,14 @@ before_action :correct_user, only: [:edit, :update]
   end
 
   def following
-    @title = "Following"
     @user = User.find(params[:id])
-    @users = @user.following.paginate(page: params[:page])
+    @users = @user.following.page(params[:page]).per(20)
     render 'show_follow'
   end
   
   def followers
-    @title = "Followers"
     @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
+    @users = @user.followers.page(params[:page]).per(20)
     render 'show_follow'
   end
 

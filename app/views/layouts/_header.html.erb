@@ -18,7 +18,7 @@
     </div>
 
     <% if logged_in? %>
-      <%= render 'shared/user_icon', id: 'user-icon', name: 'session-user-icon' %>
+      <%= render 'shared/user_icon', user: current_user, id_name: 'user-icon', class_name: 'session-user-icon' %>
       <div id="user-link" class="user-link--pc">
         <%= link_to current_user.name, current_user, class: 'user-link--pc__item user-link--pc__item--title' %>
         <%= link_to "プロフィール編集", edit_user_path(current_user), class: 'user-link--pc__item user-link--pc__item--edit' %>
@@ -51,7 +51,7 @@
             <div class="profile-card profile-card--sp">
               <div class="user-link">
                 <%= link_to current_user, class: 'user-link__item user-link__item--img' do %>
-                  <%= render 'shared/user_icon', id: 'user-icon-sp', name: 'img' %>
+                  <%= render 'shared/user_icon', user: current_user, id_name: 'user-icon-sp', class_name: 'img' %>
                 <% end %>
                 <%= link_to current_user.name, current_user, class: 'user-link__item user-link__item--title' %>
               </div>

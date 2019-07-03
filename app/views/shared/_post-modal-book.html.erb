@@ -5,7 +5,7 @@
       <%= render 'shared/error_messages', object: f.object %>
     <% end %>
 
-    <%= render 'shared/user_icon', id: 'user-icon', name: 'modal-user-icon' %>
+    <%= render 'shared/user_icon', user: current_user, id_name: 'user-icon', class_name: 'modal-user-icon' %>
 
     <%= f.text_area :content, class: 'post-form__area', placeholder: '読んだ感想は？' %>
 
