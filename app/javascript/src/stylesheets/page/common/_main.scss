@@ -77,8 +77,7 @@
       }
     }
   }
-  // PCレイアウト end
-
+  
   
   .about-link {
     @include radius;
@@ -96,6 +95,7 @@
     }
   }
 }
+// PCレイアウト end
 
 
 
@@ -146,6 +146,8 @@
 
 @include media(tab) {
   .contents {
+    display: flex;
+    flex-direction: column-reverse;
     &__left {
       background-color: #fff;
     }

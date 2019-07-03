@@ -2,9 +2,23 @@
 <main class="main main--profile">
   <div class="contents">
     <div class="contents__left contents__left--edit">
-      <div class="top-bar">
+      <ul class="ProfileNav-list">
+        <li class="ProfileNav-list__item current">
+          <%= link_to @user, class: 'post-page-link link'  do %>
+            <span class="link__title">投稿</span>
+            <span class="link__num"><%= @user.posts.count %></span>
+          <% end %>
+        </li>
+
         <%= render 'shared/stats' %>
-      </div>
+
+        <li class="ProfileNav-list__item">
+          <a href="#" class="link">
+            <span class="link__title">いいね</span>
+            <span class="link__num">300</span>
+          </a>
+        </li>
+      </ul>
       <!-- post -->
       <ol class="post-list">
         <%= render @posts %>
@@ -22,8 +36,11 @@
         <div class="profile-block__introduce">
           <%= @user.introduce %>
         </div>
-        <%=  link_to 'プロフィールを編集', edit_user_path, class: 'profile-block__link' %>
-        <%= render 'follow_form' if logged_in? %>
+        <% if current_user == @user %>
+          <%=  link_to 'プロフィールを編集', edit_user_path, class: 'profile-block__link profile-block__link--edit' %>
+        <% else %>
+          <%= render 'follow_form' %>
+        <% end %>
       </div>
 
       <%= render 'layouts/categories' %>

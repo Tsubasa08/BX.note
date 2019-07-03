@@ -29,6 +29,85 @@
     }
   }
 }
+
+.ProfileNav-list {
+  display: flex;
+  background-color: #fff;
+  @include radius;
+  @include media(pc) {
+    margin-bottom: 17px;
+    padding: 14px 0 0 30px;
+  }
+  @include media(tab) {
+    justify-content: space-between;
+    padding: 0 10px 0;
+  }
+  &__item {
+    position: relative;
+    text-align: center;
+    padding: 0 20px 7px; 
+    @include media(tab) {
+      padding: 0 10px 5px;
+    }
+    &.current {
+      .link__num {
+        color: $AccentColor;
+      }
+      &::before {
+        left: 0;
+        width: 100%;
+      }
+      &:hover::before {
+        width: 100%;
+      }
+    }
+    &::before, &::after {
+      content: '';
+      width: 0;
+      bottom: 0;
+      transition: all 0.3s ease;
+      border-bottom: 2px solid $AccentColor;
+      position: absolute;
+      display: block;          
+    }
+    &::before {
+      left: 50%;
+    }
+    &::after {
+      right: 50%;
+    }
+    &:hover::before, &:hover::after {
+      width: 50%;
+      border-bottom: 2px solid $AccentColor;
+    }
+    &:hover {
+      .link__num {
+        color: $AccentColor;
+      }
+    }
+  }
+  .link {
+    color: #66757f;
+    font-weight: bold;
+    &__title {
+      font-size: 1.4rem;
+    }
+    &__num {
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+    }
+  }
+  span {
+    display: block;
+  }
+}
+
+
+
+
+
+
+// profile-block
 .profile-block {
   background-color: #fff;
   padding: 20px 10px;
@@ -65,21 +144,41 @@
     display: block;
     width: 200px;
     text-align: center;
-    border: 1px solid $AccentColor;
+    border: 1px solid $AccentColor !important;
     color: $AccentColor;
     border-radius: 100px;
     @include media(pc) {
       margin: 0 auto;
       padding: 8px 0;
       transition: 0.2s;
-      &:hover {
-        background-color: $AccentColor;
+    }
+    &--edit {
+      @include media(pc) {
+        &:hover {
+          background-color: $AccentColor;
         color: #fff;
+        }
+      }
+    }
+    &--follow {
+      @include media(pc) {
+        &:hover {
+          background-color: rgba(0, 175, 204, 0.1);
+        }
+      }
+    }
+    &--unfollow {
+      background-color: $AccentColor;
+      color: #fff;
+      @include media(pc) {
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
   }
 }
-
+// profile-block end
 /*
   profile end
 */
