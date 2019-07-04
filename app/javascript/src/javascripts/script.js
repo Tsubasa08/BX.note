@@ -111,4 +111,17 @@ $(function() {
   setTimeout(function() {
     $("#alert").removeClass("alert-down");
   }, 2500);
+
+  // let text = $(".introduce-text").text();
+  // let count = $(".introduce-text").length;
+  $(".introduce-text").each(function(i, t) {
+    let count = $(t).text().length;
+    if (count > 76) {
+      console.log(count);
+      $(this).addClass("active");
+    }
+    // console.log("テスト" + i + $(t).text());
+  });
+  // console.log(text);
+  // console.log(count);
 });

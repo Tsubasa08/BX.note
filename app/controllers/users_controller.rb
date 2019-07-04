@@ -1,11 +1,7 @@
 class UsersController < ApplicationController
-before_action :logged_in_user, only: [:edit, :update, :destroy, :following, :followers]
+before_action :logged_in_user, only: [:edit, :update, :destroy]
 before_action :correct_user, only: [:edit, :update]
 # before_action :admin_user, only: :destroy
-
-  # def index
-  #   # @users = User.where(activated: true).paginate(page: params[:page]) #ページネーション
-  # end
 
   def show
     @user = User.find(params[:id])
@@ -51,14 +47,16 @@ before_action :correct_user, only: [:edit, :update]
   end
 
   def following
+    @current_following = 'current' #ページレイアウト活性化
     @user = User.find(params[:id])
-    @users = @user.following.page(params[:page]).per(20)
+    @users = @user.following.page(params[:page]).per(18)
     render 'show_follow'
   end
   
   def followers
+    @current_followers = 'current' #ページレイアウト活性化
     @user = User.find(params[:id])
-    @users = @user.followers.page(params[:page]).per(20)
+    @users = @user.followers.page(params[:page]).per(18)
     render 'show_follow'
   end
 

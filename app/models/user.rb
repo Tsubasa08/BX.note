@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_one_attached :image
   attr_accessor :remember_token, :reset_token
   before_save :downcase_email, unless: :uid?
-  validates :name, presence: true, length: {maximum: 50}
+  validates :name, presence: true, length: {maximum: 30}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},
             format: { with: VALID_EMAIL_REGEX },
@@ -81,10 +81,10 @@ class User < ApplicationRecord
    end
 
    # ユーザーのステータスフィードを返す
-  def feed
-    following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
-    Micropost.where("user_id IN (#{following_ids} OR user_id = :user_id)", user_id: id)
-  end
+  # def feed
+  #   following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+  #   Micropost.where("user_id IN (#{following_ids} OR user_id = :user_id)", user_id: id)
+  # end
 
    # ユーザーをフォローする
    def follow(other_user)

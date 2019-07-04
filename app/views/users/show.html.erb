@@ -39,7 +39,7 @@
         <% if current_user == @user %>
           <%=  link_to 'プロフィールを編集', edit_user_path, class: 'profile-block__link profile-block__link--edit' %>
         <% else %>
-          <%= render 'follow_form' %>
+          <%= render 'follow_form', user: @user %>
         <% end %>
       </div>
 
