@@ -29,6 +29,87 @@
     }
   }
 }
+
+.ProfileNav-list {
+  display: flex;
+  background-color: #fff;
+  @include radius;
+  @include media(pc) {
+    margin-bottom: 17px;
+    padding: 14px 0 0 30px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
+  }
+  @include media(tab) {
+    justify-content: space-between;
+    padding: 0 10px 0;
+    border-bottom: 1px solid $border;
+  }
+  &__item {
+    position: relative;
+    text-align: center;
+    padding: 0 20px 7px; 
+    @include media(tab) {
+      padding: 0 10px 5px;
+    }
+    &.current {
+      .link__num {
+        color: $AccentColor;
+      }
+      &::before {
+        left: 0;
+        width: 100%;
+      }
+      &:hover::before {
+        width: 100%;
+      }
+    }
+    &::before, &::after {
+      content: '';
+      width: 0;
+      bottom: 0;
+      transition: all 0.3s ease;
+      border-bottom: 2px solid $AccentColor;
+      position: absolute;
+      display: block;          
+    }
+    &::before {
+      left: 50%;
+    }
+    &::after {
+      right: 50%;
+    }
+    &:hover::before, &:hover::after {
+      width: 50%;
+      border-bottom: 2px solid $AccentColor;
+    }
+    &:hover {
+      .link__num {
+        color: $AccentColor;
+      }
+    }
+  }
+  .link {
+    color: #66757f;
+    font-weight: bold;
+    &__title {
+      font-size: 1.4rem;
+    }
+    &__num {
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+    }
+  }
+  span {
+    display: block;
+  }
+}
+
+
+
+
+
+
+// profile-block
 .profile-block {
   background-color: #fff;
   padding: 20px 10px;
@@ -65,20 +146,159 @@
     display: block;
     width: 200px;
     text-align: center;
-    border: 1px solid $AccentColor;
+    border: 1px solid $AccentColor !important;
     color: $AccentColor;
     border-radius: 100px;
     @include media(pc) {
       margin: 0 auto;
       padding: 8px 0;
       transition: 0.2s;
-      &:hover {
-        background-color: $AccentColor;
+    }
+    &--edit {
+      @include media(pc) {
+        &:hover {
+          background-color: $AccentColor;
         color: #fff;
+        }
+      }
+    }
+    &--follow {
+      background-color: #fff;
+      @include media(pc) {
+        &:hover {
+          background-color: rgba(0, 175, 204, 0.1);
+        }
+      }
+    }
+    &--unfollow {
+      background-color: $AccentColor;
+      color: #fff;
+      @include media(pc) {
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
   }
 }
+// profile-block end
+
+
+// users-block
+.users-block {
+  // width: 100%;
+  @include media(pc) {
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    // transform: translateX(-10px);
+    margin-top: -10px;
+    margin-left: -10px;
+  }
+  @include media(tab) {
+    padding-top: 5px;
+    background-color: #fff;
+  }
+  .user-card {
+    background-color: #fff;
+    @include radius;
+    @include media(pc) {
+      height: 200px;
+      width: calc(100% / 3 - 10px);
+      margin: 10px 0 0 10px;
+      padding: 10px 15px;
+      // overflow: hidden;
+    }
+    @include media(tab) {
+      padding: 10px;
+      border-bottom: 1px solid $border;
+    }
+    .titleFollow-wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+    &__title {
+      .link {
+        @include media(tab) {
+          display: flex;
+          align-items: center;
+        }
+        .user-block-icon {
+          height: 40px;
+          width: 40px;
+          @include icon;
+        }
+      }
+      .user-name {
+        font-size: 1.8rem;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        @include media(pc) {
+          position: absolute;
+          width: 220px;
+        }
+        @include media(tab) {
+          margin-left: 7px;
+        }
+        @include media(sp) {
+          width: 50vw;
+        }
+      }
+    }
+    .profile-block__link {
+      width: 100px;
+      padding: 5px 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+      @include media(pc) {
+        margin-top: 5px;
+      }
+    }
+
+    &__introduce {
+      @include media(pc) {
+        margin-top: 30px;
+      }
+      $container-bg: #eee;
+      $font-size-base: 1.4rem;
+      $line-height-computed: 1.6;
+      $lines-to-show: 5;
+      // height: auto;
+      width: 100%;
+      overflow: hidden;
+      .text {
+        font-size: 1.4rem;
+        &.active {
+          @include media(pc) {
+            height: $font-size-base * $line-height-computed * $lines-to-show;
+            line-height: $line-height-computed;
+            position: relative;
+            &:before,
+            &:after {
+              position: absolute;
+            }
+            &:before {
+              content: "...";
+              top: $font-size-base * $line-height-computed * ($lines-to-show - 1);
+              right: 0;
+            }
+            &:after {
+              content: "";
+              height: 100%;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// users-block end
+
+
+
 
 /*
   profile end

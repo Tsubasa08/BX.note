@@ -1,7 +1,71 @@
-<div class="follow">
-  <p>テストです</p>
-  <% @users.each do |user| %>
-    <%= render 'shared/user_icon', user: user, id_name: 'user-icon', class_name: 'img' %>
-    <%= link_to user.name, user_path(user) %>
-  <% end %>
-</div>
+<% provide(:title, @user.name) %>
+<main class="main main--profile">
+  <div class="contents">
+    <div class="contents__left contents__left--edit">
+      <ul class="ProfileNav-list">
+        <li class="ProfileNav-list__item">
+          <%= link_to @user, class: 'post-page-link link'  do %>
+            <span class="link__title">投稿</span>
+            <span class="link__num"><%= @user.posts.count %></span>
+          <% end %>
+        </li>
+
+        <%= render 'shared/stats' %>
+
+        <li class="ProfileNav-list__item">
+          <a href="#" class="link">
+            <span class="link__title">いいね</span>
+            <span class="link__num">300</span>
+          </a>
+        </li>
+      </ul>
+      
+      <div class="users-block">
+        <% @users.each do |user| %>
+          <div class="user-card">
+            <div class="titleFollow-wrapper">
+              <div class="user-card__title">
+                <%= link_to user_path(user), class: 'link' do %>
+                  <%= render 'shared/user_icon', user: user, id_name: 'user-icon', class_name: 'user-block-icon' %>
+                  <p class="user-name"> <%= user.name %> </p>
+                <% end %>
+              </div>
+              <div><%= render 'follow_form-block', user: user %></div>
+            </div>
+          
+          <div class="user-card__introduce"> 
+            <p class="introduce-text text"> <%= user.introduce %>  </p>  
+          </div>
+          </div>
+        <% end %>
+      </div>
+
+      <%= paginate @users %>
+    </div>
+
+    <div class="contents__right contents__right--edit">
+      <div class="profile-block">
+
+        <%= render 'shared/user_icon', user: @user, id_name: 'profile-block__img--show', class_name: 'profile-block__img profile-block__img--show' %>
+        
+        <h1 class="profile-block__name"><%= @user.name %></h1>
+        <div class="profile-block__introduce">
+          <%= @user.introduce %>
+        </div>
+        <% if current_user == @user %>
+          <%=  link_to 'プロフィールを編集', edit_user_path, class: 'profile-block__link profile-block__link--edit' %>
+        <% else %>
+          <%= render 'follow_form' %>
+        <% end %>
+      </div>
+
+      <%= render 'layouts/categories' %>
+
+      
+      <div class="about-link">
+        <%= link_to 'BX.noteとは？', about_path, class: 'link' %>
+      </div>
+    </div>
+
+  </div>
+</main>
