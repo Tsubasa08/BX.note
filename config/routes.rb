@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
 
   get 'ajax', to: 'posts#ajax'
-  get 'status', to: 'users#ajax'
+  # get 'status', to: 'users#ajax'
   post '/select', to: 'application#select'
+  get '/serch', to: 'application#serch'
 
   resources :categories, only: [:show]
 

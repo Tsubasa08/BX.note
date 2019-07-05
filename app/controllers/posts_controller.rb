@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
+
+  
   
   def create
     require 'nokogiri'
@@ -10,7 +12,7 @@ class PostsController < ApplicationController
     
     if @post.save
 
-      unless @post.genre == 'other'
+      if @post.genre == 'article'
         url = @post.link_url
         begin
           # リンク先OGP取得
@@ -57,7 +59,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :link_url, :book_evaluation, :genre, images: [], category_ids: [] ) 
+    params.require(:post).permit(:content, :link_url, :link_title, :link_image, :book_evaluation, :genre, images: [], category_ids: [] ) 
   end
 
   def correct_user

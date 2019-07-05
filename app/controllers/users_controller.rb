@@ -61,9 +61,9 @@ before_action :correct_user, only: [:edit, :update]
     render 'show_follow'
   end
 
-  def ajax
-    render json: @user
-  end
+  # def ajax
+  #   render json: @user
+  # end
 
   private
 
