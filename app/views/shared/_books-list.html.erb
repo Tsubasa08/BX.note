@@ -1,0 +1,26 @@
+
+<ul id="book-list" class="book-list">
+  <% count = 1  %>
+
+  <% $doc.css('span[data-component-type="s-product-image"]').each do |e| %>
+
+    <label id="book-label-<%= count %>" for="book-checkbox-<%= count %>">
+      <li class="book-list__item">
+        <% src = e.css('img[class="s-image"]').attribute('src').value %>
+        <% alt = e.css('img[class="s-image"]').attribute('alt').value %>
+        <% href = e.css('a').attribute('href').value %>
+
+        <%= image_tag(src, class: 'book-image')%>
+        <span class="book-title"> <%= alt %> </span>
+        <input type="hidden" name="data-<%= count %>" value="https://www.amazon.co.jp<%= href %>" class="book-link">
+      </li>
+    </label>
+
+    <% count += 1 %>
+    <% if count > 10 %>
+      <% break %>
+    <% end %>
+  
+  <% end %>
+
+</ul>

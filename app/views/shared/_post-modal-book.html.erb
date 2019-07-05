@@ -19,11 +19,31 @@
         <%= f.file_field :images, multiple: true, accept: 'image/jpeg,image/gif,image/png', class: 'image-form form__input--image', data: {id: 'post-book'} %>
       <% end %>
     </div>
-
-    <%= f.text_field :link_url, class: 'form__input', placeholder: '記事のURL' %>
+    <%= f.hidden_field :link_url %>
+    <%= f.hidden_field :link_title %>
+    <%= f.hidden_field :link_image %>
 
     <%= f.text_field :genre, value: @genre, class: 'form__input--genre' %>
 
     <%= f.submit 'シェア', class: "form__button--post disabled", id: 'button-post', disabled: true %>
   <% end %>
+
+  <div id="select-result"></div>
+
+  <%= form_with(url: serch_path, method: :get) do |f| %>
+    <%= f.label :content %>
+    <%= f.text_field :content, class: 'form' %>
+    <%= f.submit "検索", id: 'book-serch', class: 'btn' %>
+  <% end %>
+  <input id="book-checkbox-1" class="book-checkbox" type="checkbox" value="1">
+  <input id="book-checkbox-2" class="book-checkbox" type="checkbox" value="2">
+  <input id="book-checkbox-3" class="book-checkbox" type="checkbox" value="3">
+  <input id="book-checkbox-4" class="book-checkbox" type="checkbox" value="4">
+  <input id="book-checkbox-5" class="book-checkbox" type="checkbox" value="5">
+  <input id="book-checkbox-6" class="book-checkbox" type="checkbox" value="6">
+  <input id="book-checkbox-7" class="book-checkbox" type="checkbox" value="7">
+  <input id="book-checkbox-8" class="book-checkbox" type="checkbox" value="8">
+  <input id="book-checkbox-9" class="book-checkbox" type="checkbox" value="9">
+  <input id="book-checkbox-10" class="book-checkbox" type="checkbox" value="10">
+  <div class="" id="serch-result"></div>
 </div>

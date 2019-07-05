@@ -55,11 +55,79 @@ $(function() {
               .addClass("disabled");
           }
         });
+
+        // 本検索選択表示
+        // $("#panel-area").on("change", ".book-checkbox", function() {
+        //   let value = $(this).val();
+        //   console.log(value);
+        // });
       })
       .fail(function() {
         window.alert("読み込みエラー");
       });
   });
+
+  $("#panel-area").on("click", ".book-list__item", function() {
+    $.ajax({
+      url: "/ajax",
+      type: "get",
+      dataType: "json",
+      context: this
+    })
+      .done(function(data) {
+        let element = $(this).html();
+        $("#select-result").html(element);
+        let bookImg = $(this)
+          .find("img")
+          .prop("src");
+        let bookTitle = $(this)
+          .find("span")
+          .text();
+        let bookLink = $(this)
+          .find("input")
+          .prop("value");
+        $("#post_link_url").prop("value", bookLink);
+        $("#post_link_title").prop("value", bookTitle);
+        $("#post_link_image").prop("value", bookImg);
+        $(".book-list__item").hide();
+      })
+      .fail(function() {
+        window.alert("読み込みエラー");
+      });
+  });
+
+  // 本検索結果表示
+  // $("#panel-area").on("click", "#book-serch", function() {
+  //   $.ajax({
+  //     url: "/ajax",
+  //     type: "get",
+  //     dataType: "json"
+  //   })
+  //     .done(function(data) {
+  //       console.log("検索ボタンがクリックされました！");
+  //       let testData = $("#test-list").text();
+  //       console.log(testData);
+  //       $("#book-list").on("click", "#test-list", function() {
+  //         console.log("ブックリストがクリックされました！");
+  //       });
+  //     })
+  //     .fail(function() {
+  //       window.alert("読み込みエラー");
+  //     });
+  // });
+  // $("#book-list").on("click", ".book-list__item", function() {
+  //   $.ajax({
+  //     url: "/ajax",
+  //     type: "get",
+  //     dataType: "json"
+  //   })
+  //     .done(function(data) {
+  //       console.log("本検索！！！！");
+  //     })
+  //     .fail(function() {
+  //       window.alert("読み込みエラー");
+  //     });
+  // });
 
   // フォロー、フォロー解除ボタン
   // $(" .profile-block__link").click(function() {
