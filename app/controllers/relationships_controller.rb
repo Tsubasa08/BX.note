@@ -7,7 +7,8 @@ class RelationshipsController < ApplicationController
     current_user.follow(@user)
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_url) }
-      format.js
+      # format.html { redirect_to @user }
+      # format.js
     end
   end
 
@@ -16,9 +17,12 @@ class RelationshipsController < ApplicationController
     current_user.unfollow(@user)
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_url) }
-      format.js
+      # format.html { redirect_to @user }
+      # format.js {@user}
     end
   end
+
+  
 
   private
 

@@ -8,6 +8,8 @@
 <li class="ProfileNav-list__item <%= @current_followers if @current_followers.present? %>">
   <%= link_to followers_user_path(@user), class: 'link' do %>
     <span class="link__title">フォロワー</span>
-    <span id="followers" class="link__num"><%= @user.followers.count %></span>
+    <span id="followers" class="link__num">
+      <%= @user.followers.count %>
+    </span>
   <% end %>
 </li>

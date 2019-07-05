@@ -1,5 +1,5 @@
 $(function() {
-  //3ジャンから選択
+  //3ジャンルから選択
   $(".label").click(function() {
     $.ajax({
       url: "/ajax",
@@ -60,4 +60,23 @@ $(function() {
         window.alert("読み込みエラー");
       });
   });
+
+  // フォロー、フォロー解除ボタン
+  // $(" .profile-block__link").click(function() {
+  // $("#follow_form").on("click", ".profile-block__link", function() {
+  //   $.ajax({
+  //     url: "/status",
+  //     type: "get",
+  //     dataType: "json"
+  //   })
+  //     .done(function(data) {
+  //       let hiddenData = $("#followers-count").text();
+  //       console.log(hiddenData);
+  //       let ID = $("#followed_id").prop("value");
+  //       console.log(ID);
+  //     })
+  //     .fail(function() {
+  //       window.alert("読み込みエラー");
+  //     });
+  // });
 });
