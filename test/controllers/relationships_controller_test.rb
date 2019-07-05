@@ -6,7 +6,7 @@ class RelationshipsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Relationship.count' do
       post relationships_path
     end
-    assert_redirected_to login_url
+    assert_redirected_to new_user_path
   end
 
   test "ログインしていないユーザーでdelete" do

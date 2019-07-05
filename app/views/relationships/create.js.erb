@@ -1,4 +1,10 @@
 document.getElementById("follow_form").innerHTML =
-"<%= j(render('users/unfollow')) %>"
-document.getElementById("follow_form").innerHTML =
+"<%= j(render('users/unfollow', user: @user)) %>"
+
+document.getElementById("followers").innerHTML =
 "<%= @user.followers.count %>"
+
+<!---
+document.getElementById("followers-count").innerHTML =
+"<%= @user.followers.count %>"
+->
