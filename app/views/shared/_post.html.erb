@@ -45,6 +45,14 @@
     <% end %>
   </div>
 
+  <div class="post-book">
+    <% if post.genre == 'book' %>
+      <a href="<%= post.link_url %>"><%= post.link_url %></a>
+      <%= image_tag(post.link_image) %>
+      <p>本のタイトル：<%= post.link_title %></p>
+    <% end %>
+  </div>
+
 
 </li>
 

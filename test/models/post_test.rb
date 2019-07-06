@@ -47,8 +47,28 @@ class PostTest < ActiveSupport::TestCase
     assert_not @post.valid?
   end
 
-  test "order should be most recent first" do
+  test "モデルの最初の投稿が直近の投稿" do
     assert_equal posts(:most_recent), Post.first
+  end
+
+  test "リンクURLが正しい正規表現" do
+    @post.genre = "article"
+    valid_urls = %w[https://example.com http://example.com https://example.com/test
+                http://example.com/test]
+    valid_urls.each do |url|
+      @post.link_url = url
+      assert @post.valid?
+    end
+  end
+
+  test "リンクURLが不正な正規表現" do
+    @post.genre = "article"
+    invalid_urls = %w[https:/example.com http:/example.com https//example.com
+                  http//example.com example.com]
+    invalid_urls.each do |url| 
+      @post.link_url = url
+      assert_not @post.valid?
+    end
   end
 
 end

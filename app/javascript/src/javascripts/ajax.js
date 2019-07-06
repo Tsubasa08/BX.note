@@ -56,6 +56,13 @@ $(function() {
           }
         });
 
+        // 本の評価
+        // $("#panel-area").on("change", ".book-radio", function() {
+        //   console.log("radioボタンをクリック！！");
+        //   let me = $(this);
+        //   log.html(me.attr("value"));
+        // });
+
         // 本検索選択表示
         // $("#panel-area").on("change", ".book-checkbox", function() {
         //   let value = $(this).val();
