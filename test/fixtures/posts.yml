@@ -24,3 +24,8 @@ most_recent:
   content: "Writing a short test"
   created_at: <%= Time.zone.now %>
   user: michael
+
+apple:
+  content: "I like apple yeah!!"
+  created_at: <%= 10.minutes.ago %>
+  user: archer
