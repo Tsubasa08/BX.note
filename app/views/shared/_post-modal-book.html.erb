@@ -22,8 +22,22 @@
     <%= f.hidden_field :link_url %>
     <%= f.hidden_field :link_title %>
     <%= f.hidden_field :link_image %>
+    <%= f.hidden_field :genre, value: @genre %>
 
-    <%= f.text_field :genre, value: @genre, class: 'form__input--genre' %>
+    <div class="radio-grop">
+      <%= f.radio_button :book_evaluation, "5", class: 'book-radio' %>
+      <label for="post_book_evaluation_5">5</label>
+      <%= f.radio_button :book_evaluation, "4", class: 'book-radio' %>
+      <label for="post_book_evaluation_4">4</label>
+      <%= f.radio_button :book_evaluation, "3", class: 'book-radio' %>
+      <label for="post_book_evaluation_3">3</label>
+      <%= f.radio_button :book_evaluation, "2", class: 'book-radio' %>
+      <label for="post_book_evaluation_2">2</label>
+      <%= f.radio_button :book_evaluation, "1", class: 'book-radio' %>
+      <label for="post_book_evaluation_1">1</label>
+      <%= f.radio_button :book_evaluation, "0", class: 'book-radio star-cb-clear' %>
+      <label for="post_book_evaluation_0">0</label>
+    </div>
 
     <%= f.submit 'シェア', class: "form__button--post disabled", id: 'button-post', disabled: true %>
   <% end %>

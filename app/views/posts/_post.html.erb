@@ -49,9 +49,13 @@
       <a href="<%= post.link_url %>"><%= post.link_url %></a>
       <%= image_tag(post.link_image) %>
       <p>本のタイトル：<%= post.link_title %></p>
+      <p>本の評価：<%= post.book_evaluation %></p>
     <% end %>
   </div>
 
+  <div id="like-<%= post.id %>">
+    <%= render 'posts/like_form', post: post %> <!-- sharedの方がいいかも -->
+  </div>
 
 
 

@@ -17,7 +17,7 @@
           <% end %>
         </div>
 
-        <%= f.text_field :genre, value: @genre, class: 'form__input--genre' %>
+        <%= f.hidden_field :genre, value: @genre %>
 
         <%= f.submit 'シェア', class: "form__button--post disabled", id: 'button-post', disabled: true %>
     <% end %>
