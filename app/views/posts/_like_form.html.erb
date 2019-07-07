@@ -10,7 +10,7 @@
   <% else %>
     <%= link_to like_path(post.id), method: :post, class: 'heart-icon', remote: true do %>
       <i class="far fa-heart like-btn"></i>
-      <span class="like-btn--like"><%= post.likes.count%></span>
+      <span class="like-btn--like"><%= post.likes.count %></span>
       
     <% end %>
 
@@ -18,5 +18,5 @@
 
 <% else %>
   <i class="far fa-heart like-btn"></i>
-  <span class="like-btn--like"><%= post.likes.count%></span>
+  <span class="like-btn--like"><%= post.likes.count %></span>
 <% end %>

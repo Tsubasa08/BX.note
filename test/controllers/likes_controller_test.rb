@@ -1,14 +1,19 @@
 require 'test_helper'
 
 class LikesControllerTest < ActionDispatch::IntegrationTest
-  test "should get create" do
-    get likes_create_url
-    assert_response :success
+  test "ログインしていないユーザーでpost" do
+    assert_no_difference 'Like.count' do
+      post like_path(1)
+    end
+    assert_redirected_to login_path
   end
 
-  test "should get destroy" do
-    get likes_destroy_url
-    assert_response :success
+  test "ログインしていないユーザーでdelete" do
+    assert_no_difference 'Like.count' do
+      post unlike_path(1)
+    end
+    assert_redirected_to login_path
   end
+
 
 end
