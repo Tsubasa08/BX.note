@@ -53,6 +53,9 @@
     <% end %>
   </div>
 
+  <div id="like-<%= post.id %>">
+    <%= render 'posts/like_form', post: post %> <!-- sharedの方がいいかも -->
+  </div>
 
 
 

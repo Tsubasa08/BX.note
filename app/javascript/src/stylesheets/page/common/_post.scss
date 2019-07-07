@@ -27,6 +27,14 @@
   }
 }
 
+// いいねボタン
+.like-btn {
+  color: #8899a6;
+  &--unlike {
+    color: #ff2581;
+  }
+}
+
 /*
   post end
 */

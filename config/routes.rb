@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   post '/select', to: 'application#select'
   get '/serch', to: 'application#serch'
 
+  post   '/likes/:post_id', to: 'likes#create', as: 'like'
+  delete '/likes/:post_id', to: 'likes#destroy', as: 'unlike'
+
   resources :categories, only: [:show]
 
 
@@ -37,5 +40,4 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
-  resources :likes, only: [:create, :destroy]
 end

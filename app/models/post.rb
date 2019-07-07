@@ -4,7 +4,8 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many_attached :images
   has_many :likes, dependent: :destroy
-  
+  has_many :like_users, through: :likes, source: :user
+
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
@@ -38,6 +39,21 @@ class Post < ApplicationRecord
   # 有効な画像の拡張子を判定
   def image?
     %w[iamge/jpg iamge/jpeg iamge/gif iamge/png].include?(image.blob.content_type)
+  end
+
+  # いいね
+  def like(user)
+    likes.create(user_id: user.id)
+  end
+
+  # いいね解除
+  def unlike(user)
+    likes.find_by(user_id: user.id).destroy
+  end
+
+  # 現在のユーザーがいいねしてたらtrueを返す
+  def like?(user)
+    like_users.include?(user)
   end
 
 
