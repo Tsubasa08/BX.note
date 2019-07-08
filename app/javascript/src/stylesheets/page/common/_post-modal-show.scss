@@ -1,0 +1,78 @@
+/*
+  post-modal
+*/
+.post-show-link {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+.modal-content-post-show {
+  // display: block;
+  display: none;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  // transition: all 0.3s ease-in-out 0s;
+  // opacity: 0;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.16);
+  // padding: 1em;
+  @include media(pc) {
+    top: 50px;
+    left: 50%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateX(-50%);
+    height: auto;
+    width: 1120px;
+    padding: 20px;
+    background-color: $SubColor;
+    @include radius;
+  }
+  @include media(tab) {
+    // height: 100%;
+  }
+}
+.modal-close--post-show {
+  display: none;
+  position: fixed;
+  z-index: 39;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0;
+  transition: all 0.3s ease-in-out 0s;
+}
+.modal-close--post-show.active {
+  display: block;
+  opacity: 0.7;
+}
+
+@include media(pc) {
+  .post-data {
+  width: calc(70% - 10px);
+  }
+  .comment-block {
+  width: calc(30% - 10px );
+  }
+
+}
+// comment-block
+.comment-block {
+  background-color: #fff;
+  @include media(pc) {
+    @include radius
+
+  }
+}
+// comment-block end
+ 
+/*
+  post-modal end
+*/

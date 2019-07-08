@@ -4,7 +4,6 @@ before_action :correct_user, only: [:edit, :update]
 # before_action :admin_user, only: :destroy
 
   def show
-    @userShow = User.find_by(id: params[:id])
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(20)
     # @post = current_user.posts.build if logged_in?

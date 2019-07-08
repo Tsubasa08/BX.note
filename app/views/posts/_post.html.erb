@@ -1,62 +1,69 @@
 <li id="post-<%= post.id %>" class="post-list__item">
-  <div class="user-link">
-    <%= link_to post.user, class: 'user-link__item user-link__item--img' do %>
-      <%= render 'shared/user_icon', user: post.user, id_name: '', class_name: '' %>
-    <% end %>
-    <%= link_to post.user.name, post.user, class: 'user-link__itemuser-link__item--title' %>
-  </div>
+  <div class="inner">
+    <div class="user-link">
+      <%= link_to post.user, class: 'user-link__item user-link__item--img' do %>
+        <%= render 'shared/user_icon', user: post.user, id_name: '', class_name: '' %>
+      <% end %>
+      <%= link_to post.user.name, post.user, class: 'user-link__itemuser-link__item--title' %>
+    </div>
 
-  <div class="categories">
-    <% post.post_categories.each do |post_categories| %>
-      <%= link_to post_categories.category.name, category_path(post_categories.category.id), class: 'categories__link' %>
-    <% end %>
-  </div>
+    <div class="categories">
+      <% post.post_categories.each do |post_categories| %>
+        <%= link_to post_categories.category.name, category_path(post_categories.category.id), class: 'categories__link' %>
+      <% end %>
+    </div>
 
-  <div class="post-content">
-    <%= post.content %>
-  </div>
+    <div class="post-content">
+      <%= post.content %>
+    </div>
 
-  <div class="post-image">
-    <% post.images.each do |image|%>
-      <%= image_tag image.variant(resize: "300x400") , class: 'image' %>
-    <% end %>
-  </div>
+    <div class="post-image">
+      <% post.images.each do |image|%>
+        <%= image_tag image.variant(resize: "300x400") , class: 'image' %>
+      <% end %>
+    </div>
 
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(post.created_at) %> ago.
-  </span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(post.created_at) %> ago.
+    </span>
 
-  <div class="post-genre">
-    <% if post.genre %>
-      <p>ジャンル：<%= post.genre %></p>
-    <% else %>
-      <p>ジャンルが設定されいません</p>
-    <% end %>
-  </div>
+    <div class="post-genre">
+      <% if post.genre %>
+        <p>ジャンル：<%= post.genre %></p>
+      <% else %>
+        <p>ジャンルが設定されいません</p>
+      <% end %>
+    </div>
 
-  <div class="post-article">
     <% if post.genre == 'article' %>
-      <a href="<%= post.link_url %>"><%= post.link_url %></a>
-      <p>OGPタイトル：<%= post.link_title %></p>
-      <img src="<%= post.link_image %>" alt="ogp画像">
-      <p>OGP概要：<%= post.link_desc %></p>
-      <p> ホスト名：<%= get_host(post.link_url) %> </p>
+      <div class="post-items">
+        <div class="post-article">
+          <a href="<%= post.link_url %>"><%= post.link_url %></a>
+          <p>OGPタイトル：<%= post.link_title %></p>
+          <img src="<%= post.link_image %>" alt="ogp画像">
+          <p>OGP概要：<%= post.link_desc %></p>
+          <p> ホスト名：<%= get_host(post.link_url) %> </p>
+        </div>
+      </div>
+    <% elsif post.genre == 'book' %>
+      <div class="post-items">
+        <div class="post-book">
+          <a href="<%= post.link_url %>"><%= post.link_url %></a>
+          <%= image_tag(post.link_image) %>
+          <p>本のタイトル：<%= post.link_title %></p>
+          <p>本の評価：<%= post.book_evaluation %></p>
+        </div>
+      </div>
     <% end %>
-  </div>
-
-  <div class="post-book">
-    <% if post.genre == 'book' %>
-      <a href="<%= post.link_url %>"><%= post.link_url %></a>
-      <%= image_tag(post.link_image) %>
-      <p>本のタイトル：<%= post.link_title %></p>
-      <p>本の評価：<%= post.book_evaluation %></p>
-    <% end %>
-  </div>
-
-  <div id="like-<%= post.id %>">
-    <%= render 'posts/like_form', post: post %> <!-- sharedの方がいいかも -->
-  </div>
 
 
+    <div id="like-<%= post.id %>" class="like-<%= post.id %>">
+      <%= render 'posts/like_form', post: post %> <!-- sharedの方がいいかも -->
+    </div>
 
+    <div id="comment-<%= post.id %>" class="comment-link">
+      <%= render 'posts/comment_form', post: post, link: link %> <!-- sharedの方がいいかも -->
+    </div>
+
+  </div> <!-- inner end -->
 </li>
