@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
-  # has_many :comments, dependent: :destroy
+  has_many :comments, dependent: :destroy
   # フォローしている相手を関連付ける
   has_many :active_relationships, class_name: "Relationship",
                                   foreign_key: "follower_id",
@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   # 画像の関連付け
   has_one_attached :image
+  
   attr_accessor :remember_token, :reset_token
   before_save :downcase_email, unless: :uid?
   validates :name, presence: true, length: {maximum: 30}
