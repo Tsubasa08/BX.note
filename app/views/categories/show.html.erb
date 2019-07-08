@@ -4,7 +4,7 @@
     <div class="contents__left">
         <h1 class="category-title category-title--<%= @category.id %>"> <%= @category.name %> </h1>
       <ol class="post-list">
-        <%= render 'shared/post'%>
+        <%= render @posts %>
       </ol><!-- post end -->
       <%= paginate @posts %>
       

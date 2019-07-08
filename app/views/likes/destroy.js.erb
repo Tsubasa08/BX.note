@@ -1,2 +1,4 @@
-document.getElementById("like-<%= @post.id %>").innerHTML =
-"<%= j(render "posts/like_form", post: @post) %>"
+likes = document.getElementsByClassName("like-<%= @post.id %>");
+for (i = 0; i < likes.length; i++) {
+likes[i].innerHTML = '<%= j(render "posts/like_form", post: @post) %>';
+}

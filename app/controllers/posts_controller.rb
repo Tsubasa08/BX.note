@@ -2,7 +2,13 @@ class PostsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
-  
+  def show
+    @post = Post.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_url) }
+      format.js {@post}
+    end
+  end
   
   def create
     require 'nokogiri'
