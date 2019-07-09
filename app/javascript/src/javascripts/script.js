@@ -46,17 +46,18 @@ $(function() {
   });
 
   // 投稿詳細 表示
-  // $("#modal-checkbox--post-show").change(function() {
-  $(".post-show-link").click(function() {
+  $(".comment-link").on("click", ".post-show-link", function() {
     $("body, #modal-close--post-show").addClass("active");
-    $("#modal-content--post-show").fadeIn();
+    setTimeout(function() {
+      $("#modal-content--post-show").fadeIn();
+    }, 200);
   });
   // 投稿詳細 非表示
   $(document).on("click touchend", function(event) {
     if (!$(event.target).closest("#modal-content--post-show").length) {
       $("#modal-content--post-show").fadeOut("fast");
-      $("#post-data post-list__item").remove();
       $("body, #modal-close--post-show").removeClass("active");
+      $("#content-remove-check").prop("checked", true);
     }
   });
 

@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
+  has_many :comment_users, through: :comments, source: :user
 
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
@@ -55,6 +56,11 @@ class Post < ApplicationRecord
   # 現在のユーザーがいいねしてたらtrueを返す
   def like?(user)
     like_users.include?(user)
+  end
+
+  # 現在のユーザーがいいねしてたらtrueを返す
+  def comment_model?(user)
+    comment_users.include?(user)
   end
 
 

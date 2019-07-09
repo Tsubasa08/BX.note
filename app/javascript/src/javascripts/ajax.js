@@ -103,6 +103,22 @@ $(function() {
       });
   });
 
+  // 投稿詳細非表示
+  // $(".main-container").on("change", "#content-remove-check", function() {
+  //   $.ajax({
+  //     url: "/ajax",
+  //     type: "get",
+  //     dataType: "json"
+  //   })
+  //     .done(function(data) {
+  //       $("#post-data post-list__item").remove();
+  //       console.log("ddeeedeleleelte");
+  //     })
+  //     .fail(function() {
+  //       window.alert("読み込みエラー");
+  //     });
+  // });
+
   // 本検索結果表示
   // $("#panel-area").on("click", "#book-serch", function() {
   //   $.ajax({

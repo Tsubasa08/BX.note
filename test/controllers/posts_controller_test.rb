@@ -14,7 +14,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "createアクション URL正常" do
     log_in_as(users(:michael))
-    assert_difference 'Post.count' do
+    assert_difference 'Post.count', 1 do
       post posts_path, params: { post: { content: "Lorem ipsum", genre: "article", link_url: "https://cookpad.com/" } }
     end
   end
@@ -38,6 +38,13 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       delete post_path(@post)
     end
     assert_redirected_to login_url
+  end
+
+  test "destroyアクション 正常" do
+    log_in_as(users(:michael))
+    assert_difference 'Post.count', -1 do
+      delete post_path(@post)
+    end
   end
 
   # test "ajaxアクション" do

@@ -26,6 +26,7 @@ most_recent:
   user: michael
 
 apple:
+  id: 2
   content: "I like apple yeah!!"
   created_at: <%= 10.minutes.ago %>
   user: archer

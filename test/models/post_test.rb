@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
-  # has_many :post_categories
-  # has_many :categories, through: :post_categories
 
   def setup
     @user = users(:michael)

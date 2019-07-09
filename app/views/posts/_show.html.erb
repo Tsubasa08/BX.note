@@ -1,7 +1,16 @@
-<div id="post-data" class="post-data">
-  <%= render post, link: "disabled" %>
-</div>
+<div class="inner">
 
-<div class="comment-block">
-  コメント機能実装予定
+  <div id="post-data" class="post-data">
+    <%= render post %>
+  </div>
+
+  <div class="comment-block">
+    <div class="comment-list-wrapper">
+      <ol id="comment-list">
+        <%= render 'comments/comment_list', post: post %>
+      </ol>
+    </div>
+    <%= render 'comments/comment_form', post: post %>
+  </div>
+  
 </div>

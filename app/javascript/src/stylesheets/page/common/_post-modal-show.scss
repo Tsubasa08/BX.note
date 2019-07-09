@@ -24,8 +24,6 @@
   @include media(pc) {
     top: 50px;
     left: 50%;
-    display: flex;
-    justify-content: space-between;
     transform: translateX(-50%);
     height: auto;
     width: 1120px;
@@ -55,6 +53,12 @@
 }
 
 @include media(pc) {
+  .modal-content-post-show {
+    > .inner {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
   .post-data {
   width: calc(70% - 10px);
   }
