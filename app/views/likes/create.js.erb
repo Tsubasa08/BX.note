@@ -1,8 +1,4 @@
-if (typeof likes !== 'undefined') {
-  let likes = document.getElementsByClassName("like-<%= @post.id %>");
-} else {
-  likes = document.getElementsByClassName("like-<%= @post.id %>");
-}
+likes = document.getElementsByClassName("like-<%= @post.id %>");
 for (i = 0; i < likes.length; i++) {
 likes[i].innerHTML = '<%= j(render "posts/like_form", post: @post) %>';
 }

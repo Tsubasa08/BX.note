@@ -24,7 +24,7 @@
     </div>
 
     <span class="timestamp">
-      Posted <%= time_ago_in_words(post.created_at) %> ago.
+      <%= time_ago_in_words(post.created_at) %>前
     </span>
 
     <div class="post-genre">
@@ -61,8 +61,8 @@
       <%= render 'posts/like_form', post: post %> <!-- sharedの方がいいかも -->
     </div>
 
-    <div id="comment-<%= post.id %>" class="comment-link">
-      <%= render 'posts/comment_form', post: post, link: link %> <!-- sharedの方がいいかも -->
+    <div id="comment-<%= post.id %>" class="comment-link comment-<%= post.id %>">
+      <%= render 'posts/comment_link', post: post %> <!-- sharedの方がいいかも -->
     </div>
 
   </div> <!-- inner end -->

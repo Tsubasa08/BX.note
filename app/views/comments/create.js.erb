@@ -1,0 +1,10 @@
+document.getElementById("comment-list").innerHTML =
+" <%= j(render 'comments/comment_list', post: @post) %> ";
+document.getElementById("comment-textarea").value =
+"";
+
+comments = document.getElementsByClassName("comment-<%= @post.id %>");
+for (i = 0; i < comments.length; i++) {
+  comments[i].innerHTML = '<%= j(render "posts/comment_link",post: @post) %>';
+  console.log(comments[i]);
+};

@@ -1,7 +1,0 @@
-<% if logged_in? && link == "abled" %>
-  <%= link_to post_path(post), method: :get, class: 'post-show-link', remote: true do %>
-    <i class="far fa-comment comment-btn"></i>
-  <% end %>
-<% else %>
-  <i class="far fa-comment comment-btn"></i>
-<% end %>
