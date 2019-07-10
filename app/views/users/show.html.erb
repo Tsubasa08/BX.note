@@ -4,6 +4,12 @@
   <div class="contents">
     <div class="contents__left contents__left--edit">
       <ul class="ProfileNav-list">
+        <li class="ProfileNav-list__item">
+          <%= link_to @user, class: 'post-page-link link'  do %>
+            <span class="link__title">投稿</span>
+            <span class="link__num"><%= @user.posts.count %></span>
+          <% end %>
+        </li>
         <%= render 'shared/stats' %>
       </ul>
       <!-- post -->
