@@ -1,15 +1,12 @@
 class StaticPagesController < ApplicationController
   def top
-    @post = current_user.posts.build if logged_in?
-
-    # Amazon::Ecs.debug = true
-    # @res = Amazon::Ecs.item_search(
-    #          'ruby',
-    #         #  :search_index   => 'Books',
-    #         #  :response_group => 'Medium',
-    #          :country        => 'jp'
-    #        )
+    # @post = current_user.posts.build if logged_in?
+    @posts = Post.all.page(params[:page]).per(20)
+    # @q = Post.ransack(params[:q])
+    # @posts = @q.result(distinct: true).page(params[:page]).per(20)
   end
+
+  
 
   def about
   end

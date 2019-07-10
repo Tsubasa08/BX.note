@@ -22,8 +22,9 @@ Rails.application.routes.draw do
   post   '/likes/:post_id', to: 'likes#create', as: 'like'
   delete '/likes/:post_id', to: 'likes#destroy', as: 'unlike'
 
-  resources :categories, only: [:show]
+  get 'search', to: 'application#search'
 
+  resources :categories, only: [:show]
 
   resources :users do
     member do
