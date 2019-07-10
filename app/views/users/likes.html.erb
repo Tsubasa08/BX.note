@@ -1,6 +1,7 @@
 <% provide(:title, @user.name) %>
 <main class="main main--profile">
   <div class="contents">
+    <!--- contents__left -->
     <div class="contents__left contents__left--edit">
       <ul class="ProfileNav-list">
         <li class="ProfileNav-list__item">
@@ -12,29 +13,17 @@
         <%= render 'shared/stats' %>
       </ul>
       
-      <div class="users-block">
-        <% @users.each do |user| %>
-          <div class="user-card">
-            <div class="titleFollow-wrapper">
-              <div class="user-card__title">
-                <%= link_to user_path(user), class: 'link' do %>
-                  <%= render 'shared/user_icon', user: user, id_name: 'user-icon', class_name: 'user-block-icon' %>
-                  <p class="user-name"> <%= user.name %> </p>
-                <% end %>
-              </div>
-              <div><%= render 'follow_form-block', user: user %></div>
-            </div>
-          
-          <div class="user-card__introduce"> 
-            <p class="introduce-text text"> <%= user.introduce %>  </p>  
-          </div>
-          </div>
+      <div class="likes-block">
+        <% @likes.each do |like| %>
+        <% post = like.post %>
+        <%= render post %>
         <% end %>
+      <%= paginate @likes %>
       </div>
+    </div><!--- contents__left end -->
 
-      <%= paginate @users %>
-    </div>
 
+    <!--- contents__right -->
     <div class="contents__right contents__right--edit">
       <div class="profile-block">
 
@@ -57,7 +46,7 @@
       <div class="about-link">
         <%= link_to 'BX.noteとは？', about_path, class: 'link' %>
       </div>
-    </div>
+    </div><!--- contents__right end -->
 
   </div>
 </main>

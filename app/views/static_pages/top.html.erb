@@ -1,7 +1,13 @@
 <% provide(:title, '') %>
+<%= render 'posts/post_show' %>
 <main class="main">
   <div class="contents">
     <div class="contents__left">
+      <!-- post -->
+      <ol class="post-list">
+        <%= render @posts %>
+      </ol><!-- post end -->
+      <%= paginate @posts %>
     </div>
 
     <div class="contents__right">
@@ -25,9 +31,5 @@
       </div>
     </div>
 
-  </div>
-
-  <div class="page-nation">
-  ページネーション
   </div>
 </main>

@@ -1,0 +1,23 @@
+<% provide(:title, '') %>
+<%= render 'posts/post_show' %>
+<h1 id="search-title" class="search-title"> <%= params[:q][:link_title_or_link_desc_or_content_cont] %> </h1>
+<main class="main main-search">
+  <div class="contents">
+    <div class="contents__left">
+      <!-- post -->
+        <ol class="post-list">
+          <%= render @search_posts %>
+        </ol>
+        <%= paginate @search_posts %><!-- post end -->
+    </div>
+
+    <div class="contents__right">
+      <%= render 'layouts/categories' %>
+      
+      <div class="about-link">
+        <%= link_to 'BX.noteとは？', about_path, class: 'link' %>
+      </div>
+    </div>
+
+  </div>
+</main>

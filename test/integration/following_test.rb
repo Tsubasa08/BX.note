@@ -55,5 +55,25 @@ class FollowingTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "フォロー数カウント" do
+    post relationships_path, params: { followed_id: @other.id }    
+    get user_path(@user)
+    assert_select "span[class=?]", "following", text: "#{@user.following.count}"
+    assert_select "span[class=?]", "followers", text: "#{@user.followers.count}"
+    get root_path
+    assert_select "span[class=?]", "following", text: "#{@user.following.count}"
+    assert_select "span[class=?]", "followers", text: "#{@user.followers.count}"
+    # ログインしていないユーザー
+    delete logout_path
+    get user_path(@user)
+    assert_select "span[class=?]", "following", text: "#{@user.following.count}"
+    assert_select "span[class=?]", "followers", text: "#{@user.followers.count}"
+    # 他のユーザー
+    log_in_as(@other)
+    get user_path(@user)
+    assert_select "span[class=?]", "following", text: "#{@user.following.count}"
+    assert_select "span[class=?]", "followers", text: "#{@user.followers.count}"
+  end
+
 
 end

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true
   include SessionsHelper
   before_action :set_category
+  before_action :search
 
   def set_category
     @categories = Category.all
@@ -30,6 +31,11 @@ class ApplicationController < ActionController::Base
       format.html { redirect_back(fallback_location: root_url) }
       format.js 
     end
+  end
+
+  def search
+    @q = Post.ransack(params[:q])
+    @search_posts = @q.result(distinct: true).page(params[:page]).per(20)
   end
 
   private

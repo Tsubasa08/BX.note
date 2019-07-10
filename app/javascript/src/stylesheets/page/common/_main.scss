@@ -228,6 +228,29 @@
     background-image: url('../images/work.png');
   }
 }
+
+// 検索結果
+.search-title {
+  position: fixed;
+  z-index: 20;
+  height: 55px;
+  width: 100%;
+  line-height: 55px;
+  background-color: #696969;
+  color: #fff;
+  text-align: center;
+  transform: translateY(-30px);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+
+}
+.main-search {
+  margin-top: 55px;
+}
+.failure-text {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
 /*
   main end
 */
