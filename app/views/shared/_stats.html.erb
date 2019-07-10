@@ -2,7 +2,7 @@
 <li class="ProfileNav-list__item <%= @current_following if @current_following.present? %>">
   <%= link_to following_user_path(@user), class: 'link' do %>
     <span class="link__title">フォロー</span>
-    <span id="following" class="link__num"><%= @user.following.count %></span>
+    <span class="following" class="link__num"><%= @user.following.count %></span>
   <% end %>
 </li>
 
