@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'likes/create'
-  get 'likes/destroy'
-  # get 'password_resets/new'
-  # get 'password_resets/edit'
-  # get 'sessions/new'
   root 'static_pages#top'
 
   get    '/about',   to: 'static_pages#about'
@@ -32,7 +27,8 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers,
+          :likes
     end
   end
   resources :users,  only: [:new, :create, :edit, :update, :destroy]

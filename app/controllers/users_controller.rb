@@ -60,6 +60,11 @@ before_action :correct_user, only: [:edit, :update]
     render 'show_follow'
   end
 
+  def likes
+    @user = User.find(params[:id])
+    @likes = Like.where(user_id: @user.id).page(params[:page]).per(20)
+  end
+
   # def ajax
   #   render json: @user
   # end
