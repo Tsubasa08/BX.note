@@ -44,7 +44,7 @@
 
   <div id="select-result"></div>
 
-  <%= form_with(url: serch_path, method: :get) do |f| %>
+  <%= form_with(url: search_book_path, method: :get) do |f| %>
     <%= f.label :content %>
     <%= f.text_field :content, class: 'form' %>
     <%= f.submit "検索", id: 'book-serch', class: 'btn' %>
