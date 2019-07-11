@@ -1,5 +1,7 @@
 orange:
+  id: 3
   content: "I just ate an orange!"
+  genre: "other"
   created_at: <%= 10.minutes.ago %>
   user: michael
 
@@ -28,5 +30,12 @@ most_recent:
 apple:
   id: 2
   content: "I like apple yeah!!"
+  created_at: <%= 10.minutes.ago %>
+  user: archer
+
+potato:
+  content: "I like apple yeah!!"
+  link_url: "https://cookpap.com/"
+  genre: "article"
   created_at: <%= 10.minutes.ago %>
   user: archer

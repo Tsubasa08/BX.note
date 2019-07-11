@@ -7,6 +7,10 @@
       <%= link_to post.user.name, post.user, class: 'user-link__itemuser-link__item--title' %>
     </div>
 
+    <div class="post-meta">
+      <%= link_to "編集する", edit_post_path(post), method: :get, class: 'post-edit', remote: true %>
+    </div>
+
     <div class="categories">
       <% post.post_categories.each do |post_categories| %>
         <%= link_to post_categories.category.name, category_path(post_categories.category.id), class: 'categories__link' %>

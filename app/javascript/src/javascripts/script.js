@@ -46,7 +46,7 @@ $(function() {
   });
 
   // 投稿詳細 表示
-  $(".comment-link").on("click", ".post-show-link", function() {
+  $(".post-list__item").on("click", ".post-show-link, .post-edit", function() {
     $("body, #modal-close--post-show").addClass("active");
     setTimeout(function() {
       $("#modal-content--post-show").fadeIn();
@@ -137,10 +137,10 @@ $(function() {
   });
 
   // 投稿検索結果 一致する結果なし
-  let posts = $(".post-list").children();
+  let posts = $("#post-list--search").children();
   if (posts.length === 0) {
     let title = $("#search-title").text();
-    $(".post-list").append(
+    $("#post-list--search").append(
       `<p class="failure-text">「${title}」に一致する検索結果はありません</p>`
     );
   }

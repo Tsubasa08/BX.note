@@ -1,0 +1,61 @@
+<%= form_with(model: @post, url: post_path, local: true, class: 'form form--post') do |f| %>
+    <% if f.object %>
+      <%= render 'shared/error_messages', object: f.object %>
+    <% end %>
+
+    <%= render 'shared/user_icon', user: post.user, id_name: 'user-icon', class_name: 'modal-user-icon' %>
+
+    <%= f.text_area :content, class: 'post-form__area', placeholder: '読んだ感想は？' %>
+
+    <div class="check-block">
+      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, class: 'c-check') %>
+    </div>
+
+    <div id="form-image--post-book">
+      <%= f.label :images, id: 'input-label--post-book', class: 'form__label--post-image' do %>
+        <i class="far fa-image"></i>
+        <%= f.file_field :images, multiple: true, accept: 'image/jpeg,image/gif,image/png', class: 'image-form form__input--image', data: {id: 'post-book'} %>
+      <% end %>
+    </div>
+    <%= f.hidden_field :link_url %>
+    <%= f.hidden_field :link_title %>
+    <%= f.hidden_field :link_image %>
+    <%= f.hidden_field :genre, value: post.genre %>
+
+    <div class="radio-grop">
+      <%= f.radio_button :book_evaluation, "5", class: 'book-radio' %>
+      <label for="post_book_evaluation_5">5</label>
+      <%= f.radio_button :book_evaluation, "4", class: 'book-radio' %>
+      <label for="post_book_evaluation_4">4</label>
+      <%= f.radio_button :book_evaluation, "3", class: 'book-radio' %>
+      <label for="post_book_evaluation_3">3</label>
+      <%= f.radio_button :book_evaluation, "2", class: 'book-radio' %>
+      <label for="post_book_evaluation_2">2</label>
+      <%= f.radio_button :book_evaluation, "1", class: 'book-radio' %>
+      <label for="post_book_evaluation_1">1</label>
+      <%= f.radio_button :book_evaluation, "0", class: 'book-radio star-cb-clear' %>
+      <label for="post_book_evaluation_0">0</label>
+    </div>
+
+    <%= f.submit '更新', class: "form__button--post", id: '' %>
+  <% end %>
+
+  <div id="select-result"></div>
+
+  <%= form_with(url: serch_path, method: :get) do |f| %>
+    <%= f.label :content %>
+    <%= f.text_field :content, class: 'form' %>
+    <%= f.submit "検索", id: 'book-serch', class: 'btn' %>
+  <% end %>
+  <input id="book-checkbox-1" class="book-checkbox" type="checkbox" value="1">
+  <input id="book-checkbox-2" class="book-checkbox" type="checkbox" value="2">
+  <input id="book-checkbox-3" class="book-checkbox" type="checkbox" value="3">
+  <input id="book-checkbox-4" class="book-checkbox" type="checkbox" value="4">
+  <input id="book-checkbox-5" class="book-checkbox" type="checkbox" value="5">
+  <input id="book-checkbox-6" class="book-checkbox" type="checkbox" value="6">
+  <input id="book-checkbox-7" class="book-checkbox" type="checkbox" value="7">
+  <input id="book-checkbox-8" class="book-checkbox" type="checkbox" value="8">
+  <input id="book-checkbox-9" class="book-checkbox" type="checkbox" value="9">
+  <input id="book-checkbox-10" class="book-checkbox" type="checkbox" value="10">
+  <div class="" id="serch-result"></div>
+</div>

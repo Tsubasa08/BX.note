@@ -1,0 +1,14 @@
+<div class="inner">
+
+  <div id="panel-area" class="post-data">
+    <% if @post.genre == "book" %>
+      <%= render 'posts/post_form_book', post: @post %>
+    <% elsif @post.genre == "article" %>
+      <%= render 'posts/post_form_article', post: @post %>
+    <% else %>
+      <%= render 'posts/post_form_other', post: @post %>
+    <% end %>
+  </div>
+  <p> <%= @post.user.name %> </p>
+  
+</div>

@@ -12,26 +12,26 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should redirect edit when not logged in" do
+  test "editページへアクセス ログインなし" do
     get edit_user_path(@user) #HTTPリクエスト：get
     assert_not flash.empty?
     assert_redirected_to login_url
   end
 
-  test "should redirect update when not logged in" do
+  test "updateアクション ログインなし" do
     patch user_path(@user), params: { user: { name: @user.name, email: @user.email } } #HTTPリクエスト：patch
     assert_not flash.empty?
     assert_redirected_to login_url
   end
 
-  test "should redirect edit when logged in as wrong user" do
+  test "editページへアクセス 異なるユーザー" do
     log_in_as(@other_user)
     get edit_user_path(@user)
     assert flash.empty?
     assert_redirected_to root_url
   end
 
-  test "should redirect update when logged in as wrong user" do
+  test "updateアクション 異なるユーザー" do
     log_in_as(@other_user)
     patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
     assert flash.empty?

@@ -6,7 +6,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
   end
 
-  test "統合的投稿" do
+  test "genre: other 統合的投稿" do
     log_in_as(@user)
     post select_path, params: { data: "other"}, xhr: true #Ajax通信
     get ajax_path(@genre) #Ajax通信
@@ -19,12 +19,10 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     end
     # assert_select 'div#error_explanation'
     # 有効な送信
-    # picture = fixture_file_upload('test/fixtures/rails.png', 'image/png')
     content = "お腹すいた"
     assert_difference 'Post.count', 1 do
       post posts_path, params: { post: { content: content, genre: "other"  } }
     end
-    # assert assigns(:post).picture?
     assert_redirected_to root_url
     follow_redirect!
     # assert_match content, response.body
@@ -37,6 +35,56 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     # 違うユーザーのプロフィールにアクセス (削除リンクがないことを確認)
     # get user_path(users(:archer))
     # assert_select 'a', text: 'delete', count: 0
+  end
+
+  test "genre: article 統合的投稿" do
+    log_in_as(@user)
+    post select_path, params: { data: "article"}, xhr: true #Ajax通信
+    get ajax_path(@genre) #Ajax通信
+    assert_response :success
+    # assert_select 'div.pagination'
+    # assert_select 'div', count:1
+    # 無効な送信
+    content = "お腹すいた"
+    assert_no_difference 'Post.count' do
+      post posts_path, params: { post: { content: content, genre: "article", link_url: ""  } }
+    end
+    # assert_select 'div#error_explanation'
+    # 有効な送信
+    assert_difference 'Post.count', 1 do
+      post posts_path, params: { post: { content: content, genre: "article", link_url: "https://qiita.com/"  } }
+    end
+    @post = Post.first
+    assert_equal "プログラマの技術情報共有サービス - Qiita", @post.link_title
+    assert_equal "Qiitaは、プログラマのための技術情報共有サービスです。 プログラミングに関するTips、ノウハウ、メモを簡単に記録 &amp; 公開することができます。", @post.link_desc
+    assert_equal "https://cdn.qiita.com/assets/qiita-fb-2887e7b4aad86fd8c25cea84846f2236.png", @post.link_image
+    assert_redirected_to root_url
+    follow_redirect!
+  end
+
+  test "genre: book 統合的投稿" do
+    log_in_as(@user)
+    post select_path, params: { data: "book"}, xhr: true #Ajax通信
+    get ajax_path(@genre) #Ajax通信
+    assert_response :success
+    # assert_select 'div.pagination'
+    # assert_select 'div', count:1
+    # 無効な送信
+    content = "お腹すいた"
+    assert_no_difference 'Post.count' do
+      post posts_path, params: { post: { content: content, genre: "book", link_url: "https://qiita.com/"  } }
+    end
+    # assert_select 'div#error_explanation'
+    # 有効な送信
+    assert_difference 'Post.count', 1 do
+      post posts_path, params: { post: { content: content, genre: "book", link_url: "https://qiita.com/"  } }
+    end
+    @post = Post.first
+    assert_equal "プログラマの技術情報共有サービス - Qiita", @post.link_title
+    assert_equal "Qiitaは、プログラマのための技術情報共有サービスです。 プログラミングに関するTips、ノウハウ、メモを簡単に記録 &amp; 公開することができます。", @post.link_desc
+    assert_equal "https://cdn.qiita.com/assets/qiita-fb-2887e7b4aad86fd8c25cea84846f2236.png", @post.link_image
+    assert_redirected_to root_url
+    follow_redirect!
   end
 
   # サイドバーのマイクロポストの投稿数をテスト

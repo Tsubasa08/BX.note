@@ -1,6 +1,6 @@
 <div id="panel3" class="panel">
   <p class="label-title label-title--3">その他</p>
-    <%= form_with(scope: :post, url: posts_path, local: true, class: 'form form--post') do |f| %>
+  <%= form_with(scope: :post, url: posts_path, local: true, class: 'form form--post') do |f| %>
       <% if f.object %>
         <%= render 'shared/error_messages', object: f.object %>
       <% end %>
