@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'ajax', to: 'posts#ajax'
   # get 'status', to: 'users#ajax'
   post '/select', to: 'application#select'
-  get '/serch', to: 'application#serch'
+  get '/search_book', to: 'application#search_book'
 
   post   '/likes/:post_id', to: 'likes#create', as: 'like'
   delete '/likes/:post_id', to: 'likes#destroy', as: 'unlike'
