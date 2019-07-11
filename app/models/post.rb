@@ -16,10 +16,15 @@ class Post < ApplicationRecord
   validates :link_url, presence: true,
              format: { with: VALID_URL_REGEX },
              unless: :other? #ジャンルが""other"以外
+  validates :book_evaluation, presence: true, if: :book?
   validate  :validate_image
 
   def other?
     genre == "other"
+  end
+
+  def book?
+    genre == "book"
   end
 
   #  画像のサイズ、拡張子を判定

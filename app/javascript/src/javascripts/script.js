@@ -46,7 +46,7 @@ $(function() {
   });
 
   // 投稿詳細 表示
-  $(".comment-link").on("click", ".post-show-link", function() {
+  $(".post-list__item").on("click", ".post-show-link, .post-edit", function() {
     $("body, #modal-close--post-show").addClass("active");
     setTimeout(function() {
       $("#modal-content--post-show").fadeIn();

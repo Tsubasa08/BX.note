@@ -7,3 +7,7 @@ one:
 two:
   post_id: 2
   category_id: 2
+
+three:
+  post_id: 3
+  category_id: 1

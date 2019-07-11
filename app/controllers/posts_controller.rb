@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :logged_in_user, only: [:create, :edit, :update, :destroy]
+  before_action :correct_user,   only: [:edit, :update, :destroy]
 
   def show
     @post = Post.find(params[:id])
@@ -43,8 +43,54 @@ class PostsController < ApplicationController
         flash[:success] = "投稿を送信しました。"
         redirect_back(fallback_location: root_url)
       end
+
+
     else
-      # @feed_items = []
+      flash[:danger] = "投稿失敗"
+      redirect_back(fallback_location: root_url)
+    end
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_url) }
+      format.js {@post}
+    end
+  end
+
+  def update 
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+
+
+      if @post.genre == 'article'
+        url = @post.link_url
+        begin
+          # リンク先OGP取得
+          $doc = Nokogiri::HTML(open(url)) #エラーポイント
+          $link_title = $doc.css('meta[property="og:title"]').attribute('content').to_s
+          $link_image = $doc.css('meta[property="og:image"]').attribute('content').to_s
+          $link_desc = $doc.css('meta[property="og:description"]').attribute('content').to_s
+          if $link_title && $link_image && $link_desc # エラーポイントを通れば各metaタグのcontentが空でもtrue
+            @post.link_title = $link_title
+            @post.link_image = $link_image
+            @post.link_desc = $link_desc
+            @post.save
+            flash[:success] = "投稿を更新しました。"
+            redirect_back(fallback_location: root_url)
+          end
+        rescue #エラーが発生した場合(正規表現だが存在しないURL)
+          flash[:danger] = "記事のURLが正しくありません"
+          redirect_back(fallback_location: root_url)
+        end
+      else #@post == 'other'
+        flash[:success] = "投稿を更新しました。"
+        redirect_back(fallback_location: root_url)
+      end
+
+
+    else
       flash[:danger] = "投稿失敗"
       redirect_back(fallback_location: root_url)
     end
@@ -58,7 +104,6 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:success] = "投稿を削除しました。"
-    # 1つ前のURLに戻る
     redirect_back(fallback_location: root_url)
   end
 
