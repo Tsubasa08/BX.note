@@ -13,7 +13,6 @@ twirou:
   uid: 1
   provider: 'provider'
   image_url: 'ImageName'
-  admin: true
    
     
 
@@ -49,6 +48,4 @@ user_<%= n %>:
   name:  <%= "User #{n}" %>
   email: <%= "user-#{n}@example.com" %>
   password_digest: <%= User.digest('password') %>
-   
-    
 <% end %>
