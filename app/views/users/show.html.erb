@@ -4,7 +4,7 @@
   <div class="contents">
     <div class="contents__left contents__left--edit">
       <ul class="ProfileNav-list">
-        <li class="ProfileNav-list__item">
+        <li class="ProfileNav-list__item <%= @current_page_post if @current_page_post.present? %>">
           <%= link_to @user, class: 'link link--post-page'  do %>
             <span class="link__title">投稿</span>
             <span class="link__num link__num--post"><%= @user.posts.count %></span>

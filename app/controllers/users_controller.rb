@@ -6,6 +6,7 @@ before_action :admin_user, only: :destroy
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(20)
+    @current_page_post = "current" #ページレイアウト活性化
     # @post = current_user.posts.build if logged_in?
     # redirect_to(root_url) unless current_user?(@user) 
   end
@@ -47,14 +48,14 @@ before_action :admin_user, only: :destroy
   end
 
   def following
-    @current_following = 'current' #ページレイアウト活性化
+    @current_page_following = 'current' #ページレイアウト活性化
     @user = User.find(params[:id])
     @users = @user.following.page(params[:page]).per(18)
     render 'show_follow'
   end
   
   def followers
-    @current_followers = 'current' #ページレイアウト活性化
+    @current_page_followers = 'current' #ページレイアウト活性化
     @user = User.find(params[:id])
     @users = @user.followers.page(params[:page]).per(18)
     render 'show_follow'
@@ -63,6 +64,7 @@ before_action :admin_user, only: :destroy
   def likes
     @user = User.find(params[:id])
     @likes = Like.where(user_id: @user.id).page(params[:page]).per(20)
+    @current_page_like = "current" #ページレイアウト活性化
   end
 
   # def ajax
