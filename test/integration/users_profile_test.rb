@@ -18,6 +18,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_select 'img#profile-block__img--show'
     assert_match @user.posts.count.to_s, response.body
     assert_select "a[class=post-edit]", text: "編集する" 
+    assert_select "a[class=post-delete]", text: "削除" 
     assert_select "a[href=?]", "#{edit_user_path(@user)}", text: "プロフィールを編集" 
 
     assert_select "li.ProfileNav-list__item" do
@@ -45,6 +46,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     get user_path(@other_user)
     assert_template 'users/show'
     assert_select "a[class=post-edit]", text: "編集する", count: 0
+    assert_select "a[class=post-delete]", text: "削除", count: 0
     assert_select "a[href=?]", "#{edit_user_path(@user)}", text: "プロフィールを編集", count: 0
 
     assert_select "li.ProfileNav-list__item" do

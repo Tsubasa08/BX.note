@@ -99,19 +99,19 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   test "ユーザーページ 投稿数カウント" do
     log_in_as(@user)
     get user_path(@user)
-    assert_select "a.post-page-link" do
+    assert_select "a.link--post-page" do
       assert_select "span[class=link__num]", text: "#{@user.posts.count}"
     end
     # まだマイクロポストを投稿していないユーザー
     other_user = users(:malory)
     log_in_as(other_user)
     get user_path(other_user)
-    assert_select "a.post-page-link" do
+    assert_select "a.link--post-page" do
       assert_select "span[class=link__num]", text: "0"
     end
     other_user.posts.create!(content: "知らない天井", genre: "other")
     get user_path(other_user)
-    assert_select "a.post-page-link" do
+    assert_select "a.link--post-page" do
       assert_select "span[class=link__num]", text: "#{other_user.posts.count}"
     end
   end

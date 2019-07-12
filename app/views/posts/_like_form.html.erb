@@ -3,13 +3,21 @@
 
     <%= link_to unlike_path(post.id), method: :delete, class: 'heart-icon', remote: true do %>
       <i class="fas fa-heart like-btn--unlike"></i>
-      <span class="like-btn--unlike"><%= post.likes.count %></span>
+      <span class="like-btn--unlike">
+        <% unless post.likes.count == 0 %>
+          <%= post.likes.count %>
+        <% end %>
+      </span>
     <% end %>
 
   <% else %>
     <%= link_to like_path(post.id), method: :post, class: 'heart-icon', remote: true do %>
       <i class="far fa-heart like-btn"></i>
-      <span class="like-btn--like"><%= post.likes.count %></span>
+      <span class="like-btn--like">
+        <% unless post.likes.count == 0 %>
+          <%= post.likes.count %>
+        <% end %>
+      </span>
       
     <% end %>
 
@@ -17,5 +25,9 @@
 
 <% else %>
   <i class="far fa-heart like-btn"></i>
-  <span class="like-btn--like"><%= post.likes.count %></span>
+  <span class="like-btn--like">
+    <% unless post.likes.count == 0 %>
+      <%= post.likes.count %>
+    <% end %>
+  </span>
 <% end %>

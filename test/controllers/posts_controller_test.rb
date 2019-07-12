@@ -76,6 +76,14 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
+  test "destroyアクション 異なるユーザー" do
+    log_in_as(@other_user)
+    assert_no_difference 'Post.count' do
+      delete post_path(@post)
+    end
+    assert_redirected_to root_url
+  end
+
   test "destroyアクション 正常" do
     log_in_as(@user)
     assert_difference 'Post.count', -1 do
@@ -89,13 +97,4 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   #   assert_equal 200, json_response(@user)
   # end
 
-  #間違ったユーザーによるマイクロポスト削除に対してテスト
-  #  test "should redirect destroy for wrong post" do
-  #   log_in_as(@user)
-  #   post = posts(:ants)
-  #   assert_no_difference 'Post.count' do
-  #     delete post_path(post)
-  #   end
-  #   assert_redirected_to root_url
-  # end
 end

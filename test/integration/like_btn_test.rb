@@ -85,7 +85,19 @@ class LikeBtnTest < ActionDispatch::IntegrationTest
     get user_path(@other)
     assert_select "a[href=?]", like_path(@post.id), count: 0
     #いいねの数
-    assert_select "span[class=?]", "like-btn--like"
+    assert_select "span[class=?]", "like-btn--like", text: "#{@post.likes.count}"
+  end
+
+  test "いいねの数が0" do
+    get user_path(@other)
+    assert_select "span[class=?]", "like-btn--like", text: ""
+    log_in_as(@other)
+    get user_path(@other)
+    assert_select "span[class=?]", "like-btn--like", text: ""
+    delete logout_path
+    log_in_as(@user)
+    get user_path(@other)
+    assert_select "span[class=?]", "like-btn--like", text: ""
   end
 
 end
