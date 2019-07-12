@@ -134,7 +134,7 @@ class User < ApplicationRecord
     uid = auth[:uid]
     name = auth[:info][:name]
     introduce = auth[:info][:description]
-    image_url = auth[:info][:image]
+    image_url = auth[:extra][:raw_info][:profile_image_url_https]
 
     # データベースを更新
     self.find_or_create_by(provider: provider, uid: uid) do |user|
