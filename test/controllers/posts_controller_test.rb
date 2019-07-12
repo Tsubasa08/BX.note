@@ -8,6 +8,17 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
      @other_user = users(:archer)
    end
 
+  test "show画面表示 ログインなし" do
+    get post_path(@post), xhr: true
+    assert_response :success
+  end
+
+  test "show画面表示 ログイン後" do
+    log_in_as(@user)
+    get post_path(@post), xhr: true
+    assert_response :success
+  end
+
   test "createアクション ログインなし" do
     assert_no_difference 'Post.count' do
       post posts_path, params: { post: { content: "Lorem ipsum", genre: "article", link_url: "https://cookpad.com/" } }
