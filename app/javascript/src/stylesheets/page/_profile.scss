@@ -30,23 +30,60 @@
   }
 }
 
+
+// ProfileNav-list
 .ProfileNav-list {
   display: flex;
+  justify-content: space-between;
+
+  &__item {
+    text-align: center;
+    .link {
+      font-weight: bold;
+      &__title {
+        font-size: 1.4rem;
+      }
+      &__num {
+        font-size: 1.8rem;
+      }
+    }
+  }
+  span {
+    display: block;
+  }
+}
+
+.profile-card {
+  &--pc {
+    .ProfileNav-list {
+      &__item {
+        .link {
+          &__num {
+            color: $AccentColor;
+          }
+          &__title:hover, &__num:hover {
+            opacity: 0.6;
+          }
+        }
+      }
+    }
+  }
+}
+.main--profile .ProfileNav-list {
   background-color: #fff;
   @include radius;
   @include media(pc) {
+    justify-content: flex-start;
     margin-bottom: 17px;
     padding: 14px 0 0 30px;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
   }
   @include media(tab) {
-    justify-content: space-between;
     padding: 0 10px 0;
     border-bottom: 1px solid $border;
   }
   &__item {
     position: relative;
-    text-align: center;
     padding: 0 20px 7px; 
     @include media(tab) {
       padding: 0 10px 5px;
@@ -90,20 +127,13 @@
   }
   .link {
     color: #66757f;
-    font-weight: bold;
-    &__title {
-      font-size: 1.4rem;
-    }
     &__num {
-      font-size: 1.8rem;
       transition: all 0.3s ease;
     }
   }
-  span {
-    display: block;
-  }
+  
 }
-
+// .ProfileNav-list end
 
 
 
