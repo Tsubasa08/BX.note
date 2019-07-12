@@ -1,11 +1,19 @@
 <% if post.comment_model?(current_user)%>
   <%= link_to post_path(post), method: :get, class: 'post-show-link exist', remote: true do %>
     <i class="far fa-comment comment-btn--exist"></i>
-    <span class="comment-btn--exist  comment-btn--<%= post.id %>"> <%= post.comments.count %> </span>
+    <span class="comment-btn--exist  comment-btn--<%= post.id %>"> 
+      <% unless post.comments.count == 0 %>
+        <%= post.comments.count %> 
+      <% end %>
+    </span>
   <% end %>
 <% else %>
   <%= link_to post_path(post), method: :get, class: 'post-show-link no-exist', remote: true do %>
     <i class="far fa-comment comment-btn"></i>
-    <span class="comment-btn comment-btn--<%= post.id %>"> <%= post.comments.count %> </span>
+    <span class="comment-btn comment-btn--<%= post.id %>">
+      <% unless post.comments.count == 0 %>
+        <%= post.comments.count %> 
+      <% end %>
+    </span>
   <% end %>
 <% end %>

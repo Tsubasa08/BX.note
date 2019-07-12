@@ -94,4 +94,16 @@ class CommentOverallTest < ActionDispatch::IntegrationTest
     assert_select "span[class=?]", "comment-btn comment-btn--#{@post.id}", text: "#{@post.comments.count}"
   end
 
+  test "コメントの数が0" do
+    get user_path(@other)
+    assert_select "span[class=?]", "comment-btn comment-btn--#{@post.id}", text: ""
+    log_in_as(@other)
+    get user_path(@other)
+    assert_select "span[class=?]", "comment-btn comment-btn--#{@post.id}", text: ""
+    delete logout_path
+    log_in_as(@user)
+    get user_path(@other)
+    assert_select "span[class=?]", "comment-btn comment-btn--#{@post.id}", text: ""
+  end
+
 end

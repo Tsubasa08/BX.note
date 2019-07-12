@@ -10,6 +10,7 @@
     <% if current_user?(post.user)  %>
       <div class="post-meta">
         <%= link_to "編集する", edit_post_path(post), method: :get, class: 'post-edit', remote: true %>
+        <%= link_to "削除", post_path(post), method: :delete, class: 'post-delete' %>
       </div>
     <% end %>
 
@@ -64,11 +65,11 @@
 
 
     <div id="like-<%= post.id %>" class="like-<%= post.id %>">
-      <%= render 'posts/like_form', post: post %> <!-- sharedの方がいいかも -->
+      <%= render 'posts/like_form', post: post %>
     </div>
 
     <div id="comment-<%= post.id %>" class="comment-link comment-<%= post.id %>">
-      <%= render 'posts/comment_link', post: post %> <!-- sharedの方がいいかも -->
+      <%= render 'posts/comment_link', post: post %>
     </div>
 
   </div> <!-- inner end -->
