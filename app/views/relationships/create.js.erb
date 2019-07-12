@@ -1,7 +1,7 @@
 document.getElementById("follow_form").innerHTML =
 "<%= j(render('users/unfollow', user: @user)) %>"
 
-followers = document.getElementsByClassName("followers");
+followers = document.getElementsByClassName("link__num--followers");
 for (i = 0; i < followers.length; i++) {
   followers[i].innerHTML = '<%= @user.followers.count %>';
 };

@@ -8,7 +8,7 @@
         <li class="ProfileNav-list__item">
           <%= link_to @user, class: 'link link--post-page'  do %>
             <span class="link__title">投稿</span>
-            <span class="link__num"><%= @user.posts.count %></span>
+            <span class="link__num link__num--post"><%= @user.posts.count %></span>
           <% end %>
         </li>
         <%= render 'users/stats' %>

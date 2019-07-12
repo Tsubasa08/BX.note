@@ -2,14 +2,14 @@
 <li class="ProfileNav-list__item <%= @current_following if @current_following.present? %>">
   <%= link_to following_user_path(@user), class: 'link link--following' do %>
     <span class="link__title">フォロー</span>
-    <span class="following" class="link__num"><%= @user.following.count %></span>
+    <span class="link__num link__num--following"><%= @user.following.count %></span>
   <% end %>
 </li>
 
 <li class="ProfileNav-list__item <%= @current_followers if @current_followers.present? %>">
   <%= link_to followers_user_path(@user), class: 'link link--followers' do %>
     <span class="link__title">フォロワー</span>
-    <span class="followers" class="link__num">
+    <span class="link__num link__num--followers">
       <%= @user.followers.count %>
     </span>
   <% end %>
@@ -18,6 +18,6 @@
 <li class="ProfileNav-list__item">
   <%= link_to likes_user_path(@user), class: 'link link--likes' do %>
     <span class="link__title">いいね</span>
-    <span class="link__num"><%= @user.likes.count %></span>
+    <span class="link__num link__num--like"><%= @user.likes.count %></span>
   <% end %>
 </li>
