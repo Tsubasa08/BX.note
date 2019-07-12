@@ -34,6 +34,10 @@
         <% else %>
           <%= render 'follow_form', user: @user %>
         <% end %>
+
+        <% if logged_in? && current_user.admin? && !current_user?(@user) %>
+          <%= link_to "削除", @user, method: :delete, data: { confirm: "本当にこのユーザーを削除しますか？" }, class: 'user-delete-link' %>
+        <% end %>
       </div>
 
       <%= render 'layouts/categories' %>
