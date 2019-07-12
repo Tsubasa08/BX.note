@@ -95,6 +95,7 @@ textarea {
 }
 
 input {
+	-webkit-appearance: none;
 
 	&[type="submit"] {
 		cursor: pointer;
