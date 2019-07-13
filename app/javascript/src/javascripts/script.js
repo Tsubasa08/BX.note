@@ -61,54 +61,23 @@ $(function() {
     }
   });
 
-  // 投稿モーダル 表示
-  $("#modal-checkbox--post").click(function() {
-    if ($(this).prop("checked") == true) {
-      $("body").addClass("active");
-      $("#modal-content--post").fadeIn();
-    } else {
-      $("body").removeClass("active");
-      $("#modal-content--post").fadeOut("fast");
-    }
-  });
-
-  // 投稿モーダル パネル切り替え
-  $(".label").click(function() {
-    var $th = $(this).index();
-    $(".label").removeClass("active");
-    $(".panel").removeClass("active");
-    $(this).addClass("active");
-    $(".panel")
-      .eq($th)
-      .addClass("active");
-    $("#label-area, #panel-area").toggleClass("active");
-    $("#prev-btn").fadeIn();
-    $("#close-btn--tab").fadeOut();
-  });
-  $("#prev-btn").click(function() {
-    $("#label-area, #panel-area").toggleClass("active");
-    $(this).fadeOut();
-    $("#close-btn--tab").fadeIn();
-    $(".form--post")[0].reset();
-  });
-
   // 画像アップロード レイアウト遷移
   $(".image-form").on("change", function() {
     let over; // Filelist
     const data = $(this).data("id");
     const file = $(this).prop("files");
-    $(`.filename--${data}`).hide();
+    $(`.filename--${data}`).remove();
     Array.from(file).forEach(e => {
       const size = e.size / 1024 / 1024; // ファイルサイズ
       if (size > 5) {
         over = "true";
         over_name = e.name;
-        $(`.filename--${data}`).hide();
+        $(`.filename--${data}`).remove();
       } else {
         over = "false";
         // 選択したファイル名を表示
         $(`#form-image--${data}`).append(
-          `<span class="filename filename--${data}">${e.name}</span>`
+          `<span class="filename filename--${data}">・${e.name}</span>`
         );
         $(`#input-label--${data}`).addClass("changed");
       }

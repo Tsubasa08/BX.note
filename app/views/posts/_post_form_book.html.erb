@@ -40,7 +40,7 @@
     <%= f.submit '更新', class: "form__button--post", id: '' %>
   <% end %>
 
-  <div id="select-result"></div>
+  <div id="book-select-result" class="book-select-result"></div>
 
   <%= form_with(url: search_book_path, method: :get) do |f| %>
     <%= f.label :content %>
@@ -57,5 +57,5 @@
   <input id="book-checkbox-8" class="book-checkbox" type="checkbox" value="8">
   <input id="book-checkbox-9" class="book-checkbox" type="checkbox" value="9">
   <input id="book-checkbox-10" class="book-checkbox" type="checkbox" value="10">
-  <div class="" id="serch-result"></div>
+  <div class="book-search-result" id="book-search-result"></div>
 </div>

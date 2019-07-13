@@ -288,9 +288,7 @@
       .user-name {
         font-size: 1.8rem;
         font-weight: bold;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        @include three_reader;
         @include media(pc) {
           position: absolute;
           width: 220px;
