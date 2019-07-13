@@ -4,11 +4,10 @@ $(function() {
 
   // 投稿モーダル 表示
   $("#modal-checkbox--post").change(function() {
+    $("body").toggleClass("active");
     if ($(this).prop("checked") == true) {
-      $("body").toggleClass("active");
       $("#modal-content--post").fadeIn();
     } else {
-      $("body").removeClass("active");
       $("#modal-content--post").fadeOut("fast");
     }
   });
