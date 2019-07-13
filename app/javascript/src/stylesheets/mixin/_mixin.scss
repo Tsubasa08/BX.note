@@ -83,7 +83,7 @@
   border: 1px solid $border;
   border-radius: 50%;
   object-fit: cover;
-  font-family: 'object-fit: cover;';
+  font-family: 'object-fit: cover;'
 }
 
 // ページネーション
@@ -94,4 +94,23 @@
   height: 45px;
   width: 45px;
   border-radius: 50%;
+}
+
+// 1行３点リーダー
+@mixin three_reader {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// input内seachアイコン
+@mixin input_search_icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  border: none;
+  padding: 0;
+  background: rgba(0,0,0,0);
 }

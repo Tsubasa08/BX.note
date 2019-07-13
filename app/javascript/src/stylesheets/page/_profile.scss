@@ -30,23 +30,60 @@
   }
 }
 
+
+// ProfileNav-list
 .ProfileNav-list {
   display: flex;
+  justify-content: space-between;
+
+  &__item {
+    text-align: center;
+    .link {
+      font-weight: bold;
+      &__title {
+        font-size: 1.4rem;
+      }
+      &__num {
+        font-size: 1.8rem;
+      }
+    }
+  }
+  span {
+    display: block;
+  }
+}
+
+.profile-card {
+  &--pc {
+    .ProfileNav-list {
+      &__item {
+        .link {
+          &__num {
+            color: $AccentColor;
+          }
+          &__title:hover, &__num:hover {
+            opacity: 0.6;
+          }
+        }
+      }
+    }
+  }
+}
+.main--profile .ProfileNav-list {
   background-color: #fff;
   @include radius;
   @include media(pc) {
+    justify-content: flex-start;
     margin-bottom: 17px;
     padding: 14px 0 0 30px;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
   }
   @include media(tab) {
-    justify-content: space-between;
     padding: 0 10px 0;
     border-bottom: 1px solid $border;
   }
   &__item {
     position: relative;
-    text-align: center;
     padding: 0 20px 7px; 
     @include media(tab) {
       padding: 0 10px 5px;
@@ -78,32 +115,27 @@
     &::after {
       right: 50%;
     }
-    &:hover::before, &:hover::after {
-      width: 50%;
-      border-bottom: 2px solid $AccentColor;
-    }
-    &:hover {
-      .link__num {
-        color: $AccentColor;
+    @include media(pc) {
+      &:hover::before, &:hover::after {
+        width: 50%;
+        border-bottom: 2px solid $AccentColor;
+      }
+      &:hover {
+        .link__num {
+          color: $AccentColor;
+        }
       }
     }
   }
   .link {
     color: #66757f;
-    font-weight: bold;
-    &__title {
-      font-size: 1.4rem;
-    }
     &__num {
-      font-size: 1.8rem;
       transition: all 0.3s ease;
     }
   }
-  span {
-    display: block;
-  }
+  
 }
-
+// .ProfileNav-list end
 
 
 
@@ -111,21 +143,29 @@
 
 // profile-block
 .profile-block {
+  position: relative;
   background-color: #fff;
   padding: 20px 10px;
   @include radius;
   &__name {
     font-size: 2.1rem;
-    @include media(pc) {
-      text-align: center;
+    line-height: 1.3;
+    @include media(tab) {
+      margin: 10px 0;
     }
   }
   &__img {
     height: 100px;
     width: 100px;
+    @include media(sp) {
+      height: 80px;
+      width: 80px;
+    }
     @include icon;
     &--show {
-      margin: 0 auto 10px;
+      @include media(pc) {
+        margin: 0 auto 10px;
+      }
     }
     &--edit {
       @include media(pc) {
@@ -138,8 +178,9 @@
   }
   &__introduce {
     font-size: 1.4rem;
+    line-height: 1.4;
     @include media(pc) {
-      margin: 20px 0; 
+      margin: 10px 0 20px; 
     }
   }
   &__link {
@@ -149,10 +190,16 @@
     border: 1px solid $AccentColor !important;
     color: $AccentColor;
     border-radius: 100px;
+    padding: 4px 0;
     @include media(pc) {
       margin: 0 auto;
       padding: 8px 0;
       transition: 0.2s;
+    }
+    @include media(tab) {
+      position: absolute;
+      top: 20px;
+      right: 10px;
     }
     &--edit {
       @include media(pc) {
@@ -241,9 +288,7 @@
       .user-name {
         font-size: 1.8rem;
         font-weight: bold;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        @include three_reader;
         @include media(pc) {
           position: absolute;
           width: 220px;

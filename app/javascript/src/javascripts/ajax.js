@@ -15,19 +15,19 @@ $(function() {
             let over = []; // Filelist配列
             const data = $(this).data("id");
             const file = $(this).prop("files");
-            $(`.filename--${data}`).hide();
+            $(`.filename--${data}`).remove();
 
             Array.from(file).forEach(e => {
               const size = e.size / 1024 / 1024; // ファイルサイズ
               if (size > 5) {
                 over.push("true");
                 over_name = e.name;
-                $(`.filename--${data}`).hide();
+                $(`.filename--${data}`).remove();
               } else {
                 over.push("false");
                 // 選択したファイル名を表示
                 $(`#form-image--${data}`).append(
-                  `<span class="filename filename--${data}">${e.name}</span>`
+                  `<span class="filename filename--${data}">・${e.name}</span>`
                 );
                 $(`#input-label--${data}`).addClass("changed");
               }
@@ -90,7 +90,7 @@ $(function() {
       })
         .done(function(data) {
           let element = $(this).html();
-          $("#select-result").html(element);
+          $("#book-select-result").html(element);
           let bookImg = $(this)
             .find("img")
             .prop("src");

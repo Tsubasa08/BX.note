@@ -35,7 +35,7 @@
     &__title {
       background-color: $AccentColor;
       color: #fff;
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: bold;
       padding: 10px 20px;
       border-radius: 5px 5px 0 0;
@@ -101,7 +101,6 @@
 
 .profile-card {
   @include radius;
-  height: 100px;
   // margin: 10px 0 10px;
   @include media(pc) {
     background-color: #fff;
@@ -115,33 +114,34 @@
   }
   
 }
-    .user-link {
-      display: flex;
-      align-items: center;
-      &__item {
-        &--img {
-          img {
-            height: 50px;
-            width: 50px;
-            max-width: none;
-            @include icon;
-          }
-        }
-        &--title {
-          margin-left: 13px;
-          line-height: 1.5;
-          @include media(tab) {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #fff;
-          }
-          &:hover {
-            margin-top: 1px;
-            border-bottom: 1px solid $MainColor;
-          }
-        }
+
+.user-link {
+  display: flex;
+  align-items: center;
+  &__item {
+    &--img {
+      img {
+        height: 50px;
+        width: 50px;
+        max-width: none;
+        @include icon;
       }
     }
+    &--title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-left: 13px;
+      line-height: 1.5;
+      @include media(tab) {
+        color: #fff;
+      }
+      &:hover {
+        margin-top: 1px;
+        border-bottom: 1px solid $MainColor;
+      }
+    }
+  }
+}
 
 
 @include media(tab) {

@@ -39,7 +39,7 @@
     height: 100%;
     vertical-align: top;
     @include media(tab) {
-      width: 125px;
+      width: 140px;
     }
   }
 }
@@ -51,7 +51,7 @@
 	// right: 10px;
 	// transform: translateY(-50%);
 	color: #fff;
-	div {
+	.contents > div {
 		margin-bottom: 20px;
 		&:nth-last-of-type(1) {
 			margin-bottom: 0;
@@ -184,12 +184,10 @@
 		display: none;
 		overflow: auto;
 		position: fixed;
-		// position: absolute;
 		top: 56px;
 		left: 0;
-		// height: 100%;
+		padding: 45px 0 35px;
 		transform: translateY(-56px);
-		// height: calc(100% + 56px);
 		max-height: 100%;
 		width: 100vw;
 		/* カスタムプロパティ未対応ブラウザ対応 */
@@ -202,11 +200,13 @@
 		// transform: translateY(calc(-100% - 56px));
 	
 		.profile-card--sp {
-			height: 144px;
+			// height: 144px;
+			padding: 0 45px;
 			border-bottom: 1px solid $border;
 		}
 	
 		.categories {
+			padding-bottom: 15px;
 			text-align: center;
 			border-bottom: 1px solid $border;
 			&__title {
@@ -262,14 +262,7 @@
     background-color: $border;
   }
   &__button {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    font-size: 16px;
-    border: none;
-    padding: 0;
-    background: rgba(0,0,0,0);
+    @include input_search_icon;
     &:hover {
       opacity: 0.8;
     }
@@ -308,44 +301,57 @@
 		display: none;
 	}
 }
-.header .user-link--pc {
-	display: none;
-	position: absolute;
-	right: 120px;
-	bottom: 0;
-	transform: translateY(calc(100% + 5px));
-	padding: 10px 0;
-	background-color: #fff;
-	border: 1px solid $border;
-	@include radius;
-	&__item {
-		display: block;
-		padding: 0 16px;
-		font-size: 1.4rem;
-		&:hover {
-			background-color: $AccentColor;
-			color: #fff;
+.header .user-link {
+	&--pc {
+		display: none;
+		position: absolute;
+		right: 120px;
+		bottom: 0;
+		transform: translateY(calc(100% + 5px));
+		padding: 10px 0;
+		background-color: #fff;
+		border: 1px solid $border;
+		@include radius;
+		&__item {
+			display: block;
+			padding: 0 16px;
+			font-size: 1.4rem;
+			&:hover {
+				background-color: $AccentColor;
+				color: #fff;
+			}
+			&--title {
+				font-size: 1.8rem;
+				font-weight: bold;
+				border-bottom: 1px solid $border;
+				padding-bottom: 5px;
+				margin-bottom: 8px;
+			}
+			&--edit::before, &--logout::before {
+				font-family: 'Font Awesome 5 Free';
+				font-weight: bold;
+				display: inline-block;
+				margin-right: 10px;
+				font-size: 1.3em;
+			}
+			&--edit::before {
+				content: '\f2bb';
+			}
+			&--logout::before {
+				content: '\f2f5';
+			}
 		}
-		&--title {
-			font-size: 1.8rem;
-			font-weight: bold;
-			border-bottom: 1px solid $border;
-			padding-bottom: 5px;
-			margin-bottom: 8px;
-		}
-		&--edit::before, &--logout::before {
-			font-family: 'Font Awesome 5 Free';
-			font-weight: bold;
-			display: inline-block;
-			margin-right: 10px;
-			font-size: 1.3em;
-		}
-		&--edit::before {
-			content: '\f2bb';
-		}
-		&--logout::before {
-			content: '\f2f5';
-		}
+	}
+
+	&--sp {
+		width: 100%;
+		margin-bottom: 5px;
+	}
+}
+
+.user-status {
+	&--sp {
+		width: 100%;
 	}
 }
 
@@ -384,7 +390,7 @@
 }
 
 .tab-menu .new-link--tab {
-	padding: 50px 0 40px;
+	padding-bottom: 30px;
 	text-align: center;
 	border-bottom: 1px solid $border;
 	&__item {

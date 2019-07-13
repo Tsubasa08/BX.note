@@ -1,0 +1,461 @@
+/*
+post_form
+*/
+
+// 共通のレイアウト
+.modal-user-icon {
+   height: 40px;
+   width: 40px;
+   @include icon;
+ }
+
+ .panel {
+  .label-title {
+    color: $AccentColor;
+    font-weight: bold;
+  }
+}
+
+.form {
+  &__check-block {
+    input[name="post[category_ids][]"] {
+      display: inline-block;
+      -webkit-appearance: checkbox;
+    }
+    .check-block-title {
+      color: $AccentColor;
+      font-size: 2rem;
+      font-weight: bold;
+      // padding: 10px 20px;
+      // border-radius: 5px 5px 0 0;
+      &::before {
+        content: '\f277';
+        font-family: 'Font Awesome 5 Free';
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+    }
+    label {
+      display: block;
+    }
+  }
+  &__radio-group {
+    .title {
+      font-size: 1.6rem;
+    }
+    
+  }
+  &__button--post {
+    background-color: $AccentColor;
+    color: #fff;
+    @include radius;
+  }
+  #button-post.disabled {
+    opacity: 0.3;
+  }
+  &__btn-block {
+    .form-image {
+      display: flex;
+    }
+  }
+  &__article-block {
+    .article-input {
+      border: 1px solid $AccentColor;
+      
+    }
+  }
+}
+
+.book-search-result {
+  .book-list {
+    &__item {
+      display: flex;
+      align-items: center;
+      border-top: 1px solid $border;
+      .book-title {
+        display: block;
+        @include three_reader;
+      }
+    }
+  }
+}
+
+.book-select-result {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $border;
+  .book-title {
+    display: block;
+    font-weight: bold;
+    font-size: 1.8rem;
+    @include three_reader;
+  }
+  .book-image {
+    &--example {
+      color: gray;
+    }
+  }
+}
+
+.search-book-form {
+  position: relative;
+  &__textarea {
+    border: 1px solid $AccentColor;
+    @include radius;
+  }
+  &__button {
+    @include input_search_icon;
+  }
+}
+// 共通のレイアウト end
+
+
+@include media(pc) {
+  .dummy-submit-btn {
+    display: none;
+  }
+  .panel {
+    position: relative;
+    padding: 15px 20px 20px;
+    &--1 {
+      padding: 15px 0 20px;
+      .form {
+        padding-left: 20px;
+      }
+    }
+    .label-title {
+      display: inline-block;
+      border-bottom: 1.5px solid $AccentColor;
+      margin-bottom: 25px;
+      &--1 {
+        margin-left: 20px;
+      }
+    }
+    .form {
+      &__top-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 605px;
+      }
+      &__text-area-block {
+        display: flex;
+        .post-form__area {
+          height: 120px;
+          width: 550px;
+          margin-left: 15px;
+          border: 1px solid $AccentColor;
+          @include radius;
+        }
+      }
+      &__check-block {
+        // transform: translateY(-60px);
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        label {
+          margin-bottom: 8px;
+          &:nth-last-of-type(1) {
+            margin-bottom: 0;
+          }
+        }
+      }
+      &__btn-block {
+        display: flex;
+        align-items: flex-start;
+        margin-top: 20px;
+        .form-image {
+          margin-right: 23px;
+          flex-direction: row-reverse;
+          .file-name-block {
+            margin-right: 20px;
+          }
+        }
+      }
+      &__radio-group {
+        margin-left: 55px;
+        padding: 10px;
+        .star-group-wrapper {
+          padding-left: 30px;
+          .star-group {
+            .railo-label {
+              font-size: 3rem;
+            }
+          }
+        }
+      }
+      &__label--post-image {
+        transform: translateY(-9px);
+      }
+      &__article-block {
+        width: 550px;
+        margin-left: 55px;
+      }
+      &__button--post {
+        padding: 5px 30px;
+      }
+    }
+  }
+  .book-search-result {
+    .book-list {
+      &__item {
+        padding: 10px 0 10px 75px;
+        &:hover {
+          background-color: #f5f8fa;
+        }
+        .book-image {
+          height: 80px;
+          width: auto;
+        }
+        .book-title {
+          width: 640px;
+          margin-left: 25px;
+        }
+      }
+    }
+  }
+
+  .book-select-result {
+    width: 550px;
+    margin-left: 55px;
+    padding-left: 40px;
+    padding-bottom: 22px;
+    .book-image {
+      height: 120px;
+      width: auto;
+      &--example {
+        height: 90px;
+      }
+    }
+    .book-title {
+      margin-left: 25px;
+    }
+  }
+  
+
+  .search-book-form {
+    width: 550px;
+    margin: 0 0 22px 75px;
+    &__textarea {
+      width: 100%;
+    }
+  }
+}
+
+
+@include media(tab) {
+  .dummy-submit-btn {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    padding: 5px 15px;
+    background-color: $AccentColor;
+    color: #fff;
+    border-radius: 15px;
+  }
+  .panel {
+    // position: relative;
+    padding-top: 23px;
+    .label-title {
+      display: block;
+      text-align: center;
+    }
+    .form {
+      &__top-block {
+        // display: flex;
+        // flex-direction: column;
+        // align-items: flex-end;
+        // width: 605px;
+      }
+      &__text-area-block {
+        position: relative;
+        .modal-user-icon--form {
+          position: absolute;
+          top: 8px;
+          left: 5px;
+        }
+        .post-form__area {
+          height: 130px;
+          width: 100%;
+          padding-left: 53px;
+          border: {
+            top: 1px solid $border;
+            bottom: 1px solid $border;
+          }
+          // margin-left: 15px;
+        }
+      }
+      &__check-block {
+        position: relative;
+        .check-block-title {
+          padding: 10px;
+          border-bottom: 1px solid $border;
+          &::after {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: bold;
+            position: absolute;
+            top: 13px;
+            right: 10px;
+            display: block;
+            color: $border;
+          }
+          &.active::after {
+            content: '\f106';
+          }
+        }
+        .category-list {
+          display: none;
+          
+        }
+        label {
+          padding: 10px;
+          font-size: 1.6rem;
+          border-bottom: 1px solid $border;
+          input {
+            margin-right: 15px;
+          }
+        }
+      }
+      &__btn-block {
+        padding-left: 10px;
+        border-bottom: 1px solid $border;
+        .form-image {
+        }
+      }
+      &__radio-group {
+        padding: 16px 10px;
+        .star-group-wrapper {
+          display: flex;
+          justify-content: center;
+          .star-group {
+            .railo-label {
+              font-size: 4rem;
+            }
+          }
+        }
+      }
+      &__label--post-image {
+        margin-right: 10px;
+      }
+      &__article-block {
+        margin-top: 28px;
+        padding: 0 10px;
+      }
+      &__button--post {
+        display: none;
+      }
+    }
+  }
+
+  .book-search-result {
+    // padding-left: 40px;
+    .book-list {
+      &__item {
+        padding: 5px 10px;
+        .book-image {
+          height: 50px;
+          width: auto;
+        }
+        .book-title {
+          // width: 640px;
+          margin-left: 13px;
+        }
+      }
+    }
+  }
+
+  .book-select-result {
+    padding: 16px 10px;
+    .book-image {
+      height: 60px;
+      width: auto;
+      &--example {
+        height: 60px;
+      }
+    }
+    .book-title {
+      margin-left: 20px;
+    }
+  }
+
+  .search-book-form {
+    // width: 550px;
+    padding: 16px 10px;
+    &__textarea {
+      width: 100%;
+    }
+  }
+}
+
+
+// 本の評価
+.form {
+  &__radio-group {
+    $unchecked-star: '\2606';
+    $unchecked-color: #888;
+    $checked-star: '\2605';
+    $checked-color: #e52;
+  
+    .star-group {
+      unicode-bidi: bidi-override;
+      direction: rtl;
+      & > input {
+        display: none;
+        & + label {
+          /* only enough room for the star */
+          display: inline-block;
+          overflow: hidden;
+          text-indent: 9999px;
+          width: 1em;
+          white-space: nowrap;
+          cursor: pointer;
+          &:before {
+            display: inline-block;
+            text-indent: -9999px;
+            content: $unchecked-star;
+            color: $unchecked-color;
+          }
+        }
+        &:checked ~ label:before,
+          & + label:hover ~ label:before,
+          & + label:hover:before {
+          content: $checked-star;
+          color: #e52;
+          text-shadow: 0 0 1px #333;
+        }
+      }
+      /* the hidden clearer */
+      & > .star-cb-clear + label {
+        text-indent: -9999px;
+        width: .5em;
+        margin-left: -.5em;
+      }
+      & > .star-cb-clear + label:before {
+        width: .5em;
+      }
+    
+      &:hover > input + label:before {
+        content: $unchecked-star;
+        color: $unchecked-color;
+        text-shadow: none;
+      }
+      &:hover > input + label:hover ~ label:before,
+      &:hover > input + label:hover:before {
+        content: $checked-star;
+        color: $checked-color;
+        text-shadow: 0 0 1px #333;
+      }
+
+    }
+  } 
+  
+}
+// 本の評価 end
+
+/*
+post_form end
+*/

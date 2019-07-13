@@ -95,6 +95,7 @@ textarea {
 }
 
 input {
+	-webkit-appearance: none;
 
 	&[type="submit"] {
 		cursor: pointer;
@@ -170,7 +171,7 @@ input {
 
 
 	&[type="checkbox"] {
-		// display: none;
+		display: none;
 
 		+ span {
 			display: inline-block;

@@ -10,7 +10,7 @@
     <% if current_user?(post.user)  %>
       <div class="post-meta">
         <%= link_to "編集する", edit_post_path(post), method: :get, class: 'post-edit', remote: true %>
-        <%= link_to "削除", post_path(post), method: :delete, class: 'post-delete' %>
+        <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "この投稿を本当に削除しますか？" }, class: 'post-delete' %>
       </div>
     <% end %>
 

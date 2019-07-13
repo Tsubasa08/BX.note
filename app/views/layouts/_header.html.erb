@@ -49,14 +49,16 @@
         <div id="tab-menu-contents" class="contents">
           <% if logged_in? %>
             <div class="profile-card profile-card--sp">
-              <div class="user-link">
+              <div class="user-link user-link--sp">
                 <%= link_to current_user, class: 'user-link__item user-link__item--img' do %>
                   <%= render 'shared/user_icon', user: current_user, id_name: 'user-icon-sp', class_name: 'img' %>
                 <% end %>
                 <%= link_to current_user.name, current_user, class: 'user-link__item user-link__item--title' %>
               </div>
-              <div class="user-status">
-                <%= render 'users/stats' %>
+              <div class="user-status user-status--sp">
+                <ul class="ProfileNav-list">
+                  <%= render 'users/stats' %>
+                </ul>
               </div>
             </div>
           <% else %>

@@ -1,54 +1,79 @@
 <div id="panel1" class="panel panel--1">
   <p class="label-title label-title--1">本の感想</p>
-  <%= form_with(scope: :post, url: posts_path, local: true, class: 'form form--post') do |f| %>
+  <%= form_with(scope: :post, url: posts_path, local: true, id: "form-post", class: 'form form--post') do |f| %>
     <% if f.object %>
       <%= render 'shared/error_messages', object: f.object %>
     <% end %>
 
-    <%= render 'shared/user_icon', user: current_user, id_name: 'user-icon', class_name: 'modal-user-icon' %>
+    <div class="form__top-block">
+      <div class="form__text-area-block">
+        <%= render 'shared/user_icon', user: current_user, id_name: 'user-icon', class_name: 'modal-user-icon modal-user-icon--form' %>
 
-    <%= f.text_area :content, class: 'post-form__area', placeholder: '読んだ感想は？' %>
+        <%= f.text_area :content, class: 'post-form__area', placeholder: '読んだ感想は？' %>
+      </div>
 
-    <div class="check-block">
-      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, class: 'c-check') %>
+      <div class="form__btn-block">
+        <div class="form-image">
+          <%= f.label :images, id: 'input-label--post-book', class: 'form__label--post-image' do %>
+          <i class="far fa-image"></i>
+          <%= f.file_field :images, multiple: true, accept: 'image/jpeg,image/gif,image/png', class: 'image-form form__input--image', data: {id: 'post-book'} %>
+          <% end %>
+          <div id="form-image--post-book" class="file-name-block"></div>
+        </div>
+
+        <%= f.submit 'シェア', class: "form__button--post disabled", id: 'button-post', disabled: true %>
+      </div>
     </div>
 
-    <div id="form-image--post-book">
-      <%= f.label :images, id: 'input-label--post-book', class: 'form__label--post-image' do %>
-        <i class="far fa-image"></i>
-        <%= f.file_field :images, multiple: true, accept: 'image/jpeg,image/gif,image/png', class: 'image-form form__input--image', data: {id: 'post-book'} %>
-      <% end %>
+    <div id="category-check" class="form__check-block">
+      <p id="check-block-title" class="check-block-title">カテゴリー</p>
+      <div id="category-list" class="category-list">
+        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, class: 'c-check') do |b| %>
+        <%= b.label { b.check_box + b.text } %>
+        <% end %>
+      </div>
     </div>
+
+    <div id="book-select-result" class="book-select-result">
+      <i class="fas fa-book book-image book-image--example"></i>
+      <p class="book-title">本が選択されていません。</p>
+    </div>
+
+
+    <div class="form__radio-group">
+      <p class="title">評価</p>
+      <div class="star-group-wrapper">
+        <span class="star-group">
+          <%= f.radio_button :book_evaluation, "5", class: 'book-radio' %>
+          <label for="post_book_evaluation_5" class="railo-label">5</label>
+          <%= f.radio_button :book_evaluation, "4", class: 'book-radio' %>
+          <label for="post_book_evaluation_4" class="railo-label">4</label>
+          <%= f.radio_button :book_evaluation, "3", class: 'book-radio' %>
+          <label for="post_book_evaluation_3" class="railo-label">3</label>
+          <%= f.radio_button :book_evaluation, "2", class: 'book-radio' %>
+          <label for="post_book_evaluation_2" class="railo-label">2</label>
+          <%= f.radio_button :book_evaluation, "1", class: 'book-radio' %>
+          <label for="post_book_evaluation_1" class="railo-label">1</label>
+          <%= f.radio_button :book_evaluation, "0", class: 'book-radio star-cb-clear' %>
+          <label for="post_book_evaluation_0" class="railo-label">0</label>
+        </span>
+      </div>
+    </div>
+
     <%= f.hidden_field :link_url %>
     <%= f.hidden_field :link_title %>
     <%= f.hidden_field :link_image %>
     <%= f.hidden_field :genre, value: @genre %>
-
-    <div class="radio-grop">
-      <%= f.radio_button :book_evaluation, "5", class: 'book-radio' %>
-      <label for="post_book_evaluation_5">5</label>
-      <%= f.radio_button :book_evaluation, "4", class: 'book-radio' %>
-      <label for="post_book_evaluation_4">4</label>
-      <%= f.radio_button :book_evaluation, "3", class: 'book-radio' %>
-      <label for="post_book_evaluation_3">3</label>
-      <%= f.radio_button :book_evaluation, "2", class: 'book-radio' %>
-      <label for="post_book_evaluation_2">2</label>
-      <%= f.radio_button :book_evaluation, "1", class: 'book-radio' %>
-      <label for="post_book_evaluation_1">1</label>
-      <%= f.radio_button :book_evaluation, "0", class: 'book-radio star-cb-clear' %>
-      <label for="post_book_evaluation_0">0</label>
-    </div>
-
-    <%= f.submit 'シェア', class: "form__button--post disabled", id: 'button-post', disabled: true %>
   <% end %>
 
-  <div id="select-result"></div>
 
-  <%= form_with(url: search_book_path, method: :get) do |f| %>
-    <%= f.label :content %>
-    <%= f.text_field :content, class: 'form' %>
-    <%= f.submit "検索", id: 'book-serch', class: 'btn' %>
+  <%= form_with(url: search_book_path, method: :get, class: 'search-book-form') do |f| %>
+    <%= f.text_field :content, class: 'search-book-form__textarea', placeholder: 'タイトル検索' %>
+    <%= f.button id: 'book-serch', class: 'search-book-form__button' do %>
+      <i class="fas fa-search"></i>
+    <% end %>
   <% end %>
+
   <input id="book-checkbox-1" class="book-checkbox" type="checkbox" value="1">
   <input id="book-checkbox-2" class="book-checkbox" type="checkbox" value="2">
   <input id="book-checkbox-3" class="book-checkbox" type="checkbox" value="3">
@@ -59,5 +84,5 @@
   <input id="book-checkbox-8" class="book-checkbox" type="checkbox" value="8">
   <input id="book-checkbox-9" class="book-checkbox" type="checkbox" value="9">
   <input id="book-checkbox-10" class="book-checkbox" type="checkbox" value="10">
-  <div class="" id="serch-result"></div>
+  <div class="book-search-result" id="book-search-result"></div>
 </div>
