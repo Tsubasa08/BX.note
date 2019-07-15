@@ -268,12 +268,13 @@ a {
 }
 
 html.active {
-	overflow: auto;
+	overflow: hidden;
+	// overflow: auto;
 	height: 100%;
 }
 body.active {
 	overflow: hidden;
-	height: 100%;
+	// height: 100%;
 	/* カスタムプロパティ未対応ブラウザ対応 */
 	// height: 100vh;
 	// /* 100vh --vhが未定義の場合は1vhを使う */

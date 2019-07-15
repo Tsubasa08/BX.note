@@ -2,13 +2,46 @@ $(function() {
   let windowWidth = window.innerWidth; //ウィンドウサイズ
   const breakPoint = 1120;
 
-  // 投稿モーダル 表示
-  $("#modal-checkbox--post").change(function() {
+  let topPosition, nowPosition;
+  $(window).scroll(function() {
+    topPosition = $(window).scrollTop(); // スクロールトップポジションを取得
+  });
+
+  // 投稿モーダル 開く
+  $("#modal-open").click(function() {
+    nowPosition = topPosition; //クリック時の位置取得
     $("body").toggleClass("active");
-    if ($(this).prop("checked") == true) {
-      $("#modal-content--post").fadeIn();
+    if (windowWidth >= breakPoint) {
+      //PC
+      $("#modal-content--post, #modal-close--post").fadeIn();
+      $("#modal-content--post").css("top", nowPosition + 50);
+      $("#modal-close--post").css("top", nowPosition);
+      $("#modal-close--post").addClass("active");
     } else {
-      $("#modal-content--post").fadeOut("fast");
+      //Tab以下
+      $("#modal-content--post").fadeIn();
+      $("#modal-close--post, #modal-content--post").css("top", 0);
+      $("main, footer").hide();
+    }
+  });
+
+  // -- 投稿モーダル 閉じる --
+  const closeModal = function() {
+    $("#modal-content--post, #modal-close--post").fadeOut("fast");
+    $("body").removeClass("active");
+    if (windowWidth < breakPoint) {
+      $("main, footer").show();
+    }
+    $(window).scrollTop(nowPosition); //クリック時の位置
+  };
+
+  $(".close-btn").click(function() {
+    closeModal();
+  });
+  //モーダル外をクリック
+  $(document).on("click touchend", function(event) {
+    if (!$(event.target).closest("#modal-content--post, #modal-open").length) {
+      closeModal();
     }
   });
 
@@ -52,4 +85,10 @@ $(function() {
       $(this).toggleClass("active");
     });
   }
+
+  //テスト
+  $("#panel-area").on("click", "#book-serch", function() {
+    $("#book-list").remove();
+    $("#loading-wrapper").show();
+  });
 });

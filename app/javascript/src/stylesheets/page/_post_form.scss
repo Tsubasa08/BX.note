@@ -106,6 +106,9 @@ post_form
   }
   &__button {
     @include input_search_icon;
+    @include media(tab) {
+      right: 20px;
+    }
   }
 }
 // 共通のレイアウト end
