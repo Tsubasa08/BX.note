@@ -16,6 +16,7 @@ $(function() {
     } else {
       nowPosition = topPosition; //クリック時の位置取得
       $("#modal-close--post, #modal-content--post").css("top", nowPosition);
+      $("main").hide();
     }
     $("body").toggleClass("active");
     if ($(this).prop("checked") == true) {
