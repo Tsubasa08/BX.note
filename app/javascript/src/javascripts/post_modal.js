@@ -2,16 +2,6 @@ $(function() {
   let windowWidth = window.innerWidth; //ウィンドウサイズ
   const breakPoint = 1120;
 
-  // 投稿モーダル 表示
-  $("#modal-checkbox--post").change(function() {
-    $("body").toggleClass("active");
-    if ($(this).prop("checked") == true) {
-      $("#modal-content--post").fadeIn();
-    } else {
-      $("#modal-content--post").fadeOut("fast");
-    }
-  });
-
   // 投稿モーダル パネル切り替え
   $(".label").click(function() {
     var $th = $(this).index();

@@ -68,7 +68,7 @@
 
 
   <%= form_with(url: search_book_path, method: :get, class: 'search-book-form') do |f| %>
-    <%= f.text_field :content, class: 'search-book-form__textarea', placeholder: 'タイトル検索' %>
+    <%= f.text_field :content, class: 'search-book-form__textarea post-input-text', placeholder: 'タイトル検索' %>
     <%= f.button id: 'book-serch', class: 'search-book-form__button' do %>
       <i class="fas fa-search"></i>
     <% end %>
