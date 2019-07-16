@@ -1,6 +1,9 @@
 import "@fortawesome/fontawesome-free/js/all";
 import "src/javascripts/application";
 import "src/stylesheets/application";
+import "slick-carousel/slick/slick";
+import "slick-carousel/slick/slick-theme.scss";
+import "slick-carousel/slick/slick.scss";
 import Rails from "rails-ujs";
 Rails.start();
 

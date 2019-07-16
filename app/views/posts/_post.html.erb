@@ -27,9 +27,13 @@
     </div>
 
     <div class="post-image">
+      <ul class="slider">
       <% post.images.each do |image|%>
-        <%= image_tag image.variant(resize: "300x400") , class: 'image' %>
+        <li>
+          <%= image_tag image, class: 'image' %>
+        </li>
       <% end %>
+      </ul>
     </div>
 
     <% if post.genre == 'article' %>

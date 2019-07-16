@@ -128,4 +128,9 @@ $(function() {
       $(".post-meta").hide();
     }
   });
+
+  // 投稿画像カルーセル
+  $(".slider").slick({
+    dots: true
+  });
 });
