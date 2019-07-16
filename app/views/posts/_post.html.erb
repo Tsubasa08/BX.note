@@ -26,6 +26,12 @@
       <% end %>
     </div>
 
+    <div class="post-image">
+      <% post.images.each do |image|%>
+        <%= image_tag image.variant(resize: "300x400") , class: 'image' %>
+      <% end %>
+    </div>
+
     <% if post.genre == 'article' %>
       <div class="post-item">
         <a href="<%= post.link_url %>" class="post-item__link post-item__link--article"target="_brank">
@@ -52,12 +58,6 @@
 
     <div class="post-content">
       <%= post.content %>
-    </div>
-
-    <div class="post-image">
-      <% post.images.each do |image|%>
-        <%= image_tag image.variant(resize: "300x400") , class: 'image' %>
-      <% end %>
     </div>
 
 
