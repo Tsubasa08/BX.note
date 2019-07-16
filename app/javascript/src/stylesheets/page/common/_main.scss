@@ -132,9 +132,6 @@
       font-weight: bold;
       margin-left: 13px;
       line-height: 1.5;
-      @include media(tab) {
-        color: #fff;
-      }
       &:hover {
         margin-top: 1px;
         border-bottom: 1px solid $MainColor;
@@ -149,7 +146,7 @@
     display: flex;
     flex-direction: column-reverse;
     &__left {
-      background-color: #fff;
+      // background-color: #fff;
     }
     &__right {
       display: none;
@@ -158,26 +155,6 @@
 
 }
 
-.fa-test {
-  &::before {
-    content: '\f2bb';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: bold;
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 1.3em;
-  }
-}
-.fa-test2 {
-  &::before {
-    content: '\f2f6';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 1.3em;
-  }
-}
 
 .category-title {
   padding: 10px 0;

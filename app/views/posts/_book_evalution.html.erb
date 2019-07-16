@@ -1,0 +1,12 @@
+<div class="book-evalution-block">
+  <span>評価：</span>
+  <% count = 1  %>
+  <% 5.times do %>
+    <% if count <= post.book_evaluation.to_i %>
+      <span class="book-rate book-rate--check"></span>
+    <% else %>
+      <span class="book-rate book-rate--uncheck"></span>      
+    <% end %>
+    <% count += 1 %>
+  <% end %>
+</div>

@@ -16,6 +16,10 @@ $(function() {
             const data = $(this).data("id");
             const file = $(this).prop("files");
             $(`.filename--${data}`).remove();
+            if (file.length > 3) {
+              alert("画像を3枚まで選択してください。");
+              $(this).val(null);
+            }
 
             Array.from(file).forEach(e => {
               const size = e.size / 1024 / 1024; // ファイルサイズ
@@ -36,6 +40,8 @@ $(function() {
             if (over.indexOf("true") >= 0) {
               //over配列に"true"が存在する
               alert(`画像サイズは5MB以内にしてくだい(${over_name}`);
+              $(this).val(null);
+              over = [];
             }
             // over配列をリセット
             over = [];
