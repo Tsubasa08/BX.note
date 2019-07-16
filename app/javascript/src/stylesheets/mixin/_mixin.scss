@@ -76,6 +76,9 @@
 @mixin radius {
   border-radius: 5px;
 }
+@mixin link-radius {
+  border-radius: 14px;
+}
 
 // ユーザーアイコン
 @mixin icon {
@@ -101,6 +104,40 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+// 複数行３点リーダー
+@mixin three_reader_multi($font-size-base, $line-height-computed, $lines-to-show) {
+  // $font-size-base: 1.4rem;
+  // $line-height-computed: 1.6;
+  // $lines-to-show: 5;
+  height: $font-size-base * $line-height-computed * $lines-to-show;
+  line-height: $line-height-computed;
+  position: relative;
+  &:before,
+  &:after {
+    position: absolute;
+  }
+  &:before {
+    content: "...";
+    top: $font-size-base * $line-height-computed * ($lines-to-show - 1);
+    right: 0;
+  }
+  &:after {
+    content: "";
+    height: 100%;
+    width: 100%;
+  }
+}
+
+// chrome, safari様３点リーダー
+@mixin three-reader_webkit {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+  overflow: hidden;
 }
 
 // input内seachアイコン

@@ -116,4 +116,16 @@ $(function() {
       `<p class="failure-text">「${title}」に一致する検索結果はありません</p>`
     );
   }
+
+  // 投稿メタリンク
+  $(".post-meta-icon").click(function() {
+    let dataId = $(this).attr("data-id");
+    $(`#post-meta-${dataId}`).show();
+  });
+  // 非表示
+  $(document).on("click touchend", function(event) {
+    if (!$(event.target).closest(".post-meta-icon, .post-meta").length) {
+      $(".post-meta").hide();
+    }
+  });
 });

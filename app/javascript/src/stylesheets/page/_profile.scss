@@ -315,10 +315,7 @@
       @include media(pc) {
         margin-top: 30px;
       }
-      $container-bg: #eee;
-      $font-size-base: 1.4rem;
-      $line-height-computed: 1.6;
-      $lines-to-show: 5;
+      
       // height: auto;
       width: 100%;
       overflow: hidden;
@@ -326,23 +323,7 @@
         font-size: 1.4rem;
         &.active {
           @include media(pc) {
-            height: $font-size-base * $line-height-computed * $lines-to-show;
-            line-height: $line-height-computed;
-            position: relative;
-            &:before,
-            &:after {
-              position: absolute;
-            }
-            &:before {
-              content: "...";
-              top: $font-size-base * $line-height-computed * ($lines-to-show - 1);
-              right: 0;
-            }
-            &:after {
-              content: "";
-              height: 100%;
-              width: 100%;
-            }
+            @include three_reader_multi(1.4rem, 1.6, 5);
           }
         }
       }

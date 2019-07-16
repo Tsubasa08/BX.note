@@ -4,7 +4,7 @@
       <%= link_to comment.user, class: 'user-link__item user-link__item--img' do %>
         <%= render 'shared/user_icon', user: comment.user, id_name: '', class_name: '' %>
       <% end %>
-      <%= link_to comment.user.name, comment.user, class: 'user-link__itemuser-link__item--title' %>
+      <%= link_to comment.user.name, comment.user, class: 'user-link__item user-link__item--title' %>
     </div>
     <div class="comment-meta">
       <span class="timestamp">

@@ -57,6 +57,9 @@
 			margin-bottom: 0;
 		}
 	}
+	.user-link__item--title {
+		color: #fff;
+	}
   @include media(pc) {
     display: none;
 	}
