@@ -43,12 +43,7 @@
   height: 100%;
   background: #000;
   opacity: 0.7;
-  // transition: all 0.3s ease-in-out 0s;
 }
-// body.active .modal-close {
-//   display: block;
-//   opacity: 0.7;
-// }
 
 .modal-header {
   position: relative;
@@ -203,9 +198,6 @@
 }
 .panel-area.active {
   transform: translateX(0);
-}
-.panel.active {
-  display:block;
 }
 
 

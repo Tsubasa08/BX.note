@@ -1,4 +1,6 @@
 $(function() {
+  let windowWidth = window.innerWidth; //ウィンドウサイズ
+  const breakPoint = 1120;
   // ハンバーメニュー
   $(".nav-toggle").click(function() {
     $("#tab-menu").toggleClass("nav-open");
@@ -43,25 +45,6 @@ $(function() {
 
   $("#serch-page-close").click(function() {
     $("#serch-page").hide();
-  });
-
-  // 投稿詳細 表示
-  $(".post-list__item").on("click", ".post-show-link, .post-edit", function() {
-    $("body, #modal-close--post-show").addClass("active");
-    setTimeout(function() {
-      $("#modal-content--post-show").fadeIn();
-    }, 200);
-  });
-  // 投稿詳細 非表示
-  $(document).on("click touchend", function(event) {
-    if (!$(event.target).closest("#modal-content--post-show").length) {
-      if ($("#modal-close--post-show").hasClass("active")) {
-        $("#modal-content--post-show").fadeOut("fast");
-        $("body, #modal-close--post-show").removeClass("active");
-
-        $("#content-remove-check").prop("checked", true);
-      }
-    }
   });
 
   // 画像アップロード レイアウト遷移
@@ -118,7 +101,8 @@ $(function() {
   }
 
   // 投稿メタリンク
-  $(".post-meta-icon").click(function() {
+  // $(".post-meta-icon").click(function() {
+  $(document).on("click", ".post-meta-icon", function() {
     let dataId = $(this).attr("data-id");
     $(`#post-meta-${dataId}`).show();
   });
@@ -127,5 +111,10 @@ $(function() {
     if (!$(event.target).closest(".post-meta-icon, .post-meta").length) {
       $(".post-meta").hide();
     }
+  });
+
+  // 投稿画像カルーセル
+  $(".post-list .slider").slick({
+    dots: true
   });
 });

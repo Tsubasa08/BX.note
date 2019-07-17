@@ -1,12 +1,19 @@
 <div class="inner">
 
+  <div class="show-header">
+    <i id="show-header__close" class="fas fa-chevron-left show-header__close"></i>
+    <p class="show-header__title">投稿</p>
+  </div>
+
+
   <div id="post-data" class="post-data">
     <%= render post %>
   </div>
 
+
   <div class="comment-block">
     <div class="comment-list-wrapper">
-      <ol id="comment-list">
+      <ol id="comment-list" class="comment-list">
         <%= render 'comments/comment_list', post: post %>
       </ol>
     </div>

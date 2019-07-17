@@ -99,6 +99,50 @@
       }
     }
 
+    .post-image {
+      margin-top: 10px;
+      .slider {
+        &__item .image {
+          height: 380px;
+          width: 100%;
+          @include cover;
+          @include radius;
+          @include media(sp) {
+            height: 200px;
+          }
+        }
+        .slick-prev, .slick-next {
+          z-index: 5;
+          &::before {
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            text-shadow: 3px 3px 12px #000;
+            @include media(sp) {
+              font-size: 1.5rem;
+            }
+          }
+        }
+        .slick-prev {
+          left: 10px;
+          @include media(sp) {
+            left: 5px;
+          }
+          &::before {
+            content: '\f053';
+          }
+        }
+        .slick-next {
+          right: 10px;
+          @include media(sp) {
+            right: 5px;
+          }
+          &::before {
+            content: '\f054';
+          }
+        }
+      }
+    }
+
     .post-item {
       margin-top: 10px;
       border: 1px solid $border;

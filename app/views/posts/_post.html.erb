@@ -1,13 +1,18 @@
 <li id="post-<%= post.id %>" class="post-list__item">
+
   <div class="inner-left">
     <%= link_to post.user, class: 'user-link__item user-link__item--img' do %>
       <%= render 'shared/user_icon', user: post.user, id_name: '', class_name: '' %>
     <% end %>
   </div>
+
+
   <div class="inner-right">
+    <% if current_user?(post.user)  %>
     <div class="post-meta-icon" data-id="<%= post.id %>">
       <i class="fas fa-angle-down"></i>
     </div>
+    <% end %>
 
     <div class="user-link">
       <%= link_to post.user.name, post.user, class: 'user-link__item user-link__item--post' %>
@@ -20,17 +25,25 @@
       </div>
     <% end %>
 
+    <% if post.images.present? %>
     <div class="categories">
       <% post.post_categories.each do |post_categories| %>
         <%= link_to post_categories.category.name, category_path(post_categories.category.id), class: 'categories__link' %>
       <% end %>
     </div>
+    <% end %>
 
+    <% if post.images.present? %>
     <div class="post-image">
+      <ul class="slider">
       <% post.images.each do |image|%>
-        <%= image_tag image.variant(resize: "300x400") , class: 'image' %>
+        <li class="slider__item">
+          <%= image_tag image, class: 'image' %>
+        </li>
       <% end %>
+      </ul>
     </div>
+    <% end %>
 
     <% if post.genre == 'article' %>
       <div class="post-item">

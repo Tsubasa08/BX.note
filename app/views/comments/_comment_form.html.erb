@@ -1,11 +1,17 @@
 <% if logged_in? %>
-
-  <%= form_with(model: Comment.new(id: current_user.id)) do |f| %>
-  <%= f.text_area :content, id: 'comment-textarea' %>
-  <%= hidden_field_tag 'comment[post_id]', post.id %>
-  <%= f.submit "送信", id: 'comment-submit' %>
-  <% end %>
+  <div class="comment-form-block">
+    <%= form_with(model: Comment.new(id: current_user.id), class: 'comment-form') do |f| %>
+      <%= f.text_area :content, id: 'comment-textarea', class: 'comment-form__textarea', placeholder: 'メッセージを入力' %>
+      <%= hidden_field_tag 'comment[post_id]', post.id %>
+      <%= f.submit "送信", id: 'comment-submit', class: 'comment-form__submit' %>
+    <% end %>
+  </div>
   
 <% else %>
-  <p>ログインしてください</p>
+  <div class="comment-form-block">
+    <div class="comment-form" >
+      <p class="comment-form__textarea">あなたもコメントしてみませんか</p>
+      <%= link_to '登録', signup_path, class: 'comment-form__submit comment-form__submit--signup' %>
+    </div>
+  </div>
 <% end %>
