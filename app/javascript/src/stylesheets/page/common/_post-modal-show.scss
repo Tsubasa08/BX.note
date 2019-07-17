@@ -27,7 +27,7 @@
     @include radius;
   }
   @include media(tab) {
-    // height: 100%;
+    padding-top: 55px;
   }
   > .inner {
     @include media(pc) {
@@ -71,6 +71,35 @@
   }
 
 }
+
+.show-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  height: 55px;
+  width: 100%;
+  @include f-center;
+  background-color: #fff;
+  border-bottom: 1px solid $border;
+  text-align: center;
+  &__title {
+    font-size: 2rem;
+  }
+  &__close {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: $AccentColor;
+    font-size: 1.8rem;
+  }
+  @include media(pc) {
+    display: none;
+  }
+}
+
+
 // comment-block
 .comment-block {
   position: relative;
@@ -86,12 +115,15 @@
       overflow-y: scroll;
       @include radius;
     }
+    @include media(tab) {
+      padding-bottom: 40px;
+    }
 
     .comment-list {
       &__item {
         display: flex;
         justify-content: space-between;
-        padding: 5px 10px;
+        padding: 14px 10px;
         border-bottom: 1px solid $border;
         .inner-left {
           .user-link__item--img img {
@@ -136,6 +168,9 @@
   width: 100%;
   @include media(tab) {
     position: fixed;
+    background-color: #fff;
+    padding: 5px 10px;
+    border-top: 1px solid $border;
   }
   .comment-form {
     display: flex;
@@ -154,6 +189,9 @@
       background-color: $AccentColor;
       color: #fff;
       width: calc(20% - 10px);
+      &--signup {
+        @include f-center;
+      }
     }
   }
 }

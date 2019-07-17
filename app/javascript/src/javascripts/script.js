@@ -47,31 +47,6 @@ $(function() {
     $("#serch-page").hide();
   });
 
-  // 投稿詳細 表示
-  $(".post-list__item").on("click", ".post-show-link, .post-edit", function() {
-    $("body, #modal-close--post-show").addClass("active");
-    // $("#modal-content--post-show").css("opacity", "1");
-    // setTimeout(function() {
-    //   // $("#modal-content--post-show").fadeIn();
-    // }, 200);
-    if (windowWidth < breakPoint) {
-      $("header, main, footer").hide();
-    }
-  });
-  // 投稿詳細 非表示
-  $(document).on("click touchend", function(event) {
-    if (!$(event.target).closest("#modal-content--post-show").length) {
-      if ($("#modal-close--post-show").hasClass("active")) {
-        $("#modal-content--post-show .inner").remove();
-        // $("#modal-content--post-show").fadeOut("fast");
-        $("body, #modal-close--post-show").removeClass("active");
-        if (windowWidth < breakPoint) {
-          $("header, main, footer").show();
-        }
-      }
-    }
-  });
-
   // 画像アップロード レイアウト遷移
   $(".image-form").on("change", function() {
     let over; // Filelist

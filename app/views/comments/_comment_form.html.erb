@@ -8,5 +8,10 @@
   </div>
   
 <% else %>
-  <p>ログインしてください</p>
+  <div class="comment-form-block">
+    <div class="comment-form" >
+      <p class="comment-form__textarea">あなたもコメントしてみませんか</p>
+      <%= link_to '登録', signup_path, class: 'comment-form__submit comment-form__submit--signup' %>
+    </div>
+  </div>
 <% end %>
