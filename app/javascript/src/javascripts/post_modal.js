@@ -96,7 +96,9 @@ $(function() {
   // ------ 投稿詳細モーダル 表示 ------
   $(".post-list__item").on("click", ".post-show-link, .post-edit", function() {
     nowPosition = topPosition; //クリック時の位置取得
-    $("body, #modal-close--post-show").addClass("active");
+    $("body, #modal-content--post-show, #modal-close--post-show").addClass(
+      "active"
+    );
     if (windowWidth < breakPoint) {
       $("header, main, footer").hide();
     }
@@ -106,7 +108,9 @@ $(function() {
   const closeShowModal = function() {
     if ($("#modal-close--post-show").hasClass("active")) {
       $("#modal-content--post-show .inner").remove();
-      $("body, #modal-close--post-show").removeClass("active");
+      $("body, #modal-content--post-show, #modal-close--post-show").removeClass(
+        "active"
+      );
       if (windowWidth < breakPoint) {
         $("header, main, footer").show();
         $(window).scrollTop(nowPosition); //クリック時の位置
