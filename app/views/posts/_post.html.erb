@@ -5,9 +5,11 @@
     <% end %>
   </div>
   <div class="inner-right">
+    <% if current_user?(post.user)  %>
     <div class="post-meta-icon" data-id="<%= post.id %>">
       <i class="fas fa-angle-down"></i>
     </div>
+    <% end %>
 
     <div class="user-link">
       <%= link_to post.user.name, post.user, class: 'user-link__item user-link__item--post' %>
@@ -20,12 +22,15 @@
       </div>
     <% end %>
 
+    <% if post.images.present? %>
     <div class="categories">
       <% post.post_categories.each do |post_categories| %>
         <%= link_to post_categories.category.name, category_path(post_categories.category.id), class: 'categories__link' %>
       <% end %>
     </div>
+    <% end %>
 
+    <% if post.images.present? %>
     <div class="post-image">
       <ul class="slider">
       <% post.images.each do |image|%>
@@ -35,6 +40,7 @@
       <% end %>
       </ul>
     </div>
+    <% end %>
 
     <% if post.genre == 'article' %>
       <div class="post-item">
