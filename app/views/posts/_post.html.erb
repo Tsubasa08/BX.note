@@ -1,9 +1,12 @@
 <li id="post-<%= post.id %>" class="post-list__item">
+
   <div class="inner-left">
     <%= link_to post.user, class: 'user-link__item user-link__item--img' do %>
       <%= render 'shared/user_icon', user: post.user, id_name: '', class_name: '' %>
     <% end %>
   </div>
+
+
   <div class="inner-right">
     <% if current_user?(post.user)  %>
     <div class="post-meta-icon" data-id="<%= post.id %>">

@@ -9,6 +9,7 @@ $(function() {
 
   // 投稿モーダル 開く
   $("#modal-open").click(function() {
+    $(this).toggleClass("active");
     nowPosition = topPosition; //クリック時の位置取得
     $("body").toggleClass("active");
     if (windowWidth >= breakPoint) {
@@ -29,6 +30,7 @@ $(function() {
   const closeModal = function() {
     $("#modal-content--post, #modal-close--post").fadeOut("fast");
     $("body").removeClass("active");
+    $("#modal-open").toggleClass("active");
     if (windowWidth < breakPoint) {
       $("main, footer").show();
     }
@@ -40,8 +42,12 @@ $(function() {
   });
   //モーダル外をクリック
   $(document).on("click touchend", function(event) {
-    if (!$(event.target).closest("#modal-content--post, #modal-open").length) {
-      closeModal();
+    if ($("#modal-open").hasClass("active")) {
+      if (
+        !$(event.target).closest("#modal-content--post, #modal-open").length
+      ) {
+        closeModal();
+      }
     }
   });
 

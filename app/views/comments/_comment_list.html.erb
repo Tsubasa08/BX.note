@@ -1,21 +1,31 @@
 <% post.comments.each do |comment| %>
   <li id="comment-<%= comment.id %>" class="comment-list__item">
-    <div class="user-link">
+
+    <div class="inner-left">
       <%= link_to comment.user, class: 'user-link__item user-link__item--img' do %>
         <%= render 'shared/user_icon', user: comment.user, id_name: '', class_name: '' %>
       <% end %>
-      <%= link_to comment.user.name, comment.user, class: 'user-link__item user-link__item--title' %>
     </div>
-    <div class="comment-meta">
-      <span class="timestamp">
-        <%= time_ago_in_words(comment.created_at) %>前
-      </span>
-      <% if logged_in? && comment?(comment) %>
-        <%= link_to '削除', comment, method: :delete, remote: true %>
-      <% end %>
+
+
+    <div class="inner-right">
+      <div class="user-link">
+        <%= link_to comment.user.name, comment.user, class: 'user-link__item user-link__item--title' %>
+
+        <span class="user-link__timestamp">
+          <%= post.created_at.strftime('%Y/%m/%d') %>
+        </span>
+
+        <% if logged_in? && comment?(comment) %>
+          <%= link_to comment, method: :delete, data: { confirm: "この投稿を本当に削除しますか？" }, class: 'user-link__delete', remote: true do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="comment-content">
+        <p class="comment-content__item"><%= comment.content %></p>
+      </div>
     </div>
-    <div class="comment-content">
-      <p class="comment-content__item"><%= comment.content %></p>
-    </div>
+
   </li>
 <% end %>
