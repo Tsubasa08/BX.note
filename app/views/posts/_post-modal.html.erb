@@ -15,7 +15,7 @@
 
     <p class="modal-header__title">投稿を作成</p>
 
-    <div id="dummy-submit-btn" class="dummy-submit-btn">シェア</div>
+    <div class="dummy-submit-btn">シェア</div>
 
     <div class="close-btn close-btn--pc">
       <div class="modal-icon"></div>
@@ -26,6 +26,8 @@
 
   <!-- modal-main -->
   <div class="modal-main">
+
+    <input type="hidden" id="post-genre">
   
     <div id="label-area" class="label-area">
       <%= button_to select_path, remote: true,params: {data: 'book'}, class: 'label' do %>

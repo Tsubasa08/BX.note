@@ -17,15 +17,6 @@ $(function() {
     }
   });
 
-  // tab-menu contents --vhというカスタムプロパティを作成
-  // let vh = window.innerHeight * 0.01;
-  // document.documentElement.style.setProperty("--vh", `${vh}px`);
-  // // window resize
-  // window.addEventListener("resize", () => {
-  //   vh = window.innerHeight * 0.01;
-  //   document.documentElement.style.setProperty("--vh", `${vh}px`);
-  // });
-
   // ユーザーリンク表示
   $("#user-icon").click(function() {
     $("#user-link").toggle();
@@ -48,19 +39,24 @@ $(function() {
   });
 
   // 画像アップロード レイアウト遷移
-  $(".image-form").on("change", function() {
-    let over; // Filelist
+  $(document).on("change", ".image-form", function() {
+    let over = []; // Filelist配列
     const data = $(this).data("id");
     const file = $(this).prop("files");
     $(`.filename--${data}`).remove();
+    if (file.length > 3) {
+      alert("画像を3枚まで選択してください。");
+      $(this).val(null);
+    }
+
     Array.from(file).forEach(e => {
       const size = e.size / 1024 / 1024; // ファイルサイズ
       if (size > 5) {
-        over = "true";
+        over.push("true");
         over_name = e.name;
         $(`.filename--${data}`).remove();
       } else {
-        over = "false";
+        over.push("false");
         // 選択したファイル名を表示
         $(`#form-image--${data}`).append(
           `<span class="filename filename--${data}">・${e.name}</span>`
@@ -68,11 +64,15 @@ $(function() {
         $(`#input-label--${data}`).addClass("changed");
       }
     });
-    if (over == "true") {
+
+    if (over.indexOf("true") >= 0) {
+      //over配列に"true"が存在する
       alert(`画像サイズは5MB以内にしてくだい(${over_name}`);
+      $(this).val(null);
+      over = [];
     }
-    // overをリセット
-    over = "";
+    // over配列をリセット
+    over = [];
   });
 
   // ページ上部メッセージ
@@ -101,7 +101,6 @@ $(function() {
   }
 
   // 投稿メタリンク
-  // $(".post-meta-icon").click(function() {
   $(document).on("click", ".post-meta-icon", function() {
     let dataId = $(this).attr("data-id");
     $(`#post-meta-${dataId}`).show();
