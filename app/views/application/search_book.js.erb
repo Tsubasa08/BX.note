@@ -1,2 +1,3 @@
-document.getElementById("book-search-result").innerHTML =
-"<%= j(render 'posts/books-list') %> "
+$(function() {
+  $("#book-search-result").html("<%= j(render 'posts/books-list') %>");
+});

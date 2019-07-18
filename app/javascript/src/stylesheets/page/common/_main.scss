@@ -252,7 +252,7 @@
     border-radius: 50%;
     color: #fff;
     font-size: 2.4rem;
-    @include f-center
+    @include f-center;
     @include media(pc) {
       &:hover {
       background-color: rgba(51, 51, 51, 0.8);

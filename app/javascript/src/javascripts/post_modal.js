@@ -71,7 +71,7 @@ $(function() {
     $("#label-area, #panel-area").toggleClass("active");
     $("#prev-btn").fadeIn();
     if (windowWidth < breakPoint) {
-      $("#close-btn--tab, #dummy-submit-btn").fadeToggle();
+      $("#close-btn--tab, .dummy-submit-btn").fadeToggle();
     }
   });
   // ジャンル選択画面に戻る
@@ -80,7 +80,8 @@ $(function() {
       $("#label-area, #panel-area").toggleClass("active");
       $(this).fadeOut();
       if (windowWidth < breakPoint) {
-        $("#close-btn--tab, #dummy-submit-btn").fadeToggle();
+        $("#close-btn--tab, .dummy-submit-btn").fadeToggle();
+        $(".dummy-submit-btn").attr("id", "");
       }
       // フォームリセット
       $(".form--post")[0].reset();
@@ -88,7 +89,7 @@ $(function() {
   });
 
   // ダミーsubmitボタン(TABサイズ以下)
-  $(document).on("click", ".dummy-submit-btn", function() {
+  $(document).on("click", "#dummy-submit-btn", function() {
     $("#form-post").submit();
   });
 
