@@ -32,13 +32,22 @@ $(function() {
   });
 
   // ----- モーダル 非表示 -----
-  const closeFormModal = function() {
-    confirm("投稿を破棄しますか？");
+  const closeFormModalMethod = function() {
     $("#modal-content--post, #modal-close--post").fadeOut("fast");
     $("body, #modal-open").removeClass("active");
     $("#panel-area .panel").remove();
     $("header, main, footer").show();
     $(window).scrollTop(nowPosition); //クリック時の位置
+  };
+
+  const closeFormModal = function() {
+    if ($("#panel-area").hasClass("active")) {
+      if (window.confirm("投稿を破棄しますか？")) {
+        closeFormModalMethod();
+      }
+    } else {
+      closeFormModalMethod();
+    }
   };
 
   // closeボタンクリック(PC：バツボタン TAB以下：キャンセルボタン)
@@ -66,13 +75,15 @@ $(function() {
   });
   // ジャンル選択画面に戻る
   $("#prev-btn").click(function() {
-    $("#label-area, #panel-area").toggleClass("active");
-    $(this).fadeOut();
-    if (windowWidth < breakPoint) {
-      $("#close-btn--tab, #dummy-submit-btn").fadeToggle();
+    if (window.confirm("投稿を破棄しますか？")) {
+      $("#label-area, #panel-area").toggleClass("active");
+      $(this).fadeOut();
+      if (windowWidth < breakPoint) {
+        $("#close-btn--tab, #dummy-submit-btn").fadeToggle();
+      }
+      // フォームリセット
+      $(".form--post")[0].reset();
     }
-    // フォームリセット
-    $(".form--post")[0].reset();
   });
 
   // ダミーsubmitボタン(TABサイズ以下)
@@ -98,6 +109,9 @@ $(function() {
   // ------ モーダル 表示 ------
   $(".post-list__item").on("click", ".post-show-link, .post-edit", function() {
     nowPosition = topPosition; //クリック時の位置取得
+    if ($(this).text() === "編集する") {
+      $("#modal-close--post-show").addClass("edit-active");
+    }
     $("body, #modal-content--post-show, #modal-close--post-show").addClass(
       "active"
     );
@@ -119,15 +133,30 @@ $(function() {
       }
     }
   };
+
+  const closeEditmModal = function() {
+    if (window.confirm("編集内容を破棄しますか？")) {
+      closeShowModal();
+      $("#modal-close--post-show").removeClass("edit-active");
+    }
+  };
   // PCサイズ
   $(document).on("click touchend", function(event) {
     if (!$(event.target).closest("#modal-content--post-show").length) {
-      closeShowModal();
+      if ($("#modal-close--post-show").hasClass("edit-active")) {
+        closeEditmModal();
+      } else {
+        closeShowModal();
+      }
     }
   });
 
   // TABサイズ以下
   $("#modal-content--post-show").on("click", ".close-btn", function() {
-    closeShowModal();
+    if ($("#modal-close--post-show").hasClass("edit-active")) {
+      closeEditmModal();
+    } else {
+      closeShowModal();
+    }
   });
 });

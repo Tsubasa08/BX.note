@@ -18,7 +18,9 @@
 
       .dummy-submit-btn {
         &--edit {
-          display: block;
+          @include media(tab) {
+            display: block;
+          }
         }
       }
     }
