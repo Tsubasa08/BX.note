@@ -3,7 +3,7 @@
 */
 .header {
 	position: fixed;
-	z-index: 10;
+	z-index: 30;
 	height: $header-height;
 	width: 100%;
   background-color: #fff;
@@ -133,7 +133,7 @@
 	transform: translateY(-50%);
 	width: 40px;
 	height: 40px;
-	z-index: 20;
+	z-index: 40;
 	background-color: $AccentColor;
 	
 	border-radius: 50%;
@@ -203,9 +203,11 @@
 		// transform: translateY(calc(-100% - 56px));
 	
 		.profile-card--sp {
-			// height: 144px;
-			padding: 0 45px;
+			padding: 0 120px;
 			border-bottom: 1px solid $border;
+			@include media(sp) {
+				padding: 0 45px;
+			}
 		}
 	
 		.categories {

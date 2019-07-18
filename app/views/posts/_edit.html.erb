@@ -1,6 +1,22 @@
-<div class="inner">
+<div id="inner--edit" class="inner inner--edit">
 
-  <div id="panel-area" class="post-data">
+  <div class="modal-header">
+    <div id="close-btn--tab" class="close-btn close-btn--tab">
+      キャンセル
+    </div>
+
+    <p class="modal-header__title">投稿を編集</p>
+
+    <div class="dummy-submit-btn dummy-submit-btn--edit">保存</div>
+
+    <div class="close-btn close-btn--pc">
+      <div class="modal-icon"></div>
+    </div>
+
+  </div>
+
+
+  <div id="panel-area" class="panel post-data">
     <% if @post.genre == "book" %>
       <%= render 'posts/post_form_book', post: @post %>
     <% elsif @post.genre == "article" %>
@@ -9,6 +25,5 @@
       <%= render 'posts/post_form_other', post: @post %>
     <% end %>
   </div>
-  <p> <%= @post.user.name %> </p>
   
 </div>

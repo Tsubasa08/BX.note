@@ -135,70 +135,70 @@ post_form
         margin-left: 20px;
       }
     }
-    .form {
-      &__top-block {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        width: 605px;
-      }
-      &__text-area-block {
-        display: flex;
-        .post-form__area {
-          height: 120px;
-          width: 550px;
-          margin-left: 15px;
-          border: 1px solid $AccentColor;
-          @include radius;
+  }
+  .form {
+        &__top-block {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          width: 605px;
         }
-      }
-      &__check-block {
-        // transform: translateY(-60px);
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        label {
-          margin-bottom: 8px;
-          &:nth-last-of-type(1) {
-            margin-bottom: 0;
+        &__text-area-block {
+          display: flex;
+          .post-form__area {
+            height: 120px;
+            width: 550px;
+            margin-left: 15px;
+            border: 1px solid $AccentColor;
+            @include radius;
           }
         }
-      }
-      &__btn-block {
-        display: flex;
-        align-items: flex-start;
-        margin-top: 20px;
-        .form-image {
-          margin-right: 23px;
-          flex-direction: row-reverse;
-          .file-name-block {
-            margin-right: 20px;
-          }
-        }
-      }
-      &__radio-group {
-        margin-left: 55px;
-        padding: 10px;
-        .star-group-wrapper {
-          padding-left: 30px;
-          .star-group {
-            .railo-label {
-              font-size: 3rem;
+        &__check-block {
+          // transform: translateY(-60px);
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          label {
+            margin-bottom: 8px;
+            &:nth-last-of-type(1) {
+              margin-bottom: 0;
             }
           }
         }
-      }
-      &__label--post-image {
-        transform: translateY(-9px);
-      }
-      &__article-block {
-        width: 550px;
-        margin-left: 55px;
-      }
-      &__button--post {
-        padding: 5px 30px;
-      }
-    }
+        &__btn-block {
+          display: flex;
+          align-items: flex-start;
+          margin-top: 20px;
+          .form-image {
+            margin-right: 23px;
+            flex-direction: row-reverse;
+            .file-name-block {
+              margin-right: 20px;
+            }
+          }
+        }
+        &__radio-group {
+          margin-left: 55px;
+          padding: 10px;
+          .star-group-wrapper {
+            padding-left: 30px;
+            .star-group {
+              .railo-label {
+                font-size: 3rem;
+              }
+            }
+          }
+        }
+        &__label--post-image {
+          transform: translateY(-9px);
+        }
+        &__article-block {
+          width: 550px;
+          margin-left: 55px;
+        }
+        &__button--post {
+          padding: 5px 30px;
+        }
   }
   .book-search-result {
     .book-list {
@@ -266,91 +266,86 @@ post_form
       display: block;
       text-align: center;
     }
-    .form {
-      &__top-block {
-        // display: flex;
-        // flex-direction: column;
-        // align-items: flex-end;
-        // width: 605px;
+  }
+  .form {
+    &__text-area-block {
+      position: relative;
+      .modal-user-icon--form {
+        position: absolute;
+        top: 8px;
+        left: 5px;
       }
-      &__text-area-block {
-        position: relative;
-        .modal-user-icon--form {
-          position: absolute;
-          top: 8px;
-          left: 5px;
-        }
-        .post-form__area {
-          height: 130px;
-          width: 100%;
-          padding-left: 53px;
-          border: {
-            top: 1px solid $border;
-            bottom: 1px solid $border;
-          }
-          // margin-left: 15px;
+      .post-form__area {
+        height: 130px;
+        width: 100%;
+        padding-left: 53px;
+        border: {
+          top: 1px solid $border;
+          right: none;
+          bottom: 1px solid $border;
+          left: none;
         }
       }
-      &__check-block {
-        position: relative;
-        .check-block-title {
-          padding: 10px;
-          border-bottom: 1px solid $border;
-          &::after {
-            content: '\f107';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: bold;
-            position: absolute;
-            top: 13px;
-            right: 10px;
-            display: block;
-            color: gray;
-          }
-          &.active::after {
-            content: '\f106';
-          }
-        }
-        .category-list {
-          display: none;
-          
-        }
-        label {
-          padding: 10px;
-          font-size: 1.6rem;
-          border-bottom: 1px solid $border;
-          input {
-            margin-right: 15px;
-          }
-        }
-      }
-      &__btn-block {
-        padding-left: 10px;
+    }
+    &__check-block {
+      position: relative;
+      .check-block-title {
+        padding: 10px;
         border-bottom: 1px solid $border;
-        .form-image {
+        &::after {
+          content: '\f107';
+          font-family: 'Font Awesome 5 Free';
+          font-weight: bold;
+          position: absolute;
+          top: 13px;
+          right: 10px;
+          display: block;
+          color: gray;
+        }
+        &.active::after {
+          content: '\f106';
         }
       }
-      &__radio-group {
-        padding: 16px 10px;
-        .star-group-wrapper {
-          display: flex;
-          justify-content: center;
-          .star-group {
-            .railo-label {
-              font-size: 4rem;
-            }
+      .category-list {
+        display: none;
+        
+      }
+      label {
+        padding: 10px;
+        font-size: 1.6rem;
+        border-bottom: 1px solid $border;
+        input {
+          margin-right: 15px;
+        }
+      }
+    }
+    &__btn-block {
+      padding-left: 10px;
+      border-bottom: 1px solid $border;
+      .form-image {
+      }
+    }
+    &__radio-group {
+      padding: 16px 10px;
+      .star-group-wrapper {
+        display: flex;
+        justify-content: center;
+        .star-group {
+          .railo-label {
+            font-size: 4rem;
           }
         }
       }
-      &__label--post-image {
-        margin-right: 10px;
-      }
-      &__article-block {
-        margin-top: 28px;
-        padding: 0 10px;
-      }
-      &__button--post {
-        display: none;
-      }
+    }
+    &__label--post-image {
+      margin-right: 10px;
+    }
+    &__article-block {
+      margin-top: 28px;
+      padding: 0 10px;
+    }
+    &__button--post {
+      display: none;
     }
   }
 
