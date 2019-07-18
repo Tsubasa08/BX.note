@@ -1,0 +1,29 @@
+/*
+  post-modal--edit
+*/
+.modal-content--post-show {
+  > .inner {
+    &--edit {
+      @include media(pc) {
+        height: 670px;
+        width: 800px;
+      }
+      .post-data {
+        position: relative;
+        padding: 20px;
+        @include media(tab) {
+          padding: 23px 0 0 0;
+        }
+      }
+
+      .dummy-submit-btn {
+        &--edit {
+          display: block;
+        }
+      }
+    }
+  }
+}
+/*
+  post-modal--edit end
+*/

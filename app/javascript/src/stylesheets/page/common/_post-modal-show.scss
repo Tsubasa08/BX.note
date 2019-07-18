@@ -1,5 +1,5 @@
 /*
-  post-modal
+  post-modal--show
 */
 .post-show-link {
   cursor: pointer;
@@ -13,7 +13,6 @@
   left: 0;
   z-index: -10;
   height: 100%;
-  width: 100%;
   background: #fff;
   box-shadow: 0 0 24px rgba(0, 0, 0, 0.16);
   @include media(pc) {
@@ -21,18 +20,35 @@
     left: 50%;
     transform: translateX(-50%);
     height: auto;
-    width: 1120px;
+    // width: 1120px;
     // padding: 20px;
-    background-color: $SubColor;
     @include radius;
   }
   @include media(tab) {
-    padding-top: 55px;
+    width: 100%;
   }
   > .inner {
-    @include media(pc) {
-      height: 90vh;
-      padding: 20px;
+    &--show {
+      @include media(pc) {
+        display: flex;
+        justify-content: space-between;
+        height: 90vh;
+        width: 1120px;
+        padding: 20px;
+        background-color: $SubColor;
+        .post-data {
+          width: calc(65% - 10px);
+        }
+        .comment-block {
+        width: calc(35% - 10px );
+        }
+      }
+      @include media(tab) {
+        padding-top: 55px;
+        .post-data {
+          border-bottom: 1px solid $border;
+        }
+      }
     }
   }
   &.active {
@@ -60,21 +76,7 @@
   }
 }
 
-@include media(pc) {
-  .modal-content--post-show {
-    > .inner {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
-  .post-data {
-  width: calc(65% - 10px);
-  }
-  .comment-block {
-  width: calc(35% - 10px );
-  }
 
-}
 
 .show-header {
   position: fixed;
@@ -83,10 +85,10 @@
   z-index: 30;
   height: 55px;
   width: 100%;
-  @include f-center;
-  background-color: #fff;
+  background-color: #E9EBEE;
   border-bottom: 1px solid $border;
   text-align: center;
+  @include f-center;
   &__title {
     font-size: 2rem;
   }
@@ -95,8 +97,6 @@
     top: 50%;
     left: 15px;
     transform: translateY(-50%);
-    color: $AccentColor;
-    font-size: 1.8rem;
   }
   @include media(pc) {
     display: none;
@@ -107,10 +107,6 @@
 // comment-block
 .comment-block {
   position: relative;
-  @include media(pc) {
-    
-    
-  }
   .comment-list-wrapper {
     font-size: 1.4rem;
     background-color: #fff;
@@ -120,7 +116,7 @@
       @include radius;
     }
     @include media(tab) {
-      padding-bottom: 40px;
+      padding-bottom: 51px;
     }
 
     .comment-list {
@@ -129,6 +125,11 @@
         justify-content: space-between;
         padding: 14px 10px;
         border-bottom: 1px solid $border;
+        // @include media(tab) {
+        //   &:nth-of-type(1) {
+        //     border-top: 1px solid $border;
+        //   }
+        // }
         .inner-left {
           .user-link__item--img img {
             height: 40px;
@@ -202,5 +203,5 @@
 // comment-block end
  
 /*
-  post-modal end
+  post-modal--show end
 */

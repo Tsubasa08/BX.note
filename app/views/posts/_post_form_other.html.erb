@@ -1,19 +1,32 @@
-<%= form_with(model: @post, url: post_path, local: true, class: 'form form--post') do |f| %>
+<p class="label-title label-title--3">その他</p>
+<%= form_with(model: @post, url: post_path, local: true, id: "form-post", class: 'form form--post') do |f| %>
   <% if f.object %>
     <%= render 'shared/error_messages', object: f.object %>
   <% end %>
-  <%= render 'shared/user_icon', user: post.user, id_name: 'user-icon', class_name: 'modal-user-icon' %>
-    <%= f.text_area :content, class: 'post-form__area', placeholder: '何をシェアする？' %>
-    <div class="check-block">
-      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, class: 'c-check') %>
+  <div class="form__top-block">
+    <div class="form__text-area-block">
+      <%= render 'shared/user_icon', user: current_user, id_name: 'user-icon', class_name: 'modal-user-icon modal-user-icon--form' %>
+      <%= f.text_area :content, class: 'post-form__area', placeholder: '何をシェアする？' %>
     </div>
-    <div id="form-image--post-other">
-      <%= f.label :images, id: 'input-label--post-other', class: 'form__label--post-image' do %>
-      <i class="far fa-image"></i>
-      <%= f.file_field :images, multiple: true, accept: 'image/jpeg,image/gif,image/png', class: 'image-form form__input--image', data: {id: 'post-other'} %>
+    <div class="form__btn-block">
+      <div class="form-image">
+        <%= f.label :images, id: 'input-label--post-other', class: 'form__label--post-image' do %>
+        <i class="far fa-image"></i>
+        <%= f.file_field :images, multiple: true, accept: 'image/jpeg,image/gif,image/png', class: 'image-form form__input--image', data: {id: 'post-other'} %>
+        <% end %>
+        <div id="form-image--post-other" class="file-name-block"></div>
+      </div>
+      <%= f.submit '保存', class: "form__button--post", id: 'button-post' %>
+    </div>
+  </div>
+  <div id="category-check" class="form__check-block">
+    <p id="check-block-title" class="check-block-title">カテゴリー</p>
+    <div id="category-list" class="category-list">
+      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name, class: 'c-check') do |b| %>
+      <%= b.label { b.check_box + b.text } %>
       <% end %>
     </div>
-
+  </div>
+    
     <%= f.hidden_field :genre, value: post.genre %>
-    <%= f.submit '保存', class: "form__button--post", id: '' %>
 <% end %>
