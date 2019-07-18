@@ -44,6 +44,7 @@ $(function() {
     if ($("#panel-area").hasClass("active")) {
       if (window.confirm("投稿を破棄しますか？")) {
         closeFormModalMethod();
+        $("#label-area, #panel-area").toggleClass("active");
       }
     } else {
       closeFormModalMethod();
@@ -100,7 +101,7 @@ $(function() {
   }
 
   //本検索ローディング処理中アイコン
-  $("#panel-area").on("click", "#book-serch", function() {
+  $(document).on("click", "#book-serch", function() {
     $("#book-list").remove();
     $("#loading-wrapper").show();
   });

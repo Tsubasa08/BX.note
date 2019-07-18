@@ -203,9 +203,11 @@
 		// transform: translateY(calc(-100% - 56px));
 	
 		.profile-card--sp {
-			// height: 144px;
-			padding: 0 45px;
+			padding: 0 120px;
 			border-bottom: 1px solid $border;
+			@include media(sp) {
+				padding: 0 45px;
+			}
 		}
 	
 		.categories {
