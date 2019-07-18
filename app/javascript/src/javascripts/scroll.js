@@ -1,4 +1,21 @@
 $(function() {
-  let windowWidth = window.innerWidth; //ウィンドウサイズ
-  const breakPoint = 1120;
+  $(window).scroll(function() {
+    const scrolleHeight = $(window).scrollTop(); // スクロールトップポジションを取得
+
+    // ---------- トップに戻るボタン ----------
+    if (scrolleHeight < 100) {
+      $("#toTop").fadeOut(); //トップに戻るボタン_非表示
+    } else {
+      $("#toTop").fadeIn(); //トップに戻るボタン_表示
+    }
+  });
+
+  $("#toTop").click(function() {
+    $("html, body").animate(
+      {
+        scrollTop: 0
+      },
+      500
+    );
+  });
 });

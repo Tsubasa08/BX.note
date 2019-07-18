@@ -4,10 +4,12 @@
     <title><%= full_title(yield(:title)) %></title>
     <%= render 'layouts/meta_link' %>
   </head> 
+
   <body>
     <!-- header -->
     <%= render 'layouts/header' %> 
     <!-- header end -->
+
     <div class="main-container">
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert--#{message_type}", id: "alert") %>
@@ -19,12 +21,19 @@
       
       <%= yield %>
 
-
     </div>
-      <!-- footer -->
-      <% unless action_name == 'edit' %>
-       <%= render 'layouts/footer' %>
-      <% end %> 
-      <!-- footer end -->
+
+    <!-- footer -->
+    <% unless action_name == 'edit' %>
+     <%= render 'layouts/footer' %>
+    <% end %> 
+    <!-- footer end -->
+
+    <div id="toTop" class="toTop">
+      <div class="toTop__block">
+        <i class="fas fa-angle-up toTop__icon"></i>
+      </div>
+    </div>
+    
   </body>
 </html>
