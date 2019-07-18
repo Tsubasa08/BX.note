@@ -17,15 +17,6 @@ $(function() {
     }
   });
 
-  // tab-menu contents --vhというカスタムプロパティを作成
-  // let vh = window.innerHeight * 0.01;
-  // document.documentElement.style.setProperty("--vh", `${vh}px`);
-  // // window resize
-  // window.addEventListener("resize", () => {
-  //   vh = window.innerHeight * 0.01;
-  //   document.documentElement.style.setProperty("--vh", `${vh}px`);
-  // });
-
   // ユーザーリンク表示
   $("#user-icon").click(function() {
     $("#user-link").toggle();
@@ -48,34 +39,6 @@ $(function() {
   });
 
   // 画像アップロード レイアウト遷移
-  // $(".image-form").on("change", function() {
-  //   let over; // Filelist
-  //   const data = $(this).data("id");
-  //   const file = $(this).prop("files");
-  //   $(`.filename--${data}`).remove();
-  //   Array.from(file).forEach(e => {
-  //     const size = e.size / 1024 / 1024; // ファイルサイズ
-  //     if (size > 5) {
-  //       over = "true";
-  //       over_name = e.name;
-  //       $(`.filename--${data}`).remove();
-  //     } else {
-  //       over = "false";
-  //       // 選択したファイル名を表示
-  //       $(`#form-image--${data}`).append(
-  //         `<span class="filename filename--${data}">・${e.name}</span>`
-  //       );
-  //       $(`#input-label--${data}`).addClass("changed");
-  //     }
-  //   });
-  //   if (over == "true") {
-  //     alert(`画像サイズは5MB以内にしてくだい(${over_name}`);
-  //   }
-  //   // overをリセット
-  //   over = "";
-  // });
-
-  // 投稿モーダル内 画像アップロード レイアウト遷移
   $(document).on("change", ".image-form", function() {
     let over = []; // Filelist配列
     const data = $(this).data("id");
@@ -138,7 +101,6 @@ $(function() {
   }
 
   // 投稿メタリンク
-  // $(".post-meta-icon").click(function() {
   $(document).on("click", ".post-meta-icon", function() {
     let dataId = $(this).attr("data-id");
     $(`#post-meta-${dataId}`).show();
@@ -153,63 +115,5 @@ $(function() {
   // 投稿画像カルーセル
   $(".post-list .slider").slick({
     dots: true
-  });
-
-  // button 有効/無効 切り替え
-  $("#button-post").prop("disabled", true); //初期値：disabled
-
-  const judgeMent = function(data) {
-    if (data) {
-      //button 有効化
-      $("#button-post")
-        .prop("disabled", false)
-        .removeClass("disabled");
-      $(".dummy-submit-btn").attr("id", "dummy-submit-btn");
-    } else {
-      //button 無効化
-      $("#button-post")
-        .prop("disabled", true)
-        .addClass("disabled");
-      $(".dummy-submit-btn").attr("id", "");
-    }
-  };
-
-  $(document).on("keyup", "#post_content, #post_link_url", function() {
-    const genre = $("#post-genre").val();
-    const contentVal = $("#post_content").val();
-    const linkVal = $("#post_link_url").val();
-    const rankVal = $('input[name="post[book_evaluation]"]:checked').val();
-
-    switch (genre) {
-      case "book":
-        judgeMent(contentVal && linkVal && rankVal);
-        break;
-      case "article":
-        judgeMent(contentVal && linkVal);
-        break;
-      case "other":
-        judgeMent(contentVal);
-        break;
-    }
-  });
-
-  $(document).on("change", 'input[name="post[book_evaluation]"]', function() {
-    const genre = $("#post-genre").val();
-    const contentVal = $("#post_content").val();
-    const linkVal = $("#post_link_url").val();
-    const rankVal = $('input[name="post[book_evaluation]"]:checked').val();
-    if (genre === "book") {
-      judgeMent(contentVal && linkVal && rankVal);
-    }
-  });
-
-  $(document).on("change", "#post_link_url", function() {
-    const genre = $("#post-genre").val();
-    const contentVal = $("#post_content").val();
-    const linkVal = $("#post_link_url").val();
-    const rankVal = $('input[name="post[book_evaluation]"]:checked').val();
-    if (genre === "book") {
-      judgeMent(contentVal && linkVal && rankVal);
-    }
   });
 });

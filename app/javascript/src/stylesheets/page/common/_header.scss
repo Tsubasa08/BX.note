@@ -193,14 +193,8 @@
 		transform: translateY(-56px);
 		max-height: 100%;
 		width: 100vw;
-		/* カスタムプロパティ未対応ブラウザ対応 */
-		// height: 100vh;
-		// /* 100vh --vhが未定義の場合は1vhを使う */
-		// height: calc(var(--vh, 1vh) * 100);
 		z-index: 15;
-		
 		transition-duration: 0.66s;
-		// transform: translateY(calc(-100% - 56px));
 	
 		.profile-card--sp {
 			padding: 0 120px;
