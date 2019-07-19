@@ -71,17 +71,6 @@ $(function() {
     }
   });
 
-  // ----- コメント -----
-  // $(document).on("keyup", "#post_content", function() {
-  //   const genre = $("#post-genre").val();
-  //   const contentVal = $("#post_content").val();
-  //   const linkVal = $("#post_link_url").val();
-  //   const rankVal = $('input[name="post[book_evaluation]"]:checked').val();
-  //   if (genre === "book") {
-  //     judgeMent(contentVal && linkVal && rankVal);
-  //   }
-  // });
-
   // ---------- 本検索結果選択 ----------
   $(document).on("click", ".book-list__item", function() {
     let element = $(this).html();
@@ -104,13 +93,13 @@ $(function() {
   });
 
   // ---------- ダミーsubmitボタン(TABサイズ以下) ----------
-  $(document).on("click", "#dummy-submit-btn", function() {
+  $(document).on("touchend", "#dummy-submit-btn", function() {
     $("#form-post").submit();
   });
 
   // ---------- カテゴリープルダウンメニュー(TABサイズ以下) ----------
   if (windowWidth < breakPoint) {
-    $(document).on("click", "#check-block-title", function() {
+    $(document).on("touchend", "#check-block-title", function() {
       $("#category-list").slideToggle();
       $(this).toggleClass("active");
     });
