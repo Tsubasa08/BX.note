@@ -132,6 +132,7 @@
       font-weight: bold;
       margin-left: 13px;
       line-height: 1.5;
+      @include harf_wrap;
       &:hover {
         margin-top: 1px;
         border-bottom: 1px solid $MainColor;
