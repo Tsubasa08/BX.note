@@ -1,7 +1,4 @@
-document.getElementById("follow_form").innerHTML =
-"<%= j(render('users/follow', user: @user)) %>"
-
-followers = document.getElementsByClassName("link__num--followers");
-for (i = 0; i < followers.length; i++) {
-  followers[i].innerHTML = '<%= @user.followers.count %>';
-};
+$(function() {
+  $("#follow_form").html("<%= j(render('users/follow', user: @user)) %>");
+  $(".link__num--followers").html("<%= @user.followers.count %>");
+});
