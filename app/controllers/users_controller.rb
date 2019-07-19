@@ -67,9 +67,6 @@ before_action :admin_user, only: :destroy
     @current_page_like = "current" #ページレイアウト活性化
   end
 
-  # def ajax
-  #   render json: @user
-  # end
 
   private
 
