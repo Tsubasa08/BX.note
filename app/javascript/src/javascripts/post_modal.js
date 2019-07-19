@@ -5,12 +5,12 @@ $(function() {
 
   let topPosition, nowPosition;
   $(window).scroll(function() {
-    // スクロールトップポジション
+    // トップポジション
     topPosition = $(window).scrollTop();
   });
 
   // ---------- 投稿フォームモーダル ----------
-  // ----- モーダル 表示 -----
+  // ----- 表示 -----
   $("#modal-open").click(function() {
     $("body, #modal-open").addClass("active");
     nowPosition = topPosition; //クリック時の位置取得
@@ -31,7 +31,7 @@ $(function() {
     }
   });
 
-  // ----- モーダル 非表示 -----
+  // ----- 非表示 -----
   const closeFormModalMethod = function() {
     $("#modal-content--post, #modal-close--post").fadeOut("fast");
     $("body, #modal-open").removeClass("active");
@@ -55,7 +55,8 @@ $(function() {
   $(".close-btn").click(function() {
     closeFormModal();
   });
-  //投稿フォームモーダル外をクリック
+
+  //モーダル外をクリック
   $(document).on("click touchend", function(event) {
     if ($("#modal-open").hasClass("active")) {
       if (
@@ -66,7 +67,7 @@ $(function() {
     }
   });
 
-  // 投稿フォームモーダル パネル切り替え
+  // ----- パネル切り替え -----
   $(".label").click(function() {
     $("#label-area, #panel-area").toggleClass("active");
     $("#prev-btn").fadeIn();
@@ -74,7 +75,8 @@ $(function() {
       $("#close-btn--tab, .dummy-submit-btn").fadeToggle();
     }
   });
-  // ジャンル選択画面に戻る
+
+  // ----- ジャンル選択画面に戻る -----
   $("#prev-btn").click(function() {
     if (window.confirm("投稿を破棄しますか？")) {
       $("#label-area, #panel-area").toggleClass("active");
@@ -88,27 +90,8 @@ $(function() {
     }
   });
 
-  // ダミーsubmitボタン(TABサイズ以下)
-  $(document).on("click", "#dummy-submit-btn", function() {
-    $("#form-post").submit();
-  });
-
-  // カテゴリープルダウンメニュー
-  if (windowWidth < breakPoint) {
-    $(document).on("click", "#check-block-title", function() {
-      $("#category-list").slideToggle();
-      $(this).toggleClass("active");
-    });
-  }
-
-  //本検索ローディング処理中アイコン
-  $(document).on("click", "#book-serch", function() {
-    $("#book-list").remove();
-    $("#loading-wrapper").show();
-  });
-
   // ---------- 投稿詳細・編集モーダル ----------
-  // ------ モーダル 表示 ------
+  // ------ 表示 ------
   $(".post-list__item").on("click", ".post-show-link, .post-edit", function() {
     nowPosition = topPosition; //クリック時の位置取得
     if ($(this).text() === "編集する") {
@@ -122,7 +105,8 @@ $(function() {
     }
   });
 
-  // ------ モーダル 非表示 ------
+  // ------ 非表示 ------
+  // 投稿詳細
   const closeShowModal = function() {
     if ($("#modal-close--post-show").hasClass("active")) {
       $("#modal-content--post-show .inner").remove();
@@ -136,12 +120,14 @@ $(function() {
     }
   };
 
+  // 投稿編集
   const closeEditmModal = function() {
     if (window.confirm("編集内容を破棄しますか？")) {
       closeShowModal();
       $("#modal-close--post-show").removeClass("edit-active");
     }
   };
+
   // PCサイズ
   $(document).on("click touchend", function(event) {
     if (!$(event.target).closest("#modal-content--post-show").length) {

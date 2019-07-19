@@ -1,15 +1,20 @@
 $(function() {
   $(window).scroll(function() {
-    const scrolleHeight = $(window).scrollTop(); // スクロールトップポジションを取得
+    // スクロールトップポジション
+    const scrolleHeight = $(window).scrollTop();
 
     // ---------- トップに戻るボタン ----------
+    // ----- ボタン表示/非表示 -----
     if (scrolleHeight < 250) {
-      $("#toTop").fadeOut(); //トップに戻るボタン_非表示
+      // 非表示
+      $("#toTop").fadeOut();
     } else {
-      $("#toTop").fadeIn(); //トップに戻るボタン_表示
+      // 表示
+      $("#toTop").fadeIn();
     }
   });
 
+  // ----- トップへスクロール -----
   $("#toTop").click(function() {
     $("html, body").animate(
       {

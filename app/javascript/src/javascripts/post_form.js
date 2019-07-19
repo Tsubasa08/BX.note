@@ -1,4 +1,8 @@
 $(function() {
+  //ウィンドウサイズ
+  let windowWidth = window.innerWidth;
+  const breakPoint = 1120;
+
   // ---------- submitボタン 有効/無効 切替 ----------
   $("#button-post").prop("disabled", true); //初期値：disabled
 
@@ -78,5 +82,24 @@ $(function() {
     $("#post_link_title").val(bookTitle);
     $("#post_link_image").val(bookImg);
     $(".book-list__item").hide();
+  });
+
+  // ---------- ダミーsubmitボタン(TABサイズ以下) ----------
+  $(document).on("click", "#dummy-submit-btn", function() {
+    $("#form-post").submit();
+  });
+
+  // ---------- カテゴリープルダウンメニュー(TABサイズ以下) ----------
+  if (windowWidth < breakPoint) {
+    $(document).on("click", "#check-block-title", function() {
+      $("#category-list").slideToggle();
+      $(this).toggleClass("active");
+    });
+  }
+
+  // ---------- 本検索ローディング処理中アイコン(TABサイズ以下) ----------
+  $(document).on("click", "#book-serch", function() {
+    $("#book-list").remove();
+    $("#loading-wrapper").show();
   });
 });
