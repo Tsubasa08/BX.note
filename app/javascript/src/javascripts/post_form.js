@@ -22,25 +22,33 @@ $(function() {
     }
   };
 
-  // ----- ３ジャンル共通 -----
-  $(document).on("keyup", "#post_content, #post_link_url", function() {
-    const genre = $("#post-genre").val();
-    const contentVal = $("#post_content").val();
-    const linkVal = $("#post_link_url").val();
-    const rankVal = $('input[name="post[book_evaluation]"]:checked').val();
+  // ----- ３ジャンル + コメント -----
+  $(document).on(
+    "keyup",
+    "#post_content, #post_link_url, #comment_content",
+    function() {
+      const genre = $("#post-genre").val();
+      const contentVal = $("#post_content").val();
+      const commentContentVal = $("#comment_content").val();
+      const linkVal = $("#post_link_url").val();
+      const rankVal = $('input[name="post[book_evaluation]"]:checked').val();
 
-    switch (genre) {
-      case "book":
-        judgeMent(contentVal && linkVal && rankVal);
-        break;
-      case "article":
-        judgeMent(contentVal && linkVal);
-        break;
-      case "other":
-        judgeMent(contentVal);
-        break;
+      switch (genre) {
+        case "book":
+          judgeMent(contentVal && linkVal && rankVal);
+          break;
+        case "article":
+          judgeMent(contentVal && linkVal);
+          break;
+        case "other":
+          judgeMent(contentVal);
+          break;
+        case "comment":
+          judgeMent(commentContentVal);
+          break;
+      }
     }
-  });
+  );
 
   // ----- bookジャンル -----
   $(document).on("change", 'input[name="post[book_evaluation]"]', function() {
@@ -85,13 +93,13 @@ $(function() {
   });
 
   // ---------- ダミーsubmitボタン(TABサイズ以下) ----------
-  $(document).on("click", "#dummy-submit-btn", function() {
+  $(document).on("touchend", "#dummy-submit-btn", function() {
     $("#form-post").submit();
   });
 
   // ---------- カテゴリープルダウンメニュー(TABサイズ以下) ----------
   if (windowWidth < breakPoint) {
-    $(document).on("click", "#check-block-title", function() {
+    $(document).on("touchend", "#check-block-title", function() {
       $("#category-list").slideToggle();
       $(this).toggleClass("active");
     });

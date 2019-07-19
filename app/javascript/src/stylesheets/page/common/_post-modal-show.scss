@@ -28,10 +28,12 @@
     width: 100%;
   }
   > .inner {
+    position: relative;
     &--show {
       @include media(pc) {
         display: flex;
         justify-content: space-between;
+        overflow-y: scroll;
         height: 90vh;
         width: 1120px;
         padding: 20px;
@@ -40,7 +42,7 @@
           width: calc(65% - 10px);
         }
         .comment-block {
-        width: calc(35% - 10px );
+          width: calc(35% - 10px );
         }
       }
       @include media(tab) {

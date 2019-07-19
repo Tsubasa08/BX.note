@@ -19,7 +19,6 @@ gem 'kaminari'
 gem 'nokogiri'
 gem 'omniauth'
 gem 'omniauth-twitter'
-gem 'amazon-ecs'
 gem 'ransack'
 
 group :development, :test do

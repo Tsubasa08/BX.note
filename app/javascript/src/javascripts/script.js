@@ -76,7 +76,7 @@ $(function() {
     over = [];
   });
 
-  // ---------- ページ上部メッセージ ----------
+  // ---------- ページ上部エラーメッセージ ----------
   setTimeout(function() {
     $("#alert").addClass("alert-down");
   }, 100);

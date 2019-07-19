@@ -96,10 +96,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def ajax
-    render json: @user
-  end
-
 
   def destroy
     @post.destroy

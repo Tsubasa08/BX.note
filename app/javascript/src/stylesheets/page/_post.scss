@@ -232,6 +232,7 @@
     .post-content {
       margin-top: 5px;
       font-size: 1.5rem;
+      @include harf_wrap;
     }
 
     .book-evalution-block {

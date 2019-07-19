@@ -151,3 +151,9 @@
   padding: 0;
   background: rgba(0,0,0,0);
 }
+
+// 半角折り返し
+@mixin harf_wrap {
+  word-wrap: break-word;
+  word-break: break-all;
+}

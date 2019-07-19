@@ -1,6 +1,8 @@
 $(function(){
   $(".modal-content--post-show").html("<%= j(render 'posts/show', post: @post) %>");
 
+  $("#post-genre").val("comment").change();
+
   $("#modal-content--post-show .slider").slick({
     dots: true
   });

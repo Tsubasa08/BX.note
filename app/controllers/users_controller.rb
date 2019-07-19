@@ -63,13 +63,10 @@ before_action :admin_user, only: :destroy
 
   def likes
     @user = User.find(params[:id])
-    @likes = Like.where(user_id: @user.id).page(params[:page]).per(20)
+    @likes = Like.where(user_id: @user.id).order(created_at: :desc).page(params[:page]).per(20)
     @current_page_like = "current" #ページレイアウト活性化
   end
 
-  # def ajax
-  #   render json: @user
-  # end
 
   private
 

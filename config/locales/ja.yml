@@ -9,3 +9,6 @@ ja:
         image: "画像"
         password_digest: "パスワード"
         password_confirmation: "確認用パスワード"
+
+      comment:
+        content: "コメント"

@@ -16,6 +16,10 @@ post_form
   }
 }
 
+.disabled {
+    opacity: 0.3;
+}
+
 .form {
   &__check-block {
     input[name="post[category_ids][]"] {
@@ -50,9 +54,6 @@ post_form
     background-color: $AccentColor;
     color: #fff;
     @include radius;
-  }
-  #button-post.disabled {
-    opacity: 0.3;
   }
   &__btn-block {
     .form-image {

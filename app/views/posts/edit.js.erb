@@ -1,4 +1,5 @@
 $(function() {
   $(".modal-content--post-show").html("<%= j(render 'posts/edit', post: @post) %>");
+  $("#post-genre").val("<%= @post.genre %>").change();
 });
 

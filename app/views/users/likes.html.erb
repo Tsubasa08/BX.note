@@ -15,10 +15,12 @@
       </ul>
       
       <div class="likes-block">
-        <% @likes.each do |like| %>
-        <% post = like.post %>
-        <%= render post %>
-        <% end %>
+        <ol class="post-list">
+          <% @likes.each do |like| %>
+          <% post = like.post %>
+          <%= render post %>
+          <% end %>
+        </ol>
       <%= paginate @likes %>
       </div>
     </div><!--- contents__left end -->
