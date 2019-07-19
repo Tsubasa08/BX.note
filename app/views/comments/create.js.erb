@@ -1,5 +1,9 @@
 $(function() {
   $("#comment-list").html("<%= j(render 'comments/comment_list', post: @post) %>");
-  $("#comment-textarea").val("");
+  $("#comment_content").val("");
+  $("#button-post")
+    .prop("disabled", true)
+    .addClass("disabled");
+  $(".dummy-submit-btn").attr("id", "");
   $(".comment-<%= @post.id %>").html("<%= j(render "posts/comment_link",post: @post) %>");
 });
