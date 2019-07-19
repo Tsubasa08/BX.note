@@ -10,6 +10,8 @@ class CommentsController < ApplicationController
         format.html { redirect_back(fallback_location: root_url) }
         format.js
       end
+    else
+      redirect_back(fallback_location: root_url)
     end
   end
 
@@ -25,6 +27,6 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:content, :post_id, :user_id)
+      params.require(:comment).permit(:content)
     end
 end
