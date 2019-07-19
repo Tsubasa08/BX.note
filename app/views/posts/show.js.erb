@@ -1,8 +1,6 @@
-document.getElementById("modal-content--post-show").innerHTML = 
-"<%= j(render 'posts/show', post: @post) %>"
-
-
 $(function(){
+  $(".modal-content--post-show").html("<%= j(render 'posts/show', post: @post) %>");
+
   $("#modal-content--post-show .slider").slick({
     dots: true
   });

@@ -1,9 +1,4 @@
-likes = document.getElementsByClassName("like-<%= @post.id %>");
-for (i = 0; i < likes.length; i++) {
-likes[i].innerHTML = '<%= j(render "posts/like_form", post: @post) %>';
-}
-
-likeNum = document.getElementsByClassName("link__num--like");
-for (i = 0; i < likeNum.length; i++) {
-likeNum[i].innerHTML = '<%= @post.user.likes.count %>';
-}
+$(function() {
+  $(".like-<%= @post.id %>").html("<%= j(render "posts/like_form", post: @post) %>");
+  $(".link__num--like").html("<%= @post.user.likes.count %>");
+});

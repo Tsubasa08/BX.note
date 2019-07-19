@@ -1,3 +1,4 @@
-document.getElementById("modal-content--post-show").innerHTML = 
-"<%= j(render 'posts/edit', post: @post) %>"
+$(function() {
+  $(".modal-content--post-show").html("<%= j(render 'posts/edit', post: @post) %>");
+});
 

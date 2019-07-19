@@ -1,7 +1,6 @@
-<!--選択されたジャンルからrenderするパーシャルを条件分岐-->
-document.getElementById("panel-area").innerHTML = 
-"<% if @genre == 'book' %><%= j(render 'posts/post-modal-book') %> <% elsif @genre == 'article' %> <%= j(render 'posts/post-modal-article') %> <% else %> <%= j(render 'posts/post-modal-other') %> <% end%>";
-
 $(function() {
+  <!--選択されたジャンルからrenderするパーシャルを条件分岐-->
+  $("#panel-area").html("<% if @genre == 'book' %><%= j(render 'posts/post-modal-book') %> <% elsif @genre == 'article' %> <%= j(render 'posts/post-modal-article') %> <% else %> <%= j(render 'posts/post-modal-other') %> <% end%>");
+
   $("#post-genre").val("<%= @genre %>").change();
 });
