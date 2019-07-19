@@ -1,7 +1,7 @@
 <% if logged_in? %>
   <div class="comment-form-block">
     <%= form_with(model: Comment.new(id: current_user.id), class: 'comment-form') do |f| %>
-      <%= f.text_area :content, class: 'comment-form__textarea', placeholder: 'メッセージを入力' %>
+      <%= f.text_area :content, class: 'comment-form__textarea', placeholder: 'コメントを入力' %>
       <%= hidden_field_tag 'comment[post_id]', post.id %>
       <%= f.submit "送信", id: 'button-post', class: 'comment-form__submit disabled', disabled: true %>
     <% end %>

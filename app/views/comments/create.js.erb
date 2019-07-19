@@ -1,3 +1,4 @@
+<% if @comment.valid? %>
 $(function() {
   $("#comment-list").html("<%= j(render 'comments/comment_list', post: @post) %>");
   $("#comment_content").val("");
@@ -7,3 +8,17 @@ $(function() {
   $(".dummy-submit-btn").attr("id", "");
   $(".comment-<%= @post.id %>").html("<%= j(render "posts/comment_link",post: @post) %>");
 });
+<% else %>
+$(function() {
+  <% @comment.errors.full_messages.each do |message| %>
+  $("#comment-alert").text("<%= message %>");
+  <% end %>
+
+  setTimeout(function() {
+    $("#comment-alert").css("top", 0);
+  }, 100);
+  setTimeout(function() {
+    $("#comment-alert").css("top", -50);
+  }, 2500);
+});
+<%end%>
