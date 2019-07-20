@@ -1,0 +1,62 @@
+$(function() {
+  const errorMessage = function() {
+    $("#post-alert").show();
+    setTimeout(function() {
+      $("#post-alert").fadeOut();
+    }, 3000);
+    setTimeout(function() {
+      $("#post-alert .error-list__item").remove()
+    }, 3500);
+  };
+
+  const closeEditmModal = function() {
+    $("#modal-content--post-show .inner").remove();
+    $("body, #modal-content--post-show, #modal-close--post-show").removeClass("active");
+    $("#modal-close--post-show").removeClass("edit-active");
+  };
+
+  const sliderSlick = function() {
+    $(".slider").slick({
+      dots: true
+    });
+  }
+
+
+  <% if @post.valid? && @e_error %>
+    $("#post-alert .error-list").append('<li class="error-list__item"><%= @e_error %></li>');
+    errorMessage();
+  
+  <% elsif @post.valid?  %>
+    const categoryTitle = $("#category-title").text();
+    if (categoryTitle) {
+      <% if @post.categories.present? %>
+        <% @post.post_categories.each do |post_categories| %>
+          if (categoryTitle === "<%= post_categories.category.name %>") {
+            <% @category = Category.find_by(id: post_categories.category.id) %>
+            $("#category-post-list").html(" <%= j(render @category.posts.page(params[:page]).per(20)) %> ");
+            sliderSlick();
+          }
+        <% end %>
+      <% end %>
+    } else {
+      $("#post-list").html(" <%= j(render Post.page(params[:page]).per(20)) %> ");
+      sliderSlick();
+    };
+
+    closeEditmModal();
+    $("#alert-block").html('<div id="alert" class="alert">投稿を送信しました。</div>');
+    $("#alert").addClass("alert-down");
+    setTimeout(function() {
+      $("#alert").removeClass("alert-down");
+    }, 3000);
+
+    
+
+  <% else %>
+    <% @post.errors.full_messages.each do |message| %>
+      $("#post-alert .error-list").append('<li class="error-list__item"><%= message %></li>');
+    <% end %>
+    errorMessage();
+
+  <% end %>
+});

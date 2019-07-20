@@ -1,5 +1,11 @@
 $(function() {
   $(".modal-content--post-show").html("<%= j(render 'posts/edit', post: @post) %>");
   $("#post-genre").val("<%= @post.genre %>").change();
+
+  <%# 投稿検索結果 投稿編集Ajax通信解除 %>
+  const page = $("main").attr("data-page");
+  if (page === "search-result-page") {
+    $("#form-post-edit").attr("data-remote", "false");
+  }
 });
 
