@@ -97,23 +97,33 @@ class PostsController < ApplicationController
             @post.link_title = $link_title
             @post.link_image = $link_image
             @post.link_desc = $link_desc
-            @post.save
-            flash[:success] = "投稿を更新しました。"
-            redirect_back(fallback_location: root_url)
+            if @post.save
+              respond_to do |format|
+                format.html { redirect_back(fallback_location: root_url) }
+                format.js
+              end
+            end
           end
         rescue #エラーが発生した場合(正規表現だが存在しないURL)
-          flash[:danger] = "記事のURLが正しくありません"
-          redirect_back(fallback_location: root_url)
+          @e_error = "記事のURLが存在しません。"
+          respond_to do |format|
+            format.html { redirect_back(fallback_location: root_url) }
+            format.js
+          end
         end
       else #@post == 'other'
-        flash[:success] = "投稿を更新しました。"
-        redirect_back(fallback_location: root_url)
+        respond_to do |format|
+          format.html { redirect_back(fallback_location: root_url) }
+          format.js 
+        end
       end
 
 
     else
-      flash[:danger] = "投稿失敗"
-      redirect_back(fallback_location: root_url)
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: root_url) }
+        format.js
+      end
     end
   end
 

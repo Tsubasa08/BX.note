@@ -1,6 +1,6 @@
 <p class="label-title label-title--2">記事共有</p>
 
-<%= form_with(model: @post, url: post_path, local: true, id: "form-post",class: 'form form--post') do |f| %>
+<%= form_with(model: @post, url: post_path, id: "form-post-edit",class: 'form form--post') do |f| %>
   <% if f.object %>
     <%= render 'shared/error_messages', object: f.object %>
   <% end %>

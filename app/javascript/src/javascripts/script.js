@@ -40,7 +40,7 @@ $(function() {
 
   // ---------- 画像アップロード レイアウト遷移 ----------
   $(document).on("change", ".image-form", function() {
-    const over = []; // Filelist配列
+    let over = []; // Filelist配列
     const data = $(this).data("id");
     const file = $(this).prop("files");
     $(`.filename--${data}`).remove();

@@ -6,6 +6,7 @@
     &--edit {
       @include media(pc) {
         height: 670px;
+        max-height: calc(100vh - 100px);
         width: 800px;
       }
       .post-data {

@@ -9,20 +9,11 @@ $(function() {
     }, 3500);
   };
 
-  const closeFormModalMethod = function() {
-    $("#modal-content--post, #modal-close--post").fadeOut("fast");
-    $("body, #modal-open").removeClass("active");
-    $("#panel-area .panel").remove();
-    $("header, main, footer").show();
-    $("#panel-area").toggleClass("active");
-    setTimeout(function() {
-      $("#label-area").toggleClass("active");
-    }, 1000);
-    $("#prev-btn").fadeToggle();
-    $(".dummy-submit-btn").attr("id", "").hide();
+  const closeEditmModal = function() {
+    $("#modal-content--post-show .inner").remove();
+    $("body, #modal-content--post-show, #modal-close--post-show").removeClass("active");
+    $("#modal-close--post-show").removeClass("edit-active");
   };
-
-  const page = $("main").attr("data-page");
 
   const sliderSlick = function() {
     $(".slider").slick({
@@ -47,12 +38,12 @@ $(function() {
           }
         <% end %>
       <% end %>
-    } else if (page !== "likes-page") {
+    } else {
       $("#post-list").html(" <%= j(render Post.page(params[:page]).per(20)) %> ");
       sliderSlick();
     };
 
-    closeFormModalMethod();
+    closeEditmModal();
     $("#alert-block").html('<div id="alert" class="alert">投稿を送信しました。</div>');
     $("#alert").addClass("alert-down");
     setTimeout(function() {
