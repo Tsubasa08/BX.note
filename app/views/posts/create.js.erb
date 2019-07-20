@@ -22,6 +22,8 @@ $(function() {
     $(".dummy-submit-btn").attr("id", "").hide();
   };
 
+  const page = $("main").attr("data-page");
+
   const sliderSlick = function() {
     $(".slider").slick({
       dots: true
@@ -45,7 +47,7 @@ $(function() {
           }
         <% end %>
       <% end %>
-    } else {
+    } else if (page !== "likes-page") {
       $("#post-list").html(" <%= j(render Post.page(params[:page]).per(20)) %> ");
       sliderSlick();
     };
