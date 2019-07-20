@@ -11,9 +11,11 @@
     <!-- header end -->
 
     <div class="main-container">
-      <% flash.each do |message_type, message| %>
-        <%= content_tag(:div, message, class: "alert alert--#{message_type}", id: "alert") %>
+      <div id="alert-block">
+        <% flash.each do |message_type, message| %>
+          <%= content_tag(:div, message, class: "alert alert--#{message_type}", id: "alert") %>
       <% end %>
+      </div>
 
       <% if logged_in? %>
         <%= render 'posts/post-modal' %>

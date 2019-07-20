@@ -80,9 +80,7 @@
   }
   &--tab {
     left: 10px;
-    @include media(pc) {
-      display: none;
-    }
+    display: none;
   }
 }
 .modal-icon{
@@ -142,6 +140,7 @@
 
 .label-area {
   height: 670px;
+  max-height: calc(100vh - 100px);
   transition: 0.3s;
   @include f-center;
   @include media(pc) {
@@ -192,6 +191,10 @@
   width: 100%;
   transform: translateX(100%);
   transition: 0.3s;
+  @include media(pc) {
+    height: 670px;
+    max-height: calc(100vh - 100px);
+  }
 }
 .label-area.active {
   transform: translateX(-100%);

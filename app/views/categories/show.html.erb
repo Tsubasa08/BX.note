@@ -3,8 +3,8 @@
 <main class="main">
   <div class="contents">
     <div class="contents__left">
-        <h1 class="category-title category-title--<%= @category.id %>"> <%= @category.name %> </h1>
-      <ol class="post-list">
+        <h1 id="category-title" class="category-title category-title--<%= @category.id %>"><%= @category.name %></h1>
+      <ol id="category-post-list" class="post-list">
         <%= render @posts %>
       </ol><!-- post end -->
       <%= paginate @posts %>
