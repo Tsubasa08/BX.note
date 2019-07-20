@@ -20,11 +20,21 @@
   width: 600px;
   padding: 20px;
   margin: 0 auto;
+  color: $AccentColor;
   background-color: #fff;
-  @include radius;
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+  border: {
+    right: 2px solid $AccentColor;
+    bottom: 2px solid $AccentColor;
+    left: 2px solid $AccentColor;
+  }
+  border-radius: 0 0 5px 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.25);
   @include media(tab) {
     width: 100%;
+    padding: 15px;
   }
   &--danger {
     color: red;
@@ -64,6 +74,28 @@
   transition: top .5s;
   border-radius: 0 0 5px 5px;
   @include media(pc) {
+  }
+}
+
+.post-alert {
+  position: absolute;
+  display: none;
+  background-color: $AccentColor;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  @include media(pc) {
+    @include radius;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 15px;
+  }
+  @include media(tab) {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
   }
 }
 

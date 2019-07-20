@@ -1,7 +1,7 @@
 <div id="panel2" class="panel panel--2">
   <p class="label-title label-title--2">記事共有</p>
   
-  <%= form_with(scope: :post, url: posts_path, local: true, id: "form-post", class: 'form form--post') do |f| %>
+  <%= form_with(scope: :post, url: posts_path, id: "form-post", class: 'form form--post') do |f| %>
     <% if f.object %>
       <%= render 'shared/error_messages', object: f.object %>
     <% end %>
@@ -42,4 +42,8 @@
       
       <%= f.hidden_field :genre, value: @genre %>
   <% end %>
+</div>
+
+<div id="post-alert" class="post-alert">
+  <ul class="error-list"></ul>
 </div>

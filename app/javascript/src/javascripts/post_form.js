@@ -94,7 +94,7 @@ $(function() {
 
   // ---------- ダミーsubmitボタン(TABサイズ以下) ----------
   $(document).on("touchend", "#dummy-submit-btn", function() {
-    $("#form-post").submit();
+    $('input[type="submit"]').click();
   });
 
   // ---------- カテゴリープルダウンメニュー(TABサイズ以下) ----------

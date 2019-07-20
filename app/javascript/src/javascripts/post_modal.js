@@ -27,6 +27,7 @@ $(function() {
       $("#modal-content--post")
         .fadeIn()
         .css("top", 0);
+      $("#close-btn--tab").show();
       $("header, main, footer").hide();
     }
   });
@@ -44,7 +45,10 @@ $(function() {
     if ($("#panel-area").hasClass("active")) {
       if (window.confirm("投稿を破棄しますか？")) {
         closeFormModalMethod();
-        $("#label-area, #panel-area").toggleClass("active");
+        $("#panel-area").toggleClass("active");
+        setTimeout(function() {
+          $("#label-area").toggleClass("active");
+        }, 1000);
       }
     } else {
       closeFormModalMethod();

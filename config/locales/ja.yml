@@ -12,3 +12,6 @@ ja:
 
       comment:
         content: "コメント"
+
+      post:
+        link_url: "記事のURL"

@@ -1,0 +1,69 @@
+$(function() {
+  const errorMessage = function() {
+    $("#post-alert").show();
+    setTimeout(function() {
+      $("#post-alert").fadeOut();
+    }, 3000);
+    setTimeout(function() {
+      $("#post-alert .error-list__item").remove()
+    }, 3500);
+  };
+
+  const closeFormModalMethod = function() {
+    $("#modal-content--post, #modal-close--post").fadeOut("fast");
+    $("body, #modal-open").removeClass("active");
+    $("#panel-area .panel").remove();
+    $("header, main, footer").show();
+    $("#panel-area").toggleClass("active");
+    setTimeout(function() {
+      $("#label-area").toggleClass("active");
+    }, 1000);
+    $("#prev-btn").fadeToggle();
+    $(".dummy-submit-btn").attr("id", "").hide();
+  };
+
+  const sliderSlick = function() {
+    $(".slider").slick({
+      dots: true
+    });
+  }
+
+
+  <% if @post.valid? && @e_error %>
+    $("#post-alert .error-list").append('<li class="error-list__item"><%= @e_error %></li>');
+    errorMessage();
+  
+  <% elsif @post.valid?  %>
+    const categoryTitle = $("#category-title").text();
+    if (categoryTitle) {
+      <% if @post.categories.present? %>
+        <% @post.post_categories.each do |post_categories| %>
+          if (categoryTitle === "<%= post_categories.category.name %>") {
+            <% @category = Category.find_by(id: post_categories.category.id) %>
+            $("#category-post-list").html(" <%= j(render @category.posts.page(params[:page]).per(20)) %> ");
+            sliderSlick();
+          }
+        <% end %>
+      <% end %>
+    } else {
+      $("#post-list").html(" <%= j(render Post.page(params[:page]).per(20)) %> ");
+      sliderSlick();
+    };
+
+    closeFormModalMethod();
+    $("#alert-block").html('<div id="alert" class="alert">投稿を送信しました。</div>');
+    $("#alert").addClass("alert-down");
+    setTimeout(function() {
+      $("#alert").removeClass("alert-down");
+    }, 3000);
+
+    
+
+  <% else %>
+    <% @post.errors.full_messages.each do |message| %>
+      $("#post-alert .error-list").append('<li class="error-list__item"><%= message %></li>');
+    <% end %>
+    errorMessage();
+
+  <% end %>
+});
