@@ -25,7 +25,7 @@ $(function() {
   const page = $("main").attr("data-page");
 
   const sliderSlick = function() {
-    $(".slider").slick({
+    $(".slider").first().slick({
       dots: true
     });
   }
@@ -48,8 +48,10 @@ $(function() {
         <% end %>
       <% end %>
     } else if (page !== "likes-page") {
-      $("#post-list").html(" <%= j(render Post.page(params[:page]).per(20)) %> ");
+      $("#post-list").prepend(" <%= j(render @post) %> ");
       sliderSlick();
+      <!--$("#post-list").html(" <%= j(render Post.page(params[:page]).per(20)) %> "); -->
+      
     };
 
     closeFormModalMethod();

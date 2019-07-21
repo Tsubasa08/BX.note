@@ -4,7 +4,7 @@ $(function() {
 
   <%# 投稿検索結果 投稿編集Ajax通信解除 %>
   const page = $("main").attr("data-page");
-  if (page === "search-result-page") {
+  if (page === "search-result-page" || page === "likes-page") {
     $("#form-post-edit").attr("data-remote", "false");
   }
 });

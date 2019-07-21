@@ -82,6 +82,9 @@ class PostsController < ApplicationController
 
   def update 
     @post = Post.find(params[:id])
+    # @likes = Like.where(user_id: @post.user_id)
+    # @posts = Post.where(id: @likes.ids).page(params[:page]).per(20)
+
     if @post.update_attributes(post_params)
 
 
