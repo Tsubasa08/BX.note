@@ -13,6 +13,7 @@ $(function() {
     $("#modal-content--post-show .inner").remove();
     $("body, #modal-content--post-show, #modal-close--post-show").removeClass("active");
     $("#modal-close--post-show").removeClass("edit-active");
+    $("header, main, footer").show();
   };
 
   const page = $("main").attr("data-page");
@@ -32,7 +33,7 @@ $(function() {
   <% elsif @post.valid?  %>
     $("#post-<%= @post.id %>").html(" <%= j(render 'posts/post_inner') %> ");
     sliderSlick();
-    
+
     closeEditmModal();
     $("#alert-block").html('<div id="alert" class="alert">投稿を送信しました。</div>');
     $("#alert").addClass("alert-down");
