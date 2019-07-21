@@ -80,7 +80,9 @@
   }
   &--tab {
     left: 10px;
-    display: none;
+    @include media(pc) {
+      display: none; 
+    }
   }
 }
 .modal-icon{

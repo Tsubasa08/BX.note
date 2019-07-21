@@ -1,4 +1,4 @@
 $(function() {
-  $("#follow_form").html("<%= j(render('users/unfollow', user: @user)) %>");
-  $(".link__num--followers").html("<%= @user.followers.count %>");
+  $("#follow_form-<%= @user.id %>").html("<%= j(render('users/unfollow', user: @user, user_page: @now_user)) %>");
+  $(".link__num--followers").html("<%= @now_user.followers.count %>");
 });

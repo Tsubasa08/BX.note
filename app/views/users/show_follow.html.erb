@@ -22,7 +22,7 @@
                   <p class="user-name"> <%= user.name %> </p>
                 <% end %>
               </div>
-              <div><%= render 'follow_form-block', user: user %></div>
+              <div><%= render 'follow_form-block', user: user, user_page: @user %></div>
             </div>
           
           <div class="user-card__introduce"> 
