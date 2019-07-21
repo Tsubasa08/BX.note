@@ -6,8 +6,7 @@
 .post-list {
   &__item {
     position: relative;
-    display: flex;
-    justify-content: space-between;
+    
     padding: 10px 15px;
     background-color: #fff;
     @include radius;
@@ -23,7 +22,11 @@
         border-bottom: none;
       }
     }
-    .inner-left {
+    > .inner {
+      display: flex;
+      justify-content: space-between;
+    }
+    .inner__left {
       .user-link__item--img img {
         @include media(sp) {
           height: 40px;
@@ -31,7 +34,7 @@
         }
       }
     }
-    .inner-right {
+    .inner__right {
       width: calc(100% - 50px - 5px);
       @include media(sp) {
       width: calc(100% - 40px - 5px);

@@ -1,0 +1,14 @@
+$("#alert-block").html('<div id="alert" class="alert">投稿を削除しました。</div>');
+$("#alert").addClass("alert-down");
+setTimeout(function() {
+  $("#alert").removeClass("alert-down");
+}, 3000);
+
+$(".post-<%= @post.id %>").remove();
+
+<%# 投稿詳細画面 投稿削除 %>
+if ($("#modal-close--post-show").hasClass("active")) {
+  $("#modal-content--post-show .inner").remove();
+  $("body, #modal-content--post-show, #modal-close--post-show").removeClass("active");
+  $("header, main, footer").show();
+  }

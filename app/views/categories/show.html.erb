@@ -1,6 +1,6 @@
 <% provide(:title, @category.name) %>
 <%= render 'posts/post_show' %>
-<main class="main">
+<main class="main" data-page="category-page">
   <div class="contents">
     <div class="contents__left">
         <h1 id="category-title" class="category-title category-title--<%= @category.id %>"><%= @category.name %></h1>

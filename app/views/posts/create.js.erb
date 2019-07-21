@@ -25,7 +25,7 @@ $(function() {
   const page = $("main").attr("data-page");
 
   const sliderSlick = function() {
-    $(".slider").slick({
+    $("#post-<%= @post.id %> .slider").slick({
       dots: true
     });
   }
@@ -41,14 +41,13 @@ $(function() {
       <% if @post.categories.present? %>
         <% @post.post_categories.each do |post_categories| %>
           if (categoryTitle === "<%= post_categories.category.name %>") {
-            <% @category = Category.find_by(id: post_categories.category.id) %>
-            $("#category-post-list").html(" <%= j(render @category.posts.page(params[:page]).per(20)) %> ");
+            $("#category-post-list").prepend(" <%= j(render @post) %> ");
             sliderSlick();
           }
         <% end %>
       <% end %>
     } else if (page !== "likes-page") {
-      $("#post-list").html(" <%= j(render Post.page(params[:page]).per(20)) %> ");
+      $("#post-list").prepend(" <%= j(render @post) %> ");
       sliderSlick();
     };
 
