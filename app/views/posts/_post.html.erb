@@ -1,4 +1,4 @@
-<li id="post-<%= post.id %>" class="post-list__item">
+<li id="post-<%= post.id %>" class="post-<%= post.id %> post-list__item">
   <!-- inner -->
   <div id="post-inner-<%= post.id %>" class="inner">
     <div class="inner__left">
@@ -22,7 +22,7 @@
       <% if current_user?(post.user)  %>
         <div id="post-meta-<%= post.id %>" class="post-meta">
           <%= link_to "編集する", edit_post_path(post), method: :get, class: 'post-edit', remote: true %>
-          <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "この投稿を本当に削除しますか？" }, class: 'post-delete' %>
+          <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "この投稿を本当に削除しますか？" }, class: 'post-delete', remote: true %>
         </div>
       <% end %>
 
