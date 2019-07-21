@@ -1,94 +1,97 @@
 <li id="post-<%= post.id %>" class="post-list__item">
-
-  <div class="inner-left">
-    <%= link_to post.user, class: 'user-link__item user-link__item--img' do %>
-      <%= render 'shared/user_icon', user: post.user, id_name: '', class_name: '' %>
-    <% end %>
-  </div>
-
-
-  <div class="inner-right">
-    <% if current_user?(post.user)  %>
-    <div class="post-meta-icon" data-id="<%= post.id %>">
-      <i class="fas fa-angle-down"></i>
-    </div>
-    <% end %>
-
-    <div class="user-link">
-      <%= link_to post.user.name, post.user, class: 'user-link__item user-link__item--post' %>
-    </div>
-
-    <% if current_user?(post.user)  %>
-      <div id="post-meta-<%= post.id %>" class="post-meta">
-        <%= link_to "編集する", edit_post_path(post), method: :get, class: 'post-edit', remote: true %>
-        <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "この投稿を本当に削除しますか？" }, class: 'post-delete' %>
-      </div>
-    <% end %>
-
-    <% if post.categories.present? %>
-    <div class="categories">
-      <% post.post_categories.each do |post_categories| %>
-        <%= link_to post_categories.category.name, category_path(post_categories.category.id), class: 'categories__link' %>
+  <!-- inner -->
+  <div id="post-inner-<%= post.id %>" class="inner">
+    <div class="inner__left">
+      <%= link_to post.user, class: 'user-link__item user-link__item--img' do %>
+        <%= render 'shared/user_icon', user: post.user, id_name: '', class_name: '' %>
       <% end %>
     </div>
-    <% end %>
 
-    <% if post.images.present? %>
-    <div class="post-image">
-      <ul class="slider">
-      <% post.images.each do |image|%>
-        <li class="slider__item">
-          <%= image_tag image, class: 'image' %>
-        </li>
+
+    <div class="inner__right">
+      <% if current_user?(post.user)  %>
+      <div class="post-meta-icon" data-id="<%= post.id %>">
+        <i class="fas fa-angle-down"></i>
+      </div>
       <% end %>
-      </ul>
-    </div>
-    <% end %>
 
-    <% if post.genre == 'article' %>
-      <div class="post-item">
-        <a href="<%= post.link_url %>" class="post-item__link post-item__link--article"target="_brank">
-          <img src="<%= post.link_image %>" class="post-item__img post-item__img--article">
-          <div class="post post-item__text post post-item__text--article">
-            <p class="article-title"><%= post.link_title %></p>
-            <p class="article-desc"><%= post.link_desc %></p>
-            <p class="link-title"> <%= get_host(post.link_url) %> </p>
-          </div>
-        </a>
-      </div>
-    <% elsif post.genre == 'book' %>
-      <div class="post-item">
-        <a href="<%= post.link_url %>" class="post-item__link post-item__link--book" target="_brank">
-          <%= image_tag(post.link_image, class: 'post-item__img post-item__img--book') %>
-          <div class="post post-item__text post post-item__text--book">
-            <p class="book-title-text"><%= post.link_title %></p>
-            <p class="link-title">amazon.com</p>
-          </div>
-        </a>
-      </div>
-      <%= render 'posts/book_evalution', post: post %>
-    <% end %>
-
-    <div class="post-content">
-      <%= post.content %>
-    </div>
-
-
-    <div class="bottom-list">
-      <div id="like-<%= post.id %>" class="like-link like-<%= post.id %>">
-        <%= render 'posts/like_form', post: post %>
+      <div class="user-link">
+        <%= link_to post.user.name, post.user, class: 'user-link__item user-link__item--post' %>
       </div>
 
-      <div id="comment-<%= post.id %>" class="comment-link comment-<%= post.id %>">
-        <%= render 'posts/comment_link', post: post %>
+      <% if current_user?(post.user)  %>
+        <div id="post-meta-<%= post.id %>" class="post-meta">
+          <%= link_to "編集する", edit_post_path(post), method: :get, class: 'post-edit', remote: true %>
+          <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "この投稿を本当に削除しますか？" }, class: 'post-delete' %>
+        </div>
+      <% end %>
+
+      <% if post.categories.present? %>
+      <div class="categories">
+        <% post.post_categories.each do |post_categories| %>
+          <%= link_to post_categories.category.name, category_path(post_categories.category.id), class: 'categories__link' %>
+        <% end %>
+      </div>
+      <% end %>
+
+      <% if post.images.present? %>
+      <div class="post-image">
+        <ul class="slider">
+        <% post.images.each do |image|%>
+          <li class="slider__item">
+            <%= image_tag image, class: 'image' %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <% if post.genre == 'article' %>
+        <div class="post-item">
+          <a href="<%= post.link_url %>" class="post-item__link post-item__link--article"target="_brank">
+            <img src="<%= post.link_image %>" class="post-item__img post-item__img--article">
+            <div class="post post-item__text post post-item__text--article">
+              <p class="article-title"><%= post.link_title %></p>
+              <p class="article-desc"><%= post.link_desc %></p>
+              <p class="link-title"> <%= get_host(post.link_url) %> </p>
+            </div>
+          </a>
+        </div>
+      <% elsif post.genre == 'book' %>
+        <div class="post-item">
+          <a href="<%= post.link_url %>" class="post-item__link post-item__link--book" target="_brank">
+            <%= image_tag(post.link_image, class: 'post-item__img post-item__img--book') %>
+            <div class="post post-item__text post post-item__text--book">
+              <p class="book-title-text"><%= post.link_title %></p>
+              <p class="link-title">amazon.com</p>
+            </div>
+          </a>
+        </div>
+        <%= render 'posts/book_evalution', post: post %>
+      <% end %>
+
+      <div class="post-content">
+        <%= post.content %>
       </div>
 
-      <span class="timestamp">
-        <%= post.created_at.strftime('%Y年%m月%d日') %>
-      </span>
-    </div>
+
+      <div class="bottom-list">
+        <div id="like-<%= post.id %>" class="like-link like-<%= post.id %>">
+          <%= render 'posts/like_form', post: post %>
+        </div>
+
+        <div id="comment-<%= post.id %>" class="comment-link comment-<%= post.id %>">
+          <%= render 'posts/comment_link', post: post %>
+        </div>
+
+        <span class="timestamp">
+          <%= post.created_at.strftime('%Y年%m月%d日') %>
+        </span>
+      </div>
 
 
 
-  </div> <!-- inner end -->
+    </div> 
+  </div><!-- inner end -->
+
 </li>

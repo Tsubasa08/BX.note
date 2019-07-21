@@ -18,7 +18,7 @@ $(function() {
   const page = $("main").attr("data-page");
 
   const sliderSlick = function() {
-    $(".slider").slick({
+    $("#post-inner-<%= @post.id %> .slider").slick({
       dots: true
     });
   }
@@ -30,21 +30,9 @@ $(function() {
 
   
   <% elsif @post.valid?  %>
-    if (page === "category-page") {
-      <% if @post.categories.present? %>
-        <% @post.post_categories.each do |post_categories| %>
-          if (categoryTitle === "<%= post_categories.category.name %>") {
-            <% @category = Category.find_by(id: post_categories.category.id) %>
-            $("#category-post-list").html(" <%= j(render @category.posts.page(params[:page]).per(20)) %> ");
-            sliderSlick();
-          }
-        <% end %>
-      <% end %>
-    } else {
-      $("#post-list").html(" <%= j(render Post.page(params[:page]).per(20)) %> ");
-      sliderSlick();
-    };
-
+    $("#post-<%= @post.id %>").html(" <%= j(render 'posts/post_inner') %> ");
+    sliderSlick();
+    
     closeEditmModal();
     $("#alert-block").html('<div id="alert" class="alert">投稿を送信しました。</div>');
     $("#alert").addClass("alert-down");
