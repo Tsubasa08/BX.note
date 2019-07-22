@@ -32,6 +32,7 @@ $(function() {
 
 
   <% if @post.valid? && @e_error %>
+    $("#processing-block").html('<div id="post-alert" class="post-alert"><ul class="error-list"></ul></div>');
     $("#post-alert .error-list").append('<li class="error-list__item"><%= @e_error %></li>');
     errorMessage();
   
@@ -41,16 +42,16 @@ $(function() {
       <% if @post.categories.present? %>
         <% @post.post_categories.each do |post_categories| %>
           if (categoryTitle === "<%= post_categories.category.name %>") {
-            $("#post-load").show();
             $("#category-post-list").prepend(" <%= j(render @post) %> ");
             sliderSlick();
+            $("#processing-block").hide();
           }
         <% end %>
       <% end %>
     } else {
-      $("#post-load").show();
       $("#post-list").prepend(" <%= j(render @post) %> ");
       sliderSlick();
+      $("#processing-block").hide();
     };
 
     closeFormModalMethod();
@@ -63,6 +64,7 @@ $(function() {
     
 
   <% else %>
+    $("#processing-block").html('<div id="post-alert" class="post-alert"><ul class="error-list"></ul></div>');
     <% @post.errors.full_messages.each do |message| %>
       $("#post-alert .error-list").append('<li class="error-list__item"><%= message %></li>');
     <% end %>

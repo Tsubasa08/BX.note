@@ -92,6 +92,11 @@ $(function() {
     $(".book-list__item").hide();
   });
 
+  // ---------- 投稿作成ローディングアイコン ----------
+  $(document).on("click", "#button-post", function() {
+    $("#processing-block").fadeIn();
+  });
+
   // ---------- ダミーsubmitボタン(TABサイズ以下) ----------
   $(document).on("touchend", "#dummy-submit-btn", function() {
     $('input[type="submit"]').click();

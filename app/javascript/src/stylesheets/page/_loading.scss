@@ -43,8 +43,10 @@
 
 
 //投稿作成ローディング
-.post-load {
+.processing-block {
   display: none;
+}
+.post-load {
   position: absolute;
   @include media(pc) {
     bottom: 50px;
