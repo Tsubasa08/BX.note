@@ -35,10 +35,10 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
         assert_select "span[class=?]", "link__num link__num--like", text: "#{@user.likes.count}"
       end
     end
-    # assert_select 'div.pagination', count: 1
-    # @user.posts.paginate(page: 1).each do |post|
-    #   assert_match post.content, response.body
-    # end
+    assert_select 'nav.pagination'
+    @user.posts.page(1).each do |post|
+      assert_match post.content, response.body
+    end
   end
 
   test "他人のプロフィールページ" do
