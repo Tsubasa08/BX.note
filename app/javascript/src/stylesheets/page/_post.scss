@@ -86,9 +86,8 @@
       }
     }
     .categories {
-      margin-top: 10px;
-      @include media(sp) {
-        margin-top: 7px;
+      @include media(tab-pc) {
+        margin-top: 10px;
       }
       &__link {
         padding: 5px;
@@ -96,6 +95,11 @@
         color: #fff;
         font-size: 1.4rem;
         @include radius;
+        @include media(sp) {
+          display: inline-block;
+          margin-top: 7px;
+          padding: 2px 5px;
+        }
         &:hover {
           opacity: 0.8;
         }
