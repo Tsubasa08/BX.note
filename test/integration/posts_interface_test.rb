@@ -9,7 +9,6 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   test "genre: other 統合的投稿" do
     log_in_as(@user)
     post select_path, params: { data: "other"}, xhr: true #Ajax通信
-    get ajax_path(@genre) #Ajax通信
     assert_response :success
     # assert_select 'div.pagination'
     # assert_select 'div', count:1
@@ -41,7 +40,6 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   test "genre: article 統合的投稿" do
     log_in_as(@user)
     post select_path, params: { data: "article"}, xhr: true #Ajax通信
-    get ajax_path(@genre) #Ajax通信
     assert_response :success
     # assert_select 'div.pagination'
     # assert_select 'div', count:1
@@ -67,7 +65,6 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   test "genre: book 統合的投稿" do
     log_in_as(@user)
     post select_path, params: { data: "book"}, xhr: true #Ajax通信
-    get ajax_path(@genre) #Ajax通信
     assert_response :success
     # assert_select 'div.pagination'
     # assert_select 'div', count:1

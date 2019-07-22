@@ -9,7 +9,7 @@ class PostsEditTest < ActionDispatch::IntegrationTest
      @other_user = users(:archer)
    end
 
-  test  "successful edit" do
+  test  "正常な投稿編集" do
     log_in_as(@user)
     get user_path(@user)
     assert_select "a[class=post-edit]", text: "編集する"    
@@ -24,7 +24,6 @@ class PostsEditTest < ActionDispatch::IntegrationTest
     patch post_path(@post), params: { post: { content: content, image: ""},
                                       category_ids: category}
     @post.category_ids = category
-    assert_not flash.empty?
     # assert_redirected_to @user
     @post.reload
     assert_equal content, @post.content

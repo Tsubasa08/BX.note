@@ -3,6 +3,7 @@ require 'test_helper'
 class FollowingTest < ActionDispatch::IntegrationTest
   
   def setup
+    # michaelはarcherにフォローされている
     @user = users(:michael)
     @other = users(:archer)
     log_in_as(@user)
@@ -27,37 +28,70 @@ class FollowingTest < ActionDispatch::IntegrationTest
   end
 
   # 普通の通信とAjax通信に分けてテスト
-   test "フォロー機能(普通の通信)" do
+   test "フォロー機能(普通の通信/相手のユーザーページ)" do
     assert_difference '@user.following.count', 1 do
-      post relationships_path, params: { followed_id: @other.id }
+      post relationships_path, params: { followed_id: @other.id, user_page_id: @other.id }
     end
   end
 
-  test "フォロー機能(Ajax通信)" do
+  test "フォロー機能(Ajax通信/相手のユーザーページ)" do
     assert_difference '@user.following.count', 1 do
-      post relationships_path, xhr: true, params: { followed_id: @other.id }
+      post relationships_path, xhr: true, params: { followed_id: @other.id, user_page_id: @other.id }
     end
   end
 
-  test "フォロー解除機能(普通の通信)" do
+   test "フォロー機能(普通の通信/自分のユーザーページ)" do
+    assert_difference '@user.following.count', 1 do
+      post relationships_path, params: { followed_id: @other.id, user_page_id: @user.id }
+    end
+  end
+
+  test "フォロー機能(Ajax通信/自分のユーザーページ)" do
+    assert_difference '@user.following.count', 1 do
+      post relationships_path, xhr: true, params: { followed_id: @other.id, user_page_id: @user.id }
+    end
+  end
+
+  test "フォロー解除機能(普通の通信/相手のユーザーページ)" do
     @user.follow(@other)
     relationship = @user.active_relationships.find_by(followed_id: @other.id)
     assert_difference '@user.following.count', -1 do
-      delete relationship_path(relationship)
+      delete relationship_path(relationship), params: { user_page_id: @other.id}
     end
   end
 
-  test "フォロー解除機能(Ajax通信)" do
+  test "フォロー解除機能(Ajax通信/相手のユーザーページ)" do
     @user.follow(@other)
     relationship = @user.active_relationships.find_by(followed_id: @other.id)
     assert_difference '@user.following.count', -1 do
-      delete relationship_path(relationship), xhr: true
+      delete relationship_path(relationship), xhr: true, params: { user_page_id: @other.id}
+    end
+  end
+
+  test "フォロー解除機能(普通の通信/自分のユーザーページ)" do
+    @user.follow(@other)
+    relationship = @user.active_relationships.find_by(followed_id: @other.id)
+    assert_difference '@user.following.count', -1 do
+      delete relationship_path(relationship), params: { user_page_id: @user.id}
+    end
+  end
+
+  test "フォロー解除機能(Ajax通信/自分のユーザーページ)" do
+    @user.follow(@other)
+    relationship = @user.active_relationships.find_by(followed_id: @other.id)
+    assert_difference '@user.following.count', -1 do
+      delete relationship_path(relationship), xhr: true, params: { user_page_id: @user.id}
     end
   end
 
   test "フォロー数カウント" do
-    post relationships_path, params: { followed_id: @other.id }    
+    post relationships_path, xhr: true, params: { followed_id: @other.id, user_page_id: @other.id }    
     get user_path(@user)
+    assert_select "span[class=?]", "link__num link__num--following", text: "#{@user.following.count}"
+    assert_select "span[class=?]", "link__num link__num--followers", text: "#{@user.followers.count}"
+    relationship = @user.active_relationships.find_by(followed_id: @other.id)
+    delete relationship_path(relationship), xhr: true, params: { user_page_id: @user.id}
+    get followers_user_path(@user)
     assert_select "span[class=?]", "link__num link__num--following", text: "#{@user.following.count}"
     assert_select "span[class=?]", "link__num link__num--followers", text: "#{@user.followers.count}"
     get root_path
