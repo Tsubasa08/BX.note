@@ -102,10 +102,4 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  # test "ajaxアクション" do
-  #   get ajax_path(@genre), xhr: true #Ajax通信
-  #   json_response = JSON.parse(response.body)
-  #   assert_equal 200, json_response(@user)
-  # end
-
 end

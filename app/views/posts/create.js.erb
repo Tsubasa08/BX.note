@@ -46,7 +46,7 @@ $(function() {
           }
         <% end %>
       <% end %>
-    } else if (page !== "likes-page") {
+    } else {
       $("#post-list").prepend(" <%= j(render @post) %> ");
       sliderSlick();
     };
