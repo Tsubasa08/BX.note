@@ -8,7 +8,6 @@
 	width: 100%;
   background-color: #fff;
 	border-bottom: 1px solid $border;
-  // box-shadow: 0 1px 1px 0 rgba(0,0,0,0.25);
   > .inner {
 		position: relative;
 		display: flex;
@@ -45,11 +44,6 @@
 }
 
 .tab-menu {
-	// position: relative;
-	// position: absolute;
-	// top: 50%;
-	// right: 10px;
-	// transform: translateY(-50%);
 	color: #fff;
 	.contents > div {
 		margin-bottom: 20px;
@@ -69,9 +63,6 @@
 			content: '';
 			width: 0;
 			height: 0;
-			// width: 40px;
-			// height: 40px;
-			
 			border-radius: 50%;
 			background-color: $AccentColor;
 			position: absolute;
@@ -81,7 +72,6 @@
 			right: 20px;
 			margin: 0;
 			z-index: 10;
-			// transition-duration: 0.66s;
 			transition: 0.65s;
 		}
 	}
@@ -92,8 +82,6 @@
 			transform: scale(0.8, 0.8);
 		}
 		.nav-back {
-			// height: 0;
-			// width: 100vw;
 			&::before {
 				width: 2500px;
 				height: 2500px;
@@ -104,12 +92,7 @@
 				background-color: fade(#4A75E6, 95%);
 			}
 		}
-		
-		.contents{
-			// display: block;
-			// transform: translateY(0);
-		}
-		
+
 		.nav-toggle{
 			box-shadow: none;
 			
@@ -159,23 +142,19 @@
 		
 		&:before,
 		&:after{
-			width: 25px;
+			position: absolute;
+			left: 0;
+			content: "";
 			height: 4px;
+			width: 25px;
 			background-color: #fff;
 			border-radius: 2px;
-			
-			content: "";
-			position: absolute;
-			
-			left: 0;
-			
 			transition-duration: 0.5s;
 		}
 		
 		&:before{
 			top: -9px;
 		}
-		
 		&:after{
 			top: 9px;
 		}
@@ -194,7 +173,6 @@
 		max-height: 100%;
 		width: 100vw;
 		z-index: 15;
-		transition-duration: 0.66s;
 	
 		.profile-card--sp {
 			padding: 0 120px;

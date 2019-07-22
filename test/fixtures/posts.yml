@@ -39,3 +39,11 @@ potato:
   genre: "article"
   created_at: <%= 10.minutes.ago %>
   user: archer
+
+<% 21.times do |n| %>
+post_<%= n %>:
+  content: "Hello World! #{n}"
+  created_at: <%= 10.days.ago %>
+  user: michael
+  genre: "other"
+<% end %>
