@@ -105,7 +105,7 @@ $(function() {
     });
   }
 
-  // ---------- 本検索ローディング処理中アイコン(TABサイズ以下) ----------
+  // ---------- 本検索ローディング処理中アイコン ----------
   $(document).on("click", "#book-serch", function() {
     $("#book-list").remove();
     $("#loading-wrapper").show();

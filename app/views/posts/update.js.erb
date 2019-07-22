@@ -31,11 +31,12 @@ $(function() {
 
   
   <% elsif @post.valid?  %>
+    $("#post-load").show();
     $("#post-<%= @post.id %>").html(" <%= j(render 'posts/post_inner') %> ");
     sliderSlick();
 
     closeEditmModal();
-    $("#alert-block").html('<div id="alert" class="alert">投稿を送信しました。</div>');
+    $("#alert-block").html('<div id="alert" class="alert">投稿を保存しました。</div>');
     $("#alert").addClass("alert-down");
     setTimeout(function() {
       $("#alert").removeClass("alert-down");

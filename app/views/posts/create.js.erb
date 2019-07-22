@@ -41,12 +41,14 @@ $(function() {
       <% if @post.categories.present? %>
         <% @post.post_categories.each do |post_categories| %>
           if (categoryTitle === "<%= post_categories.category.name %>") {
+            $("#post-load").show();
             $("#category-post-list").prepend(" <%= j(render @post) %> ");
             sliderSlick();
           }
         <% end %>
       <% end %>
     } else {
+      $("#post-load").show();
       $("#post-list").prepend(" <%= j(render @post) %> ");
       sliderSlick();
     };
