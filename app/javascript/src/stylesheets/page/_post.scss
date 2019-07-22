@@ -53,6 +53,9 @@
       margin-top: 12px;
       padding-right: 15px;
       @include three_reader;
+      &:hover {
+        text-decoration: underline;
+      }
       @include media(sp) {
         margin-top: 9px;
       }

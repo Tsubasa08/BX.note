@@ -291,6 +291,9 @@
         font-size: 1.8rem;
         font-weight: bold;
         @include three_reader;
+        &:hover {
+          text-decoration: underline;
+        }
         @include media(pc) {
           position: absolute;
           width: 220px;
