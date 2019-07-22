@@ -1,9 +1,6 @@
 <div id="panel1" class="panel panel--1">
   <p class="label-title label-title--1">本の感想</p>
   <%= form_with(scope: :post, url: posts_path, id: "form-post", class: 'form form--post') do |f| %>
-    <% if f.object %>
-      <%= render 'shared/error_messages', object: f.object %>
-    <% end %>
 
     <div class="form__top-block">
       <div class="form__text-area-block">

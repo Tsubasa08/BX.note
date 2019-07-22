@@ -38,6 +38,11 @@
   }
   &--danger {
     color: red;
+    border: {
+      right: 2px solid red;
+      bottom: 2px solid red;
+      left: 2px solid red;
+    }
   }
 }
 .alert-down {
@@ -59,6 +64,7 @@
     }
   }
 }
+
 .comment-alert {
   position: absolute;
   top: -52px;
