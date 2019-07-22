@@ -1,4 +1,4 @@
 <%= form_with(model: current_user.active_relationships.find_by(followed_id: user.id), html: { method: :delete }) do |f| %>
   <%= hidden_field_tag :user_page_id, user_page.id %>
-  <%= f.submit "フォロー中", class: "profile-block__link profile-block__link--unfollow" %>
+  <%= f.submit "フォロー中", class: "profile-block__link profile-block__link--unfollow", data: { confirm: "#{user.name}さんをフォロー解除しますか？" } %>
 <% end %>
