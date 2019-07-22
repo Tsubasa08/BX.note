@@ -166,6 +166,10 @@
         &--article {
           height: 173px;
           width: 173px;
+          border-right: 1px solid $border;
+          &.fa-pen-square {
+            color: gray;
+          }
           @include media(sp) {
             height: 100px;
             width: 100px;

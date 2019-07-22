@@ -49,9 +49,17 @@
       <% if post.genre == 'article' %>
         <div class="post-item">
           <a href="<%= post.link_url %>" class="post-item__link post-item__link--article"target="_brank">
-            <img src="<%= post.link_image %>" class="post-item__img post-item__img--article">
+            <% if post.link_image? %>
+              <img src="<%= post.link_image %>" class="post-item__img post-item__img--article">
+            <% else %>
+              <i class="fas fa-pen-square post-item__img post-item__img--article"></i>
+            <% end %>
             <div class="post post-item__text post post-item__text--article">
-              <p class="article-title"><%= post.link_title %></p>
+              <% if post.link_title? %>
+                <p class="article-title"><%= post.link_title %></p>
+              <% else %>
+                <p class="article-title">記事にタイトルが設定されていません。</p>
+              <% end %>
               <p class="article-desc"><%= post.link_desc %></p>
               <p class="link-title"> <%= get_host(post.link_url) %> </p>
             </div>
