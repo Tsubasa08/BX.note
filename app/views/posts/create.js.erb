@@ -12,7 +12,7 @@ $(function() {
   const closeFormModalMethod = function() {
     $("#modal-content--post, #modal-close--post").fadeOut("fast");
     $("body, #modal-open").removeClass("active");
-    $("#panel-area .panel").remove();
+    $("#panel-area .panel, #processing-block").remove();
     $("header, main, footer").show();
     $("#panel-area").toggleClass("active");
     setTimeout(function() {
