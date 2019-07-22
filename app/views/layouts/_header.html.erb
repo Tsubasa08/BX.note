@@ -9,7 +9,7 @@
     </h1>
 
     <div class="serch-box serch-box--pc">
-      <%= search_form_for @q, url: search_path do |f| %>
+      <%= search_form_for @q, url: search_path, id: 'post-search-pc' do |f| %>
         <%= f.search_field :link_title_or_link_desc_or_content_cont, placeholder: '検索', class: 'serch-box__input serch-box--pc__input' %>
         <%= f.button class: 'serch-box__button serch-box--pc__button',value: ''  do%>
         <i class="fas fa-search"></i>
@@ -96,7 +96,7 @@
 <div id="serch-page" class="serch-page">
   <div class="serch-page__header">
     <div class="serch-box serch-box--sp">
-    <%= search_form_for @q, url: search_path do |f| %>
+    <%= search_form_for @q, url: search_path, id: 'post-search-sp' do |f|%>
       <%= f.search_field :link_title_or_link_desc_or_content_cont, placeholder: '検索', id: 'serch--sp', class: 'serch-box__input serch-box--sp__input' %>
       <%= f.button class: 'serch-box__button serch-box--sp__button',value: ''  do%>
       <i class="fas fa-search"></i>
