@@ -9,8 +9,8 @@
     
     padding: 10px 15px;
     background-color: #fff;
-    @include radius;
     @include media(pc) {
+      @include radius;
       margin-bottom: 10px;
       &:nth-last-of-type(1) {
         margin-bottom: 0;
