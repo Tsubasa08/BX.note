@@ -198,11 +198,6 @@
       padding: 8px 0;
       transition: 0.2s;
     }
-    @include media(tab) {
-      position: absolute;
-      top: 20px;
-      right: 10px;
-    }
     &--edit {
       @include media(pc) {
         &:hover {
