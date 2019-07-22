@@ -205,6 +205,11 @@
         color: #fff;
         }
       }
+      @include media(tab) {
+        position: absolute;
+        top: 20px;
+        right: 10px;
+      }
     }
     &--follow {
       background-color: #fff;
