@@ -26,6 +26,7 @@
   }
   @include media(tab) {
     width: 100%;
+    background: $SubColor;
   }
   > .inner {
     position: relative;

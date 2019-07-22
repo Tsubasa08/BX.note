@@ -2,9 +2,6 @@
   <p class="label-title label-title--2">記事共有</p>
   
   <%= form_with(scope: :post, url: posts_path, id: "form-post", class: 'form form--post') do |f| %>
-    <% if f.object %>
-      <%= render 'shared/error_messages', object: f.object %>
-    <% end %>
 
     <div class="form__top-block">
       <div class="form__text-area-block">
@@ -44,6 +41,12 @@
   <% end %>
 </div>
 
-<div id="post-alert" class="post-alert">
-  <ul class="error-list"></ul>
+<div id="processing-block" class="processing-block">
+  <div id="post-load" class="post-load">
+    <div class="post-load__inner">
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+    </div>
+  </div>
 </div>

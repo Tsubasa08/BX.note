@@ -26,22 +26,26 @@ $(function() {
 
 
   <% if @post.valid? && @e_error %>
+    $("#processing-block").html('<div id="post-alert" class="post-alert"><ul class="error-list"></ul></div>');
     $("#post-alert .error-list").append('<li class="error-list__item"><%= @e_error %></li>');
     errorMessage();
 
   
   <% elsif @post.valid?  %>
+    $("#post-load").show();
     $("#post-<%= @post.id %>").html(" <%= j(render 'posts/post_inner') %> ");
     sliderSlick();
 
     closeEditmModal();
-    $("#alert-block").html('<div id="alert" class="alert">投稿を送信しました。</div>');
+    $("#alert-block").html('<div id="alert" class="alert">投稿を保存しました。</div>');
     $("#alert").addClass("alert-down");
     setTimeout(function() {
       $("#alert").removeClass("alert-down");
     }, 3000);
+    $("#processing-block").hide();
 
   <% else %>
+    $("#processing-block").html('<div id="post-alert" class="post-alert"><ul class="error-list"></ul></div>');
     <% @post.errors.full_messages.each do |message| %>
       $("#post-alert .error-list").append('<li class="error-list__item"><%= message %></li>');
     <% end %>

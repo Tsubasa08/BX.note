@@ -9,8 +9,8 @@
     
     padding: 10px 15px;
     background-color: #fff;
-    @include radius;
     @include media(pc) {
+      @include radius;
       margin-bottom: 10px;
       &:nth-last-of-type(1) {
         margin-bottom: 0;
@@ -53,6 +53,9 @@
       margin-top: 12px;
       padding-right: 15px;
       @include three_reader;
+      &:hover {
+        text-decoration: underline;
+      }
       @include media(sp) {
         margin-top: 9px;
       }

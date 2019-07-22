@@ -14,4 +14,6 @@ ja:
         content: "コメント"
 
       post:
+        content: "シェア内容"
         link_url: "記事のURL"
+        book_evaluation: "本の評価"
