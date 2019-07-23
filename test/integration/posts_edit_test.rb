@@ -17,14 +17,10 @@ class PostsEditTest < ActionDispatch::IntegrationTest
     get edit_post_path(@post), xhr: true
     assert_response :success
     content = "鳴らない電話"
-    # image = fixture_file_upload('test/fixtures/Apple.jpg', 'image/jpg')
     category = [4, 5]
-    # category_ids: []
     # genreは隠しinputで入力済み
-    patch post_path(@post), params: { post: { content: content, image: ""},
-                                      category_ids: category}
+    patch post_path(@post), params: { post: { content: content, image: ""}, category_ids: category}, xhr: true
     @post.category_ids = category
-    # assert_redirected_to @user
     @post.reload
     assert_equal content, @post.content
     assert_equal category, @post.category_ids

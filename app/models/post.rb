@@ -30,15 +30,17 @@ class Post < ApplicationRecord
   #  画像のサイズ、拡張子を判定
   def validate_image
     return unless images.attached?
+    count = 1
     images.each do |image|
       if image.blob.byte_size > 5.megabytes
         image.purge
         # エラーだけ与えて保存を失敗させる
         errors.add(:images, (''))
-      # elsif !image?
-      #   image.purge
-      #   errors.add(:images, (''))
-      end   
+      end
+      if count > 3
+        errors.add(:images, ('は3枚まで選択してください。'))
+      end
+      count += 1
     end
     # end
   end
