@@ -1,0 +1,280 @@
+/*
+  about
+*/
+
+// 共通のレイアウト
+.about-page {
+  font-size: 1.5rem;
+  @include media(sp) {
+    font-size: 1.4rem;
+  }
+}
+.button-block {
+  width: 180px;
+  @include media(tab) {
+    width: 80%;
+  }
+  .link {
+    display: block;
+    width: 100%;
+    padding: 17px 0;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border-radius: 35px;
+    box-shadow: 0 2px 15px 2px rgba(133,140,142,0.4);   
+    transition: 0.2s;
+  }
+  
+  &__signup {
+    background-color: $orange;
+    opacity: 0.9;
+    color: #fff;
+    
+  }
+  &__root {
+    margin-top: 16px;
+    background-color: #fff;
+    color: $orange;
+    border: 1px solid $orange;
+    @include media(tab) {
+      margin-top: 20px;
+    }
+  }
+
+  @include media(pc) {
+    &__signup:hover {
+      opacity: 1;
+    }
+    &__root:hover {
+      background-color: #faebd7;
+    }
+  }
+}
+// 共通のレイアウト end
+
+
+// top-block
+.top-block {
+  height: 480px;
+  padding: 80px 0 0 0;
+  background-color: $AccentColor;
+  color: #fff;
+  @include media(tab) {
+    padding: 30px 10px 0 10px;
+  }
+  &__title {
+    font-size: 3.8rem;
+    text-align: center;
+    @include media(tab) {
+      font-size: 2.5rem;
+    }
+  }
+  .wrapper {
+    @include media(pc) {
+      display: flex;
+      width: 977px;
+      margin: 50px auto 0;
+    }
+    @include media(tab) {
+      margin-top: 30px;
+    }
+    .button-block {
+      margin-top: 42px;
+      @include media(tab) {
+        margin: 30px auto;
+      }
+    }
+  }
+  &__text {
+    @include media(tab) {
+      text-align: center;
+    }
+  }
+
+  &__img {
+    @include media(tab) {
+      max-width: 355px;
+      margin: 0 auto;
+    }
+  }
+}
+// top-block end
+
+
+// desc-block
+.desc-block {
+  height: 380px;
+  margin-top: 185px;
+  background: url('../images/about_bg_01.jpg') no-repeat center;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+  @include media(tab) {
+    margin-top: 140px;
+  }
+  > .filter {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    @include f-center;
+  }
+  &__title {
+    font-size: 2.4rem;
+    @include media(tab) {
+      font-size: 2rem;
+    }
+    .main-title {
+      border-bottom: 1.5px solid #fff;
+      font-size: 3.2rem;
+      @include media(tab) {
+        font-size: 2.8rem;
+      }
+    }
+  }
+  &__name {
+    margin: 25px 0;
+    font-size: 3.2rem;
+    font-weight: bold;
+    @include media(tab) {
+      font-size: 2.8rem;
+    }
+  }
+}
+// desc-block end
+
+
+// app-feature
+.app-feature {
+  width: 1120px;
+  margin: 100px auto 0;
+  @include media(tab) {
+    margin-top: 40px;
+    width: 80%;
+  }
+  @include media(sp) {
+    width: 100%;
+    margin-top: 40px;
+    padding: 0 10px;
+  }
+  .section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 100px;
+    @include media(tab) {
+      flex-direction: column-reverse;
+    }
+    @include media(sp) {
+      margin-bottom: 30px;
+    }
+    &:nth-last-of-type(1) {
+      margin-bottom: 0;
+    }
+    &__img {
+      width: 500px;
+      @include media(pc) {
+        margin-right: 48px;
+      }
+      @include media(tab) {
+        width: 100%;
+        margin-top: 20px;
+      }
+    }
+
+    .text {
+      @include media(tab) {
+        width: 100%;
+      }
+    }
+
+    &__num {
+      position: relative;
+      font-size: 2.4rem;
+      font-weight: bold;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 30px;
+        border-bottom: 2px solid $AccentColor;
+      }
+    }
+
+    &__title {
+      font-size: 2.4rem;
+      margin: 26px 0;
+      @include media(tab) {
+        margin: 15px 0;
+        text-align: center;
+      }
+    }
+
+    &--2 {
+      @include media(pc) {
+        flex-direction: row-reverse;
+        &__img {
+          margin-right: 0;
+          margin-left: 48px;
+        }
+      }
+    }
+    &--3 {
+      @include media(pc) {
+        &__desc {
+          width: 470px;
+        }
+      }
+    }
+  }
+}
+// app-feature end
+
+
+// bottom-block
+.bottom-block {
+  margin-top: 170px;
+  padding: 80px 0;
+  background-color: #fff;
+  text-align: center;
+  @include media(tab) {
+    margin-top: 60px;
+    padding: 32px 10px;
+  }
+  &__desc {
+    @include media(tab) {
+      width: 80%;
+      margin: 0 auto;
+      text-align-last: left;
+    }
+    @include media(sp) {
+      width: 100%;
+    }
+  }
+  .button-block {
+    @include media(pc) {
+      display: flex;
+      justify-content: space-between;
+      width: 390px;
+      margin: 38px auto 0;
+      .link {
+        width: 180px;
+      }
+      &__root {
+        margin-top: 0;
+      }
+
+    }
+    @include media(tab) {
+      margin: 30px auto 0;
+    }
+  }
+}
+// bottom-block end
+
+
+/*
+  about end
+*/

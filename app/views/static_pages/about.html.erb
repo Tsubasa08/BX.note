@@ -1,2 +1,76 @@
 <% provide(:title, 'BX.noteとは') %>
-<h1>BX.noteとは</h1>
+<main class="about-page" data-page="about-page">
+
+  <!-- top-block -->
+  <div class="top-block">
+    <h1 class="top-block__title">初心者同士で共有しよう。</h1>
+
+    <div class="wrapper">
+      <div class="top-block__text">
+        <p class="desc">Webデザイナー初心者のための情報共有SNSです。<br>役に立った本や記事などを共有して、<br>初心者同士でどんどん成長していきましょう。</p>
+        <div class="button-block">
+          <%= link_to 'アカウント登録', signup_path, class: 'button-block__signup link' %>
+          <%= link_to '投稿を見てみる', root_path, class: 'button-block__root link' %>
+        </div>
+      </div>
+      <div class="top-block__img">
+        <img class="img" src="<%= asset_pack_path 'media/src/images/about_img_01.png' %>" />
+      </div>
+    </div>
+  </div><!-- top-block end -->
+
+
+  <!-- desc-block -->
+  <div class="desc-block">
+    <div class="filter">
+      <div class="inner">
+        <h2 class="desc-block__title"><span class="main-title"><span class="accent-color">B</span>eginner <span class="accent-color">E</span>xperience <span class="accent-color">N</span>ote</span><br>初心者が経験したことを共有するSNS</h2>
+        <p class="desc-block__name">「BX.note」</p>
+        <p class="desc-block__desc">BX.noteはデザイナー初心者に特化したSNSです。<br>初心者同士で繋がり、有用な情報を共有し合うことで、<br>さらにレベルアップすることができます。</p>
+      </div>
+    </div>
+  </div><!-- desc-block end -->
+
+
+  <!-- app-feature -->
+  <article class="app-feature">
+    <section class="section section--1">
+      <img class="section__img" src="<%= asset_pack_path 'media/src/images/about_img_02.png' %>" />
+      <div class="text">
+        <p class="section__num">1.</p>
+        <h3 class="section__title">本の感想を共有する</h3>
+        <p class="section__desc">本のタイトルを入力して検索、そして選択することができます。<br>5段階の評価を付けて共有しましょう。</p>
+      </div>
+    </section>
+
+    <section class="section section--2">
+      <img class="section__img section--2__img" src="<%= asset_pack_path 'media/src/images/about_img_03.png' %>" />
+      <div class="text">
+        <p class="section__num">2.</p>
+        <h3 class="section__title">記事の感想を共有する</h3>
+        <p class="section__desc">記事のURLを入力して投稿すると、<br>リンク、タイトル、概要が自動的に設定されます。<br>他の初心者の方が参考にしやすくすることができます。</p>
+      </div>
+    </section>
+
+    <section class="section section--3">
+      <img class="section__img" src="<%= asset_pack_path 'media/src/images/about_img_04.png' %>" />
+      <div class="text">
+        <p class="section__num">3.</p>
+        <h3 class="section__title">質問を共有する</h3>
+        <p class="section__desc section--3__desc">投稿に対しコメントをすることできるので、質問を投稿して他ユーザーの方からの回答で解決へと導きます。<br>また、共有されるので他の初心者にとっても有用な情報となります。</p>
+      </div>
+    </section>
+  </article><!-- app-feature -->
+
+
+  <!-- bottom-block -->
+  <div class="bottom-block">
+    <h2 class="bottom-block__title">さぁ、さっそくはじめよう。</h2>
+    <p class="bottom-block__desc">Webデザイナー初心者同士でどんどん成長していきましょう。</p>
+    <div class="button-block">
+      <%= link_to 'アカウント登録', signup_path, class: 'button-block__signup link' %>
+      <%= link_to '投稿を見てみる', root_path, class: 'button-block__root link' %>
+    </div>
+  </div><!-- bottom-block end -->
+
+</main>
