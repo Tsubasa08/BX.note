@@ -6,7 +6,6 @@
 .post-list {
   &__item {
     position: relative;
-    
     padding: 10px 15px;
     background-color: #fff;
     @include media(pc) {
@@ -163,10 +162,6 @@
       }
       &__link {
         display: flex;
-        &--book {
-
-        }
-        
       }
       &__img {
         @include cover;
