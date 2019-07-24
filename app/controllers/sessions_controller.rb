@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
   end
   
@@ -7,15 +8,13 @@ class SessionsController < ApplicationController
     if auth.present?
       @user = User.find_or_create_from_auth(request.env['omniauth.auth'])
       log_in (@user)
-      # redirect_back_or user
-      redirect_to @user
+      redirect_back_or @user
     else 
       @user = User.find_by(email: params[:session][:email].downcase)
       if @user && @user.authenticate(params[:session][:password])
         log_in (@user)
         params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-        # redirect_back_or @user
-        redirect_to @user
+        redirect_back_or @user
       else
         flash.now[:danger] =  'メーアドレスもしくはパスワードが正しくありません' 
         render 'new'

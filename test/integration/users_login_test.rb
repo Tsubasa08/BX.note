@@ -7,8 +7,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @twitter = users(:twirou)
   end
 
-  # 不正な情報を入力してログイン
-  test "user_login_errors_flash" do
+  test "不正な情報を入力してログイン" do
     get login_path
     assert_template 'sessions/new'
     post login_path, params: { session: { email: "", password: "" } }
@@ -18,8 +17,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert flash.empty?
   end
 
-  # ログアウト成功時の画面遷移
-  test "login with valid information followed by logout" do
+
+  test "ログアウト成功時の画面遷移" do
     get login_path
     post login_path, params: { session: { email: @user.email, password: 'password' } }
     assert is_logged_in?
@@ -39,8 +38,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", logout_path, count: 0
   end
 
-  # Twitter認証によるログイン
-  test "login with valid information followed by logout twitter" do
+
+  test "Twitter認証によるログイン" do
     get login_path
     post login_path, params: { session: { name: @twitter.name, email: '', password: 'password', uid: '1', provider: 'provider', image_url: 'ImageName' } }
     assert is_logged_in?
@@ -61,14 +60,16 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(@twitter), count: 0
   end
 
-  # ログイン後、ログイン状態を保持
-  test "login with remembering" do
+
+  
+  test "ログイン後、ログイン状態を保持" do
     log_in_as(@user, remember_me: '1')
     assert_equal cookies['remember_token'], assigns(:user).remember_token
   end
 
-  # Remember me機能を使わないでログイン
-  test "login without remembering" do
+
+
+  test "Remember me機能を使わないでログイン" do
     # クッキーを保存してログイン
     log_in_as(@user, remember_me: '1')
     delete logout_path

@@ -8,7 +8,6 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :comment_users, through: :comments, source: :user
 
-  default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
   validates :genre, presence: true
@@ -18,6 +17,8 @@ class Post < ApplicationRecord
              unless: :other? #ジャンルが""other"以外
   validates :book_evaluation, presence: true, if: :book?
   validate  :validate_image
+
+  default_scope -> { order(created_at: :desc) }
 
   def other?
     genre == "other"

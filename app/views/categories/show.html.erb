@@ -3,12 +3,12 @@
 <main class="main" data-page="category-page">
   <div class="contents">
     <div class="contents__left">
-        <h1 id="category-title" class="category-title category-title--<%= @category.id %>"><%= @category.name %></h1>
+      <h1 id="category-title" class="category-title category-title--<%= @category.id %>"><%= @category.name %></h1>
+      <!-- post -->
       <ol id="category-post-list" class="post-list">
         <%= render @posts %>
       </ol><!-- post end -->
       <%= paginate @posts %>
-      
     </div>
 
     <div class="contents__right">
@@ -32,5 +32,4 @@
     </div>
 
   </div>
-
 </main>

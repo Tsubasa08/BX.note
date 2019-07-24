@@ -4,11 +4,10 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
    include ApplicationHelper
 
   def setup
-  @user = users(:michael)
-  @other_user = users(:archer)
+    @user = users(:michael)
+    @other_user = users(:archer)
   end
 
-  # Userプロフィール画面に対するテスト
   test "自分のプロフィールページ" do
     log_in_as(@user)
     get user_path(@user)

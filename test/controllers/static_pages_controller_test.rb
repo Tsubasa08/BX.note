@@ -6,25 +6,25 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     @base_title = "BX.note"
   end
 
-  test "should get top" do
+  test "トップページへアクセス" do
     get root_path
     assert_response :success
     assert_select "title", "#{@base_title}"
   end
 
-  test "should get about" do
+  test "Aboutページへアクセス" do
     get about_path
     assert_response :success
     assert_select "title", "BX.noteとは | #{@base_title}"
   end
 
-  test "should get terms" do
+  test "利用規約ページへアクセス" do
     get terms_path
     assert_response :success
     assert_select "title", "利用規約 | #{@base_title}"
   end
 
-  test "should get policy" do
+  test "プライバシーポリシーページへアクセス" do
     get policy_path
     assert_response :success
     assert_select "title", "プライバシーポリシー | #{@base_title}"

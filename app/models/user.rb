@@ -8,8 +8,8 @@ class User < ApplicationRecord
                                   dependent: :destroy
   # フォロワーを関連付ける
   has_many :passive_relationships, class_name: "Relationship",
-                                  foreign_key: "followed_id",
-                                  dependent: :destroy
+                                   foreign_key: "followed_id",
+                                   dependent: :destroy
   # フォローしているユーザーの集合(following)の関連付け
   has_many :following, through: :active_relationships, source: :followed
   # フォロワーの集合(followers)の関連付け
@@ -17,19 +17,20 @@ class User < ApplicationRecord
   # 画像の関連付け
   has_one_attached :image
   
-  attr_accessor :remember_token, :reset_token
-  before_save :downcase_email, unless: :uid?
   validates :name, presence: true, length: {maximum: 30}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: {maximum: 255},
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false },
             unless: :uid?
-  has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true,
              unless: :uid?
   validates :introduce, length: {maximum: 150}, allow_nil: true
   validate  :validate_image
+
+  attr_accessor :remember_token, :reset_token
+  before_save :downcase_email, unless: :uid?
+  has_secure_password
 
   class << self 
 
@@ -80,12 +81,6 @@ class User < ApplicationRecord
    def password_reset_expired?
     reset_sent_at < 2.hours.ago
    end
-
-   # ユーザーのステータスフィードを返す
-  # def feed
-  #   following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
-  #   Micropost.where("user_id IN (#{following_ids} OR user_id = :user_id)", user_id: id)
-  # end
 
    # ユーザーをフォローする
    def follow(other_user)

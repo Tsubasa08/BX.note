@@ -2,7 +2,6 @@
   <p class="label-title label-title--2">記事共有</p>
   
   <%= form_with(scope: :post, url: posts_path, id: "form-post", class: 'form form--post') do |f| %>
-
     <div class="form__top-block">
       <div class="form__text-area-block">
         <%= render 'shared/user_icon', user: current_user, id_name: 'user-icon', class_name: 'modal-user-icon modal-user-icon--form' %>

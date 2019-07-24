@@ -56,6 +56,9 @@
   }
   &.active {
     z-index: 50;
+    @include media(tab) {
+      background-color: #fff;
+    }
   }
 }
 

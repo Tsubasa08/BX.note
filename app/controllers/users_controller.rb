@@ -7,11 +7,8 @@ before_action :admin_user, only: :destroy
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(20)
     @current_page_post = "current" #ページレイアウト活性化
-    # @post = current_user.posts.build if logged_in?
-    # redirect_to(root_url) unless current_user?(@user) 
   end
   
-
   def new
     @user = User.new
   end

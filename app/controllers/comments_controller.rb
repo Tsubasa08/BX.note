@@ -10,12 +10,6 @@ class CommentsController < ApplicationController
         format.html { redirect_back(fallback_location: root_url) }
         format.js
       end
-    # else
-    #   respond_to do |format|
-    #     format.html { redirect_back(fallback_location: root_url) }
-    #     format.js
-    #   end
-      # redirect_back(fallback_location: root_url)
     end
   end
 

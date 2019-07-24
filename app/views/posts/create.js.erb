@@ -41,6 +41,7 @@ $(function() {
     if (categoryTitle) {
       <% if @post.categories.present? %>
         <% @post.post_categories.each do |post_categories| %>
+          <%# 現在のページがカテゴリーページ && 投稿にカテゴリーが存在 && カテゴリーページのカテゴリーと一致 %>
           if (categoryTitle === "<%= post_categories.category.name %>") {
             $("#category-post-list").prepend(" <%= j(render @post) %> ");
             sliderSlick();

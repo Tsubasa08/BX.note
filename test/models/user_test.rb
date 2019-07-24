@@ -9,71 +9,64 @@ class UserTest < ActiveSupport::TestCase
               uid: '1', provider: 'provider', image_url: 'test.jpg', )
   end
 
-  # テストユーザー
-  test "should be valid" do
+  test "正常なユーザー" do
     assert @user.valid?
   end
 
-  test "should be valid twitter" do
+  test "正常なユーザー(Twitter認証)" do
     assert @twitter.valid?
   end
 
 
-  # 名前が空
-  test "name should be present" do
+  test "名前が空" do
     @user.name = " "
     assert_not @user.valid?
   end
 
-  test "name should be present twitter" do
+  test "名前が空(Twitter認証)" do
     @twitter.name = " "
     assert_not @twitter.valid?
   end
 
 
-  # 名前が51文字以上
-  test "name should not be too long" do
+  test "名前が51文字以上" do
     @user.name = "a" * 51
     assert_not @user.valid?
   end
 
-  test "name should not be too long twitter" do
+  test "名前が51文字以上(Twitter経由)" do
     @twitter.name = "a" * 51
     assert_not @twitter.valid?
   end
 
 
-  # 自己紹介が151文字以上
-  test "introduce should not be too long" do
+  test "自己紹介が151文字以上" do
     @user.introduce = "a" * 151
     assert_not @user.valid?
   end
-  test "introduce should not be too long twitter" do
+  test "自己紹介が151文字以上(Twitter経由)" do
     @twitter.introduce = "a" * 151
     assert_not @twitter.valid?
   end
 
 
-  # 自己紹介が空
-  test "introduce nil valid" do
+  test "自己紹介が空" do
     @user.introduce = ""
     assert @user.valid?
   end
 
-  test "introduce nil valid twitter" do
+  test "自己紹介が空(Twitter経由)" do
     @twitter.introduce = ""
     assert @twitter.valid?
   end
 
 
-  # メールアドレスが256文字以上
-  test "email should not be too long" do
+  test "メールアドレスが256文字以上" do
     @user.email = "a" * 244 + "@example.com"
     assert_not @user.valid?
   end
 
-  # メールアドレスが空
-  test "email nil valid twitter" do
+  test "メールアドレスが空" do
     @twitter.email = ""
     assert @twitter.valid?
   end
@@ -96,42 +89,40 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "email addresses sould be unique" do
+  test "メールアドレスが一意ではない" do
     duplicate_user = @user.dup
     duplicate_user.email = @user.email.upcase
     @user.save
     assert_not duplicate_user.valid?
   end
 
-  test  "email addresses should be saved as lower-case" do
+  test  "メールアドレスに大文字が含まれる" do
     mixed_case_email =  "Foo@ExAMPle.CoM"
     @user.email = mixed_case_email
     @user.save
     assert_equal mixed_case_email.downcase, @user.reload.email
   end
 
-  # パスワードがスペース6個
-  test  "password should be present (nonblank)" do
+  test  "パスワードがスペース6個" do
     @user.password = @user.password_confirmation = " " * 6
     assert_not @user.valid?
   end
 
-  # パスワードが５文字以下
-  test "password should have a minimum length" do
+  test "パスワードが５文字以下" do
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
 
-  test "password should have a minimum length twitter" do
+  test "パスワードが５文字以下(Twitter経由)" do
     @twitter.password = "a" * 5
     assert_not @twitter.valid?
   end
 
-  test  "authenticated? should return false for a user with nil digest" do
+  test  "ダイジェストが空" do
     assert_not @user.authenticated?(:remember, '')
   end
 
-   test "associated posts should be destroyed" do
+   test "ユーザー削除時の投稿データ" do
       @user.save
       @user.posts.create!(content: "Lorem ipsum", genre: "other")
       assert_difference 'Post.count', -1 do
@@ -139,7 +130,7 @@ class UserTest < ActiveSupport::TestCase
       end
     end
 
-    test "should follow and unfollow a user" do
+    test "フォロー/フォロー解除" do
       michael = users(:michael)
       archer = users(:archer)
       assert_not michael.following?(archer)
@@ -150,21 +141,4 @@ class UserTest < ActiveSupport::TestCase
       assert_not michael.following?(archer)
     end
 
-  #   test  "feed should have the right posts" do
-  #     michael = users(:michael)
-  #     archer = users(:archer)
-  #     lana = users(:lana)
-  #      # フォローしているユーザーの投稿を確認
-  #      lana.microposts.each do |post_following|
-  #       assert michael.feed.include?(post_following)
-  #      end
-  #      # 自分自身の投稿を確認
-  #      michael.microposts.each do |post_self|
-  #       assert michael.feed.include?(post_self)
-  #      end
-  #      # フォローしていないユーザーの投稿を確認
-  #      archer.microposts.each do |post_unfollowed|
-  #       assert_not michael.feed.include?(post_unfollowed)
-  #      end
-  #   end
 end

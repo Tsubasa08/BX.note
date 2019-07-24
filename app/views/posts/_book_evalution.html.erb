@@ -1,6 +1,7 @@
 <div class="book-evalution-block">
   <span>評価：</span>
   <% count = 1  %>
+    <%# 本の評価の値の数活性化した星を表示する %>
   <% 5.times do %>
     <% if count <= post.book_evaluation.to_i %>
       <span class="book-rate book-rate--check"></span>

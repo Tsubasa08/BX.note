@@ -11,17 +11,15 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     get signup_path
     assert_no_difference 'User.count' do
       post signup_path, params: { user: { name: "",
-                                 email: "user@invalid",
-                                 password: "foo",
-                                 password_confirmation: "bar"} }
+                                  email: "user@invalid",
+                                  password: "foo",
+                                  password_confirmation: "bar"} }
     end
     assert_template 'users/new'
-    # assert_select 'div#error_explanation'
-    # assert_select 'div.alert'
-    # assert_select 'li', "Name can't be blank"
-    # assert_select 'li', "Email is invalid"
-    # assert_select 'li', "Password is too short (minimum is 6 characters)"
-    # assert_select 'li', "Password confirmation doesn't match Password"
+    assert_select 'li.error-list__item', "・ユーザー名を入力してください"
+    assert_select 'li.error-list__item', "・メールアドレスは不正な値です"
+    assert_select 'li.error-list__item', "・パスワードは6文字以上で入力してください"
+    assert_select 'li.error-list__item', "・確認用パスワードとパスワードの入力が一致しません"
     assert_select 'form[action="/signup"]'
   end
 
@@ -30,22 +28,13 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     get signup_path
      assert_difference 'User.count', 1 do
       post users_path, params: { user: { name: "Example User",
-                                  email: "user@example.com",
-                                  password: "password",
-                                  password_confirmation: "password"} }
+                                 email: "user@example.com",
+                                 password: "password",
+                                 password_confirmation: "password"} }
     end
     user = assigns(:user)
     # 有効化していない状態でログイン
     log_in_as(user)
-    # assert_not is_logged_in?
-    # # 有効化トークンが不正な場合
-    # get edit_account_activation_path("invalid token", email: user.email)
-    # assert_not is_logged_in?
-    # # トークンは正しいがメールアドレスが無効な場合
-    # get edit_account_activation_path(user.activation_token, email: 'wrong')
-    # # 有効化トークンが正しい場合
-    # get edit_account_activation_path(user.activation_token, email: user.email)
-    # assert user.reload.activated?
     follow_redirect!
     assert_template 'users/show'
     assert_not flash.empty?

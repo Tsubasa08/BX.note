@@ -22,7 +22,6 @@ class RelationshipsController < ApplicationController
     end
   end
 
-  
 
   private
 

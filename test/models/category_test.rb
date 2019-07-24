@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
-  # has_many :post_categories
-  # has_many :posts, through: :post_categories
 
   def setup
     @category = Category.new(name: 'HTML')
