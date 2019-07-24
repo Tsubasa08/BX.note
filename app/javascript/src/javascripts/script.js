@@ -1,4 +1,11 @@
 $(function() {
+  // ---------- Aboutページ cssリセット ----------
+  const page = $("main").attr("data-page");
+  if (page === "about-page") {
+    $(".main-container").css("padding-top", 60);
+    $(".footer").css("margin-top", 0);
+  }
+
   // ---------- ハンバーガーメニュー ----------
   $(".nav-toggle").click(function() {
     $("#tab-menu").toggleClass("nav-open");
