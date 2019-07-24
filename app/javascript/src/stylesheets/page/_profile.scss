@@ -244,12 +244,9 @@
 
 // users-block
 .users-block {
-  // width: 100%;
   @include media(pc) {
     display: flex;
     flex-wrap: wrap;
-    // justify-content: space-between;
-    // transform: translateX(-10px);
     margin-top: -10px;
     margin-left: -10px;
   }
@@ -265,7 +262,6 @@
       width: calc(100% / 3 - 10px);
       margin: 10px 0 0 10px;
       padding: 10px 15px;
-      // overflow: hidden;
     }
     @include media(tab) {
       padding: 10px;

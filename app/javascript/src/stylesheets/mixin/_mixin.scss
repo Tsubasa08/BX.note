@@ -108,9 +108,6 @@
 
 // 複数行３点リーダー
 @mixin three_reader_multi($font-size-base, $line-height-computed, $lines-to-show) {
-  // $font-size-base: 1.4rem;
-  // $line-height-computed: 1.6;
-  // $lines-to-show: 5;
   height: $font-size-base * $line-height-computed * $lines-to-show;
   line-height: $line-height-computed;
   position: relative;

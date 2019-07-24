@@ -30,8 +30,6 @@ post_form
       color: $AccentColor;
       font-size: 2rem;
       font-weight: bold;
-      // padding: 10px 20px;
-      // border-radius: 5px 5px 0 0;
       &::before {
         content: '\f277';
         font-family: 'Font Awesome 5 Free';
@@ -155,7 +153,6 @@ post_form
           }
         }
         &__check-block {
-          // transform: translateY(-60px);
           position: absolute;
           top: 20px;
           right: 20px;
@@ -265,7 +262,6 @@ post_form
     border-radius: 15px;
   }
   .panel {
-    // position: relative;
     padding-top: 23px;
     .label-title {
       display: block;
@@ -327,8 +323,6 @@ post_form
     &__btn-block {
       padding-left: 10px;
       border-bottom: 1px solid $border;
-      .form-image {
-      }
     }
     &__radio-group {
       padding: 16px 10px;
@@ -355,7 +349,6 @@ post_form
   }
 
   .book-search-result {
-    // padding-left: 40px;
     .book-list {
       &__item {
         padding: 5px 10px;
@@ -364,7 +357,6 @@ post_form
           width: auto;
         }
         .book-title {
-          // width: 640px;
           margin-left: 13px;
         }
       }
@@ -386,7 +378,6 @@ post_form
   }
 
   .search-book-form {
-    // width: 550px;
     padding: 16px 10px;
     &__textarea {
       width: 100%;
@@ -409,7 +400,6 @@ post_form
       & > input {
         display: none;
         & + label {
-          /* only enough room for the star */
           display: inline-block;
           overflow: hidden;
           text-indent: 9999px;
@@ -431,7 +421,6 @@ post_form
           text-shadow: 0 0 1px #333;
         }
       }
-      /* the hidden clearer */
       & > .star-cb-clear + label {
         text-indent: -9999px;
         width: .5em;
