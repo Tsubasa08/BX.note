@@ -1,6 +1,6 @@
 <% provide(:title, 'ログイン') %>
 <main class="main-login">
-  <div class="form-card">
+  <div class="form-card form-card--new">
     <h1 class="form-card__title">ログイン</h1>
       <%= form_with(scope: :session, url: login_path, local: true, class: 'form form--login') do |f| %>
         <%= f.email_field :email,  class: 'form__input', placeholder: 'メールアドレス' %>
@@ -14,5 +14,13 @@
       <% end %>
       <p class="form-border">or</p>
       <%= link_to "Twitter", "/auth/twitter", class: 'twitter-link' %>
+  </div>
+
+  <div class="test-user">
+    <p class="test-user__title">テストユーザー</p>
+    <div class="wrapper">
+      <p class="test-user__mail">メールアドレス：<br>kaeru@mail.com</p>
+      <p class="test-user__pas">パスワード：<br>password</p>
+    </div>
   </div>
 </main>

@@ -265,6 +265,40 @@
     }
   }
 }
+
+// テストユーザー
+.form-card {
+  &--new {
+    height: auto;
+  }
+}
+.test-user {
+  background-color: #fff;
+  @include media(pc) {
+    position: absolute;
+    top: 90px;
+    left: 30px;
+  }
+  @include media(tab) {
+    margin: 20px auto 0;
+    width: 80%;
+    max-width: 400px;
+  }
+  &__title {
+    padding: 5px 15px;
+    background-color: rgba(0, 175, 204, 0.6);
+    color: #fff;
+  }
+  .wrapper {
+    padding: 10px 15px;
+  }
+  &__mail, &__pas {
+    font-size: 1.4rem;
+  }
+  &__mail {
+    margin-bottom: 10px;
+  }
+}
 /*
   main end
 */
