@@ -24,8 +24,6 @@ class ApplicationController < ActionController::Base
     @data = params[:content]
     url = URI.encode("https://www.amazon.co.jp/s?k=#{@data}&__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&ref=nb_sb_noss_2")
     $doc = Nokogiri::HTML(open(url))
-    # @title = $doc.css('title').text().to_s
-    # @image = $doc.css('img[class="s-image"]').attribute('src').value
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_url) }
       format.js 

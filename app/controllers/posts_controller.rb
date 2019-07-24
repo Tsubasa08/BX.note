@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     end
   end
   
+
   def create
     require 'nokogiri'
     require 'open-uri'
@@ -36,9 +37,6 @@ class PostsController < ApplicationController
                 format.js
               end
             end
-            # @post.save
-            # flash[:success] = "投稿を送信しました。"
-            # redirect_back(fallback_location: root_url)
           end
         rescue #エラーが発生した場合(正規表現だが存在しないURL)
           @post.destroy
@@ -47,14 +45,8 @@ class PostsController < ApplicationController
             format.html { redirect_back(fallback_location: root_url) }
             format.js
           end
-          # flash[:danger] = "投稿失敗(記事のURLが正しくありません)"
-          # @post.destroy
-          # redirect_back(fallback_location: root_url)
         end
       else #@post == 'other'
-        # flash[:success] = "投稿を送信しました。"
-        # redirect_back(fallback_location: root_url)
-        # @post
         respond_to do |format|
           format.html { redirect_back(fallback_location: root_url) }
           format.js 
@@ -67,10 +59,9 @@ class PostsController < ApplicationController
         format.html { redirect_back(fallback_location: root_url) }
         format.js
       end
-      # flash[:danger] = "投稿失敗"
-      # redirect_back(fallback_location: root_url)
     end
   end
+
 
   def edit
     @post = Post.find(params[:id])
@@ -79,6 +70,7 @@ class PostsController < ApplicationController
       format.js {@post}
     end
   end
+
 
   def update 
     @post = Post.find(params[:id])
@@ -136,6 +128,7 @@ class PostsController < ApplicationController
     end
   end
 
+  
   private
 
   def post_params
