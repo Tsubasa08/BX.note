@@ -35,7 +35,7 @@ class UserEditTest < ActionDispatch::IntegrationTest
     assert_select '.error-list__item', count:5
   end
 
-  test "正常なユーザープロフィール編集 フレンドリーフォワーディング機能" do
+  test "フレンドリーフォワーディング機能(ログイン前にユーザープロフィール編集ページへアクセス)" do
     get edit_user_path(@user)
     assert_equal edit_user_url(@user), session[:forwarding_url]
     log_in_as(@user)
