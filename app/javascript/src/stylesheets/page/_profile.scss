@@ -20,7 +20,7 @@
     &__right {
       &--edit {
         @include media(tab) {
-          display: block;
+          display: block !important;
           .categories, .about-link {
             display: none;
           }
