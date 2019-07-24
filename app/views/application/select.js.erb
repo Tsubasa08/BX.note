@@ -1,6 +1,7 @@
 $(function() {
-  <!--選択されたジャンルからrenderするパーシャルを条件分岐-->
+  <!-- 選択されたジャンルからrenderするパーシャルを条件分岐で選択 -->
   $("#panel-area").html("<% if @genre == 'book' %><%= j(render 'posts/post-modal-book') %> <% elsif @genre == 'article' %> <%= j(render 'posts/post-modal-article') %> <% else %> <%= j(render 'posts/post-modal-other') %> <% end%>");
 
+  <!-- @genreデータ引き渡し イベント発火 -->
   $("#post-genre").val("<%= @genre %>").change();
 });

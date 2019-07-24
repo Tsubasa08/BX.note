@@ -8,10 +8,11 @@
     <% end %>
     </div>
   <% end %>
+  
 <% else %>
   <%= form_with(model: @user.active_relationships.build, local: true) do |f| %>
-  <%= hidden_field_tag :followed_id, @user.id %>
-  <%= f.submit "フォローする", class: "profile-block__link profile-block__link--follow" %>
-<% end %>
+    <%= hidden_field_tag :followed_id, @user.id %>
+    <%= f.submit "フォローする", class: "profile-block__link profile-block__link--follow" %>
+  <% end %>
 
 <% end %>

@@ -5,9 +5,8 @@
 </div>
 <ul id="book-list" class="book-list">
   <% count = 1  %>
-
+  <%# 本の検索結果を10件表示する %>
   <% $doc.css('span[data-component-type="s-product-image"]').each do |e| %>
-
     <label id="book-label-<%= count %>" for="book-checkbox-<%= count %>">
       <li class="book-list__item">
         <% src = e.css('img[class="s-image"]').attribute('src').value %>

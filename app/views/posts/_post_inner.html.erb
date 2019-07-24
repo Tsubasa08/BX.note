@@ -4,21 +4,26 @@
       <%= render 'shared/user_icon', user: @post.user, id_name: '', class_name: '' %>
     <% end %>
   </div>
+
+
   <div class="inner__right">
     <% if current_user?(@post.user)  %>
-    <div class="post-meta-icon" data-id="<%= @post.id %>">
-      <i class="fas fa-angle-down"></i>
-    </div>
+      <div class="post-meta-icon" data-id="<%= @post.id %>">
+        <i class="fas fa-angle-down"></i>
+      </div>
     <% end %>
+
     <div class="user-link">
       <%= link_to @post.user.name, @post.user, class: 'user-link__item user-link__item--post' %>
     </div>
+
     <% if current_user?(@post.user)  %>
       <div id="post-meta-<%= @post.id %>" class="post-meta">
         <%= link_to "編集する", edit_post_path(@post), method: :get, class: 'post-edit', remote: true %>
         <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "この投稿を本当に削除しますか？" }, class: 'post-delete', remote: true %>
       </div>
     <% end %>
+
     <% if @post.categories.present? %>
     <div class="categories">
       <% @post.post_categories.each do |post_categories| %>
@@ -26,6 +31,7 @@
       <% end %>
     </div>
     <% end %>
+
     <% if @post.images.present? %>
     <div class="post-image">
       <ul class="slider">
@@ -37,6 +43,7 @@
       </ul>
     </div>
     <% end %>
+
     <% if @post.genre == 'article' %>
       <div class="post-item">
         <a href="<%= @post.link_url %>" class="post-item__link post-item__link--article"target="_brank">
@@ -60,9 +67,11 @@
       </div>
       <%= render 'posts/book_evalution', post: @post %>
     <% end %>
+
     <div class="post-content">
       <%= @post.content %>
     </div>
+    
     <div class="bottom-list">
       <div id="like-<%= @post.id %>" class="like-link like-<%= @post.id %>">
         <%= render 'posts/like_form', post: @post %>

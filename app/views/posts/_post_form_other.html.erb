@@ -6,6 +6,7 @@
       <%= render 'shared/user_icon', user: current_user, id_name: 'user-icon', class_name: 'modal-user-icon modal-user-icon--form' %>
       <%= f.text_area :content, class: 'post-form__area', placeholder: '何をシェアする？' %>
     </div>
+
     <div class="form__btn-block">
       <div class="form-image">
         <%= f.label :images, id: 'input-label--post-other', class: 'form__label--post-image' do %>
@@ -17,6 +18,7 @@
       <%= f.submit '保存', class: "form__button--post", id: 'button-post' %>
     </div>
   </div>
+  
   <div id="category-check" class="form__check-block">
     <p id="check-block-title" class="check-block-title">カテゴリー</p>
     <div id="category-list" class="category-list">

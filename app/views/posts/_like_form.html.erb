@@ -1,6 +1,5 @@
 <% if logged_in? %>
   <% if post.like?(current_user) %>
-
     <%= link_to unlike_path(post.id), method: :delete, class: 'heart-icon', remote: true do %>
       <i class="fas fa-heart like-btn--unlike"></i>
       <span class="like-btn--unlike">
@@ -9,7 +8,6 @@
         <% end %>
       </span>
     <% end %>
-
   <% else %>
     <%= link_to like_path(post.id), method: :post, class: 'heart-icon', remote: true do %>
       <i class="far fa-heart like-btn"></i>
@@ -18,9 +16,7 @@
           <%= post.likes.count %>
         <% end %>
       </span>
-      
     <% end %>
-
   <% end %>
 
 <% else %>

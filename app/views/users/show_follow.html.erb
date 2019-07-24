@@ -1,6 +1,7 @@
 <% provide(:title, @user.name) %>
 <main class="main main--profile">
   <div class="contents">
+    <!--- contents__left -->
     <div class="contents__left contents__left--edit">
       <ul class="ProfileNav-list">
         <li class="ProfileNav-list__item">
@@ -25,16 +26,18 @@
               <%= render 'follow_form-block', user: user, user_page: @user %>
             </div>
           
-          <div class="user-card__introduce"> 
-            <p class="introduce-text text"> <%= user.introduce %>  </p>  
-          </div>
+            <div class="user-card__introduce"> 
+              <p class="introduce-text text"> <%= user.introduce %>  </p>  
+            </div>
           </div>
         <% end %>
       </div>
 
       <%= paginate @users %>
-    </div>
+    </div><!--- contents__left end -->
 
+
+    <!--- contents__right -->
     <div class="contents__right contents__right--edit">
       <div class="profile-block">
 
@@ -44,6 +47,7 @@
         <div class="profile-block__introduce">
           <%= @user.introduce %>
         </div>
+
         <% if current_user == @user %>
           <%=  link_to 'プロフィールを編集', edit_user_path, class: 'profile-block__link profile-block__link--edit' %>
         <% else %>
@@ -53,11 +57,10 @@
 
       <%= render 'layouts/categories' %>
 
-      
       <div class="about-link">
         <%= link_to 'BX.noteとは？', about_path, class: 'link' %>
       </div>
-    </div>
+    </div><!--- contents__right end -->
 
   </div>
 </main>
