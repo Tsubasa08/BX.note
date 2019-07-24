@@ -9,7 +9,9 @@
       <div class="top-block__text">
         <p class="desc">Webデザイナー初心者のための情報共有SNSです。<br>役に立った本や記事などを共有して、<br>初心者同士でどんどん成長していきましょう。</p>
         <div class="button-block">
-          <%= link_to 'アカウント登録', signup_path, class: 'button-block__signup link' %>
+          <% unless logged_in? %>
+            <%= link_to 'アカウント登録', signup_path, class: 'button-block__signup link' %>
+          <% end %>
           <%= link_to '投稿を見てみる', root_path, class: 'button-block__root link' %>
         </div>
       </div>
@@ -26,7 +28,7 @@
       <div class="inner">
         <h2 class="desc-block__title"><span class="main-title"><span class="accent-color">B</span>eginner <span class="accent-color">E</span>xperience <span class="accent-color">N</span>ote</span><br>初心者が経験したことを共有するSNS</h2>
         <p class="desc-block__name">「BX.note」</p>
-        <p class="desc-block__desc">BX.noteはデザイナー初心者に特化したSNSです。<br>初心者同士で繋がり、有用な情報を共有し合うことで、<br>さらにレベルアップすることができます。</p>
+        <p class="desc-block__desc">BX.noteはWebデザイナー初心者に特化したSNSです。<br>初心者同士で繋がり、有用な情報を共有し合うことで、<br>さらにレベルアップすることができます。</p>
       </div>
     </div>
   </div><!-- desc-block end -->
@@ -68,7 +70,11 @@
     <h2 class="bottom-block__title">さぁ、さっそくはじめよう。</h2>
     <p class="bottom-block__desc">Webデザイナー初心者同士でどんどん成長していきましょう。</p>
     <div class="button-block">
-      <%= link_to 'アカウント登録', signup_path, class: 'button-block__signup link' %>
+      <% if logged_in? %>
+        <%= link_to 'ログアウト', logout_path, method: :delete, data: { confirm: "BX.noteからログアウトしますか？" }, class: 'button-block__signup link' %>
+      <% else %>
+        <%= link_to 'アカウント登録', signup_path, class: 'button-block__signup link' %>
+      <% end %>
       <%= link_to '投稿を見てみる', root_path, class: 'button-block__root link' %>
     </div>
   </div><!-- bottom-block end -->

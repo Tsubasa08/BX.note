@@ -142,17 +142,15 @@
 
 
 @include media(tab) {
-  .contents {
-    display: flex;
-    flex-direction: column-reverse;
-    &__left {
-      // background-color: #fff;
-    }
-    &__right {
-      display: none;
+  .main {
+    .contents {
+      display: flex;
+      flex-direction: column-reverse;
+      &__right {
+        display: none;
+      }
     }
   }
-
 }
 
 
