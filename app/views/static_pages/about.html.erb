@@ -9,7 +9,9 @@
       <div class="top-block__text">
         <p class="desc">Webデザイナー初心者のための情報共有SNSです。<br>役に立った本や記事などを共有して、<br>初心者同士でどんどん成長していきましょう。</p>
         <div class="button-block">
-          <%= link_to 'アカウント登録', signup_path, class: 'button-block__signup link' %>
+          <% unless logged_in? %>
+            <%= link_to 'アカウント登録', signup_path, class: 'button-block__signup link' %>
+          <% end %>
           <%= link_to '投稿を見てみる', root_path, class: 'button-block__root link' %>
         </div>
       </div>
@@ -68,7 +70,11 @@
     <h2 class="bottom-block__title">さぁ、さっそくはじめよう。</h2>
     <p class="bottom-block__desc">Webデザイナー初心者同士でどんどん成長していきましょう。</p>
     <div class="button-block">
-      <%= link_to 'アカウント登録', signup_path, class: 'button-block__signup link' %>
+      <% if logged_in? %>
+        <%= link_to 'ログアウト', logout_path, method: :delete, class: 'button-block__signup link' %>
+      <% else %>
+        <%= link_to 'アカウント登録', signup_path, class: 'button-block__signup link' %>
+      <% end %>
       <%= link_to '投稿を見てみる', root_path, class: 'button-block__root link' %>
     </div>
   </div><!-- bottom-block end -->
