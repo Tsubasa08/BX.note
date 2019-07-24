@@ -71,7 +71,7 @@
     <p class="bottom-block__desc">Webデザイナー初心者同士でどんどん成長していきましょう。</p>
     <div class="button-block">
       <% if logged_in? %>
-        <%= link_to 'ログアウト', logout_path, method: :delete, class: 'button-block__signup link' %>
+        <%= link_to 'ログアウト', logout_path, method: :delete, data: { confirm: "BX.noteからログアウトしますか？" }, class: 'button-block__signup link' %>
       <% else %>
         <%= link_to 'アカウント登録', signup_path, class: 'button-block__signup link' %>
       <% end %>

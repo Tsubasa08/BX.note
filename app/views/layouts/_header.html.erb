@@ -22,7 +22,7 @@
       <div id="user-link" class="user-link--pc">
         <%= link_to current_user.name, current_user, class: 'user-link--pc__item user-link--pc__item--title' %>
         <%= link_to "プロフィール編集", edit_user_path(current_user), class: 'user-link--pc__item user-link--pc__item--edit' %>
-        <%= link_to "ログアウト", logout_path, method: :delete, class: 'user-link--pc__item user-link--pc__item--logout' %>
+        <%= link_to "ログアウト", logout_path, method: :delete, data: { confirm: "BX.noteからログアウトしますか？" }, class: 'user-link--pc__item user-link--pc__item--logout' %>
       </div>
     <% else %>
       <div class="new-link">
@@ -73,7 +73,7 @@
         </div>
 
         <% if logged_in? %>
-        <%= link_to "ログアウト", logout_path, method: :delete, class: 'user-link--pc__item user-link--pc__item--logout' %>
+        <%= link_to "ログアウト", logout_path, method: :delete, data: { confirm: "BX.noteからログアウトしますか？" }, class: 'user-link--pc__item user-link--pc__item--logout' %>
         <% end %>
       </div>
       
