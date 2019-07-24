@@ -13,13 +13,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "editページへアクセス ログインなし" do
-    get edit_user_path(@user) #HTTPリクエスト：get
+    get edit_user_path(@user)
     assert_not flash.empty?
     assert_redirected_to login_url
   end
 
   test "updateアクション ログインなし" do
-    patch user_path(@user), params: { user: { name: @user.name, email: @user.email } } #HTTPリクエスト：patch
+    patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
     assert_not flash.empty?
     assert_redirected_to login_url
   end
@@ -69,7 +69,5 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
   end
-
-
 
 end

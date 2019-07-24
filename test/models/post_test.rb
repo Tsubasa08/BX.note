@@ -6,7 +6,7 @@ class PostTest < ActiveSupport::TestCase
     @user = users(:michael)
     @post_other = @user.posts.build(content: "Lorem ipsum", genre: "other")
     @post_article = @user.posts.build(content: "Lorem ipsum", genre: "article", link_url: "https://qiita.com/")
-    @post_book = @user.posts.build(content: "Lorem ipsum", genre: "book", link_url: "https://qiita.com/",                                                book_evaluation: 5)
+    @post_book = @user.posts.build(content: "Lorem ipsum", genre: "book", link_url: "https://qiita.com/",                                               book_evaluation: 5)
   end
 
   test "カテゴリー配列あり" do

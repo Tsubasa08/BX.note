@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
+
   def setup
      @post = posts(:orange) #user: michael
      @article_post = posts(:potato)
@@ -49,7 +50,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
 
   test "editページへアクセス ログインなし" do
-    get edit_post_path(@post) #HTTPリクエスト：get
+    get edit_post_path(@post)
     assert_not flash.empty?
     assert_redirected_to login_url
   end

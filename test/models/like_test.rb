@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class LikeTest < ActiveSupport::TestCase
+  
   def setup
     @like = Like.new(post_id: posts(:orange).id, 
                      user_id: users(:archer).id)

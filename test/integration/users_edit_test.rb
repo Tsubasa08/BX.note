@@ -6,7 +6,7 @@ class UserEditTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
   end
 
-  test  "successful edit" do
+  test  "正常なユーザープロフィール編集" do
     log_in_as(@user)
     get edit_user_path(@user)
     assert_template 'users/edit'
@@ -24,7 +24,7 @@ class UserEditTest < ActionDispatch::IntegrationTest
     assert_equal email, @user.email
   end
 
-  test "unsuccessful edit" do
+  test "不正なユーザープロフィール編集" do
     log_in_as(@user)
     get edit_user_path(@user)
     assert_template 'users/edit'
@@ -35,18 +35,18 @@ class UserEditTest < ActionDispatch::IntegrationTest
     assert_select '.error-list__item', count:5
   end
 
-  # test "successful edit with friendly forwarding" do
-  #   get edit_user_path(@user)
-  #   assert_equal edit_user_url(@user), session[:forwarding_url]
-  #   log_in_as(@user)
-  #   assert_redirected_to edit_user_url(@user)
-  #   name = "Foo Bar"
-  #   email = "foo@bar.com"
-  #   patch user_path(@user), params: { user: { name: name, email: email, password: "", password_confirmation: "" } }
-  #   assert_not flash.empty?
-  #   assert_redirected_to @user
-  #   @user.reload
-  #   assert_equal name, @user.name
-  #   assert_equal email, @user.email
-  # end
+  test "正常なユーザープロフィール編集 フレンドリーフォワーディング機能" do
+    get edit_user_path(@user)
+    assert_equal edit_user_url(@user), session[:forwarding_url]
+    log_in_as(@user)
+    assert_redirected_to edit_user_url(@user)
+    name = "Foo Bar"
+    email = "foo@bar.com"
+    patch user_path(@user), params: { user: { name: name, email: email, password: "", password_confirmation: "" } }
+    assert_not flash.empty?
+    assert_redirected_to @user
+    @user.reload
+    assert_equal name, @user.name
+    assert_equal email, @user.email
+  end
 end

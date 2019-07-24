@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class PostCategoryTest < ActiveSupport::TestCase
-  # belongs_to :post
-  # belongs_to :category
   
   def setup
     @post_category = PostCategory.new(post_id: posts(:orange).id, 
