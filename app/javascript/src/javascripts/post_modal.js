@@ -98,9 +98,6 @@ $(function() {
   // ------ 表示 ------
   $(".post-list").on("click", ".post-show-link, .post-edit", function() {
     nowPosition = topPosition; //クリック時の位置取得
-    // if ($(this).text() === "編集する") {
-    //   $("#modal-close--post-show").addClass("edit-active");
-    // }
     $("body, #modal-content--post-show, #modal-close--post-show").addClass(
       "active"
     );
