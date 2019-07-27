@@ -23,6 +23,7 @@ gem 'ransack'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -37,6 +38,10 @@ group :test do
   gem 'rails-controller-testing', '>= 1.0.2'
   gem 'minitest',                 '>= 5.10.3'
   gem 'minitest-reporters',       '>= 1.1.14'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 
