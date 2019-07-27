@@ -45,11 +45,6 @@ class Post < ApplicationRecord
     end
     # end
   end
-  
-  # 有効な画像の拡張子を判定
-  def image?
-    %w[iamge/jpg iamge/jpeg iamge/gif iamge/png].include?(image.blob.content_type)
-  end
 
   # いいね
   def like(user)

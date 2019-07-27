@@ -82,6 +82,10 @@
   }
 }
 @include media(pc) {
+  .main-signUp, .main-login {
+    height: calc(100vh - 90px - 70px - 80px);
+    min-height: 490px;
+  }
   .form-card {
     width: 500px;
     margin: 0 auto;
