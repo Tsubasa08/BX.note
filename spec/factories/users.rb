@@ -14,6 +14,20 @@ FactoryBot.define do
     admin { false }
   end
 
+  factory :tokage, class: User do
+    name { 'トカゲ' }
+    email { 'tokage@mail.com' }
+    password { 'password' }
+    admin { false }
+  end
+
+  factory :tokagegg, class: User do
+    name { 'トカゲg' }
+    email { 'tokagegg@mail.com' }
+    password { 'password' }
+    admin { false }
+  end
+
   factory :twitter_user, class: User do
     name { 'Twitter認証ユーザー' }
     password { 'password' }

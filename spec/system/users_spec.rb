@@ -2,11 +2,12 @@ require 'rails_helper'
 
 describe 'ユーザー機能', type: :system do
 
-  describe '新規作成機能' do
+  describe '新規登録機能' do
     let(:name) { 'テストユーザー' }
     let(:email) { 'test@mail.com' }
     let(:password) { 'password' }
     let(:password_confirmation) { 'password' }
+    let(:other_user) { FactoryBot.create(:user) }
 
     before do
       visit new_user_path
@@ -46,13 +47,12 @@ describe 'ユーザー機能', type: :system do
     end
 
     context 'メールアドレスが既に存在する' do
-      # before do
-      # end
-      FactoryBot.create(:kaeru)
-      let(:email) { 'kaeru@mail.com' }
+      let(:email) { other_user.email }
       it 'エラーになる' do
         expect(page).to have_selector '#error_explanation li', text: '・メールアドレスはすでに存在します'
       end
     end
   end
+
+
 end

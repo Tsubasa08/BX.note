@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { FactoryBot.create(:user) }
+  let(:other_user) { FactoryBot.create(:user) }
 
   describe 'ユーザーが有効' do
 
@@ -28,9 +29,6 @@ RSpec.describe User, type: :model do
 
 
   describe 'ユーザーが無効' do
-    before do
-      FactoryBot.create(:kaeru)
-    end
 
     context 'ユーザー名に対するvalidation' do
       it 'ユーザー名が存在しない場合無効であること' do
@@ -56,7 +54,8 @@ RSpec.describe User, type: :model do
       end
 
       it 'メールアドレスが既に存在している場合無効であること' do
-        user.email = 'kaeru@mail.com'
+        # user.email = 'kaeru@mail.com'
+        user.email = other_user.email
         expect(user).to_not be_valid
       end
 
