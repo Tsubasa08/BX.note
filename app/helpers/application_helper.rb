@@ -1,12 +1,11 @@
 module ApplicationHelper
-
   # ページごとのタイトル設定
-  def full_title(page_title = "")
-    base_title = "BX.note"
+  def full_title(page_title = '')
+    base_title = 'BX.note'
     if page_title.empty?
       base_title
     else
-      page_title + " | " + base_title
+      page_title + ' | ' + base_title
     end
   end
 
@@ -23,5 +22,4 @@ module ApplicationHelper
     image = asset_pack_path "media/src/images/#{img}"
     path = root + image
   end
-
 end

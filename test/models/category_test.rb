@@ -1,22 +1,21 @@
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
-
   def setup
     @category = Category.new(name: 'HTML')
     Category.new(name: 'test')
   end
 
-  test "テストカテゴリーデータ" do
+  test 'テストカテゴリーデータ' do
     assert @category.valid?
   end
 
-  test "DBカウント" do
+  test 'DBカウント' do
     assert_equal 7, Category.count
   end
 
-  test "contentが21文字以上" do
-    @category.name = "a" * 21
+  test 'contentが21文字以上' do
+    @category.name = 'a' * 21
     assert_not @category.valid?
   end
 end
