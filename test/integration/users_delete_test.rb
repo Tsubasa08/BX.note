@@ -1,14 +1,13 @@
 require 'test_helper'
 
 class UsersDeleteTest < ActionDispatch::IntegrationTest
-
   def setup
     @admin     = users(:michael)
     @non_admin = users(:archer)
     @other_user = users(:lana)
   end
 
-  test "管理者ユーザー" do
+  test '管理者ユーザー' do
     log_in_as(@admin)
     get user_path(@other_user)
     assert_template 'users/show'
@@ -19,7 +18,7 @@ class UsersDeleteTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  test "管理者ユーザーではない" do
+  test '管理者ユーザーではない' do
     log_in_as(@non_admin)
     get user_path(@other_user)
     assert_template 'users/show'
@@ -29,5 +28,4 @@ class UsersDeleteTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
   end
-
 end

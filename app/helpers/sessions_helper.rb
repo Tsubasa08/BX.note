@@ -1,5 +1,4 @@
 module SessionsHelper
-
   # 渡されたユーザーでログインする
   def log_in(user)
     session[:user_id] = user.id
@@ -23,13 +22,12 @@ module SessionsHelper
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
-      if user && user.authenticated?(:remember, cookies[:remember_token])
+      if user&.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
       end
     end
   end
-
 
   # ユーザーがログインしていればtrue、その他ならfalseを返す
   def logged_in?
@@ -52,7 +50,7 @@ module SessionsHelper
 
   # 記憶したURL (もしくはデフォルト値) にリダイレクト
   def redirect_back_or(default)
-    redirect_to(session[:forwarding_url]  || default)
+    redirect_to(session[:forwarding_url] || default)
     session.delete(:forwarding_url)
   end
 
@@ -60,5 +58,4 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
   end
-
 end

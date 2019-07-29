@@ -6,24 +6,23 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_url) }
-      format.js {@post}
+      format.js { @post }
     end
   end
-  
 
   def create
     require 'nokogiri'
     require 'open-uri'
-    
+
     @post = current_user.posts.build(post_params)
-    
+
     if @post.save
 
       if @post.genre == 'article'
         url = @post.link_url
         begin
           # リンク先OGP取得
-          $doc = Nokogiri::HTML(open(url)) #エラーポイント
+          $doc = Nokogiri::HTML(open(url)) # エラーポイント
           $link_title = $doc.css('meta[property="og:title"]').attribute('content').to_s
           $link_image = $doc.css('meta[property="og:image"]').attribute('content').to_s
           $link_desc = $doc.css('meta[property="og:description"]').attribute('content').to_s
@@ -38,21 +37,20 @@ class PostsController < ApplicationController
               end
             end
           end
-        rescue #エラーが発生した場合(正規表現だが存在しないURL)
+        rescue StandardError # エラーが発生した場合(正規表現だが存在しないURL)
           @post.destroy
-          @e_error = "記事のURLが存在しません。"
+          @e_error = '記事のURLが存在しません。'
           respond_to do |format|
             format.html { redirect_back(fallback_location: root_url) }
             format.js
           end
         end
-      else #@post == 'other'
+      else # @post == 'other'
         respond_to do |format|
           format.html { redirect_back(fallback_location: root_url) }
-          format.js 
+          format.js
         end
       end
-
 
     else
       respond_to do |format|
@@ -62,17 +60,15 @@ class PostsController < ApplicationController
     end
   end
 
-
   def edit
     @post = Post.find(params[:id])
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_url) }
-      format.js {@post}
+      format.js { @post }
     end
   end
 
-
-  def update 
+  def update
     @post = Post.find(params[:id])
 
     if @post.update_attributes(post_params)
@@ -81,7 +77,7 @@ class PostsController < ApplicationController
         url = @post.link_url
         begin
           # リンク先OGP取得
-          $doc = Nokogiri::HTML(open(url)) #エラーポイント
+          $doc = Nokogiri::HTML(open(url)) # エラーポイント
           $link_title = $doc.css('meta[property="og:title"]').attribute('content').to_s
           $link_image = $doc.css('meta[property="og:image"]').attribute('content').to_s
           $link_desc = $doc.css('meta[property="og:description"]').attribute('content').to_s
@@ -96,20 +92,19 @@ class PostsController < ApplicationController
               end
             end
           end
-        rescue #エラーが発生した場合(正規表現だが存在しないURL)
-          @e_error = "記事のURLが存在しません。"
+        rescue StandardError # エラーが発生した場合(正規表現だが存在しないURL)
+          @e_error = '記事のURLが存在しません。'
           respond_to do |format|
             format.html { redirect_back(fallback_location: root_url) }
             format.js
           end
         end
-      else #@post == 'other'
+      else # @post == 'other'
         respond_to do |format|
           format.html { redirect_back(fallback_location: root_url) }
-          format.js 
+          format.js
         end
       end
-
 
     else
       respond_to do |format|
@@ -118,7 +113,6 @@ class PostsController < ApplicationController
       end
     end
   end
-
 
   def destroy
     @post.destroy
@@ -128,11 +122,10 @@ class PostsController < ApplicationController
     end
   end
 
-  
   private
 
   def post_params
-    params.require(:post).permit(:content, :link_url, :link_title, :link_image, :book_evaluation, :genre, images: [], category_ids: [] ) 
+    params.require(:post).permit(:content, :link_url, :link_title, :link_image, :book_evaluation, :genre, images: [], category_ids: [])
   end
 
   def correct_user

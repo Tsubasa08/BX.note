@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     $doc = Nokogiri::HTML(open(url))
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_url) }
-      format.js 
+      format.js
     end
   end
 
@@ -36,11 +36,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
   # ユーザーのログインを確認する
   def logged_in_user
     unless logged_in?
       store_location
-      flash[:danger] = "ログインしてください。"
+      flash[:danger] = 'ログインしてください。'
       redirect_to login_url
     end
   end

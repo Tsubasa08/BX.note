@@ -22,15 +22,13 @@ class RelationshipsController < ApplicationController
     end
   end
 
-
   private
 
   def logged_in_or_new_account
     unless logged_in?
       store_location
-      flash[:danger] = "アカウント登録、もしくはログインしてください。"
+      flash[:danger] = 'アカウント登録、もしくはログインしてください。'
       redirect_to new_user_path
     end
   end
-
 end
