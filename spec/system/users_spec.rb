@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 describe 'ユーザー機能', type: :system do
+  let(:user) { FactoryBot.create(:user) }
+  let(:other_user) { FactoryBot.create(:user) }
 
   describe '新規登録機能' do
     let(:name) { 'テストユーザー' }
     let(:email) { 'test@mail.com' }
     let(:password) { 'password' }
     let(:password_confirmation) { 'password' }
-    let(:other_user) { FactoryBot.create(:user) }
 
     before do
       visit new_user_path
@@ -55,4 +56,25 @@ describe 'ユーザー機能', type: :system do
   end
 
 
+  describe '編集機能' do
+    before do
+      sign_in_as user
+      # fill_in 'ユーザー名', with: name
+      # fill_in 'メールアドレス', with: email
+      # click_button 'アカウント登録'
+    end
+
+    context '必要条件を満たしている' do
+      before do
+        fill_in 'ユーザー名', with: 'テストユーザー編集'
+        fill_in 'メールアドレス', with: 'testEdit@mail.com'
+        fill_in 'パスワード', with: 'passwordEdit'
+        fill_in '確認用パスワード', with: 'passwordEdit'
+        click_button '更新する'
+      end
+      it '正常に登録される' do
+        expect(page).to have_content 'プロフィールを更新しました。'
+      end
+    end
+  end
 end
