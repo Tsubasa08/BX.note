@@ -11,15 +11,11 @@
       display: flex;
       justify-content: space-between;
       &__left {
-        // height: 500px;
         width: 774px;
-        // background-color: #fff;
         @include radius;
       }
       &__right {
-        // height: 500px;
         width: 326px;
-        // background-color: #fff;
         @include radius;
         > div {
           margin-bottom: 10px;
@@ -101,7 +97,6 @@
 
 .profile-card {
   @include radius;
-  // margin: 10px 0 10px;
   @include media(pc) {
     background-color: #fff;
     padding: 15px 20px;

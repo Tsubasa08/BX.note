@@ -10,7 +10,6 @@
   position: relative;
 }
 .modal-content {
-  // display: block;
   display: none;
   overflow: auto;
   position: absolute;
@@ -20,10 +19,7 @@
   height: 100%;
   width: 100%;
   background: #fff;
-  // transition: all 0.3s ease-in-out 0s;
-  // opacity: 0;
   box-shadow: 0 0 24px rgba(0, 0, 0, 0.16);
-  // padding: 1em;
   @include media(pc) {
     top: 50px;
     left: 50%;
@@ -145,13 +141,9 @@
   max-height: calc(100vh - 100px);
   transition: 0.3s;
   @include f-center;
-  @include media(pc) {
-    // justify-content: space-between;
-  }
   @include media(tab) {
     height: 100%;
     flex-direction: column;
-    // justify-content: space-between;
   }
   .button_to {
     @include media(pc) {
@@ -166,15 +158,11 @@
     }
   }
   .label { 
-    // width:150px; 
-    // margin:0 5px; 
-    // display:inline-block; 
     width: 185px;
     padding:12px 0; 
     color:#fff; 
     background:$AccentColor; 
     text-align:center; 
-    // font-size:13px;
     cursor:pointer; 
     transition:0.2s;
     @include radius;
