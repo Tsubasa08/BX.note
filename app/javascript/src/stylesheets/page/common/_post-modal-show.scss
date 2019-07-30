@@ -20,8 +20,6 @@
     left: 50%;
     transform: translateX(-50%);
     height: auto;
-    // width: 1120px;
-    // padding: 20px;
     @include radius;
   }
   @include media(tab) {
