@@ -113,17 +113,16 @@
   position: relative;
   .comment-list-wrapper {
     font-size: 1.4rem;
-    background-color: #fff;
-    @include media(pc) {
-      height: 90%;
-      overflow-y: scroll;
-      @include radius;
-    }
     @include media(tab) {
       margin-bottom: 51px;
     }
 
     .comment-list {
+      @include media(pc) {
+        overflow-y: scroll;
+        max-height: 80vh;
+        @include radius;
+      }
       &__item {
         display: flex;
         justify-content: space-between;
@@ -137,6 +136,13 @@
         }
         .inner-right {
           width: calc(100% - 35px - 10px);
+        }
+        @include media(pc) {
+          background-color: #fff;
+          &:nth-last-of-type(1) {
+            margin-bottom: 10px;
+            border-radius: 0 0 5px 5px;
+          }
         }
       }
       .user-link {
@@ -166,12 +172,11 @@
   }
 }
 .comment-form-block {
-  position: absolute;
-  bottom: 0;
-  right: 0;
   width: 100%;
   @include media(tab) {
     position: fixed;
+    bottom: 0;
+    right: 0;
     background-color: #fff;
     padding: 5px 10px;
     border-top: 1px solid $border;
