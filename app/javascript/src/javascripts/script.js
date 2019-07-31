@@ -50,15 +50,17 @@ $(function() {
     let over = []; // Filelist配列
     const data = $(this).data("id");
     const file = $(this).prop("files");
+    const maximumFiles = 3;
     $(`.filename--${data}`).remove();
-    if (file.length > 3) {
+    if (file.length > maximumFiles) {
       alert("画像を3枚まで選択してください。");
       $(this).val(null);
     }
 
     Array.from(file).forEach(e => {
       const size = e.size / 1024 / 1024;
-      if (size > 5) {
+      const maximumSizes = 5;
+      if (size > maximumSizes) {
         //ファイルサイズ5MBより上
         over.push("true");
         over_name = e.name;
@@ -94,7 +96,8 @@ $(function() {
   //  ----------introduce文字制限 77文字以上に３点リーダー ----------
   $(".introduce-text").each(function(i, t) {
     const count = $(t).text().length;
-    if (count > 76) {
+    const maximumCharacters = 76;
+    if (count > maximumCharacters) {
       $(this).addClass("active");
     }
   });

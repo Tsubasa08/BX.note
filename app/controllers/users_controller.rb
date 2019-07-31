@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(20)
+    postsNumber = 20
+    @posts = @user.posts.page(params[:page]).per(postsNumber)
     @current_page_post = 'current' # ページレイアウト活性化
   end
 
@@ -47,20 +48,23 @@ class UsersController < ApplicationController
   def following
     @current_page_following = 'current' # ページレイアウト活性化
     @user = User.find(params[:id])
-    @users = @user.following.page(params[:page]).per(18)
+    usersNumber = 18
+    @users = @user.following.page(params[:page]).per(usersNumber)
     render 'show_follow'
   end
 
   def followers
     @current_page_followers = 'current' # ページレイアウト活性化
     @user = User.find(params[:id])
-    @users = @user.followers.page(params[:page]).per(18)
+    usersNumber = 18
+    @users = @user.followers.page(params[:page]).per(usersNumber)
     render 'show_follow'
   end
 
   def likes
     @user = User.find(params[:id])
-    @likes = Like.where(user_id: @user.id).order(created_at: :desc).page(params[:page]).per(20)
+    postsNumber = 20
+    @likes = Like.where(user_id: @user.id).order(created_at: :desc).page(params[:page]).per(postsNumber)
     @current_page_like = 'current' # ページレイアウト活性化
   end
 

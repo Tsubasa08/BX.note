@@ -193,6 +193,9 @@
       width: 80%;
       padding: 7px;
       border: 1px solid $AccentColor;
+      @include media(tab) {
+        font-size: 1.6rem;
+      }
     }
     &__submit {
       background-color: $AccentColor;
