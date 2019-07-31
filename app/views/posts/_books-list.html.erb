@@ -4,7 +4,8 @@
   </div>
 </div>
 <ul id="book-list" class="book-list">
-  <% count = 1  %>
+  <% count = 1  
+     maximumBooks = 10  %>
   <%# 本の検索結果を10件表示する %>
   <% $doc.css('span[data-component-type="s-product-image"]').each do |e| %>
     <label id="book-label-<%= count %>" for="book-checkbox-<%= count %>">
@@ -20,7 +21,7 @@
     </label>
 
     <% count += 1 %>
-    <% if count > 10 %>
+    <% if count > maximumBooks %>
       <% break %>
     <% end %>
   

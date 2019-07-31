@@ -2,10 +2,11 @@ $(function() {
   $(window).scroll(function() {
     // スクロールトップポジション
     const scrolleHeight = $(window).scrollTop();
+    const togglePosition = 250;
 
     // ---------- トップに戻るボタン ----------
     // ----- ボタン表示/非表示 -----
-    if (scrolleHeight < 250) {
+    if (scrolleHeight < togglePosition) {
       // 非表示
       $("#toTop").fadeOut();
     } else {

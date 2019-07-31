@@ -14,11 +14,12 @@ $(function() {
   $("#modal-open").click(function() {
     $("body, #modal-open").addClass("active");
     nowPosition = topPosition; //クリック時の位置取得
+    const topGap = 50;
     if (windowWidth >= breakPoint) {
       //PCサイズ
       $("#modal-content--post")
         .fadeIn()
-        .css("top", nowPosition + 50);
+        .css("top", nowPosition + topGap);
       $("#modal-close--post")
         .fadeIn()
         .css("top", nowPosition);

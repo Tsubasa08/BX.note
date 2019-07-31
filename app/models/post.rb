@@ -32,13 +32,14 @@ class Post < ApplicationRecord
   def validate_image
     return unless images.attached?
     count = 1
+    maximumImages = 3
     images.each do |image|
       if image.blob.byte_size > 5.megabytes
         image.purge
         # エラーだけ与えて保存を失敗させる
         errors.add(:images, (''))
       end
-      if count > 3
+      if count > maximumImages
         errors.add(:images, ('は3枚まで選択してください。'))
       end
       count += 1
