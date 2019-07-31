@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'ユーザー機能', type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:user) }
+  let(:admin_user) { FactoryBot.create(:admin_user) }
 
   describe '新規登録機能' do
     let(:name) { 'テストユーザー' }
@@ -59,9 +60,7 @@ describe 'ユーザー機能', type: :system do
   describe '編集機能' do
     before do
       sign_in_as user
-      # fill_in 'ユーザー名', with: name
-      # fill_in 'メールアドレス', with: email
-      # click_button 'アカウント登録'
+      click_link 'プロフィールを編集'
     end
 
     context '必要条件を満たしている' do
@@ -74,6 +73,39 @@ describe 'ユーザー機能', type: :system do
       end
       it '正常に登録される' do
         expect(page).to have_content 'プロフィールを更新しました。'
+      end
+    end
+  end
+
+  describe '削除機能' do
+    before do
+      sign_in_as admin_user
+      visit user_path(user)
+      click_link '削除'
+      page.driver.browser.switch_to.alert.accept
+    end
+    it '正常に削除される' do
+      expect(page).to have_content 'ユーザーを削除しました。'
+    end
+  end
+
+  describe '詳細ページ' do
+    before do
+      visit user_path(user)
+    end
+
+    it 'ログインしていなくてもユーザー名が表示される' do
+      expect(page).to have_selector 'h1', text: user.name
+    end
+
+    context 'ログインしている場合' do
+      before do
+        sign_in_as user
+      end
+
+      it 'ログインしているとユーザー編集ページへのリンクも表示される' do
+        expect(page).to have_selector 'h1', text: user.name
+        expect(page).to have_selector 'a', text: 'プロフィールを編集'
       end
     end
   end
