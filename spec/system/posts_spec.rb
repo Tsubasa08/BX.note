@@ -3,6 +3,7 @@ require 'rails_helper'
 describe '投稿機能', type: :system do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:user) }
+  let!(:post) { FactoryBot.create(:other_post, user: other_user)}
 
   describe '新規作成機能' do
     before do
@@ -14,36 +15,16 @@ describe '投稿機能', type: :system do
         click_button('その他')
         fill_in 'post_content', with: 'その他で投稿！'
         click_button 'シェア'
-        # wait_for_css_disappear("#button-post[disableda]", 10) do
-        #   click_button 'シェア'
-        # end
+        wait_for_ajax
       end
 
       it 'その他の投稿が正常の投稿されること' do
-        # wait_for_ajax
         expect(page).to have_content '投稿を送信しました。'
       end
       
       it '投稿内容が表示されること' do
-        # wait_for_ajax
         expect(page).to have_content 'その他で投稿！'
       end
-
-      # it 'その他の投稿が正常の投稿されること' do
-      #   expect {
-      #     click_button 'シェア'
-      #     # wait_for_ajax
-      #   }.to change(Post, :count).by(1)
-      #   # expect(page).to have_content '投稿を送信しました。'
-      # end
-
-      # it '投稿内容が表示されること' do
-      #   expect {
-      #     click_button 'シェア'
-      #     wait_for_ajax
-      #   }.to change(Post, :count).by(1)
-      #   # expect(page).to have_content 'その他で投稿！'
-      # end
     end
 
     context 'ジャンル：article' do
@@ -52,8 +33,6 @@ describe '投稿機能', type: :system do
         fill_in 'post_content', with: '記事共有で投稿！'
         fill_in 'post_link_url', with: 'https://qiita.com/'
         click_button 'シェア'
-        # wait_for_css_disappear("#button-post.disabled", 10) do
-        # end
       end
 
       it '記事共有の投稿が正常の投稿されること' do
@@ -88,14 +67,10 @@ describe '投稿機能', type: :system do
         fill_in 'post_content', with: '本の感想で投稿！'
         fill_in 'タイトル検索', with: ' 現場で使える Ruby on Rails 5速習実践ガイド '
         click_button 'book-serch'
+        wait_for_ajax
         find('#book-label-1 .book-list__item').click
-        # wait_for_css_disappear("#button-post.disabled", 15) do
-        #   click_button 'シェア'
-        # end
         click_button 'シェア'
       end
-      # let(:book_title) { find('.book-title-text').value }
-      # let(:book_title) { find('#post_link_title').value }
 
       it '本の感想の投稿が正常の投稿されること' do
         expect(page).to have_content '投稿を送信しました。'
@@ -118,4 +93,59 @@ describe '投稿機能', type: :system do
       end
     end
   end
+
+  describe '一覧表示機能' do
+    context 'トップページにアクセスした場合' do
+      before do
+        visit root_path
+      end
+
+      it 'トップページに投稿が表示されること' do
+        expect(page).to have_selector "#post-#{post.id}"
+      end
+    end
+
+    context 'ユーザー詳細ページにアクセスした場合' do
+      before do
+        visit user_path(other_user)
+      end
+      
+      it 'ユーザー詳細ページに投稿が表示されること' do
+        expect(page).to have_selector "#post-#{post.id}"
+      end
+    end
+  end
+
+  describe '削除機能' do
+    before do
+      sign_in_as other_user
+      find("#post-#{post.id} .post-meta-icon").click
+      click_link '削除'
+      page.driver.browser.switch_to.alert.accept
+      wait_for_ajax
+    end
+
+    it '投稿を削除できること' do
+      expect(page).to have_content '投稿を削除しました。'
+      expect(page).to_not have_selector "#post-#{post.id}"
+    end
+  end
+
+  describe '編集機能' do
+    before do
+      sign_in_as other_user
+      find("#post-#{post.id} .post-meta-icon").click
+      click_link '編集する'
+      wait_for_ajax
+      fill_in 'post_content', with: 'テストです。投稿を編集。'
+      click_button '保存'
+      wait_for_ajax
+    end
+
+    it '投稿を編集できること' do
+      expect(page).to have_content '投稿を保存しました。'
+      expect(page).to have_content 'テストです。投稿を編集。'
+    end
+  end
+  
 end
