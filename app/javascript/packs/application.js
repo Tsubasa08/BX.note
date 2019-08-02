@@ -1,5 +1,6 @@
 import Rails from "rails-ujs";
 global.$ = jQuery;
+global.jQuery = jQuery;
 Rails.start();
 
 import "@fortawesome/fontawesome-free/js/all";
