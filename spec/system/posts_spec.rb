@@ -108,6 +108,20 @@ describe '投稿機能', type: :system do
         expect(page).to have_selector '.categories__link', text: 'WordPress'
       end
     end
+
+    context '画像を選択した場合' do
+      before do
+        click_button('その他')
+        fill_in 'post_content', with: 'その他で投稿！'
+        attach_file("post[images][]", "#{Rails.root}/spec/images/sample-img_kaeru.jpg", visible: false)
+        click_button 'シェア'
+        wait_for_ajax
+      end
+  
+      it '投稿に画像が表示されていること' do
+        expect(page).to have_selector '.slider__item img'
+      end
+    end
   end
 
 

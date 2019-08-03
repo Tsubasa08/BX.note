@@ -69,6 +69,7 @@ describe 'ユーザー機能', type: :system do
         fill_in 'メールアドレス', with: 'testEdit@mail.com'
         fill_in 'パスワード', with: 'passwordEdit'
         fill_in '確認用パスワード', with: 'passwordEdit'
+        attach_file("user[image]", "#{Rails.root}/spec/images/sample-img_kaeru.jpg", visible: false)
         click_button '更新する'
       end
       it '正常に登録される' do
