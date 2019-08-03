@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
   def top
-    @posts = Post.all.page(params[:page]).per(20)
+    postsNumber = 20
+    @posts = Post.all.page(params[:page]).per(postsNumber)
   end
 
   def about; end
