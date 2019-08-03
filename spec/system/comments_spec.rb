@@ -16,14 +16,6 @@ describe 'コメント投稿機能', type: :system do
     it 'コメントの投稿内容が表示されること' do
       expect(page).to have_content 'コメントテスト'
     end
-
-    # it 'コメントが正常の投稿されること' do
-    #   expect {
-    #     fill_in 'comment[content]', with: "コメントテスト"
-    #     click_button '送信'
-    #     wait_for_ajax
-    #   }.to change(Comment, :count).by(1)
-    # end
   end
 
   context '削除機能' do
