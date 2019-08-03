@@ -19,6 +19,7 @@ https://bx-note.herokuapp.com/
   - Webpacker(gem)
 - テスト
   - minitest
+  - RSpec(minitest から RSpec へ移行)
 - 画像アップロード
   - Active Storage
   - Amazon S3
@@ -56,19 +57,13 @@ https://bx-note.herokuapp.com/
 
 ## 開発工程
 
-### 開発手法
-
-- ウォーターフォール型
-
-### 工程
-
 1. 要件定義
 2. 外部設計
 3. 内部設計
-4. 実装(テスト駆動開発)
+4. 実装(テスト含む)
 5. 運用
 
-#### 要件定義
+### 要件定義
 
 - テーマ
   - Web デザイナー初心者のための SNS
