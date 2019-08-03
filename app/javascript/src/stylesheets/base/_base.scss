@@ -289,3 +289,35 @@ body.active {
 	border: 1px solid #fff;
 	color: #fff;
 }
+
+// chrome76 ダークモード トップページ
+// @media(prefers-color-scheme: dark) {
+// 	body {
+// 		background-color: rgb(21, 32, 43);
+// 		color: #fff;
+// 		a {
+// 			color: #fff;
+// 		}
+// 		.header,
+// 		.post-list__item,
+// 		.category-list,
+// 		.profile-card{
+// 			background-color: rgb(32, 52, 71); 
+// 		}
+// 		.header {
+// 			border-bottom: 1px solid #000;
+// 		}
+// 		.serch-box--pc__input {
+// 			background-color: rgb(21, 32, 43);
+// 		}
+// 		.post-list__item .post-item {
+// 			border: 1px solid #000;
+// 		}
+// 		.category-list__item {
+// 			border-bottom: 1px solid #000;
+// 		}
+// 		.post-list__item .post-item__img--article {
+// 			border-right: 1px solid #000;
+// 		}
+// 	}
+// }
