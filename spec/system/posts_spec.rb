@@ -60,7 +60,7 @@ describe '投稿機能', type: :system do
       end
     end
 
-    describe 'ジャンル：book' do
+    context 'ジャンル：book' do
       before do
         click_button('本の感想')
         find('label[for="post_book_evaluation_3"]').click
@@ -92,7 +92,24 @@ describe '投稿機能', type: :system do
         expect(page).to have_content 'amazon.com'
       end
     end
+
+    context 'カテゴリーを選択した場合' do
+      before do
+        click_button('その他')
+        fill_in 'post_content', with: 'その他で投稿！'
+        find('label[for="post_category_ids_1"]').click
+        find('label[for="post_category_ids_5"]').click
+        click_button 'シェア'
+        wait_for_ajax
+      end
+  
+      it '投稿にカテゴリーが表示されていること' do
+        expect(page).to have_selector '.categories__link', text: 'HTML'
+        expect(page).to have_selector '.categories__link', text: 'WordPress'
+      end
+    end
   end
+
 
   describe '一覧表示機能' do
     context 'トップページにアクセスした場合' do
@@ -109,7 +126,7 @@ describe '投稿機能', type: :system do
       before do
         visit user_path(other_user)
       end
-      
+
       it 'ユーザー詳細ページに投稿が表示されること' do
         expect(page).to have_selector "#post-#{post.id}"
       end
