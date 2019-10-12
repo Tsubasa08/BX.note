@@ -35,3 +35,4 @@ yarn-debug.log*
 
 /.env
 /config/initializers/amazon_ecs.rb
+.node-version
