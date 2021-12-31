@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :search
 
   def set_category
-    @categories = Category.all
+    @categories ||= Category.all
   end
 
   def select
